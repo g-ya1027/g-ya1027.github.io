@@ -1,0 +1,139 @@
+{
+  "songs": [
+    {
+      "title": "ハイドアンド・シーク",
+      "artist": "19 ‐iku‐",
+      "genre": "ボカロ",
+      "key": "原曲",
+      "reading": "はいどあんどしーく",
+      "artistReading": "いく",
+      "added": "2026-11"
+    },
+    {
+      "title": "グレゴリオ",
+      "artist": "古川本舗",
+      "genre": "ボカロ",
+      "key": "原曲",
+      "reading": "ぐれごりお",
+      "artistReading": "ふるかわほんぽ",
+      "added": "2026-11"
+    },
+    {
+      "title": "回る空うさぎ",
+      "artist": "Orangestar",
+      "genre": "ボカロ",
+      "key": "原曲",
+      "reading": "まわるそらうさぎ",
+      "artistReading": "おらんじすたー",
+      "added": "2026-11"
+    },
+    {
+      "title": "DOGLAND",
+      "artist": "PEOPLE1",
+      "genre": "アニソン",
+      "key": "原曲",
+      "reading": "どっぐらんど",
+      "artistReading": "ぴーぷるわん",
+      "added": "2026-11"
+    },
+    {
+      "title": "IRIS OUT",
+      "artist": "米津玄師",
+      "genre": "アニソン",
+      "key": "原曲",
+      "reading": "あいりすあうと",
+      "artistReading": "よねづけんし",
+      "added": "2026-11"
+    },
+    {
+      "title": "アイネクライネ",
+      "artist": "米津玄師",
+      "genre": "J-POP",
+      "key": "原曲",
+      "reading": "あいねくらいね",
+      "artistReading": "よねづけんし",
+      "added": "2026-11"
+    },
+    {
+      "title": "vivi",
+      "artist": "米津玄師",
+      "genre": "J-POP",
+      "key": "原曲",
+      "reading": "びび",
+      "artistReading": "よねづけんし",
+      "added": "2026-11"
+    },
+    {
+      "title": "orion",
+      "artist": "米津玄師",
+      "genre": "J-POP",
+      "key": "原曲",
+      "reading": "おりおん",
+      "artistReading": "よねづけんし",
+      "added": "2026-11"
+    },
+    {
+      "title": "Calc.+4",
+      "artist": "ジミーサムP",
+      "genre": "ボカロ",
+      "key": "原曲",
+      "reading": "かるく",
+      "artistReading": "じみーさむぴー",
+      "added": "2026-11"
+    },
+    {
+      "title": "灰色と青 Acoustic Arrange Ver",
+      "artist": "米津玄師",
+      "genre": "J-POP",
+      "key": "原曲",
+      "reading": "はいいろとあお",
+      "artistReading": "よねづけんし",
+      "added": "2026-11"
+    },
+    {
+      "title": "ワンダーランドと羊の歌",
+      "artist": "ハチ",
+      "genre": "ボカロ",
+      "key": "+4",
+      "reading": "わんだーらんどとひつじのうた",
+      "artistReading": "はち",
+      "added": "2026-11"
+    },
+    {
+      "title": "しわ",
+      "artist": "buzzG",
+      "genre": "ボカロ",
+      "key": "+4",
+      "reading": "しわ",
+      "artistReading": "ばずじー",
+      "added": "2026-11"
+    },
+    {
+      "title": "星の唄+3",
+      "artist": "buzzG",
+      "genre": "ボカロ",
+      "key": "原曲",
+      "reading": "ほしのうた",
+      "artistReading": "ばずじー",
+      "added": "2026-11"
+    },
+    {
+      "title": "ニア",
+      "artist": "夏代孝明",
+      "genre": "ボカロ",
+      "key": "-2",
+      "reading": "にあ",
+      "artistReading": "なつしろたかあき",
+      "added": "2026-11"
+    }
+  ],
+  "design": {
+    "theme": "island",
+    "appearance": {
+      "hasCustomImage": false,
+      "veil": 0.35,
+      "fit": "cover",
+      "blur": true
+    }
+  }
+}
