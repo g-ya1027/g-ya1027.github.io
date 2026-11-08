@@ -1,0 +1,1 @@
+# g-ya1027.github.io
