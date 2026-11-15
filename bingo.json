@@ -1,82 +1,11 @@
 {
-  "active": false,
-  "phase": "finished",
-  "mode": "auto",
+  "active": true,
+  "phase": "entry",
+  "mode": "manual",
   "endCount": 3,
-  "winnersCount": 1,
-  "drawn": [
-    15,
-    17,
-    43,
-    2,
-    21,
-    13,
-    22,
-    27,
-    16,
-    23,
-    26,
-    48,
-    47,
-    10,
-    9,
-    34,
-    4,
-    28,
-    19,
-    6,
-    12,
-    20,
-    39,
-    29,
-    14,
-    18
-  ],
-  "drawnCount": 26,
-  "players": [
-    {
-      "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
-      "card": [
-        [
-          5,
-          7,
-          1,
-          4,
-          8
-        ],
-        [
-          15,
-          14,
-          20,
-          19,
-          11
-        ],
-        [
-          26,
-          30,
-          0,
-          21,
-          22
-        ],
-        [
-          35,
-          38,
-          40,
-          39,
-          34
-        ],
-        [
-          47,
-          45,
-          44,
-          48,
-          42
-        ]
-      ],
-      "reach": true,
-      "bingo": true,
-      "markedCount": 13
-    }
-  ],
-  "updatedAt": "2026-11-15T04:12:38.070Z"
+  "winnersCount": 0,
+  "drawn": [],
+  "drawnCount": 0,
+  "players": [],
+  "updatedAt": "2026-11-15T04:19:35.415Z"
 }
