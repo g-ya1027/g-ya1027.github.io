@@ -6,9 +6,10 @@
   "winnersCount": 0,
   "drawn": [
     15,
-    17
+    17,
+    43
   ],
-  "drawnCount": 2,
+  "drawnCount": 3,
   "players": [
     {
       "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
@@ -54,5 +55,5 @@
       "markedCount": 2
     }
   ],
-  "updatedAt": "2026-11-15T04:06:27.477Z"
+  "updatedAt": "2026-11-15T04:06:42.488Z"
 }
