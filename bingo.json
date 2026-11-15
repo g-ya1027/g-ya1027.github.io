@@ -1,6 +1,6 @@
 {
-  "active": true,
-  "phase": "entry",
+  "active": false,
+  "phase": "finished",
   "mode": "manual",
   "endCount": 3,
   "winnersCount": 0,
@@ -51,5 +51,5 @@
       "markedCount": 1
     }
   ],
-  "updatedAt": "2026-11-15T03:49:01.097Z"
+  "updatedAt": "2026-11-15T03:49:51.508Z"
 }
