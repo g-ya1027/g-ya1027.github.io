@@ -22,9 +22,11 @@
     48,
     23,
     30,
-    38
+    38,
+    3,
+    4
   ],
-  "drawnCount": 18,
+  "drawnCount": 20,
   "players": [
     {
       "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
@@ -67,8 +69,8 @@
       ],
       "reach": true,
       "bingo": false,
-      "markedCount": 10
+      "markedCount": 11
     }
   ],
-  "updatedAt": "2026-11-15T03:47:17.486Z"
+  "updatedAt": "2026-11-15T03:47:19.269Z"
 }
