@@ -1,51 +1,83 @@
 <!DOCTYPE html>
-<!-- spoon-bingo-page v1 -->
+<!-- spoon-bingo-page v2 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>🎉 ビンゴ大会 | Spoon bot</title>
 <style>
-  body { font-family: sans-serif; margin: 0; background: #17181c; color: #eee; }
-  .wrap { max-width: 560px; margin: 0 auto; padding: 16px 14px 40px; }
-  h1 { font-size: 21px; margin: 6px 0 2px; }
-  .sub { color: #aaa; font-size: 12px; margin-bottom: 12px; }
-  .status { background: #22232a; border: 1px solid #3a3b44; border-radius: 10px; padding: 10px 12px; font-size: 14px; line-height: 1.7; margin-bottom: 14px; }
-  .drawnNums { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
-  .drawnNums span { background: #2f6fb4; color: #fff; border-radius: 999px; min-width: 26px; text-align: center; padding: 2px 4px; font-size: 12px; }
-  .plist { display: flex; flex-direction: column; gap: 8px; }
-  .prow { display: flex; align-items: center; gap: 8px; background: #22232a; border: 1px solid #3a3b44; border-radius: 10px; padding: 10px 12px; font-size: 15px; cursor: pointer; text-align: left; width: 100%; color: #eee; }
-  .prow .nm { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .badge { font-size: 12px; border-radius: 999px; padding: 2px 8px; background: #444; color: #ddd; white-space: nowrap; }
-  .badge.reach { background: #b45a1b; color: #fff; }
-  .badge.bingo { background: #c22f4d; color: #fff; font-weight: 700; }
-  .cardBox { background: #22232a; border: 1px solid #3a3b44; border-radius: 12px; padding: 14px; }
-  table.bcard { border-collapse: separate; border-spacing: 4px; margin: 10px auto; }
-  table.bcard td { width: 52px; height: 52px; text-align: center; vertical-align: middle; border-radius: 10px; background: #2c2e36; font-size: 18px; font-weight: 700; }
-  table.bcard td.hit { background: #2f6fb4; color: #fff; }
-  table.bcard td.free { background: #6b5aa8; color: #fff; }
-  .backBtn, .reloadBtn { font-size: 14px; padding: 8px 14px; border-radius: 8px; border: 1px solid #666; background: #2c2e36; color: #eee; cursor: pointer; }
-  .empty { color: #aaa; font-size: 14px; padding: 18px 4px; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Hiragino Maru Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif; color: #fff; background-color: #0b0821;
+    background-image: radial-gradient(620px 320px at 12% -5%, rgba(255,46,136,.38), rgba(255,46,136,0) 60%), radial-gradient(720px 360px at 92% -10%, rgba(25,191,255,.32), rgba(25,191,255,0) 60%), radial-gradient(560px 520px at 50% 112%, rgba(123,47,247,.38), rgba(123,47,247,0) 62%), radial-gradient(circle, rgba(255,255,255,.5) 1px, rgba(255,255,255,0) 1.7px);
+    background-size: auto, auto, auto, 110px 110px; background-attachment: fixed; min-height: 100vh; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 18px 12px 42px; }
+  .mascot { text-align: center; font-size: 15px; letter-spacing: .25em; color: #ffd9ec; text-shadow: 0 0 10px rgba(255,79,163,.8); }
+  h1.title { text-align: center; margin: 2px 0 0; font-size: 52px; font-size: clamp(32px, 9vw, 56px); font-weight: 900; letter-spacing: .03em; line-height: 1.15;
+    background: linear-gradient(180deg, #fff6c9 5%, #ffd34d 35%, #ff9d2e 62%, #ffe98a 96%); -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 3px 0 #7a2c00) drop-shadow(0 8px 16px rgba(0,0,0,.55)); }
+  .ribbon { text-align: center; margin-top: 8px; }
+  .ribbon span { display: inline-block; background: linear-gradient(90deg, #c2185b, #e91e63, #c2185b); padding: 4px 18px; border-radius: 999px; font-weight: 700; font-size: 14px; border: 1px solid #ffb3cd; box-shadow: 0 2px 12px rgba(233,30,99,.5); }
+  .status { margin: 16px auto 4px; background: rgba(16,10,44,.8); border: 2px solid #d9a441; border-radius: 14px; padding: 12px 14px; box-shadow: 0 0 0 3px rgba(217,164,65,.15), 0 10px 24px rgba(0,0,0,.45); font-size: 15px; line-height: 1.7; }
+  .drawnNums { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+  .drawnNums span { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; color: #3a2400; background: radial-gradient(circle at 32% 28%, #fffbe8, #ffd34d 55%, #e79b1e); box-shadow: inset 0 -3px 5px rgba(122,44,0,.45), 0 2px 5px rgba(0,0,0,.4); }
+  .drawnNums span.latest { background: radial-gradient(circle at 32% 28%, #ffe3f1, #ff4fa3 55%, #d81b74); color: #fff; transform: scale(1.2); box-shadow: 0 0 14px #ff4fa3; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(176px, 1fr)); gap: 12px; margin-top: 14px; }
+  .panel { background: linear-gradient(180deg, rgba(43,30,96,.92), rgba(20,14,54,.95)); border: 2px solid #d9a441; border-radius: 14px; padding: 10px 8px 12px; box-shadow: 0 8px 18px rgba(0,0,0,.45); }
+  .panel.isReach { border-color: #ff8a3e; box-shadow: 0 0 14px rgba(255,138,62,.55); }
+  .panel.isBingo { border-color: #ffe066; animation: pulse 1.2s ease-in-out infinite alternate; }
+  @keyframes pulse { from { box-shadow: 0 0 12px rgba(255,211,77,.5); } to { box-shadow: 0 0 28px rgba(255,211,77,.95); } }
+  .phead { display: flex; align-items: center; gap: 6px; margin: 0 2px 8px; }
+  .phead .nm { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 800; font-size: 14px; }
+  .badge { font-size: 11px; border-radius: 999px; padding: 2px 8px; background: #3a2f6b; color: #e8e2ff; white-space: nowrap; }
+  .badge.reach { background: #b45309; color: #fff; }
+  .badge.bingo { background: linear-gradient(90deg, #e01f3d, #ff7a59); color: #fff; font-weight: 800; }
+  table.card { border-collapse: separate; border-spacing: 3px; margin: 0 auto; }
+  table.card th { width: 30px; height: 22px; font-size: 15px; font-weight: 900; text-shadow: 0 0 9px currentColor; }
+  th.l0 { color: #ff4fa3; } th.l1 { color: #39c2ff; } th.l2 { color: #ffd23e; } th.l3 { color: #51e07a; } th.l4 { color: #ff8a3e; }
+  table.card td { width: 30px; height: 30px; text-align: center; vertical-align: middle; border-radius: 7px; background: #fff7e0; color: #241a4d; font-size: 14px; font-weight: 800; box-shadow: inset 0 -2px 0 rgba(36,26,77,.18); }
+  td .disc { display: flex; align-items: center; justify-content: center; width: 25px; height: 25px; margin: 0 auto; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #ff8f8f, #e01f3d 65%, #b30f2c); color: #fff; box-shadow: 0 2px 4px rgba(0,0,0,.35), inset 0 -2px 3px rgba(0,0,0,.3); }
+  td.free { background: linear-gradient(180deg, #ffe98a, #ffb52e); color: #7a2c00; font-size: 15px; line-height: 1; }
+  td.free small { display: block; font-size: 7px; font-weight: 900; letter-spacing: .08em; margin-top: 1px; }
+  .empty { text-align: center; color: #cfc6ff; padding: 26px 6px; font-size: 15px; }
+  .foot { text-align: center; color: #9d92d6; font-size: 12px; margin-top: 18px; }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>🎉 ビンゴ大会</h1>
-  <div class="sub">参加者一覧です。名前をタップすると、その人のカードと達成状況が見られます。（自動で更新されます）</div>
+  <div class="mascot">🗿 SPOON ビンゴ大会 🗿</div>
+  <h1 class="title">BINGO TOURNAMENT</h1>
+  <div class="ribbon"><span>⭐ みんなのカード ⭐</span></div>
   <div class="status" id="statusBox">読み込み中…</div>
   <div id="main"></div>
+  <div class="foot">このページは自動で更新されます（5秒ごと）</div>
 </div>
 <script>
   var drawnSet = {};
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   var state = null;
-  var selected = -1;
   function phaseLabel(s) {
     if (!s) return '読み込み中…';
     if (s.phase === 'entry') return '🟢 参加受付中（' + s.players.length + '人）…「!参加」で参加してね';
     if (s.phase === 'drawing') return '🎱 抽選中（' + s.players.length + '人／出た番号 ' + s.drawnCount + '個／ビンゴ ' + s.winnersCount + '/' + s.endCount + '人）';
     if (s.phase === 'finished') return '🏁 終了しました（ビンゴ ' + s.winnersCount + '人）。参加ありがとうございました！';
     return 'まだ始まっていません';
+  }
+  function cardTable(p) {
+    var letters = ['B', 'I', 'N', 'G', 'O'];
+    var html = '<table class="card"><tr>';
+    for (var c = 0; c < 5; c++) html += '<th class="l' + c + '">' + letters[c] + '</th>';
+    html += '</tr>';
+    for (var r = 0; r < 5; r++) {
+      html += '<tr>';
+      for (var cc = 0; cc < 5; cc++) {
+        var v = (p.card[cc] || [])[r];
+        if (v === 0) html += '<td class="free">★<small>FREE</small></td>';
+        else if (drawnSet[v]) html += '<td><span class="disc">' + v + '</span></td>';
+        else html += '<td>' + (v == null ? '' : v) + '</td>';
+      }
+      html += '</tr>';
+    }
+    return html + '</table>';
   }
   function render() {
     var box = document.getElementById('statusBox');
@@ -55,43 +87,20 @@
     (state.drawn || []).forEach(function (n) { drawnSet[n] = true; });
     var html = esc(phaseLabel(state));
     if (state.drawn && state.drawn.length) {
-      html += '<div class="drawnNums">' + state.drawn.map(function (n) { return '<span>' + n + '</span>'; }).join('') + '</div>';
+      var last = state.drawn[state.drawn.length - 1];
+      html += '<div class="drawnNums">' + state.drawn.map(function (n) { return '<span' + (n === last ? ' class="latest"' : '') + '>' + n + '</span>'; }).join('') + '</div>';
     }
     box.innerHTML = html;
-    if (selected >= 0 && state.players[selected]) { renderCard(state.players[selected]); return; }
     if (!state.players.length) { main.innerHTML = '<div class="empty">まだ参加者がいません</div>'; return; }
-    var rows = state.players.map(function (p, i) {
-      var badge = p.bingo ? '<span class="badge bingo">🎉 ビンゴ！</span>' : (p.reach ? '<span class="badge reach">🔥 リーチ</span>' : '<span class="badge">' + p.markedCount + '/25</span>');
-      return '<button type="button" class="prow" data-i="' + i + '"><span class="nm">' + esc(p.nickname) + '</span>' + badge + '<span>›</span></button>';
-    }).join('');
-    main.innerHTML = '<div class="plist">' + rows + '</div>';
-    Array.prototype.forEach.call(main.querySelectorAll('.prow'), function (b) {
-      b.onclick = function () { selected = Number(b.getAttribute('data-i')); render(); };
-    });
-  }
-  function renderCard(p) {
-    var main = document.getElementById('main');
-    var badge = p.bingo ? '🎉 ビンゴ！' : (p.reach ? '🔥 リーチ！' : '当たり ' + p.markedCount + '/25');
-    var cells = '';
-    for (var r = 0; r < 5; r++) {
-      cells += '<tr>';
-      for (var c = 0; c < 5; c++) {
-        var v = (p.card[c] || [])[r];
-        if (v === 0) cells += '<td class="free">★</td>';
-        else if (drawnSet[v]) cells += '<td class="hit">' + v + '</td>';
-        else cells += '<td>' + v + '</td>';
-      }
-      cells += '</tr>';
-    }
-    main.innerHTML = '<div class="cardBox"><button type="button" class="backBtn" id="backBtn">‹ 一覧に戻る</button>' +
-      '<h1 style="font-size:18px;margin-top:12px">' + esc(p.nickname) + ' のカード</h1>' +
-      '<div>' + badge + '</div><table class="bcard">' + cells + '</table></div>';
-    document.getElementById('backBtn').onclick = function () { selected = -1; render(); };
+    main.innerHTML = '<div class="grid">' + state.players.map(function (p) {
+      var badge = p.bingo ? '<span class="badge bingo">🎉 ビンゴ！</span>' : (p.reach ? '<span class="badge reach">🔥 リーチ</span>' : '<span class="badge">⭐ ' + p.markedCount + '/25</span>');
+      var cls = 'panel' + (p.bingo ? ' isBingo' : (p.reach ? ' isReach' : ''));
+      return '<div class="' + cls + '"><div class="phead"><span class="nm">' + esc(p.nickname) + '</span>' + badge + '</div>' + cardTable(p) + '</div>';
+    }).join('') + '</div>';
   }
   function load() {
     fetch('bingo.json?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (j) {
       state = j;
-      if (selected >= (state.players || []).length) selected = -1;
       render();
     }).catch(function () {
       document.getElementById('statusBox').textContent = '読み込めませんでした（まだ大会が始まっていないかもしれません）';
