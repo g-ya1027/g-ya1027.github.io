@@ -3,7 +3,7 @@
   "phase": "drawing",
   "mode": "manual",
   "endCount": 3,
-  "winnersCount": 0,
+  "winnersCount": 1,
   "drawn": [
     1,
     35,
@@ -24,9 +24,12 @@
     30,
     38,
     3,
-    4
+    4,
+    18,
+    44,
+    21
   ],
-  "drawnCount": 20,
+  "drawnCount": 23,
   "players": [
     {
       "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
@@ -68,9 +71,9 @@
         ]
       ],
       "reach": true,
-      "bingo": false,
-      "markedCount": 11
+      "bingo": true,
+      "markedCount": 12
     }
   ],
-  "updatedAt": "2026-11-15T03:47:19.269Z"
+  "updatedAt": "2026-11-15T03:47:30.281Z"
 }
