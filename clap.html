@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- spoon-listener-page v1 -->
+<!-- spoon-listener-page v2 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -41,7 +41,7 @@
   <div class="speedRow"><span class="lbl">速度</span><span id="speedBtns"></span></div>
   <div id="bpmLabel"></div>
   <div class="btnRow">
-    <button type="button" class="tapBtn" id="donBtn"><span class="emo">🦶</span>ドン</button>
+    <button type="button" class="tapBtn" id="donBtn"><span class="emo">🦶</span>ドンドン</button>
     <button type="button" class="tapBtn" id="panBtn"><span class="emo">👏</span>パン</button>
   </div>
   <div id="status">読み込み中…</div>
@@ -51,7 +51,7 @@
   var DB_URL = 'https://podcastse-default-rtdb.firebaseio.com';
   var ROOM_ID = '78f48ea742f74d19a3';
   var SPEEDS = [60, 72, 81, 96, 110];
-  var PATTERN = [ { off: 0, type: 'don' }, { off: 1, type: 'don' }, { off: 2, type: 'pan' } ];
+  var PATTERN = [ { off: 0, type: 'don' }, { off: 2, type: 'pan' } ];
   var speedIdx = 2;
   try {
     var saved = parseInt(localStorage.getItem('lbSpeed') || '2', 10);
@@ -154,7 +154,7 @@
     ctx.fillStyle = '#ffd9a8';
     ctx.font = '900 17px sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText('🦶 ドン', cx - halfW(0) / 2, lineY + 22);
+    ctx.fillText('🦶 ドンドン', cx - halfW(0) / 2, lineY + 22);
     ctx.fillStyle = '#ffc2da';
     ctx.fillText('👏 パン', cx + halfW(0) / 2, lineY + 22);
     // 浮かぶ判定文字
