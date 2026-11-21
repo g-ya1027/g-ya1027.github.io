@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-21T19:38:00.709Z",
+  "updatedAt": "2026-11-21T19:38:14.038Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
@@ -44,10 +44,14 @@
       "token": "9c9a8171a3df9a8a",
       "nickname": "しょこ",
       "radioName": "黄昏の番人総長",
-      "status": "pending",
-      "pair": null,
+      "status": "ready",
+      "pair": {
+        "a": "chars/gYutFvLTSj7NCj0XQuXOzQ-a.png",
+        "b": "chars/gYutFvLTSj7NCj0XQuXOzQ-b.png",
+        "kind": "gender"
+      },
       "chosen": null,
-      "reroll": "notready",
+      "reroll": "ok",
       "rerollNextAt": null
     }
   ]
