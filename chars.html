@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!-- spoon-radio-chars v1 -->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🎨 ラジオネーム名鑑 | イメージキャラ</title>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body { margin: 0; font-family: "Hiragino Maru Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif; color: #fff; background-color: #0b0821;
+    background-image: radial-gradient(620px 320px at 12% -5%, rgba(255,46,136,.38), rgba(255,46,136,0) 60%), radial-gradient(720px 360px at 92% -10%, rgba(25,191,255,.32), rgba(25,191,255,0) 60%), radial-gradient(560px 520px at 50% 112%, rgba(123,47,247,.38), rgba(123,47,247,0) 62%), radial-gradient(circle, rgba(255,255,255,.5) 1px, rgba(255,255,255,0) 1.7px);
+    background-size: auto, auto, auto, 110px 110px; background-attachment: fixed; min-height: 100vh; }
+  .wrap { max-width: 560px; margin: 0 auto; padding: 18px 14px 40px; }
+  .mascot { text-align: center; font-size: 14px; letter-spacing: .25em; color: #ffd9ec; text-shadow: 0 0 10px rgba(255,79,163,.8); }
+  h1.title { text-align: center; margin: 4px 0 0; font-size: 34px; font-weight: 900; line-height: 1.25;
+    background: linear-gradient(180deg, #fff6c9 5%, #ffd34d 35%, #ff9d2e 62%, #ffe98a 96%); -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 3px 0 #7a2c00) drop-shadow(0 8px 16px rgba(0,0,0,.55)); }
+  .sub { text-align: center; font-size: 13.5px; color: #cfc6ff; line-height: 1.7; margin: 10px 0 16px; }
+  .card { background: linear-gradient(180deg, rgba(43,30,96,.92), rgba(20,14,54,.95)); border: 2px solid #d9a441; border-radius: 16px; padding: 14px; margin: 0 0 14px; box-shadow: 0 8px 18px rgba(0,0,0,.45); }
+  .pname { font-size: 17px; font-weight: 900; }
+  .rname { font-size: 13px; color: #ffd34d; font-weight: 700; margin-top: 2px; }
+  img.char { width: 100%; border-radius: 12px; display: block; background: #171038; }
+  .pairRow { display: flex; gap: 10px; }
+  .pairCol { flex: 1; min-width: 0; }
+  .pairCol .cap { text-align: center; font-size: 13px; font-weight: 700; margin: 6px 0; color: #e8e2ff; }
+  button.act { width: 100%; border: none; border-radius: 999px; padding: 11px 10px; font-size: 15px; font-weight: 900; color: #fff; cursor: pointer; background: linear-gradient(90deg, #e91e63, #7b2ff7); box-shadow: 0 4px 0 #4a1470; }
+  button.act:active { transform: translateY(3px); box-shadow: 0 1px 0 #4a1470; }
+  button.sub2 { width: 100%; border: 2px solid rgba(160,120,255,.6); border-radius: 999px; padding: 9px 10px; font-size: 13.5px; font-weight: 700; color: #e8e2ff; background: rgba(30,20,70,.8); cursor: pointer; margin-top: 8px; }
+  button[disabled] { opacity: .45; cursor: default; box-shadow: none; }
+  .dl { display: block; text-align: center; text-decoration: none; margin-top: 10px; border-radius: 999px; padding: 11px 10px; font-size: 15px; font-weight: 900; color: #07332b; background: linear-gradient(90deg, #00d1b2, #00b39b); }
+  textarea { width: 100%; border-radius: 10px; border: 2px solid rgba(160,120,255,.5); background: rgba(10,6,32,.7); color: #fff; font-size: 14px; padding: 9px; min-height: 64px; }
+  .lbl { font-size: 13.5px; font-weight: 700; margin: 12px 0 6px; }
+  .msg { text-align: center; font-size: 13px; color: #bdb4e8; min-height: 18px; margin-top: 10px; line-height: 1.6; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid .card { margin: 0; padding: 10px; cursor: pointer; }
+  .grid img.char { border-radius: 9px; }
+  .grid .pname { font-size: 14.5px; margin-top: 8px; }
+  .grid .rname { font-size: 12px; }
+  .pending { text-align: center; color: #bdb4e8; font-size: 14px; padding: 18px 0 8px; line-height: 1.7; }
+  .note { color: #9d92d6; font-size: 12px; line-height: 1.8; margin-top: 16px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="mascot">🗿 SPOON 🗿</div>
+  <h1 class="title">ラジオネーム名鑑</h1>
+  <p class="sub" id="headSub">読み込み中…</p>
+  <div id="main"></div>
+  <div class="note">
+    ※このページのイラストは、ラジオネームのプレゼントとしてAIで生成したものです。ご本人の個人利用（アイコン・待ち受けなど）は自由ですが、販売などの商用利用はご遠慮ください。<br>
+    ※選択や再抽選の反映には少し時間がかかります（配信中に bot が受け取って公開し直します）。
+  </div>
+</div>
+<script>
+  var DB_URL = 'https://podcastse-default-rtdb.firebaseio.com';
+  var ROOM_ID = '78f48ea742f74d19a3';
+  var token = '';
+  try { token = new URLSearchParams(location.search).get('t') || ''; } catch (e) {}
+  var mainEl = document.getElementById('main');
+  var subEl = document.getElementById('headSub');
+  var people = [];
+  var me = null;
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function capOf(p, which) {
+    if (p.pair && p.pair.kind === 'style') return which === 'a' ? 'かっこいい系' : 'かわいい系';
+    return which === 'a' ? '男の子' : '女の子';
+  }
+  function postOp(op) {
+    if (!DB_URL || !ROOM_ID) { alert('接続先が未設定です（DJ側の設定待ち）'); return Promise.resolve(false); }
+    op.t = Date.now();
+    return fetch(DB_URL + '/rooms/' + encodeURIComponent(ROOM_ID) + '/charops.json', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(op)
+    }).then(function (r) { return r.ok; }).catch(function () { return false; });
+  }
+  function dateStr(iso) {
+    if (!iso) return '';
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return '';
+    return d.getFullYear() + '/' + (d.getMonth() + 1) + '/' + d.getDate();
+  }
+  function render() {
+    if (token) {
+      me = null;
+      for (var i = 0; i < people.length; i++) if (people[i].token === token) me = people[i];
+      if (me) { renderMe(); return; }
+    }
+    renderRoster();
+  }
+  function renderRoster() {
+    subEl.textContent = 'ラジオネームが付いたみんなのイメージキャラだよ。自分のカードを押すと、自分のページが開きます。';
+    var ready = people.filter(function (p) { return p.status === 'ready' && p.pair; });
+    if (!ready.length) { mainEl.innerHTML = '<div class="card"><div class="pending">まだ公開されたキャラはいません。<br>ラジオネームが付くと、ここに載ります。</div></div>'; return; }
+    var html = '<div class="grid">';
+    ready.forEach(function (p) {
+      var img = p.chosen === 'b' ? p.pair.b : p.pair.a;
+      html += '<div class="card" data-token="' + esc(p.token) + '"><img class="char" src="' + esc(img) + '" alt=""><div class="pname">' + esc(p.nickname) + '</div><div class="rname">『' + esc(p.radioName) + '』</div></div>';
+    });
+    html += '</div>';
+    mainEl.innerHTML = html;
+    var cards = mainEl.querySelectorAll('[data-token]');
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].addEventListener('click', function () { location.search = '?t=' + encodeURIComponent(this.getAttribute('data-token')); });
+    }
+  }
+  function renderMe() {
+    var p = me;
+    subEl.textContent = p.nickname + ' さんのページ';
+    var html = '<div class="card"><div class="pname">' + esc(p.nickname) + '</div><div class="rname">ラジオネーム『' + esc(p.radioName) + '』</div>';
+    if (p.status !== 'ready' || !p.pair) {
+      html += '<div class="pending">🎨 キャラは準備中です。<br>できたらこのページに載ります。楽しみに待っててね。</div>';
+    } else if (!p.chosen) {
+      html += '<p class="sub" style="margin:10px 0 4px">どちらのキャラにする？ 好きな方を選んでね。</p><div class="pairRow">';
+      ['a', 'b'].forEach(function (w) {
+        html += '<div class="pairCol"><img class="char" src="' + esc(p.pair[w]) + '" alt=""><div class="cap">' + capOf(p, w) + '</div><button type="button" class="act" data-choose="' + w + '">これにする</button></div>';
+      });
+      html += '</div>';
+    } else {
+      var cur = p.pair[p.chosen];
+      var other = p.chosen === 'a' ? 'b' : 'a';
+      html += '<img class="char" src="' + esc(cur) + '" alt="" style="margin-top:10px">';
+      html += '<a class="dl" href="' + esc(cur) + '" download>⬇ このイラストをダウンロード</a>';
+      html += '<button type="button" class="sub2" data-choose="' + other + '">もう片方（' + capOf(p, other) + '）に変える</button>';
+      html += '<div class="lbl">🎲 再抽選（描き直し）</div>';
+      if (p.reroll === 'pending') {
+        html += '<div class="msg">再抽選の申請を受け付けています。新しい絵ができるまで待っててね。</div>';
+      } else if (p.reroll === 'cooldown') {
+        html += '<div class="msg">再抽選は1週間に1回までです。次は ' + dateStr(p.rerollNextAt) + ' からできます。</div>';
+      } else {
+        html += '<textarea id="wish" maxlength="300" placeholder="希望があれば書いてね（例：もっとクールに／猫耳をつけて）"></textarea>';
+        html += '<button type="button" class="act" id="rerollBtn" style="margin-top:8px">再抽選を申請する</button>';
+        html += '<div class="msg">申請すると1週間は再抽選できません。</div>';
+      }
+    }
+    html += '<div class="msg" id="opMsg"></div></div>';
+    mainEl.innerHTML = html;
+    var msgEl = document.getElementById('opMsg');
+    var chooseBtns = mainEl.querySelectorAll('[data-choose]');
+    for (var i = 0; i < chooseBtns.length; i++) {
+      chooseBtns[i].addEventListener('click', function () {
+        var w = this.getAttribute('data-choose');
+        msgEl.textContent = '送信中…';
+        postOp({ kind: 'choose', token: token, choice: w }).then(function (ok) {
+          msgEl.textContent = ok ? '送信しました♪ 反映まで少し待ってね（このページは自動で更新されます）' : '送信できませんでした（時間をおいてもう一度）';
+          if (ok) setTimeout(load, 4000);
+        });
+      });
+    }
+    var rb = document.getElementById('rerollBtn');
+    if (rb) {
+      rb.addEventListener('click', function () {
+        var wish = (document.getElementById('wish') || {}).value || '';
+        msgEl.textContent = '送信中…';
+        postOp({ kind: 'reroll', token: token, wish: wish }).then(function (ok) {
+          msgEl.textContent = ok ? '申請を送信しました♪ 新しい絵を楽しみに待っててね' : '送信できませんでした（時間をおいてもう一度）';
+          if (ok) setTimeout(load, 4000);
+        });
+      });
+    }
+  }
+  function load() {
+    fetch('chars.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (data) {
+      people = (data && data.people) || [];
+      render();
+    }).catch(function () {
+      subEl.textContent = '読み込めませんでした。少し待ってから開き直してね。';
+    });
+  }
+  load();
+  setInterval(load, 30000);
+</script>
+</body>
+</html>
