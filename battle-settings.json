@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "updatedAt": "2026-11-21T11:51:33.492Z",
+  "featuresBattle": true,
+  "battle": {
+    "announce": {
+      "start": true,
+      "levelUp": true,
+      "evolution": true
+    },
+    "pvpEnabled": false,
+    "gkEnabled": false,
+    "timing": {
+      "forfeitSec": 60,
+      "matchSec": 30,
+      "turnSec": 30
+    },
+    "illustWeeklyCap": 5,
+    "illustWeeklyCapPerUser": 1,
+    "sounds": {
+      "page": {},
+      "bot": {}
+    }
+  }
+}
