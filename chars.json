@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-21T19:38:14.038Z",
+  "updatedAt": "2026-11-21T19:38:26.515Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
@@ -20,10 +20,14 @@
       "token": "266dc71e8ae0ca46",
       "nickname": "瑠璃𓈒𓂂𖧷",
       "radioName": "深夜の影総長",
-      "status": "pending",
-      "pair": null,
+      "status": "ready",
+      "pair": {
+        "a": "chars/jikCsQVNM6OnpwFu1fHkDg-a.png",
+        "b": "chars/jikCsQVNM6OnpwFu1fHkDg-b.png",
+        "kind": "gender"
+      },
       "chosen": null,
-      "reroll": "notready",
+      "reroll": "ok",
       "rerollNextAt": null
     },
     {
