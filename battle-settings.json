@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-21T12:14:32.047Z",
+  "updatedAt": "2026-11-21T13:06:10.563Z",
   "featuresBattle": true,
   "battle": {
     "announce": {
@@ -18,8 +18,114 @@
     "illustWeeklyCap": 5,
     "illustWeeklyCapPerUser": 1,
     "sounds": {
-      "page": {},
-      "bot": {}
+      "page": {
+        "bgm.title": {
+          "file": "",
+          "volume": 0.8
+        },
+        "bgm.battle": {
+          "file": "",
+          "volume": 0.8
+        },
+        "bgm.pvp": {
+          "file": "",
+          "volume": 0.8
+        },
+        "se.encounter": {
+          "file": "",
+          "volume": 0.8
+        },
+        "se.uiTap": {
+          "file": "",
+          "volume": 0.8
+        },
+        "se.uiDecide": {
+          "file": "",
+          "volume": 0.8
+        },
+        "se.uiCancel": {
+          "file": "",
+          "volume": 0.8
+        },
+        "se.moveSelect": {
+          "file": "",
+          "volume": 0.8
+        },
+        "se.attackNormal": {
+          "file": "",
+          "volume": 0.8
+        },
+        "se.attackAttr": {
+          "file": "",
+          "volume": 0.8
+        },
+        "se.charge": {
+          "file": "",
+          "volume": 0.8
+        },
+        "se.hit": {
+          "file": "",
+          "volume": 0.8
+        },
+        "se.hitBig": {
+          "file": "",
+          "volume": 0.8
+        },
+        "se.turnStart": {
+          "file": "",
+          "volume": 0.8
+        },
+        "se.win": {
+          "file": "",
+          "volume": 0.8
+        },
+        "se.lose": {
+          "file": "",
+          "volume": 0.8
+        },
+        "se.draw": {
+          "file": "",
+          "volume": 0.8
+        },
+        "se.levelUp": {
+          "file": "",
+          "volume": 0.8
+        },
+        "se.heal": {
+          "file": "",
+          "volume": 0.8
+        },
+        "se.alloc": {
+          "file": "",
+          "volume": 0.8
+        },
+        "se.evolution": {
+          "file": "",
+          "volume": 0.8
+        },
+        "se.ranking": {
+          "file": "",
+          "volume": 0.8
+        }
+      },
+      "bot": {
+        "se.levelUp": {
+          "file": "",
+          "volume": 0.8
+        },
+        "se.evolution": {
+          "file": "",
+          "volume": 0.8
+        },
+        "se.gkStart": {
+          "file": "",
+          "volume": 0.8
+        },
+        "se.rankIn": {
+          "file": "",
+          "volume": 0.8
+        }
+      }
     }
   }
 }
