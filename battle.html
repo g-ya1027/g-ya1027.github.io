@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- spoon-battle-page v7 -->
+<!-- spoon-battle-page v8 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -84,6 +84,7 @@
   <div id="viewGk" class="hidden"></div>
   <div id="viewQueue" class="hidden"></div>
   <div id="viewBattle" class="hidden"></div>
+  <div id="viewTraining" class="hidden"></div>
   <div class="foot" id="footNote">読み込み中…</div>
 </div>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
@@ -466,7 +467,7 @@
     var lamp = el('liveLamp');
     if (data && data.live) { lamp.textContent = '● ON AIR'; lamp.className = 'lamp on'; }
     else { lamp.textContent = '● OFF AIR'; lamp.className = 'lamp'; }
-    el('tabMine').className = 'tab' + (token ? '' : ' hidden') + (view === 'mine' || view === 'lobby' || view === 'gk' || view === 'queue' || view === 'battle' ? ' sel' : '');
+    el('tabMine').className = 'tab' + (token ? '' : ' hidden') + (view === 'mine' || view === 'lobby' || view === 'gk' || view === 'queue' || view === 'battle' || view === 'training' ? ' sel' : '');
     el('tabRoster').className = 'tab' + (view === 'roster' ? ' sel' : '');
     el('tabRanking').className = 'tab' + (view === 'ranking' ? ' sel' : '');
     el('viewRoster').className = view === 'roster' ? '' : 'hidden';
@@ -476,7 +477,8 @@
     el('viewGk').className = view === 'gk' ? '' : 'hidden';
     el('viewQueue').className = view === 'queue' ? '' : 'hidden';
     el('viewBattle').className = view === 'battle' ? '' : 'hidden';
-    renderRoster(); renderMine(); renderRanking(); renderLobby(); renderGk(); renderQueue();
+    el('viewTraining').className = view === 'training' ? '' : 'hidden';
+    renderRoster(); renderMine(); renderRanking(); renderLobby(); renderGk(); renderQueue(); renderTraining();
     if (data && data.updatedAt) el('footNote').textContent = '最終更新: ' + new Date(data.updatedAt).toLocaleString('ja-JP') + (data.live ? '' : '（bot停止中は情報が止まっています）');
   }
   function loadData(cb) {
@@ -576,6 +578,7 @@
         + '<div class="note">レベル差10までの相手とマッチングします。30秒待って相手が見つからなければ、NPC戦になります。</div>' : '')
       + (!data.live ? '<div class="note">いまは配信が止まっているため、対戦はできません（bot 起動中のみ）。</div>' : '')
       + (c.status === 'active' && hp < 10 ? '<div class="note">体力が10未満のため対戦できません。回復するか、配信開始時の全回復を待ってください。</div>' : '')
+      + trainingPanelHtml(c)
       + '<button class="btn small" id="lobbyBackBtn" type="button">自分のキャラへもどる</button>'
       + '</div>';
     startPresence();
@@ -603,6 +606,7 @@
         else { alert('対戦の開始を確認できませんでした。自分のキャラ画面で「対戦にもどる」を確認してください。'); switchView('mine'); }
       });
     });
+    if (el('trainBtn')) el('trainBtn').addEventListener('click', function () { playSlot('se.uiDecide'); startTraining(); });
   }
   // ===== S5b レジェンド挑戦（ジャイアントキリング）段階選択（§3.10・Phase 2B） =====
   function renderGk() {
@@ -879,6 +883,189 @@
       var who = esc(names[h.side] || '');
       var act = h.choice === 'charge' ? '間を取った' : (h.choice === 'attr' ? 'シグネチャーボイス！ ' + h.damage + 'ダメージ' : 'マイクアタック ' + h.damage + 'ダメージ');
       lines += '<div class="logline">' + h.turnNo + '. ' + who + ': ' + act + (h.auto ? '（自動）' : '') + (h.skill ? ' <span class="note">✨' + esc(h.skill) + '</span>' : '') + '</div>';
+    }
+    return '<div class="panel"><div class="ptitle">バトルログ</div>' + lines + '</div>';
+  }
+  // ===== 訓練モード（game55・§4.4）: 配信外でも遊べる NPC 戦 =====
+  // 対戦の進行は bot と同じ再演シミュレータ（シード＋選択列で完全再現できる）でこのページ内だけで完結させる。
+  // 実キャラの HP は使わず、満タンのコピーで戦う。終了後は再演ログを battleOps へ預け、
+  // EXP の精算は bot が次回起動時に再演検証して行う（この場では付与されない）。
+  var simulateTrainingBattle = null;
+  try { simulateTrainingBattle = (new Function("function simulateTrainingBattle(input) {\n  var ATTRS = ['火', '水', '氷', '風', '土', '雷', '光', '闇'];\n  var NPC_NAMES = ['ミッドナイトDJ', '深夜の挑戦者', 'エコー番長', 'ノイズ使い', 'チューナー', 'アンテナ侍', 'ボリューム騎士', '波形の旅人'];\n  var SKILL_BY_ATTR = { '火': '燃え上がり', '水': '癒しの雫', '氷': '凍結', '風': '疾風', '土': '岩壁', '雷': '感電', '光': '導き', '闇': '影縫い' };\n  var STRONG = { '水': '火', '火': '氷', '氷': '風', '風': '土', '土': '雷', '雷': '水' };\n  function relationOf(atkAttr, defAttr) {\n    if (STRONG[atkAttr] === defAttr) return 1.3;\n    if (STRONG[defAttr] === atkAttr) return 0.7;\n    if ((atkAttr === '光' && defAttr === '闇') || (atkAttr === '闇' && defAttr === '光')) return 1.3;\n    return 1;\n  }\n  function mulberry32(seed) {\n    var a = seed >>> 0;\n    return function () {\n      a = (a + 0x6D2B79F5) >>> 0;\n      var t = a;\n      t = Math.imul(t ^ (t >>> 15), t | 1);\n      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);\n      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;\n    };\n  }\n  var seedNum = Math.floor(Number(input && input.seed));\n  if (!isFinite(seedNum) || seedNum < 0 || seedNum >= 2147483648) return { error: 'bad_seed' };\n  var snap = (input && input.snapshot) || {};\n  var choices = (input && input.choices) || [];\n  var playerLevel = Math.floor(Number(snap.level)) || 1;\n  var rng = mulberry32(seedNum);\n  // NPC の決定（エンジンの startNpc → npcBuild と同じ順で乱数を消費する。\n  // ステータスは「振り分け総量＝レベル−1 を均等配分（端数は攻撃→防御→属性値）」）\n  var npcLevel = Math.min(100, Math.max(1, playerLevel + Math.floor(rng() * 7) - 3));\n  var npcAttr = ATTRS[Math.floor(rng() * ATTRS.length)];\n  var npcName = NPC_NAMES[Math.floor(rng() * NPC_NAMES.length)];\n  var npcTotal = npcLevel - 1;\n  var npcShare = Math.floor(npcTotal / 3);\n  var npcRest = npcTotal - npcShare * 3;\n  var npcAdd = { atk: npcShare, def: npcShare, attrValue: npcShare };\n  if (npcRest > 0) { npcAdd.atk += 1; npcRest -= 1; }\n  if (npcRest > 0) { npcAdd.def += 1; npcRest -= 1; }\n  if (npcRest > 0) { npcAdd.attrValue += 1; npcRest -= 1; }\n  var npc = {\n    nickname: npcName, attr: npcAttr, level: npcLevel,\n    atk: 10 + npcAdd.atk, def: 5 + npcAdd.def, attrValue: 10 + npcAdd.attrValue,\n  };\n  var firstSide = rng() < 0.5 ? 0 : 1;\n  function mkP(nickname, attr, level, atk, def, attrValue, skill) {\n    return {\n      nickname: String(nickname || ''), attr: attr, level: level, atk: atk, def: def, attrValue: attrValue,\n      skill: skill || null, hp: 100, hpStart: 100, charging: false, chargeBuff: false, chargingSetTurn: 0,\n      frozenNext: false, attrCooldown: 0, attrJustUsed: false, skillTurns: 0, skillFirstUsed: false,\n    };\n  }\n  var parts = [\n    mkP(snap.nickname, snap.attr, playerLevel, Number(snap.atk) || 0, Number(snap.def) || 0, Number(snap.attrValue) || 0, snap.skill || null),\n    mkP(npc.nickname, npc.attr, npc.level, npc.atk, npc.def, npc.attrValue, null),\n  ];\n  var turnNo = 1;\n  var turnSide = firstSide;\n  var finished = false;\n  var winner = null;\n  var reason = null;\n  var history = [];\n  var consumed = 0;\n  var awaitingPlayer = false;\n  function resolveTurn(choice) {\n    var side = turnSide;\n    var actor = parts[side];\n    var target = parts[1 - side];\n    var actorSkill = actor.skill;\n    var targetSkill = target.skill;\n    // 水「癒しの雫」: 自分の手番が3の倍数回目に到達したとき、行動前に HP+3（最大100まで）\n    var skillHeal = 0;\n    if (actorSkill === SKILL_BY_ATTR['水']) {\n      actor.skillTurns += 1;\n      if (actor.skillTurns % 3 === 0 && actor.hp > 0 && actor.hp < 100) {\n        skillHeal = Math.min(3, 100 - actor.hp);\n        actor.hp += skillHeal;\n      }\n    }\n    var damage = 0;\n    if (choice === 'charge') {\n      // すでに「溜める」が有効な間は張り直さない（エンジンと同じ）\n      if (!(actor.charging && actor.chargeBuff)) {\n        actor.charging = true;\n        actor.chargeBuff = true;\n        actor.chargingSetTurn = turnNo;\n      }\n      var hCharge = { turnNo: turnNo, side: side, choice: choice, damage: 0, skill: null };\n      if (skillHeal > 0) hCharge.skill = actorSkill + ' +' + skillHeal;\n      history.push(hCharge);\n    } else {\n      // ダメージ計算（エンジンの battleDamage と同じ適用順序）\n      var relationFull = relationOf(actor.attr, target.attr);\n      var base = 5 + actor.atk - target.def;\n      var mul = choice === 'attr' ? 1.6 : 1.0;\n      var dmgNotes = [];\n      if (choice === 'attr') {\n        mul *= relationFull;\n        mul *= 1 + actor.attrValue / 100;\n        if (actorSkill === SKILL_BY_ATTR['火']) { mul *= 1.2; dmgNotes.push(actorSkill + ' +20%'); }\n      } else if (actorSkill === SKILL_BY_ATTR['雷']) {\n        var half = relationFull > 1 ? 1.15 : relationFull < 1 ? 0.85 : 1;\n        if (half !== 1) { mul *= half; dmgNotes.push(actorSkill + (half > 1 ? ' ×1.15' : ' ×0.85')); }\n      }\n      var firstAttack = actorSkill === SKILL_BY_ATTR['風'] && side === firstSide && !actor.skillFirstUsed;\n      if (firstAttack) { mul *= 1.3; dmgNotes.push(actorSkill + ' +30%'); }\n      if (actor.chargeBuff) mul *= 1.5;\n      if (target.charging) {\n        if (actorSkill === SKILL_BY_ATTR['闇']) { mul *= 0.75; dmgNotes.push(actorSkill + ' 軽減弱体'); }\n        else mul *= 0.5;\n      }\n      if (target.frozenNext) { mul *= 0.8; dmgNotes.push(SKILL_BY_ATTR['氷'] + ' -20%'); }\n      if (mul > 2.5) mul = 2.5;\n      var raw = base * mul * (0.9 + rng() * 0.2);\n      var guarantee = Math.max(1, Math.ceil(actor.atk / 10));\n      damage = Math.round(Math.max(raw, guarantee));\n      if (actor.chargeBuff) actor.chargeBuff = false;\n      if (target.charging) target.charging = false;\n      if (target.frozenNext) target.frozenNext = false;\n      var rockWall = false;\n      if (targetSkill === SKILL_BY_ATTR['土'] && damage > guarantee) { damage -= 1; rockWall = true; }\n      target.hp = Math.max(0, target.hp - damage);\n      if (actorSkill === SKILL_BY_ATTR['風'] && side === firstSide) actor.skillFirstUsed = true;\n      var froze = false;\n      if (actorSkill === SKILL_BY_ATTR['氷'] && choice === 'attr' && damage > 0) { actor.frozenNext = true; froze = true; }\n      var notes = [];\n      if (skillHeal > 0) notes.push(actorSkill + ' +' + skillHeal);\n      for (var n = 0; n < dmgNotes.length; n++) notes.push(dmgNotes[n]);\n      if (rockWall) notes.push(targetSkill + ' -1');\n      if (froze) notes.push(actorSkill);\n      history.push({ turnNo: turnNo, side: side, choice: choice, damage: damage, skill: notes.length ? notes.join('／') : null });\n      if (choice === 'attr') { actor.attrCooldown = 2; actor.attrJustUsed = true; }\n    }\n    // 手番後の処理（エンジンと同じく行動した側だけ）: 溜める軽減の失効と属性クールダウンの消化\n    if (actor.charging && actor.chargingSetTurn < turnNo) actor.charging = false;\n    if (!actor.attrJustUsed && actor.attrCooldown > 0) actor.attrCooldown -= 1;\n    actor.attrJustUsed = false;\n    if (target.hp <= 0) { finished = true; winner = side; reason = 'ko'; return; }\n    if (turnNo >= 20) {\n      var ra = actor.hp / actor.hpStart + (actor.skill === SKILL_BY_ATTR['光'] ? 0.05 : 0);\n      var rt = target.hp / target.hpStart + (target.skill === SKILL_BY_ATTR['光'] ? 0.05 : 0);\n      finished = true;\n      winner = ra === rt ? null : (ra > rt ? side : 1 - side);\n      reason = winner === null ? 'draw' : 'judge';\n      return;\n    }\n    turnNo += 1;\n    turnSide = 1 - turnSide;\n  }\n  while (!finished) {\n    if (turnSide === 0) {\n      if (consumed >= choices.length) { awaitingPlayer = true; break; }\n      var c = choices[consumed];\n      if (c !== 'normal' && c !== 'attr' && c !== 'charge') return { error: 'bad_choice' };\n      if (c === 'attr' && parts[0].attrCooldown > 0) return { error: 'attr_cooldown' };\n      consumed += 1;\n      resolveTurn(c);\n    } else {\n      var cand = ['normal', 'charge'];\n      if (parts[1].attrCooldown <= 0) cand.push('attr');\n      resolveTurn(cand[Math.floor(rng() * cand.length)]);\n    }\n  }\n  return {\n    npc: { nickname: npc.nickname, attr: npc.attr, level: npc.level, atk: npc.atk, def: npc.def, attrValue: npc.attrValue },\n    firstSide: firstSide,\n    participants: parts.map(function (p) {\n      return {\n        nickname: p.nickname, attr: p.attr, level: p.level, hp: p.hp, hpStart: p.hpStart,\n        charging: p.charging, chargeBuff: p.chargeBuff, attrCooldown: p.attrCooldown, skill: p.skill,\n      };\n    }),\n    history: history,\n    turnNo: turnNo,\n    turnSide: turnSide,\n    finished: finished,\n    winner: winner,\n    reason: reason,\n    awaitingPlayer: awaitingPlayer,\n    consumedChoices: consumed,\n  };\n}" + '\n;return simulateTrainingBattle;'))(); } catch (e) { simulateTrainingBattle = null; }
+  var train = null;
+  function jstDayKey55() {
+    try { return new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Tokyo' }); } catch (e) { return ''; }
+  }
+  function trainLocalUsed() {
+    try {
+      var raw = localStorage.getItem('btTrainAttempts');
+      if (!raw) return 0;
+      var o = JSON.parse(raw);
+      return o && o.day === jstDayKey55() ? (o.count || 0) : 0;
+    } catch (e) { return 0; }
+  }
+  function trainLocalBump() {
+    try { localStorage.setItem('btTrainAttempts', JSON.stringify({ day: jstDayKey55(), count: trainLocalUsed() + 1 })); } catch (e) {}
+  }
+  function trainingLeft() {
+    var t = data && data.training ? data.training : null;
+    if (!t || !t.enabled) return 0;
+    var c = myEntry();
+    var serverUsed = c && c.training ? (c.training.usedToday || 0) : 0;
+    var used = Math.max(serverUsed, trainLocalUsed());
+    return Math.max(0, (t.dailyLimit || 3) - used);
+  }
+  function trainReasonText(reason) {
+    var map = {
+      daily_cap: '1日の上限を超えています', result_mismatch: '再演の結果と一致しませんでした',
+      choices_mismatch: '選択の記録が一致しませんでした', snapshot_over: 'キャラの記録を超える内容でした',
+      snapshot_attr: '属性が一致しませんでした', bad_skill: 'スキルの記録が一致しませんでした',
+      npc_mismatch: '相手の記録が一致しませんでした', not_active: '対象のキャラが見つかりませんでした',
+      bad_day: '日付の記録が不正でした', future_day: '日付の記録が不正でした', stale_day: '古すぎる対戦でした',
+      bad_log: '記録の形式が不正でした',
+    };
+    return map[reason] || '検証できませんでした';
+  }
+  function trainingResultsHtml() {
+    var c = myEntry();
+    var rs = c && c.training && c.training.results ? c.training.results : [];
+    if (!rs.length) return '';
+    var lines = '';
+    for (var i = 0; i < rs.length; i++) {
+      var r = rs[i];
+      var when = r.day ? String(r.day).slice(5).replace('-', '/') : '';
+      var txt = !r.valid ? '無効（' + esc(trainReasonText(r.reason)) + '）'
+        : r.outcome === 'win' ? '勝ち・EXP +' + (r.exp || 0) + '（精算済み）'
+        : r.outcome === 'lose' ? '負け（精算済み）' : '引き分け（精算済み）';
+      lines += '<div class="logline">' + when + ' 訓練: ' + txt + '</div>';
+    }
+    return '<div style="margin-top:10px;"><div class="note">最近の訓練の精算結果</div>' + lines + '</div>';
+  }
+  function trainingPanelHtml(c) {
+    var t = data && data.training ? data.training : null;
+    if (!t || !t.enabled) return '<div class="note" style="margin-top:10px;">🏃 訓練モードは、いまオフになっています。</div>';
+    var left = trainingLeft();
+    var can = c.status === 'active' && left > 0 && !!simulateTrainingBattle;
+    return '<div style="margin-top:12px;border-top:1px solid #3d4276;padding-top:10px;">'
+      + '<div class="ptitle">🏃 訓練モード（NPC戦）</div>'
+      + '<div class="note">配信が止まっていても遊べます。訓練では体力は減りません。勝つと EXP がもらえますが、精算は bot の次回起動時です（BP・戦績には数えません）。</div>'
+      + '<div class="row"><span>今日の訓練</span><span>あと ' + left + ' 回（1日 ' + (t.dailyLimit || 3) + ' 回まで）</span></div>'
+      + '<button class="btn" id="trainBtn" type="button"' + (can ? '' : ' disabled') + '>訓練をはじめる</button>'
+      + (c.status !== 'active' ? '<div class="note">属性が決まると訓練できます。</div>' : '')
+      + (left <= 0 && c.status === 'active' ? '<div class="note">今日の訓練は上限に達しています。また明日どうぞ。</div>' : '')
+      + trainingResultsHtml()
+      + '</div>';
+  }
+  function startTraining() {
+    var c = myEntry();
+    if (!c || c.status !== 'active' || !simulateTrainingBattle) return;
+    if (trainingLeft() <= 0) { alert('今日の訓練は上限に達しています。'); return; }
+    var seed = (Date.now() % 2147483647) ^ Math.floor(Math.random() * 2147483647);
+    var snapshot = {
+      nickname: c.nickname, attr: c.attr, level: c.level,
+      atk: c.params.atk, def: c.params.def, attrValue: c.params.attrValue,
+      skill: c.skill && c.skill.learned ? c.skill.name : null,
+    };
+    train = { seed: seed, snapshot: snapshot, choices: [], state: null, submitted: false, resultPlayed: false, day: jstDayKey55() };
+    train.state = simulateTrainingBattle({ seed: seed, snapshot: snapshot, choices: [] });
+    if (!train.state || train.state.error) { train = null; alert('訓練を開始できませんでした。'); return; }
+    playBattleBgm('bgm.battle');
+    switchView('training');
+  }
+  function trainChoose(choice) {
+    if (!train || !train.state || train.state.finished) return;
+    playSlot('se.moveSelect');
+    train.choices.push(choice);
+    train.state = simulateTrainingBattle({ seed: train.seed, snapshot: train.snapshot, choices: train.choices });
+    var hist = train.state.history || [];
+    if (hist.length) {
+      var last = hist[hist.length - 1];
+      if (last.choice === 'charge') playSlot('se.charge');
+      else if (last.choice === 'attr') { playSlot('se.attackAttr'); playSlot(last.damage >= 20 ? 'se.hitBig' : 'se.hit'); }
+      else if (last.choice === 'normal') { playSlot('se.attackNormal'); playSlot(last.damage >= 20 ? 'se.hitBig' : 'se.hit'); }
+    }
+    if (train.state.finished) submitTrainingLog();
+    renderTraining();
+  }
+  function submitTrainingLog() {
+    if (!train || train.submitted || !train.state || !train.state.finished) return;
+    train.submitted = true;
+    var st = train.state;
+    var log = {
+      v: 1, day: train.day, seed: train.seed, snapshot: train.snapshot,
+      npc: { level: st.npc.level, attr: st.npc.attr }, choices: train.choices.slice(),
+      claim: { winner: st.winner, turns: st.history.length, playerHp: st.participants[0].hp, npcHp: st.participants[1].hp },
+    };
+    trainLocalBump();
+    postOp({ kind: 'training_log', tokenHash: myHash, requestId: 'tr_' + Date.now() + '_' + Math.floor(Math.random() * 1e6), log: log }).catch(function () {});
+  }
+  function renderTraining() {
+    if (view !== 'training') return;
+    var box = el('viewTraining');
+    if (!train || !train.state) {
+      box.innerHTML = '<div class="panel"><div class="ptitle">🏃 訓練モード</div><div class="note">訓練の準備ができていません。ロビーから始めてください。</div>'
+        + '<button class="btn small" id="trainBackBtn" type="button">ロビーへ</button></div>';
+      el('trainBackBtn').addEventListener('click', function () { switchView('lobby'); });
+      return;
+    }
+    var st = train.state;
+    var me = st.participants[0];
+    var foe = st.participants[1];
+    var head = '<div class="panel"><div class="row"><span>🏃 訓練中（体力は減りません）</span><span>ターン ' + st.turnNo + ' / 20</span></div>'
+      + '<div style="margin-top:8px;"><b>' + esc(foe.nickname) + '</b> <span class="chip">' + esc(foe.attr) + '</span> <span class="chip">Lv' + foe.level + '</span></div>'
+      + hpBar(foe) + '<div class="row"><span>HP ' + foe.hp + '</span><span>' + (foe.charging ? '間を取っている…' : '') + '</span></div>'
+      + '<div style="margin-top:10px;"><b>' + esc(me.nickname) + '</b> <span class="chip">' + esc(me.attr) + '</span> <span class="chip">Lv' + me.level + '</span>' + (me.skill ? ' <span class="chip">✨' + esc(me.skill) + '</span>' : '') + '</div>'
+      + hpBar(me) + '<div class="row"><span>HP ' + me.hp + '</span><span>' + (me.chargeBuff ? '次の攻撃が強化中' : '') + '</span></div>';
+    if (st.finished) {
+      if (!train.resultPlayed) {
+        train.resultPlayed = true;
+        if (battleBgm) { battleBgm.pause(); battleBgm = null; }
+        battleBgmSlot = null;
+        if (st.winner === null) playSlot('se.draw');
+        else if (st.winner === 0) playSlot('se.win');
+        else playSlot('se.lose');
+      }
+      var title = st.winner === null ? '引き分け' : (st.winner === 0 ? '🎉 勝ち！' : '負け…');
+      var left = trainingLeft();
+      box.innerHTML = head + '<div class="ptitle" style="margin-top:12px;">' + title + '</div>'
+        + '<div class="note">対戦ログを bot に預けました。EXP の精算は bot の次回起動時に行われます。' + (st.winner === 0 ? '勝ったので、精算されると EXP が入ります。' : '勝ったときだけ EXP が入ります。') + '</div>'
+        + '<div style="margin-top:10px;">'
+        + (left > 0 ? '<button class="btn" id="trainAgainBtn" type="button">もう一度訓練する（あと ' + left + ' 回）</button> ' : '')
+        + '<button class="btn small" id="trainLobbyBtn" type="button">ロビーへ</button></div></div>' + trainHistHtml();
+      if (el('trainAgainBtn')) el('trainAgainBtn').addEventListener('click', function () { startTraining(); });
+      el('trainLobbyBtn').addEventListener('click', function () { switchView('lobby'); });
+      return;
+    }
+    var cd = me.attrCooldown || 0;
+    var controls = '<div class="ptitle" style="margin-top:12px;">あなたの手番</div>'
+      + '<div><button class="btn" data-tmove="normal" type="button">🎤 マイクアタック</button></div>'
+      + '<div style="margin-top:8px;"><button class="btn" data-tmove="attr" type="button"' + (cd > 0 ? ' disabled' : '') + '>✨ シグネチャーボイス' + (cd > 0 ? '（あと' + cd + '手番）' : '') + '</button></div>'
+      + '<div style="margin-top:8px;"><button class="btn" data-tmove="charge" type="button">🎧 間を取る</button></div>'
+      + '<div class="note">訓練はいつでもやめられます（途中でやめた対戦は記録されません）。</div>'
+      + '<div style="margin-top:8px;"><button class="btn small" id="trainQuitBtn" type="button">訓練をやめる</button></div>';
+    box.innerHTML = head + controls + '</div>' + trainHistHtml();
+    var btns = box.querySelectorAll('[data-tmove]');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener('click', function () { trainChoose(this.getAttribute('data-tmove')); });
+    }
+    el('trainQuitBtn').addEventListener('click', function () {
+      train = null;
+      if (battleBgm) { battleBgm.pause(); battleBgm = null; }
+      battleBgmSlot = null;
+      switchView('lobby');
+    });
+  }
+  function trainHistHtml() {
+    if (!train || !train.state || !train.state.history.length) return '';
+    var hist = train.state.history;
+    var names = [train.state.participants[0].nickname, train.state.participants[1].nickname];
+    var lines = '';
+    var start = Math.max(0, hist.length - 8);
+    for (var i = hist.length - 1; i >= start; i--) {
+      var h = hist[i];
+      var who = esc(names[h.side] || '');
+      var act = h.choice === 'charge' ? '間を取った' : (h.choice === 'attr' ? 'シグネチャーボイス！ ' + h.damage + 'ダメージ' : 'マイクアタック ' + h.damage + 'ダメージ');
+      lines += '<div class="logline">' + h.turnNo + '. ' + who + ': ' + act + (h.skill ? ' <span class="note">✨' + esc(h.skill) + '</span>' : '') + '</div>';
     }
     return '<div class="panel"><div class="ptitle">バトルログ</div>' + lines + '</div>';
   }
