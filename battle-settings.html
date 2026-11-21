@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- spoon-battle-settings v1 -->
+<!-- spoon-battle-settings v2 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -19,6 +19,7 @@
   .row .grow { flex: 1; min-width: 120px; }
   .note { font-size: 12px; color: #9d92d6; line-height: 1.7; }
   .warn { background: rgba(120,80,0,.35); border: 1px solid #d9a441; border-radius: 12px; padding: 12px; font-size: 14px; line-height: 1.7; margin: 0 0 14px; }
+  .hidden { display: none !important; }
   input[type="text"], input[type="number"] { padding: 7px 9px; border-radius: 8px; border: 1px solid #3d4276; background: #141842; color: #fff; font-size: 14px; }
   input[type="text"] { flex: 1; min-width: 140px; }
   input[type="number"] { width: 76px; }
@@ -191,7 +192,7 @@
     fetch(DB_URL + '/rooms/' + encodeURIComponent(ROOM_ID) + '/battleOps.json', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body)
     }).then(function (r) {
-      if (!r.ok) throw new Error('send');
+      if (!r.ok) throw new Error('HTTP ' + r.status);
       var tries = 0;
       var timer = setInterval(function () {
         tries++;
@@ -208,7 +209,11 @@
             }
           }).catch(function () {});
       }, 2000);
-    }).catch(function () { msg.textContent = '送信できませんでした'; });
+    }).catch(function (e) {
+      msg.textContent = (e && typeof e.message === 'string' && e.message.indexOf('HTTP ') === 0)
+        ? '送信できませんでした（' + e.message + '）'
+        : '送信できませんでした（通信エラー）';
+    });
   });
 
   function loadState() {
