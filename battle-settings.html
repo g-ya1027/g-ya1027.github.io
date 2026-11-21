@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- spoon-battle-settings v2 -->
+<!-- spoon-battle-settings v3 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -158,10 +158,12 @@
     if (state.updatedAt) el('stateInfo').textContent = '現在の設定の更新時刻: ' + new Date(state.updatedAt).toLocaleString('ja-JP');
   }
   function collectSlots(slots, prefix) {
-    var out = {};
+    // game42: スロットID（'bgm.title' 等）のドットは RTDB のキーに使えないため、配列で送る
+    var out = [];
     slots.forEach(function (id) {
-      out[id] = { file: el(prefix + 'F_' + id).value.replace(/^\s+|\s+$/g, ''), volume: parseFloat(el(prefix + 'V_' + id).value) };
-      if (isNaN(out[id].volume)) out[id].volume = 0.8;
+      var volume = parseFloat(el(prefix + 'V_' + id).value);
+      if (isNaN(volume)) volume = 0.8;
+      out.push({ id: id, file: el(prefix + 'F_' + id).value.replace(/^\s+|\s+$/g, ''), volume: volume });
     });
     return out;
   }
