@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "updatedAt": "2026-11-21T11:51:26.378Z",
+  "live": false,
+  "gkEnabled": false,
+  "gkTiers": [
+    {
+      "tier": 10,
+      "buff": 1.5,
+      "winExp": 30
+    },
+    {
+      "tier": 15,
+      "buff": 1.7,
+      "winExp": 50
+    },
+    {
+      "tier": 20,
+      "buff": 1.85,
+      "winExp": 80
+    }
+  ],
+  "pvpEnabled": false,
+  "illustWeeklyCap": 5,
+  "illustWeeklyCapPerUser": 1,
+  "illustWeekDoneAll": 0,
+  "people": [],
+  "ranking": []
+}
