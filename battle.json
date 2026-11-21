@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-21T19:38:18.878Z",
+  "updatedAt": "2026-11-21T19:38:30.418Z",
   "live": false,
   "gkEnabled": true,
   "gkTiers": [
@@ -281,6 +281,90 @@
       },
       "chosen": null,
       "lastAction": null
+    },
+    {
+      "tokenHash": "580653798fb924313bd1efa8d8b63ad0d22ac245954577c41881a3a71c7a3718",
+      "nickname": "瑠璃𓈒𓂂𖧷",
+      "radioName": "深夜の影総長",
+      "status": "awaiting",
+      "attr": null,
+      "attrInitial": null,
+      "level": 1,
+      "exp": 0,
+      "expNext": 10,
+      "params": {
+        "atk": 10,
+        "def": 5,
+        "attrValue": 10
+      },
+      "hp": {
+        "stored": 100,
+        "updatedAt": "2026-11-21T19:38:27.914Z"
+      },
+      "bp": 0,
+      "unspentAlloc": 0,
+      "record": {
+        "npcWin": 0,
+        "npcLose": 0,
+        "pvpWin": 0,
+        "pvpLose": 0,
+        "gkWin": 0,
+        "gkLose": 0,
+        "draw": 0
+      },
+      "honors": {
+        "rank": 4,
+        "titleId": "top10",
+        "titleText": "FMスプニ レギュラーDJ",
+        "frame": null,
+        "crown": false
+      },
+      "evolutionStage": 0,
+      "evolution": {
+        "stage": 0,
+        "nextKind": "evo1",
+        "eligible": false,
+        "queued": false,
+        "winsKind": "total",
+        "levelNow": 1,
+        "levelNeed": 50,
+        "winsNow": 0,
+        "winsNeed": 50
+      },
+      "illust": {
+        "evo1": null,
+        "evo2": null,
+        "gold": null,
+        "win": null,
+        "lose": null
+      },
+      "illustRequests": [],
+      "illustWeekDone": 0,
+      "skill": {
+        "learned": false,
+        "name": null,
+        "desc": null,
+        "price": 30
+      },
+      "gkLeft": {
+        "day": 1,
+        "week": 3
+      },
+      "signals": {
+        "heartsLeft": 10,
+        "spoonsLeft": 0,
+        "commentsLeft": 20,
+        "visitsLeft": 5,
+        "stayLeftSec": 1800
+      },
+      "img": null,
+      "pair": {
+        "a": "chars/jikCsQVNM6OnpwFu1fHkDg-a.png",
+        "b": "chars/jikCsQVNM6OnpwFu1fHkDg-b.png",
+        "kind": "gender"
+      },
+      "chosen": null,
+      "lastAction": null
     }
   ],
   "ranking": [
@@ -319,6 +403,19 @@
       "titleId": "medalist",
       "titleText": "レゾナンス・メダリスト",
       "frame": "bronze",
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 0
+    },
+    {
+      "rank": 4,
+      "nickname": "瑠璃𓈒𓂂𖧷",
+      "radioName": "深夜の影総長",
+      "level": 1,
+      "attr": null,
+      "titleId": "top10",
+      "titleText": "FMスプニ レギュラーDJ",
+      "frame": null,
       "crown": false,
       "pvpWin": 0,
       "exp": 0
