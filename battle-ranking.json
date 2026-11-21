@@ -1,6 +1,46 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-21T12:28:26.500Z",
+  "updatedAt": "2026-11-21T19:38:18.879Z",
   "metric": "exp",
-  "entries": []
+  "entries": [
+    {
+      "rank": 1,
+      "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
+      "radioName": "夢追う番人卿",
+      "level": 1,
+      "attr": null,
+      "titleId": "champion",
+      "titleText": "キング・オブ・レゾナンス",
+      "frame": "gold",
+      "crown": true,
+      "pvpWin": 0,
+      "exp": 0
+    },
+    {
+      "rank": 2,
+      "nickname": "しょこ",
+      "radioName": "黄昏の番人総長",
+      "level": 1,
+      "attr": null,
+      "titleId": "medalist",
+      "titleText": "レゾナンス・メダリスト",
+      "frame": "silver",
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 0
+    },
+    {
+      "rank": 3,
+      "nickname": "しゅーくりーむ  ",
+      "radioName": "深夜の貴公子名人",
+      "level": 1,
+      "attr": null,
+      "titleId": "medalist",
+      "titleText": "レゾナンス・メダリスト",
+      "frame": "bronze",
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 0
+    }
+  ]
 }
