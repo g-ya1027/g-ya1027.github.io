@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<!-- spoon-battle-settings v1 -->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>⚙️ ゲーム設定 | Spoon</title>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body { margin: 0; font-family: "Hiragino Maru Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif; color: #eef2ff; background-color: #0d1030;
+    background-image: radial-gradient(620px 320px at 12% -5%, rgba(0,209,178,.16), rgba(0,209,178,0) 60%), radial-gradient(720px 360px at 92% -10%, rgba(88,80,236,.28), rgba(88,80,236,0) 60%);
+    background-attachment: fixed; min-height: 100vh; }
+  .wrap { max-width: 560px; margin: 0 auto; padding: 16px 14px 44px; }
+  h1.title { text-align: center; margin: 2px 0 6px; font-size: 28px; font-weight: 900; color: #7dfce8; }
+  .sub { text-align: center; font-size: 13px; color: #b9c2ff; line-height: 1.7; margin: 0 0 14px; }
+  .panel { background: linear-gradient(180deg, rgba(31,36,86,.94), rgba(15,18,52,.96)); border: 2px solid #3d4276; border-radius: 16px; padding: 16px; box-shadow: 0 8px 18px rgba(0,0,0,.45); margin: 0 0 14px; }
+  .panel h2 { margin: 0 0 10px; font-size: 17px; color: #7dfce8; }
+  .row { display: flex; align-items: center; gap: 8px; margin: 9px 0; font-size: 14px; flex-wrap: wrap; }
+  .row .grow { flex: 1; min-width: 120px; }
+  .note { font-size: 12px; color: #9d92d6; line-height: 1.7; }
+  .warn { background: rgba(120,80,0,.35); border: 1px solid #d9a441; border-radius: 12px; padding: 12px; font-size: 14px; line-height: 1.7; margin: 0 0 14px; }
+  input[type="text"], input[type="number"] { padding: 7px 9px; border-radius: 8px; border: 1px solid #3d4276; background: #141842; color: #fff; font-size: 14px; }
+  input[type="text"] { flex: 1; min-width: 140px; }
+  input[type="number"] { width: 76px; }
+  input[type="checkbox"] { width: 20px; height: 20px; }
+  .btn { display: inline-block; padding: 12px 20px; font-size: 16px; font-weight: 800; border-radius: 12px; border: 2px solid #00d1b2; background: rgba(0,80,66,.6); color: #eafffa; cursor: pointer; width: 100%; }
+  .btn:disabled { opacity: .45; cursor: default; }
+  table.rates { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.rates td, table.rates th { border-bottom: 1px solid #3d4276; padding: 6px 4px; text-align: left; }
+  a.back { color: #8fd8ff; font-size: 14px; }
+  .slotName { font-size: 12px; color: #9d92d6; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 class="title">⚙️ ゲーム設定</h1>
+  <p class="sub">バトルゲームのDJ用設定ページです。<br>変更には合言葉つきのリンクが必要です。</p>
+  <div id="noKey" class="warn hidden">合言葉がないため、読み取り専用の表示だけになっています。変更するには、管理画面で発行される「設定画面用リンク」から開いてください。</div>
+
+  <div class="panel"><h2>🎮 ゲーム全体</h2>
+    <div class="row"><label class="grow">バトルゲーム ON／OFF</label><input type="checkbox" id="fBattle"></div>
+    <div class="row"><label class="grow">PvP を開放する</label><input type="checkbox" id="fPvp"></div>
+    <div class="row"><label class="grow">ジャイアントキリングを開放する</label><input type="checkbox" id="fGk"></div>
+    <div class="note">配信中の緊急停止はここからできます（bot起動中のみ保存されます）。</div>
+  </div>
+
+  <div class="panel"><h2>📣 チャット告知</h2>
+    <div class="row"><label class="grow">ゲーム開始の告知</label><input type="checkbox" id="aStart"></div>
+    <div class="row"><label class="grow">レベルアップの告知</label><input type="checkbox" id="aLevelUp"></div>
+    <div class="row"><label class="grow">進化到達の告知</label><input type="checkbox" id="aEvo"></div>
+  </div>
+
+  <div class="panel"><h2>⏱ 対戦まわり（運用値）</h2>
+    <div class="row"><label class="grow">PvP不戦敗の猶予（秒）</label><input type="number" id="tForfeit" min="10" max="300"></div>
+    <div class="row"><label class="grow">マッチング待ち（秒）</label><input type="number" id="tMatch" min="5" max="120"></div>
+    <div class="row"><label class="grow">1ターンの制限（秒）</label><input type="number" id="tTurn" min="5" max="120"></div>
+    <div class="note">変更は次に始まる対戦から適用されます。</div>
+  </div>
+
+  <div class="panel"><h2>🎨 イラスト</h2>
+    <div class="row"><label class="grow">週の生成上限（全体）</label><input type="number" id="capAll" min="0" max="50"></div>
+    <div class="row"><label class="grow">週の生成上限（1人あたり）</label><input type="number" id="capUser" min="0" max="10"></div>
+  </div>
+
+  <div class="panel"><h2>🔊 ページ側の音</h2>
+    <div class="note">ファイルは GitHub Pages 上の相対パス（例: battle-sounds/bgm-title.mp3）。空欄＝無音。音量は 0〜1。</div>
+    <div id="pageSlots"></div>
+  </div>
+
+  <div class="panel"><h2>🖥 bot側の音（配信に乗る音）</h2>
+    <div class="note">ファイルは iMac に登録済みの音源名。空欄＝無音。音量は 0〜1。</div>
+    <div id="botSlots"></div>
+  </div>
+
+  <button class="btn" id="saveBtn" type="button">保存する</button>
+  <div class="note" id="saveMsg" style="text-align:center;margin-top:10px;"></div>
+  <div class="note" id="stateInfo" style="text-align:center;"></div>
+
+  <div class="panel" style="margin-top:18px;"><h2>📊 バランス数値（確認用・変更不可）</h2>
+    <table class="rates">
+      <tr><th>項目</th><th>値</th></tr>
+      <tr><td>ハート</td><td>10個 = 1 EXP</td></tr>
+      <tr><td>ギフト</td><td>1スプーン = 1 EXP</td></tr>
+      <tr><td>コメント</td><td>20件 = 1 EXP（1配信で最大10 EXP分まで）</td></tr>
+      <tr><td>来場</td><td>5回 = 1 EXP</td></tr>
+      <tr><td>滞在</td><td>30分 = 1 EXP（1日最大4 EXP分まで）</td></tr>
+      <tr><td>レベルアップ</td><td>必要EXP 10／20／30／40、その後は毎レベル50（Lv100まで累計4,850）</td></tr>
+      <tr><td>体力回復</td><td>10分に1回復 ／ BPで回復は 体力1 = 3BP</td></tr>
+    </table>
+    <div class="note">バランス数値は誤操作で壊れないよう、この画面と管理画面のどちらからも変えられません。変える場合は配布（コード変更）でのみ行います。</div>
+  </div>
+
+  <p style="text-align:center;"><a class="back" href="battle.html">← バトルゲームへもどる</a></p>
+</div>
+<script>
+(function () {
+  var DB_URL = "https://podcastse-default-rtdb.firebaseio.com";
+  var ROOM_ID = "78f48ea742f74d19a3";
+  var PAGE_SLOTS = ["bgm.title","bgm.battle","bgm.pvp","se.encounter","se.uiTap","se.uiDecide","se.uiCancel","se.moveSelect","se.attackNormal","se.attackAttr","se.charge","se.hit","se.hitBig","se.turnStart","se.win","se.lose","se.draw","se.levelUp","se.heal","se.alloc","se.evolution","se.ranking"];
+  var BOT_SLOTS = ["se.levelUp","se.evolution","se.gkStart","se.rankIn"];
+  var LABELS = {
+    'bgm.title': 'BGM：名鑑・自分のキャラ・ロビー', 'bgm.battle': 'BGM：対戦画面', 'bgm.pvp': 'BGM：PvP対戦画面',
+    'se.encounter': 'エンカウント演出', 'se.uiTap': 'タップ音', 'se.uiDecide': '決定音', 'se.uiCancel': 'キャンセル音',
+    'se.moveSelect': '行動を選んだとき', 'se.attackNormal': '通常攻撃', 'se.attackAttr': '属性攻撃', 'se.charge': '溜める',
+    'se.hit': 'ダメージ（小）', 'se.hitBig': 'ダメージ（大・有利相性）', 'se.turnStart': '自分の手番', 'se.win': '勝利ジングル',
+    'se.lose': '敗北音', 'se.draw': '引き分け', 'se.levelUp': 'レベルアップ', 'se.heal': 'HP回復', 'se.alloc': '振り分け',
+    'se.evolution': '進化ファンファーレ', 'se.ranking': 'ランキング入り',
+    'se.gkStart': 'GK挑戦の開始', 'se.rankIn': '金ランク到達'
+  };
+  var params = new URLSearchParams(location.search);
+  var token = params.get('t') || '';
+  var myHash = null;
+  var state = null;
+
+  function el(id) { return document.getElementById(id); }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+
+  function slotRows(containerId, slots, prefix) {
+    var html = '';
+    slots.forEach(function (id) {
+      html += '<div class="row"><span class="grow">' + esc(LABELS[id] || id) + '<br><span class="slotName">' + esc(id) + '</span></span>'
+        + '<input type="text" id="' + prefix + 'F_' + id + '" placeholder="ファイル（空欄＝無音）">'
+        + '<input type="number" id="' + prefix + 'V_' + id + '" min="0" max="1" step="0.05" value="0.8"></div>';
+    });
+    el(containerId).innerHTML = html;
+  }
+  slotRows('pageSlots', PAGE_SLOTS, 'p');
+  slotRows('botSlots', BOT_SLOTS, 'b');
+
+  function fillForm() {
+    if (!state) return;
+    var b = state.battle || {};
+    el('fBattle').checked = state.featuresBattle !== false;
+    el('fPvp').checked = !!b.pvpEnabled;
+    el('fGk').checked = !!b.gkEnabled;
+    var a = b.announce || {};
+    el('aStart').checked = a.start !== false;
+    el('aLevelUp').checked = a.levelUp !== false;
+    el('aEvo').checked = a.evolution !== false;
+    var t = b.timing || {};
+    el('tForfeit').value = t.forfeitSec != null ? t.forfeitSec : 60;
+    el('tMatch').value = t.matchSec != null ? t.matchSec : 30;
+    el('tTurn').value = t.turnSec != null ? t.turnSec : 30;
+    el('capAll').value = b.illustWeeklyCap != null ? b.illustWeeklyCap : 5;
+    el('capUser').value = b.illustWeeklyCapPerUser != null ? b.illustWeeklyCapPerUser : 1;
+    var sounds = b.sounds || {};
+    PAGE_SLOTS.forEach(function (id) {
+      var s = (sounds.page || {})[id] || {};
+      el('pF_' + id).value = s.file || '';
+      el('pV_' + id).value = typeof s.volume === 'number' ? s.volume : 0.8;
+    });
+    BOT_SLOTS.forEach(function (id) {
+      var s = (sounds.bot || {})[id] || {};
+      el('bF_' + id).value = s.file || '';
+      el('bV_' + id).value = typeof s.volume === 'number' ? s.volume : 0.8;
+    });
+    if (state.updatedAt) el('stateInfo').textContent = '現在の設定の更新時刻: ' + new Date(state.updatedAt).toLocaleString('ja-JP');
+  }
+  function collectSlots(slots, prefix) {
+    var out = {};
+    slots.forEach(function (id) {
+      out[id] = { file: el(prefix + 'F_' + id).value.replace(/^\s+|\s+$/g, ''), volume: parseFloat(el(prefix + 'V_' + id).value) };
+      if (isNaN(out[id].volume)) out[id].volume = 0.8;
+    });
+    return out;
+  }
+  function collectSettings() {
+    return {
+      featuresBattle: el('fBattle').checked,
+      pvpEnabled: el('fPvp').checked,
+      gkEnabled: el('fGk').checked,
+      announce: { start: el('aStart').checked, levelUp: el('aLevelUp').checked, evolution: el('aEvo').checked },
+      timing: { forfeitSec: parseInt(el('tForfeit').value, 10), matchSec: parseInt(el('tMatch').value, 10), turnSec: parseInt(el('tTurn').value, 10) },
+      illustWeeklyCap: parseInt(el('capAll').value, 10),
+      illustWeeklyCapPerUser: parseInt(el('capUser').value, 10),
+      sounds: { page: collectSlots(PAGE_SLOTS, 'p'), bot: collectSlots(BOT_SLOTS, 'b') }
+    };
+  }
+  function setFormEnabled(on) {
+    var inputs = document.querySelectorAll('input');
+    for (var i = 0; i < inputs.length; i++) inputs[i].disabled = !on;
+    el('saveBtn').disabled = !on;
+  }
+
+  el('saveBtn').addEventListener('click', function () {
+    var msg = el('saveMsg');
+    if (!myHash || !DB_URL || !ROOM_ID) { msg.textContent = '合言葉がないため保存できません'; return; }
+    var requestId = 's' + Date.now().toString(36) + Math.floor(Math.random() * 1e6).toString(36);
+    var body = { kind: 'settings_save', tokenHash: myHash, requestId: requestId, t: Date.now(), settings: collectSettings() };
+    msg.textContent = '保存しています…';
+    fetch(DB_URL + '/rooms/' + encodeURIComponent(ROOM_ID) + '/battleOps.json', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body)
+    }).then(function (r) {
+      if (!r.ok) throw new Error('send');
+      var tries = 0;
+      var timer = setInterval(function () {
+        tries++;
+        fetch(DB_URL + '/rooms/' + encodeURIComponent(ROOM_ID) + '/battleSettingsAck/' + encodeURIComponent(requestId) + '.json', { cache: 'no-store' })
+          .then(function (rr) { return rr.ok ? rr.json() : null; })
+          .then(function (ack) {
+            if (ack) {
+              clearInterval(timer);
+              msg.textContent = ack.ok ? '保存しました！' : ('保存できませんでした: ' + (ack.reason || ''));
+              loadState();
+            } else if (tries >= 10) {
+              clearInterval(timer);
+              msg.textContent = 'botが起動していないため保存できませんでした（配信外の設定変更は管理画面から行ってください）';
+            }
+          }).catch(function () {});
+      }, 2000);
+    }).catch(function () { msg.textContent = '送信できませんでした'; });
+  });
+
+  function loadState() {
+    fetch('battle-settings.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+      if (j) { state = j; fillForm(); }
+    }).catch(function () {});
+  }
+
+  if (!token) {
+    el('noKey').className = 'warn';
+    setFormEnabled(false);
+  } else if (window.crypto && crypto.subtle) {
+    crypto.subtle.digest('SHA-256', new TextEncoder().encode(token)).then(function (buf) {
+      var arr = Array.prototype.map.call(new Uint8Array(buf), function (b) { return ('0' + b.toString(16)).slice(-2); });
+      myHash = arr.join('');
+    }).catch(function () {});
+  }
+  loadState();
+})();
+</script>
+</body>
+</html>
