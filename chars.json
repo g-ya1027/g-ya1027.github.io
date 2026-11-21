@@ -1,15 +1,19 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-21T13:24:43.477Z",
+  "updatedAt": "2026-11-21T19:38:00.709Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
       "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
       "radioName": "夢追う番人卿",
-      "status": "pending",
-      "pair": null,
+      "status": "ready",
+      "pair": {
+        "a": "chars/IX2hcFW5vZmQzOFHy1THKQ-a.png",
+        "b": "chars/IX2hcFW5vZmQzOFHy1THKQ-b.png",
+        "kind": "gender"
+      },
       "chosen": null,
-      "reroll": "notready",
+      "reroll": "ok",
       "rerollNextAt": null
     },
     {
@@ -26,10 +30,14 @@
       "token": "25d95e678229d98b",
       "nickname": "しゅーくりーむ  ",
       "radioName": "深夜の貴公子名人",
-      "status": "pending",
-      "pair": null,
+      "status": "ready",
+      "pair": {
+        "a": "chars/Lnrdo_b3TeGyRY8fNTyEhA-a.png",
+        "b": "chars/Lnrdo_b3TeGyRY8fNTyEhA-b.png",
+        "kind": "gender"
+      },
       "chosen": null,
-      "reroll": "notready",
+      "reroll": "ok",
       "rerollNextAt": null
     },
     {
