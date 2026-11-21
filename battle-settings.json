@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-21T12:11:08.732Z",
+  "updatedAt": "2026-11-21T12:14:32.047Z",
   "featuresBattle": true,
   "battle": {
     "announce": {
@@ -8,8 +8,8 @@
       "levelUp": true,
       "evolution": true
     },
-    "pvpEnabled": false,
-    "gkEnabled": false,
+    "pvpEnabled": true,
+    "gkEnabled": true,
     "timing": {
       "forfeitSec": 60,
       "matchSec": 30,
