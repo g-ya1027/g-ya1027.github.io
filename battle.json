@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-21T12:14:26.439Z",
+  "updatedAt": "2026-11-21T12:14:46.444Z",
   "live": false,
-  "gkEnabled": false,
+  "gkEnabled": true,
   "gkTiers": [
     {
       "tier": 10,
@@ -20,7 +20,7 @@
       "winExp": 80
     }
   ],
-  "pvpEnabled": false,
+  "pvpEnabled": true,
   "illustWeeklyCap": 5,
   "illustWeeklyCapPerUser": 1,
   "illustWeekDoneAll": 0,
