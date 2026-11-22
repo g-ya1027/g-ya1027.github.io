@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T00:40:55.322Z",
+  "updatedAt": "2026-11-22T02:42:41.454Z",
   "slots": {
     "bgm.title": {
-      "url": "sounds/game/bgm-title.mp3",
+      "url": "sounds/game/Ska_01(1).mp3",
       "volume": 0.8
     },
     "bgm.battle": {
