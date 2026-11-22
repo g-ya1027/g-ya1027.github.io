@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- spoon-battle-page v22 -->
+<!-- spoon-battle-page v23 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -188,8 +188,10 @@
   .encSide87.red { background: radial-gradient(ellipse 95% 75% at 10% 94%, rgba(255,42,66,.65), rgba(120,8,30,.30) 55%, rgba(4,4,13,0) 78%); clip-path: polygon(0 0, 63% 0, 37% 100%, 0 100%); }
   .encSlash87 { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(255,90,110,.0), rgba(255,255,255,.85) 50%, rgba(110,190,255,0)); clip-path: polygon(62.4% 0, 63.6% 0, 37.6% 100%, 36.4% 100%); opacity: .55; }
   .encFighter87 { position: absolute; top: 50%; width: 37%; max-width: 230px; text-align: center; z-index: 2; }
-  .encFighter87.me { left: 4%; animation: encInL87 .55s cubic-bezier(.22,.9,.3,1) both; }
-  .encFighter87.foe { right: 4%; animation: encInR87 .55s cubic-bezier(.22,.9,.3,1) both; }
+  /* game91: 停止位置はアイコン中心が画面幅の約25%（自分）／約75%（相手）＝端と中央（VS）の中間。
+     幅 37% なので left／right は 25 - 37/2 = 6.5%（従来 4%＝中心約23%／77% から少し中央寄せ） */
+  .encFighter87.me { left: 6.5%; animation: encInL87 .55s cubic-bezier(.22,.9,.3,1) both; }
+  .encFighter87.foe { right: 6.5%; animation: encInR87 .55s cubic-bezier(.22,.9,.3,1) both; }
   .encFighter87 img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 16px; display: block; }
   .encFighter87.me img, .encFighter87.me .encPh87 { border: 3px solid #57b6ff; box-shadow: 0 0 26px rgba(64,150,255,.75), 0 10px 30px rgba(0,0,0,.6); }
   .encFighter87.foe img, .encFighter87.foe .encPh87 { border: 3px solid #ff5d72; box-shadow: 0 0 26px rgba(255,70,95,.75), 0 10px 30px rgba(0,0,0,.6); }
@@ -1128,16 +1130,21 @@
   document.addEventListener('click', function (ev) {
     if (!ev.target || !ev.target.closest || !ev.target.closest('.bpBox')) closePointTips84();
   });
+  // game91: 結果BGM（resultBgm）も visibilitychange の対象に含める。game90 で新設した際に対象から
+  // 漏れており、タブを切り替えても結果BGMだけが流れ続けていた（タイトルBGM・対戦BGMは止まる）。
+  // 結果BGMは再生が自然に終わると 'ended' で resultBgm = null になるため、非null の間だけが再開対象。
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) {
       if (bgmAudio) bgmAudio.pause();
       if (battleBgm) battleBgm.pause();
+      if (resultBgm) resultBgm.pause();
     } else {
       // 画面に戻ったら presence を即時書き直す（バックグラウンドでタイマーが絞られても不戦敗にしないため・§9.2.9）
       writePresence();
       if (soundMode === 'normal') {
         if (bgmAudio) bgmAudio.play().catch(function () {});
         if (battleBgm) battleBgm.play().catch(function () {});
+        if (resultBgm) resultBgm.play().catch(function () {});
       }
     }
   });
@@ -1459,6 +1466,7 @@
   var encounterTimers87 = [];
   var encounterShown87 = {}; // battleId -> 表示済み（本番は1対戦につき1回だけ）
   var battleFresh87 = false; // 直近の enterBattle が新規開始か（再入場・再接続は false）
+  var ENC_HOLD_MS91 = 2500; // game91: エンカウント画面の保持時間（1.5秒→2.5秒に延長。スライドイン等の時間は据え置き、タップで即スキップ可）
   function hideEncounter87() {
     for (var i = 0; i < encounterTimers87.length; i++) clearTimeout(encounterTimers87[i]);
     encounterTimers87 = [];
@@ -1486,7 +1494,7 @@
     ov.addEventListener('click', function () { dismissEncounter87(); }); // タップで即スキップ
     document.body.appendChild(ov);
     encounterEl87 = ov;
-    encounterTimers87.push(setTimeout(function () { dismissEncounter87(); }, 1500));
+    encounterTimers87.push(setTimeout(function () { dismissEncounter87(); }, ENC_HOLD_MS91));
   }
   function enterBattle(id, opts) {
     battleId = id;
