@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T10:02:29.551Z",
+  "updatedAt": "2026-11-22T10:07:31.263Z",
   "metric": "exp",
   "entries": [
     {
@@ -14,12 +14,12 @@
       "frame": "gold",
       "crown": true,
       "pvpWin": 0,
-      "exp": 2
+      "exp": 3
     },
     {
       "rank": 2,
-      "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
-      "radioName": "夢追う番人卿",
+      "nickname": "しょこ",
+      "radioName": "黄昏の番人総長",
       "level": 1,
       "attr": null,
       "titleId": "medalist",
@@ -27,12 +27,12 @@
       "frame": "silver",
       "crown": false,
       "pvpWin": 0,
-      "exp": 0
+      "exp": 1
     },
     {
       "rank": 3,
-      "nickname": "しょこ",
-      "radioName": "黄昏の番人総長",
+      "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
+      "radioName": "夢追う番人卿",
       "level": 1,
       "attr": null,
       "titleId": "medalist",
