@@ -37,9 +37,9 @@ a{color:inherit}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 8px 20px rgba(255,107,53,.28)}
 .btn.primary:hover{background:#f05a24}
 .btn.large{width:100%;justify-content:center;padding:15px;font-size:16px;border-radius:16px}
-.layout{display:grid;grid-template-columns:400px minmax(0,1fr);gap:18px;align-items:start}
+.layout{display:grid;grid-template-columns:400px minmax(0,1fr);gap:18px;align-items:start;grid-template-areas:"img preview" "ring preview" "fit preview" "maker preview" "how how"}
 .layout>*{min-width:0;max-width:100%}
-@media(max-width:900px){.layout{grid-template-columns:minmax(0,1fr)} .preview-col{order:-1}}
+@media(max-width:900px){.layout{grid-template-columns:minmax(0,1fr);grid-template-areas:"img" "ring" "preview" "fit" "maker" "how"}}
 .card{min-width:0;max-width:100%}
 #mainCanvas{max-width:100%}
 .ideas{margin-top:22px}
@@ -103,7 +103,7 @@ input[type=range]{width:100%;accent-color:var(--accent);height:28px}
 .toggles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .toggle{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid var(--line);background:var(--card2);border-radius:12px;padding:11px 12px;font-size:13px;font-weight:700;cursor:pointer}
 .toggle input{width:20px;height:20px;accent-color:var(--accent)}
-.preview-col{position:sticky;top:14px}
+.preview-col{position:sticky;top:14px;grid-area:preview;align-self:start}
 @media(max-width:900px){.preview-col{position:static}}
 .preview-head{display:flex;justify-content:space-between;align-items:center;padding:16px 18px 10px;gap:10px;flex-wrap:wrap}
 .preview-head h2{margin:0;font-size:15px;font-weight:900}
@@ -158,6 +158,46 @@ input[type=range]{width:100%;accent-color:var(--accent);height:28px}
 .ring-acts button:active{transform:scale(.97)}
 .my-rings-msg{font-size:12px;line-height:1.7;margin:8px 0 0;text-align:left;color:var(--ink2)}
 .my-rings-msg.error{color:#C0392B;font-weight:700}
+
+/* ===== スマホ向け縦流れレイアウト（2026-11-22） ===== */
+#cardImage{grid-area:img}
+#cardRing{grid-area:ring}
+#cardFit{grid-area:fit}
+#cardMaker{grid-area:maker}
+.how{grid-area:how}
+.layout>.card{margin-top:0}
+.ideas{display:none} /* 企画メモ（.ideas／verdict）はリスナー向けではないため非表示。HTMLは残してある */
+.title-row{display:flex;align-items:flex-start;gap:10px}
+.help-wrap{position:relative;flex:none;margin-top:12px}
+.help-btn{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink2);font-weight:900;font-size:15px;cursor:pointer;line-height:1;padding:0}
+.help-pop{display:none;position:absolute;right:0;top:38px;width:min(320px,82vw);background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:14px;font-size:13px;font-weight:400;line-height:1.8;color:var(--ink2);z-index:40;text-align:left}
+.help-wrap.open .help-pop{display:block}
+@media(min-width:901px){.help-wrap:hover .help-pop,.help-wrap:focus-within .help-pop{display:block}}
+.preview-topbar{display:flex;gap:10px;align-items:center;padding:0 18px 12px}
+.preview-topbar .btn{flex:none}
+.pstrip{display:flex;gap:8px;overflow-x:auto;flex:1;min-width:0;padding:2px;scrollbar-width:none}
+.pstrip::-webkit-scrollbar{display:none}
+.pstrip-btn{flex:none;width:54px;border:2px solid transparent;border-radius:12px;background:var(--card2);padding:5px 3px 4px;cursor:pointer;text-align:center;color:inherit;font:inherit}
+.pstrip-btn.active{border-color:var(--accent);background:#FFF4EA}
+@media(prefers-color-scheme:dark){.pstrip-btn.active{background:#3A2A1E}}
+.pstrip-ring{width:30px;height:30px;border-radius:50%;margin:0 auto 3px;border:5px solid #ccc;background:#fff}
+.pstrip-btn label{font-size:9px;font-weight:700;display:block;line-height:1.2}
+.fold-summary{cursor:pointer;list-style:none}
+.fold-summary::-webkit-details-marker{display:none}
+.fold-summary::after{content:'＋';font-weight:900;color:var(--ink2);flex:none}
+details[open ]>.fold-summary::after{content:'－'}
+@media(max-width:900px){
+  #dropZone,#frameDrop,#myRingDrop{display:none}
+  .file-visible{display:none}
+  .hint-pc{display:none}
+  .mini-row{flex-wrap:wrap}
+  .preview-topbar{padding:0 14px 10px}
+  .preview-head{padding:14px 14px 8px}
+  .canvas-wrap{margin:0 14px}
+  .hint-bar{padding:12px 14px 0}
+  .mini-row{padding:16px 14px 6px}
+  .export{padding:6px 14px 16px}
+}
 </style>
 </head>
 <body>
@@ -165,21 +205,21 @@ input[type=range]{width:100%;accent-color:var(--accent);height:28px}
   <header class="top">
     <div>
       <div class="badge"><i></i> Spoon・配信アイコン用 ／ その場で完成</div>
-      <h1>アイコンに、<span>リング</span>を<br>かんたんに付ける。</h1>
-      <p>G_YAのホーム用ツール第1弾。写真やイラストを丸く切り抜いて、お好みのリングを付けてPNGで書き出せます。手持ちのリング画像（フレーム画像）を投入して、そのまま重ねて合成することもできます。さらに、画像を丸くくり抜いてリング自体を自作する機能も付きました。Spoonのプロフィールでも、小さく表示されても見栄えするように調整できます。</p>
-    </div>
-    <div class="top-actions">
-      <button class="btn" id="resetBtn">↺ 最初に戻す</button>
-      <button class="btn primary" id="topDownloadBtn">⬇ PNGで保存</button>
+      <div class="title-row">
+        <h1>アイコンに、<span>リング</span>を<br>かんたんに付ける。</h1>
+        <span class="help-wrap">
+          <button class="help-btn" id="helpBtn" type="button" aria-label="このツールについて" aria-expanded="false">?</button>
+          <span class="help-pop" id="helpPop" role="tooltip">写真やイラストを丸く切り抜いて、お好みのリングを付けてPNGで書き出せるツールです。手持ちのリング画像（フレーム画像）を重ねて合成したり、画像を丸くくり抜いてリング自体を作ることもできます。読み込んだ画像はこのページの中だけで処理され、外部に送信されることはありません。</span>
+        </span>
+      </div>
     </div>
   </header>
 
   <div class="layout">
-    <!-- Controls -->
-    <div>
-      <section class="card">
+<section class="card" id="cardImage">
         <div class="card-h"><h2>1. 画像を選ぶ</h2><small>JPG / PNG / WebP</small></div>
         <div class="card-b">
+          <button class="btn primary large" id="pickImageBtn" type="button" style="margin-bottom:10px">📷 画像を選ぶ</button>
           <div class="drop" id="dropZone" role="button" tabindex="0" aria-label="画像をアップロード">
             <strong>ここに画像をドロップ</strong>
             <span>またはクリックしてファイルを選ぶ<br>スマホ・iPadの写真からも選べます</span>
@@ -191,12 +231,12 @@ input[type=range]{width:100%;accent-color:var(--accent);height:28px}
             <button class="sample" data-sample="mic"><canvas width="88" height="88"></canvas><span>歌枠マイク</span></button>
             <button class="sample" data-sample="g"><canvas width="88" height="88"></canvas><span>G_YA風</span></button>
           </div>
-          <p class="note" style="text-align:left">読み込んだ画像はこのページの中だけで処理します。プレビュー上でドラッグすると位置をずらせて、ピンチで拡大・縮小もできます。</p>
+          <p class="note" style="text-align:left">画像はこのページの中だけで処理します（外部に送信されません）。位置や大きさは、プレビューをドラッグ／ピンチして調整できます。</p>
         </div>
       </section>
 
-      <section class="card">
-        <div class="card-h"><h2>2. リングのデザイン</h2><small>画像／プリセット</small></div>
+<section class="card" id="cardRing">
+        <div class="card-h"><h2>2. リングを選ぶ</h2><small>画像／プリセット</small></div>
         <div class="card-b">
           <div class="seg" id="modeSeg" style="margin-bottom:14px">
             <button data-mode="frame" class="active">リング画像を使う</button>
@@ -204,6 +244,7 @@ input[type=range]{width:100%;accent-color:var(--accent);height:28px}
           </div>
 
           <div id="frameControls">
+            <button class="btn primary large" id="pickFrameBtn" type="button" style="margin-bottom:10px">🖼️ リング画像を選ぶ</button>
             <div class="drop" id="frameDrop" role="button" tabindex="0" aria-label="リング画像をアップロード">
               <strong>リング画像をここにドロップ</strong>
               <span>中央が透明なPNGがおすすめ<br>中央が白い画像は、真ん中の白を抜いてアイコンをはめ込みます</span>
@@ -223,7 +264,7 @@ input[type=range]{width:100%;accent-color:var(--accent);height:28px}
             </div>
             <div class="sub-block" id="myRingsBlock">
               <h3>マイリング（このブラウザに保存）</h3>
-              <p class="note" style="text-align:left">お気に入りのリング画像を登録しておくと、次に来たときもそのまま使えます。保存はこのブラウザの中だけ（最大20件）で、外部に送信されることはありません。</p>
+              <p class="note" style="text-align:left">お気に入りのリング画像を登録しておくと、次回もそのまま使えます（このブラウザ内だけ・最大20件）。</p>
               <div class="ring-thumbs" id="myRingsList" style="margin-top:10px"></div>
               <p class="note" id="myRingsStatus" style="text-align:left">まだ登録がありません。下の方法で追加できます。</p>
               <div class="drop" id="myRingDrop" role="button" tabindex="0" aria-label="リング画像をドロップして登録" style="margin-top:10px">
@@ -231,6 +272,7 @@ input[type=range]{width:100%;accent-color:var(--accent);height:28px}
                 <span>またはクリックしてファイルを選ぶ</span>
               </div>
               <input class="file-visible" type="file" id="myRingInput" accept="image/*" aria-label="登録するリング画像ファイルを選ぶ">
+              <button class="btn" id="pickMyRingBtn" type="button" style="width:100%;justify-content:center;margin-top:10px">＋ ファイルから登録する</button>
               <button class="btn" id="myRingSaveCurrentBtn" type="button" style="width:100%;justify-content:center;margin-top:10px">今使っているリング画像を登録する</button>
               <p class="my-rings-msg" id="myRingsMsg" role="alert"></p>
             </div>
@@ -247,7 +289,7 @@ input[type=range]{width:100%;accent-color:var(--accent);height:28px}
             <div class="toggles" style="margin-top:14px;grid-template-columns:1fr">
               <label class="toggle">中央の白を透明にする <input type="checkbox" id="whiteKey" checked></label>
             </div>
-            <p class="note" style="text-align:left">アイコンの大きさ・位置は、下の「3. 画像の収まり」で調整できます。</p>
+            <p class="note" style="text-align:left">アイコンの大きさ・位置は、プレビューをドラッグ／ピンチしても調整できます。</p>
             <button class="btn" id="frameRemoveBtn" type="button" style="width:100%;justify-content:center;margin-top:4px">リング画像を外す</button>
           </div>
 
@@ -285,7 +327,44 @@ input[type=range]{width:100%;accent-color:var(--accent);height:28px}
         </div>
       </section>
 
-      <section class="card">
+    <div class="preview-col">
+<section class="card">
+        <div class="preview-head">
+          <div><h2>プレビュー</h2><p id="statusText">サンプル画像で表示中 — 自分の画像に変えてみてね</p></div>
+          <span class="badge" style="background:var(--card2)">1024 × 1024 で描画</span>
+        </div>
+        <div class="preview-topbar">
+          <div class="pstrip" id="presetStrip" aria-label="プリセットを選ぶ"></div>
+          <button class="btn" id="resetBtn" type="button">↺ やり直し</button>
+        </div>
+        <div class="canvas-wrap"><canvas id="mainCanvas" width="1024" height="1024" aria-label="アイコンリングのプレビュー"></canvas></div>
+        <div class="hint-bar">
+          <span class="hint">🖱️ プレビューをドラッグで位置調整</span>
+          <span class="hint">🤏 ピンチ／ホイールで拡大・縮小</span>
+          <span class="hint">ダブルタップで100%に戻す</span>
+          <span class="hint">小さく見たときの確認 ↓</span>
+          <span class="hint hint-pc"><span class="kbd">Ctrl</span> + <span class="kbd">V</span> で貼り付けも可</span>
+        </div>
+        <div class="mini-row" aria-label="小さいサイズでの見え方">
+          <div class="mini"><canvas id="mini96" width="96" height="96"></canvas><span>96px ・ 一覧</span></div>
+          <div class="mini"><canvas id="mini56" width="56" height="56"></canvas><span>56px ・ コメント欄</span></div>
+          <div class="mini"><canvas id="mini32" width="32" height="32"></canvas><span>32px ・ 小さく表示</span></div>
+          <div style="flex:1;min-width:140px"><p style="margin:0;font-size:13px;line-height:1.7;color:var(--ink2)">32pxでも顔やロゴが潰れないかチェック。</p></div>
+        </div>
+        <div class="export">
+          <div class="export-grid">
+            <div><label style="font-size:13px;font-weight:700;display:block;margin-bottom:6px">書き出しサイズ</label>
+              <select class="select" id="exportSize"><option value="512">512 × 512 — 軽め</option><option value="1024" selected>1024 × 1024 — おすすめ</option><option value="2048">2048 × 2048 — 高画質</option></select></div>
+            <div><label style="font-size:13px;font-weight:700;display:block;margin-bottom:6px">ファイル名</label>
+              <input class="select" id="fileName" value="my-icon-ring" style="font-weight:600"></div>
+          </div>
+          <button class="btn primary large" id="downloadBtn">⬇ PNGで保存する</button>
+          <p class="note">背景を「透明」にすると、リングの外側が透明なPNGになります。Spoonにそのまま上げるなら 1024 が無難です。</p>
+        </div>
+      </section>
+    </div>
+
+<section class="card" id="cardFit">
         <div class="card-h"><h2>3. 画像の収まり</h2><small>位置・大きさ</small></div>
         <div class="card-b">
           <div class="field" style="margin-top:2px"><label>拡大・縮小 <output id="zoomOut">112%</output></label>
@@ -301,7 +380,7 @@ input[type=range]{width:100%;accent-color:var(--accent);height:28px}
               <button type="button" data-zoomchip="150">150%</button>
               <button type="button" data-zoomchip="200">200%</button>
             </div>
-            <p class="note" style="text-align:left;margin-top:8px">40%まで縮小できるので、顔が大きく写った写真も全体を収められます。縮小したときにできる余白は、下の「背景（リングの外側）」で選んだ色で塗られます（透明のときは薄いベージュ）。</p>
+            <p class="note" style="text-align:left;margin-top:8px">縮小したときにできる余白は、下の「背景（リングの外側）」の色で塗られます（透明のときは薄いベージュ）。</p>
           </div>
           <div class="field"><label>左右の位置 <output id="oxOut">0</output></label><input type="range" id="offsetX" min="-300" max="300" value="0"></div>
           <div class="field"><label>上下の位置 <output id="oyOut">0</output></label><input type="range" id="offsetY" min="-300" max="300" value="0"></div>
@@ -320,8 +399,9 @@ input[type=range]{width:100%;accent-color:var(--accent);height:28px}
         </div>
       </section>
 
-      <section class="card">
-        <div class="card-h"><h2>4. リングを作る</h2><small>自作フレーム</small></div>
+<section class="card" id="cardMaker">
+        <details id="makerFold">
+        <summary class="card-h fold-summary"><h2>4. リングを作る</h2><small>自作フレーム（上級者向け）</small></summary>
         <div class="card-b">
           <p class="note" style="text-align:left;margin-top:0">好きな画像を丸くくり抜いて、自分だけのフレーム／リングを作れます。作ったフレームはPNGで保存したり、そのまま上のアイコンに反映して使えます。</p>
 
@@ -396,50 +476,16 @@ input[type=range]{width:100%;accent-color:var(--accent);height:28px}
             <button class="btn primary large" id="mkApplyBtn" type="button">このフレームをアイコンに反映する</button>
             <button class="btn large" id="mkSaveBtn" type="button">⬇ フレームをPNGで保存（1024×1024）</button>
           </div>
-          <p class="note">「アイコンに反映する」を押すと、作ったフレームが「2. リングのデザイン」のリング画像としてセットされ、プレビューにすぐ反映されます。保存したPNGは、次回からリング画像として読み込んで再利用もできます。</p>
+          <p class="note">「アイコンに反映する」を押すと、作ったフレームが「2. リングを選ぶ」のリング画像としてセットされ、プレビューにすぐ反映されます。保存したPNGは、次回からリング画像として読み込んで再利用もできます。</p>
         </div>
-      </section>
-    </div>
-
-    <!-- Preview -->
-    <div class="preview-col">
-      <section class="card">
-        <div class="preview-head">
-          <div><h2>プレビュー</h2><p id="statusText">サンプル画像で表示中 — 自分の画像に変えてみてね</p></div>
-          <span class="badge" style="background:var(--card2)">1024 × 1024 で描画</span>
-        </div>
-        <div class="canvas-wrap"><canvas id="mainCanvas" width="1024" height="1024" aria-label="アイコンリングのプレビュー"></canvas></div>
-        <div class="hint-bar">
-          <span class="hint">🖱️ プレビューをドラッグで位置調整</span>
-          <span class="hint">🤏 ピンチ／ホイールで拡大・縮小</span>
-          <span class="hint">ダブルタップで100%に戻す</span>
-          <span class="hint">小さく見たときの確認 ↓</span>
-          <span class="hint"><span class="kbd">Ctrl</span> + <span class="kbd">V</span> で貼り付けも可</span>
-        </div>
-        <div class="mini-row" aria-label="小さいサイズでの見え方">
-          <div class="mini"><canvas id="mini96" width="96" height="96"></canvas><span>96px ・ 一覧</span></div>
-          <div class="mini"><canvas id="mini56" width="56" height="56"></canvas><span>56px ・ コメント欄</span></div>
-          <div class="mini"><canvas id="mini32" width="32" height="32"></canvas><span>32px ・ 小さく表示</span></div>
-          <div style="flex:1;min-width:140px"><p style="margin:0;font-size:13px;line-height:1.7;color:var(--ink2)">32pxでも顔やロゴが潰れないかチェック。潰れる場合は「拡大・縮小」を上げて、主役を大きくするのがコツです。</p></div>
-        </div>
-        <div class="export">
-          <div class="export-grid">
-            <div><label style="font-size:13px;font-weight:700;display:block;margin-bottom:6px">書き出しサイズ</label>
-              <select class="select" id="exportSize"><option value="512">512 × 512 — 軽め</option><option value="1024" selected>1024 × 1024 — おすすめ</option><option value="2048">2048 × 2048 — 高画質</option></select></div>
-            <div><label style="font-size:13px;font-weight:700;display:block;margin-bottom:6px">ファイル名</label>
-              <input class="select" id="fileName" value="my-icon-ring" style="font-weight:600"></div>
-          </div>
-          <button class="btn primary large" id="downloadBtn">⬇ PNGで保存する</button>
-          <p class="note">背景を「透明」にすると、リングの外側が透明なPNGになります。Spoonにそのまま上げるなら 1024 が無難です。</p>
-        </div>
+        </details>
       </section>
 
-      <div class="how">
+    <div class="how">
         <div class="how-card"><b>①</b><h3>画像を入れる</h3><p>顔が中心に来る写真やイラストがおすすめ。余白が多ければ拡大スライダーで寄せます。</p></div>
         <div class="how-card"><b>②</b><h3>リングを選ぶ</h3><p>歌枠ならゴールドやサンセット、雑談ならパステル系など、枠の雰囲気に合わせると統一感が出ます。</p></div>
         <div class="how-card"><b>③</b><h3>保存して使う</h3><p>PNGで保存したら、Spoonのプロフィール編集から新しいアイコンに差し替えるだけです。</p></div>
       </div>
-    </div>
   </div>
 
   <section class="ideas" aria-labelledby="ideas-title">
@@ -886,7 +932,7 @@ input[type=range]{width:100%;accent-color:var(--accent);height:28px}
     else { var a=document.createElement('a'); a.href=off.toDataURL('image/png'); a.download=name+'.png'; a.click(); toast('PNGを保存しました'); }
   }
   document.getElementById('downloadBtn').addEventListener('click',doDownload);
-  document.getElementById('topDownloadBtn').addEventListener('click',doDownload);
+  var topDl=document.getElementById('topDownloadBtn'); if(topDl) topDl.addEventListener('click',doDownload);
   document.getElementById('resetBtn').addEventListener('click',function(){
     state.style='solid'; state.color1='#FF6B35'; state.color2='#FFC53D'; state.angle=45; state.thickness=28; state.gap=6; state.padding=18; state.zoom=112; state.ox=0; state.oy=0; state.double=false; state.sparkle=false; state.gloss=true; state.shadow=true; state.bg='transparent'; state.preset='vivid';
     document.getElementById('color1').value=state.color1; document.getElementById('color2').value=state.color2;
@@ -1281,6 +1327,45 @@ input[type=range]{width:100%;accent-color:var(--accent);height:28px}
     });
   }
   renderMyRings();
+
+  // --- スマホ向け縦流れレイアウトの追加配線（2026-11-22） ---
+  // ヘルプ（ツールチップ）：タップで開閉、PCではホバー／フォーカスでも開く
+  var helpBtn=document.getElementById('helpBtn');
+  if(helpBtn){
+    var helpWrap=helpBtn.parentElement;
+    helpBtn.addEventListener('click',function(e){ e.stopPropagation(); var open=helpWrap.classList.toggle('open'); helpBtn.setAttribute('aria-expanded', open?'true':'false'); });
+    document.addEventListener('click',function(e){ if(!helpWrap.contains(e.target)){ helpWrap.classList.remove('open'); helpBtn.setAttribute('aria-expanded','false'); } });
+  }
+  // 大きな選択ボタン → 既存のファイル入力を開く
+  var pickImgBtn=document.getElementById('pickImageBtn');
+  if(pickImgBtn) pickImgBtn.addEventListener('click',function(){ document.getElementById('fileInput').click(); });
+  var pickFrameBtn=document.getElementById('pickFrameBtn');
+  if(pickFrameBtn) pickFrameBtn.addEventListener('click',function(){ document.getElementById('frameInput').click(); });
+  var pickMyRingBtn=document.getElementById('pickMyRingBtn');
+  if(pickMyRingBtn) pickMyRingBtn.addEventListener('click',function(){ document.getElementById('myRingInput').click(); });
+
+  // プレビュー上部のプリセット選択（縮小サムネイル）。本体のプリセットボタンと状態を同期する
+  var presetStrip=document.getElementById('presetStrip');
+  if(presetStrip){
+    presets.forEach(function(p){
+      var b=document.createElement('button'); b.type='button'; b.className='pstrip-btn'+(p.id===state.preset?' active':''); b.setAttribute('data-id',p.id); b.setAttribute('aria-label','プリセット「'+p.name+'」');
+      var ringStyle = p.style==='solid' ? 'border-color:'+p.c1 : 'border-color:'+p.c1+'; background: conic-gradient(from 45deg,'+p.c1+','+p.c2+','+p.c1+')';
+      b.innerHTML='<div class="pstrip-ring" style="'+ringStyle+'"></div><label>'+p.name+'</label>';
+      b.addEventListener('click',function(){
+        setMode('gen');
+        var target=presetsEl.querySelector('.preset[data-id="'+p.id+'"]');
+        if(target) target.click();
+        presetStrip.querySelectorAll('.pstrip-btn').forEach(function(el){ el.classList.toggle('active', el.getAttribute('data-id')===p.id); });
+      });
+      presetStrip.appendChild(b);
+    });
+    presetsEl.addEventListener('click',function(){
+      presetStrip.querySelectorAll('.pstrip-btn').forEach(function(el){
+        var t=presetsEl.querySelector('.preset[data-id="'+el.getAttribute('data-id')+'"]');
+        el.classList.toggle('active', !!(t && t.classList.contains('active')));
+      });
+    });
+  }
 
   // initial image = G sample so page never looks empty
   (function init(){ var sc=makeSample('g'); var img=new Image(); img.onload=function(){ state.img=img; draw(); }; img.src=sc.toDataURL('image/png'); syncColorLabels(); setMode('frame'); mkStatus(); drawMaker(); })();
