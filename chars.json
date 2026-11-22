@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T10:06:18.534Z",
+  "updatedAt": "2026-11-22T10:07:50.406Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
@@ -55,7 +55,7 @@
         "kind": "gender"
       },
       "chosen": "b",
-      "reroll": "ok",
+      "reroll": "pending",
       "rerollNextAt": null
     },
     {
