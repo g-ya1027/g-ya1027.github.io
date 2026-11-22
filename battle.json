@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T09:56:43.453Z",
+  "updatedAt": "2026-11-22T10:02:29.550Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -46,7 +46,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T09:47:42.132Z"
+        "updatedAt": "2026-11-22T09:57:27.417Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -139,7 +139,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T09:47:42.132Z"
+        "updatedAt": "2026-11-22T09:57:27.417Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -197,9 +197,9 @@
       "signals": {
         "heartsLeft": 8,
         "spoonsLeft": 0,
-        "commentsLeft": 9,
+        "commentsLeft": 7,
         "visitsLeft": 4,
-        "stayLeftSec": 1178
+        "stayLeftSec": 592
       },
       "img": null,
       "pair": {
@@ -227,7 +227,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T09:47:42.132Z"
+        "updatedAt": "2026-11-22T09:57:27.417Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -283,11 +283,11 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 9,
+        "heartsLeft": 8,
         "spoonsLeft": 0,
-        "commentsLeft": 8,
+        "commentsLeft": 3,
         "visitsLeft": 4,
-        "stayLeftSec": 1403
+        "stayLeftSec": 817
       },
       "img": "chars/gYutFvLTSj7NCj0XQuXOzQ-b.png",
       "pair": {
@@ -315,7 +315,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T09:47:42.132Z"
+        "updatedAt": "2026-11-22T09:57:27.417Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -394,7 +394,7 @@
       "attr": null,
       "attrInitial": null,
       "level": 1,
-      "exp": 1,
+      "exp": 2,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -403,7 +403,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T09:47:42.132Z"
+        "updatedAt": "2026-11-22T09:57:27.417Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -466,9 +466,9 @@
       "signals": {
         "heartsLeft": 7,
         "spoonsLeft": 0,
-        "commentsLeft": 6,
+        "commentsLeft": 20,
         "visitsLeft": 5,
-        "stayLeftSec": 588
+        "stayLeftSec": 2
       },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-a.png",
       "pair": {
@@ -492,7 +492,7 @@
       "frame": "gold",
       "crown": true,
       "pvpWin": 0,
-      "exp": 1
+      "exp": 2
     },
     {
       "rank": 2,
