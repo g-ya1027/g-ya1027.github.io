@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T09:38:22.289Z",
+  "updatedAt": "2026-11-22T09:44:06.175Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -46,7 +46,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T09:32:10.360Z"
+        "updatedAt": "2026-11-22T09:42:04.017Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -139,7 +139,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T09:32:10.360Z"
+        "updatedAt": "2026-11-22T09:42:04.017Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -195,9 +195,9 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 10,
+        "heartsLeft": 9,
         "spoonsLeft": 0,
-        "commentsLeft": 20,
+        "commentsLeft": 18,
         "visitsLeft": 5,
         "stayLeftSec": 1800
       },
@@ -227,7 +227,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T09:32:10.360Z"
+        "updatedAt": "2026-11-22T09:42:04.017Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -315,7 +315,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T09:32:10.360Z"
+        "updatedAt": "2026-11-22T09:42:04.017Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -403,7 +403,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T09:38:19.788Z"
+        "updatedAt": "2026-11-22T09:42:04.017Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -461,17 +461,17 @@
       "signals": {
         "heartsLeft": 9,
         "spoonsLeft": 0,
-        "commentsLeft": 14,
+        "commentsLeft": 11,
         "visitsLeft": 5,
         "stayLeftSec": 1519
       },
-      "img": null,
+      "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-a.png",
       "pair": {
         "a": "chars/-WeTXIQQZKnw7bOqcJfAhg-a.png",
         "b": "chars/-WeTXIQQZKnw7bOqcJfAhg-b.png",
         "kind": "gender"
       },
-      "chosen": null,
+      "chosen": "a",
       "lastAction": null
     }
   ],
