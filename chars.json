@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T09:45:55.297Z",
+  "updatedAt": "2026-11-22T09:51:02.905Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
@@ -70,6 +70,16 @@
       },
       "chosen": "b",
       "reroll": "ok",
+      "rerollNextAt": null
+    },
+    {
+      "token": "d64b2d75ebd6e20f",
+      "nickname": "ぁゎゎ",
+      "radioName": "疾風の船長将軍",
+      "status": "pending",
+      "pair": null,
+      "chosen": null,
+      "reroll": "notready",
       "rerollNextAt": null
     }
   ]
