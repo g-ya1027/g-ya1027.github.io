@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T11:28:34.142Z",
+  "updatedAt": "2026-11-22T14:17:51.376Z",
   "live": false,
   "gkEnabled": true,
   "gkTiers": [
@@ -37,6 +37,11 @@
       "attr": null,
       "attrInitial": null,
       "level": 1,
+      "rank": {
+        "name": "見習いDJ",
+        "nextName": "レギュラーDJ",
+        "progress": 0
+      },
       "exp": 1,
       "expNext": 10,
       "params": {
@@ -113,6 +118,13 @@
         "visitsLeft": 4,
         "stayLeftSec": 28
       },
+      "signalsTotal": {
+        "hearts": 4,
+        "spoons": 0,
+        "comments": 18,
+        "visits": 8,
+        "stayMin": 59
+      },
       "img": null,
       "pair": {
         "a": "chars/IX2hcFW5vZmQzOFHy1THKQ-a.png",
@@ -130,6 +142,11 @@
       "attr": null,
       "attrInitial": null,
       "level": 1,
+      "rank": {
+        "name": "見習いDJ",
+        "nextName": "レギュラーDJ",
+        "progress": 0
+      },
       "exp": 3,
       "expNext": 10,
       "params": {
@@ -201,6 +218,13 @@
         "visitsLeft": 4,
         "stayLeftSec": 324
       },
+      "signalsTotal": {
+        "hearts": 3,
+        "spoons": 0,
+        "comments": 20,
+        "visits": 7,
+        "stayMin": 84
+      },
       "img": null,
       "pair": {
         "a": "chars/Lnrdo_b3TeGyRY8fNTyEhA-a.png",
@@ -218,6 +242,11 @@
       "attr": null,
       "attrInitial": null,
       "level": 1,
+      "rank": {
+        "name": "見習いDJ",
+        "nextName": "レギュラーDJ",
+        "progress": 0
+      },
       "exp": 6,
       "expNext": 10,
       "params": {
@@ -289,6 +318,13 @@
         "visitsLeft": 4,
         "stayLeftSec": 549
       },
+      "signalsTotal": {
+        "hearts": 8,
+        "spoons": 1,
+        "comments": 68,
+        "visits": 4,
+        "stayMin": 80
+      },
       "img": "chars/gYutFvLTSj7NCj0XQuXOzQ-b.png",
       "pair": {
         "a": "chars/gYutFvLTSj7NCj0XQuXOzQ-a.png",
@@ -306,6 +342,11 @@
       "attr": null,
       "attrInitial": null,
       "level": 1,
+      "rank": {
+        "name": "見習いDJ",
+        "nextName": "レギュラーDJ",
+        "progress": 0
+      },
       "exp": 0,
       "expNext": 10,
       "params": {
@@ -377,6 +418,13 @@
         "visitsLeft": 5,
         "stayLeftSec": 1800
       },
+      "signalsTotal": {
+        "hearts": 0,
+        "spoons": 0,
+        "comments": 0,
+        "visits": 3,
+        "stayMin": 0
+      },
       "img": null,
       "pair": {
         "a": "chars/jikCsQVNM6OnpwFu1fHkDg-a.png",
@@ -394,6 +442,11 @@
       "attr": null,
       "attrInitial": null,
       "level": 2,
+      "rank": {
+        "name": "見習いDJ",
+        "nextName": "レギュラーDJ",
+        "progress": 0.1111111111111111
+      },
       "exp": 10,
       "expNext": 30,
       "params": {
@@ -470,6 +523,13 @@
         "visitsLeft": 5,
         "stayLeftSec": 1534
       },
+      "signalsTotal": {
+        "hearts": 10,
+        "spoons": 4,
+        "comments": 50,
+        "visits": 3,
+        "stayMin": 94
+      },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-b.png",
       "pair": {
         "a": "chars/-WeTXIQQZKnw7bOqcJfAhg-a.png",
@@ -487,6 +547,11 @@
       "attr": null,
       "attrInitial": null,
       "level": 1,
+      "rank": {
+        "name": "見習いDJ",
+        "nextName": "レギュラーDJ",
+        "progress": 0
+      },
       "exp": 2,
       "expNext": 10,
       "params": {
@@ -558,6 +623,13 @@
         "visitsLeft": 5,
         "stayLeftSec": 847
       },
+      "signalsTotal": {
+        "hearts": 6,
+        "spoons": 0,
+        "comments": 4,
+        "visits": 4,
+        "stayMin": 75
+      },
       "img": "chars/hUooGCp0KaQn-5EswSh-3A-a.png",
       "pair": {
         "a": "chars/hUooGCp0KaQn-5EswSh-3A-a.png",
@@ -575,6 +647,11 @@
       "attr": null,
       "attrInitial": null,
       "level": 1,
+      "rank": {
+        "name": "見習いDJ",
+        "nextName": "レギュラーDJ",
+        "progress": 0
+      },
       "exp": 3,
       "expNext": 10,
       "params": {
@@ -646,6 +723,13 @@
         "visitsLeft": 5,
         "stayLeftSec": 1311
       },
+      "signalsTotal": {
+        "hearts": 15,
+        "spoons": 0,
+        "comments": 6,
+        "visits": 3,
+        "stayMin": 68
+      },
       "img": "chars/q9SVhkXF0qTVgm_bgnkMNw-a.png",
       "pair": {
         "a": "chars/q9SVhkXF0qTVgm_bgnkMNw-a.png",
@@ -663,6 +747,11 @@
       "attr": null,
       "attrInitial": null,
       "level": 1,
+      "rank": {
+        "name": "見習いDJ",
+        "nextName": "レギュラーDJ",
+        "progress": 0
+      },
       "exp": 2,
       "expNext": 10,
       "params": {
@@ -733,6 +822,13 @@
         "commentsLeft": 17,
         "visitsLeft": 5,
         "stayLeftSec": 1474
+      },
+      "signalsTotal": {
+        "hearts": 2,
+        "spoons": 0,
+        "comments": 3,
+        "visits": 3,
+        "stayMin": 65
       },
       "img": null,
       "pair": {
