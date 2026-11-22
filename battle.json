@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T10:38:52.648Z",
-  "live": true,
+  "updatedAt": "2026-11-22T10:42:05.175Z",
+  "live": false,
   "gkEnabled": true,
   "gkTiers": [
     {
@@ -109,7 +109,7 @@
       "signals": {
         "heartsLeft": 6,
         "spoonsLeft": 0,
-        "commentsLeft": 8,
+        "commentsLeft": 5,
         "visitsLeft": 4,
         "stayLeftSec": 1714
       },
@@ -285,7 +285,7 @@
       "signals": {
         "heartsLeft": 4,
         "spoonsLeft": 0,
-        "commentsLeft": 14,
+        "commentsLeft": 11,
         "visitsLeft": 4,
         "stayLeftSec": 434
       },
@@ -466,7 +466,7 @@
       "signals": {
         "heartsLeft": 3,
         "spoonsLeft": 0,
-        "commentsLeft": 6,
+        "commentsLeft": 3,
         "visitsLeft": 5,
         "stayLeftSec": 1419
       },
@@ -552,7 +552,7 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 6,
+        "heartsLeft": 5,
         "spoonsLeft": 0,
         "commentsLeft": 17,
         "visitsLeft": 5,
@@ -640,7 +640,7 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 7,
+        "heartsLeft": 6,
         "spoonsLeft": 0,
         "commentsLeft": 17,
         "visitsLeft": 5,
