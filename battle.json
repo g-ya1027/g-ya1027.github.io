@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T10:06:29.559Z",
+  "updatedAt": "2026-11-22T10:07:31.261Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -60,10 +60,10 @@
         "draw": 0
       },
       "honors": {
-        "rank": 2,
+        "rank": 3,
         "titleId": "medalist",
         "titleText": "レゾナンス・メダリスト",
-        "frame": "silver",
+        "frame": "bronze",
         "crown": false
       },
       "evolutionStage": 0,
@@ -109,9 +109,9 @@
       "signals": {
         "heartsLeft": 10,
         "spoonsLeft": 0,
-        "commentsLeft": 20,
-        "visitsLeft": 5,
-        "stayLeftSec": 1800
+        "commentsLeft": 19,
+        "visitsLeft": 4,
+        "stayLeftSec": 1797
       },
       "img": null,
       "pair": {
@@ -199,7 +199,7 @@
         "spoonsLeft": 0,
         "commentsLeft": 7,
         "visitsLeft": 4,
-        "stayLeftSec": 592
+        "stayLeftSec": 292
       },
       "img": null,
       "pair": {
@@ -218,7 +218,7 @@
       "attr": null,
       "attrInitial": null,
       "level": 1,
-      "exp": 0,
+      "exp": 1,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -241,10 +241,10 @@
         "draw": 0
       },
       "honors": {
-        "rank": 3,
+        "rank": 2,
         "titleId": "medalist",
         "titleText": "レゾナンス・メダリスト",
-        "frame": "bronze",
+        "frame": "silver",
         "crown": false
       },
       "evolutionStage": 0,
@@ -287,7 +287,7 @@
         "spoonsLeft": 0,
         "commentsLeft": 17,
         "visitsLeft": 4,
-        "stayLeftSec": 817
+        "stayLeftSec": 517
       },
       "img": "chars/gYutFvLTSj7NCj0XQuXOzQ-b.png",
       "pair": {
@@ -394,7 +394,7 @@
       "attr": null,
       "attrInitial": null,
       "level": 1,
-      "exp": 2,
+      "exp": 3,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -464,11 +464,11 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 7,
+        "heartsLeft": 6,
         "spoonsLeft": 0,
         "commentsLeft": 20,
         "visitsLeft": 5,
-        "stayLeftSec": 2
+        "stayLeftSec": 1502
       },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-b.png",
       "pair": {
@@ -492,12 +492,12 @@
       "frame": "gold",
       "crown": true,
       "pvpWin": 0,
-      "exp": 2
+      "exp": 3
     },
     {
       "rank": 2,
-      "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
-      "radioName": "夢追う番人卿",
+      "nickname": "しょこ",
+      "radioName": "黄昏の番人総長",
       "level": 1,
       "attr": null,
       "titleId": "medalist",
@@ -505,12 +505,12 @@
       "frame": "silver",
       "crown": false,
       "pvpWin": 0,
-      "exp": 0
+      "exp": 1
     },
     {
       "rank": 3,
-      "nickname": "しょこ",
-      "radioName": "黄昏の番人総長",
+      "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
+      "radioName": "夢追う番人卿",
       "level": 1,
       "attr": null,
       "titleId": "medalist",
