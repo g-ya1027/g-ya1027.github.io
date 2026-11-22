@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T10:14:57.675Z",
+  "updatedAt": "2026-11-22T10:15:49.072Z",
   "metric": "exp",
   "entries": [
     {
@@ -85,6 +85,19 @@
       "rank": 7,
       "nickname": "⚔️👑うみいろくん👑⚔️",
       "radioName": "彗星の狼将軍",
+      "level": 1,
+      "attr": null,
+      "titleId": "top10",
+      "titleText": "FMスプニ レギュラーDJ",
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 0
+    },
+    {
+      "rank": 8,
+      "nickname": "月野 弥太郎⑅︎◡̈︎*𓈒𓂂𖧷 ",
+      "radioName": "黄昏の流れ星の星",
       "level": 1,
       "attr": null,
       "titleId": "top10",
