@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T09:56:38.751Z",
+  "updatedAt": "2026-11-22T09:58:46.694Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
@@ -76,6 +76,16 @@
       "token": "d64b2d75ebd6e20f",
       "nickname": "ぁゎゎ",
       "radioName": "疾風の船長将軍",
+      "status": "pending",
+      "pair": null,
+      "chosen": null,
+      "reroll": "notready",
+      "rerollNextAt": null
+    },
+    {
+      "token": "457cd0f8037d36ee",
+      "nickname": "⚔️👑うみいろくん👑⚔️",
+      "radioName": "彗星の狼将軍",
       "status": "pending",
       "pair": null,
       "chosen": null,
