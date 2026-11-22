@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!-- spoon-radio-chars v2 -->
+<!-- spoon-radio-chars v4 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>🎨 ラジオネーム名鑑 | イメージキャラ</title>
+<title>🎨 ⚔️バトルゲーム・ラジオネーム名鑑 | イメージキャラ</title>
 <style>
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   body { margin: 0; font-family: "Hiragino Maru Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif; color: #fff; background-color: #0b0821;
@@ -48,12 +48,13 @@
 <body>
 <div class="wrap">
   <div class="mascot">🗿 SPOON 🗿</div>
-  <h1 class="title">ラジオネーム名鑑</h1>
+  <h1 class="title">⚔️バトルゲーム・ラジオネーム名鑑</h1>
   <p class="sub" id="headSub">読み込み中…</p>
   <div id="main"></div>
   <div class="note">
     ※このページのイラストは、ラジオネームのプレゼントとしてAIで生成したものです。ご本人の個人利用（アイコン・待ち受けなど）は自由ですが、販売などの商用利用はご遠慮ください。<br>
-    ※選択や再抽選の反映には少し時間がかかります（配信中に bot が受け取って公開し直します）。
+    ※選択や再抽選の反映には少し時間がかかります（配信中に bot が受け取って公開し直します）。<br>
+    ※選択の変更は、最初に選んだ端末からだけできます。別の端末で開いた場合は、枠主に頼んでください。
   </div>
 </div>
 <div class="lightbox" id="lightbox">
@@ -81,6 +82,39 @@
     return fetch(DB_URL + '/rooms/' + encodeURIComponent(ROOM_ID) + '/charops.json', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(op)
     }).then(function (r) { return r.ok; }).catch(function () { return false; });
+  }
+  // 端末バインド（game75）: この端末の「持ち主キー」。最初に操作した端末のキーが bot に登録され、
+  // 以後の選択・再抽選は同じキーを持つ端末からだけ受け付けられます。
+  function ownerKey() {
+    var storageKey = 'spoonChars.ownerKey.' + token;
+    try {
+      var k = localStorage.getItem(storageKey);
+      if (k) return k;
+      var arr = new Uint8Array(18);
+      if (window.crypto && crypto.getRandomValues) crypto.getRandomValues(arr);
+      else for (var i = 0; i < arr.length; i++) arr[i] = Math.floor(Math.random() * 256);
+      k = Array.prototype.map.call(arr, function (b) { return ('0' + b.toString(16)).slice(-2); }).join('');
+      localStorage.setItem(storageKey, k);
+      return k;
+    } catch (e) { return ''; }
+  }
+  // 送信した操作が反映されたかを見張る係。bot から個別の返事は来ないので、公開データの変化で判定します。
+  // 一定時間たっても変わらなければ、端末ロックで断られたものとして案内を出します。
+  var pendingOp = null;
+  var noticeMsg = '';
+  var LOCK_MSG = 'この端末からは変更できません。最初に選んだ端末で開くか、枠主に頼んでください';
+  function watchPendingOp() {
+    if (!pendingOp || !me) return;
+    var done = pendingOp.kind === 'choose' ? me.chosen === pendingOp.want : me.reroll === 'pending';
+    if (done) {
+      noticeMsg = pendingOp.kind === 'choose' ? '反映しました♪' : '申請を受け付けました♪';
+      pendingOp = null;
+      return;
+    }
+    if (Date.now() > pendingOp.deadline) {
+      noticeMsg = LOCK_MSG;
+      pendingOp = null;
+    }
   }
   function saveNameOf(url) {
     var name = String(url || '').split('/').pop() || 'illust.png';
@@ -150,7 +184,7 @@
     renderRoster();
   }
   function renderRoster() {
-    subEl.textContent = 'ラジオネームが付いたみんなのイメージキャラだよ。自分のカードを押すと、自分のページが開きます。';
+    subEl.textContent = 'バトルゲームはマイページからプレイ可能、自分のカードをタップするとマイページが開くよ';
     var ready = people.filter(function (p) { return p.status === 'ready' && p.pair; });
     if (!ready.length) { mainEl.innerHTML = '<div class="card"><div class="pending">まだ公開されたキャラはいません。<br>ラジオネームが付くと、ここに載ります。</div></div>'; return; }
     var html = '<div class="grid">';
@@ -197,6 +231,7 @@
     html += '<div class="msg" id="opMsg"></div></div>';
     mainEl.innerHTML = html;
     var msgEl = document.getElementById('opMsg');
+    if (msgEl && noticeMsg) msgEl.textContent = noticeMsg;
     var dlBtn = document.getElementById('dlBtn');
     if (dlBtn) {
       dlBtn.addEventListener('click', function () { downloadIllust(cur); });
@@ -206,9 +241,16 @@
       chooseBtns[i].addEventListener('click', function () {
         var w = this.getAttribute('data-choose');
         msgEl.textContent = '送信中…';
-        postOp({ kind: 'choose', token: token, choice: w }).then(function (ok) {
+        noticeMsg = '';
+        postOp({ kind: 'choose', token: token, choice: w, k: ownerKey() }).then(function (ok) {
           msgEl.textContent = ok ? '送信しました♪ 反映まで少し待ってね（このページは自動で更新されます）' : '送信できませんでした（時間をおいてもう一度）';
-          if (ok) setTimeout(load, 4000);
+          if (ok) {
+            pendingOp = { kind: 'choose', want: w, deadline: Date.now() + 70000 };
+            setTimeout(load, 4000);
+            setTimeout(load, 15000);
+            setTimeout(load, 35000);
+            setTimeout(load, 72000);
+          }
         });
       });
     }
@@ -217,9 +259,16 @@
       rb.addEventListener('click', function () {
         var wish = (document.getElementById('wish') || {}).value || '';
         msgEl.textContent = '送信中…';
-        postOp({ kind: 'reroll', token: token, wish: wish }).then(function (ok) {
+        noticeMsg = '';
+        postOp({ kind: 'reroll', token: token, wish: wish, k: ownerKey() }).then(function (ok) {
           msgEl.textContent = ok ? '申請を送信しました♪ 新しい絵を楽しみに待っててね' : '送信できませんでした（時間をおいてもう一度）';
-          if (ok) setTimeout(load, 4000);
+          if (ok) {
+            pendingOp = { kind: 'reroll', deadline: Date.now() + 70000 };
+            setTimeout(load, 4000);
+            setTimeout(load, 15000);
+            setTimeout(load, 35000);
+            setTimeout(load, 72000);
+          }
         });
       });
     }
@@ -228,6 +277,9 @@
     fetch('chars.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (data) {
       people = (data && data.people) || [];
       render();
+      var noticeBefore = noticeMsg;
+      watchPendingOp();
+      if (me && noticeMsg !== noticeBefore) render();
     }).catch(function () {
       subEl.textContent = '読み込めませんでした。少し待ってから開き直してね。';
     });
