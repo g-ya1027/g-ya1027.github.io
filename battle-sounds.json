@@ -1,5 +1,22 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-21T12:14:32.047Z",
-  "slots": {}
+  "updatedAt": "2026-11-22T00:40:55.322Z",
+  "slots": {
+    "bgm.title": {
+      "url": "sounds/game/bgm-title.mp3",
+      "volume": 0.8
+    },
+    "bgm.battle": {
+      "url": "sounds/game/bgm-battle.mp3",
+      "volume": 0.8
+    },
+    "bgm.pvp": {
+      "url": "sounds/game/bgm-pvp.mp3",
+      "volume": 0.8
+    },
+    "se.encounter": {
+      "url": "sounds/game/se-encounter.mp3",
+      "volume": 0.8
+    }
+  }
 }
