@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T09:32:12.868Z",
+  "updatedAt": "2026-11-22T09:38:22.289Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -385,6 +385,94 @@
       },
       "chosen": null,
       "lastAction": null
+    },
+    {
+      "tokenHash": "4852c0ca50451d63714045d8fafb76b112007ac98b45d745f262f7f52a530ade",
+      "nickname": "kinou",
+      "radioName": "永遠の貴公子の星",
+      "status": "awaiting",
+      "attr": null,
+      "attrInitial": null,
+      "level": 1,
+      "exp": 0,
+      "expNext": 10,
+      "params": {
+        "atk": 10,
+        "def": 5,
+        "attrValue": 10
+      },
+      "hp": {
+        "stored": 100,
+        "updatedAt": "2026-11-22T09:38:19.788Z"
+      },
+      "bp": 0,
+      "unspentAlloc": 0,
+      "record": {
+        "npcWin": 0,
+        "npcLose": 0,
+        "pvpWin": 0,
+        "pvpLose": 0,
+        "gkWin": 0,
+        "gkLose": 0,
+        "draw": 0
+      },
+      "honors": {
+        "rank": 5,
+        "titleId": "top10",
+        "titleText": "FMスプニ レギュラーDJ",
+        "frame": null,
+        "crown": false
+      },
+      "evolutionStage": 0,
+      "evolution": {
+        "stage": 0,
+        "nextKind": "evo1",
+        "eligible": false,
+        "queued": false,
+        "winsKind": "total",
+        "levelNow": 1,
+        "levelNeed": 50,
+        "winsNow": 0,
+        "winsNeed": 50
+      },
+      "illust": {
+        "evo1": null,
+        "evo2": null,
+        "gold": null,
+        "win": null,
+        "lose": null
+      },
+      "illustRequests": [],
+      "illustWeekDone": 0,
+      "skill": {
+        "learned": false,
+        "name": null,
+        "desc": null,
+        "price": 30
+      },
+      "gkLeft": {
+        "day": 1,
+        "week": 3
+      },
+      "training": {
+        "usedToday": 0,
+        "results": []
+      },
+      "signals": {
+        "heartsLeft": 9,
+        "spoonsLeft": 0,
+        "commentsLeft": 14,
+        "visitsLeft": 5,
+        "stayLeftSec": 1519
+      },
+      "img": null,
+      "pair": {
+        "a": "chars/-WeTXIQQZKnw7bOqcJfAhg-a.png",
+        "b": "chars/-WeTXIQQZKnw7bOqcJfAhg-b.png",
+        "kind": "gender"
+      },
+      "chosen": null,
+      "lastAction": null
     }
   ],
   "ranking": [
@@ -431,6 +519,19 @@
       "rank": 4,
       "nickname": "瑠璃𓈒𓂂𖧷",
       "radioName": "深夜の影総長",
+      "level": 1,
+      "attr": null,
+      "titleId": "top10",
+      "titleText": "FMスプニ レギュラーDJ",
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 0
+    },
+    {
+      "rank": 5,
+      "nickname": "kinou",
+      "radioName": "永遠の貴公子の星",
       "level": 1,
       "attr": null,
       "titleId": "top10",
