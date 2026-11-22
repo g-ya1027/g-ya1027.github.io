@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T04:23:22.442Z",
+  "updatedAt": "2026-11-22T14:25:31.060Z",
   "slots": {
     "bgm.title": {
       "url": "sounds/game/UrbanBGM_02.mp3",
@@ -89,6 +89,14 @@
     "se.ranking": {
       "url": "sounds/game/ランキング.mp3",
       "volume": 0.2
+    },
+    "se.gkStart": {
+      "url": "sounds/game/RPG_Battle_04.mp3",
+      "volume": 1
+    },
+    "se.rankIn": {
+      "url": "sounds/game/Ska_03(1).mp3",
+      "volume": 0.8
     }
   }
 }
