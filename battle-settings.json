@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T22:16:07.684Z",
+  "updatedAt": "2026-11-22T22:26:39.161Z",
   "featuresBattle": true,
   "battle": {
     "announce": {
@@ -33,23 +33,23 @@
         },
         "se.encounter": {
           "file": "sounds/game/jingle_26.mp3",
-          "volume": 0.2
+          "volume": 0.1
         },
         "se.uiTap": {
           "file": "sounds/game/タップ.mp3",
-          "volume": 0.2
+          "volume": 0.1
         },
         "se.uiDecide": {
           "file": "sounds/game/決定.mp3",
-          "volume": 0.2
+          "volume": 0.1
         },
         "se.uiCancel": {
           "file": "sounds/game/キャンセル.mp3",
-          "volume": 0.2
+          "volume": 0.1
         },
         "se.moveSelect": {
           "file": "sounds/game/手札選択.mp3",
-          "volume": 0.6
+          "volume": 0.1
         },
         "se.attackNormal": {
           "file": "sounds/game/高速移動.mp3",
@@ -89,11 +89,11 @@
         },
         "se.levelUp": {
           "file": "sounds/game/レベルアップ.mp3",
-          "volume": 0.6
+          "volume": 0.3
         },
         "se.heal": {
           "file": "sounds/game/ステータス治療1.mp3",
-          "volume": 0.6
+          "volume": 0.3
         },
         "se.alloc": {
           "file": "sounds/game/決定.mp3",
@@ -104,27 +104,27 @@
           "volume": 0.2
         },
         "se.ranking": {
-          "file": "sounds/game/ランキング.mp3",
+          "file": "sounds/game/ニュースタイトル表示3.mp3",
           "volume": 0.2
-        },
-        "se.gkStart": {
-          "file": "se/game/RPG_Battle_04.mp3",
-          "volume": 1
-        },
-        "se.rankIn": {
-          "file": "se/game/Ska_03(1).mp3",
-          "volume": 0.8
         },
         "bgm.win": {
           "file": "sounds/game/Fusion_01.mp3",
-          "volume": 0.2
+          "volume": 0.05
         },
         "bgm.lose": {
           "file": "sounds/game/LoFi_01.mp3",
-          "volume": 0.2
+          "volume": 0.05
         },
         "bgm.draw": {
           "file": "sounds/game/House_01.mp3",
+          "volume": 0.05
+        },
+        "se.gkStart": {
+          "file": "sounds/game/jingle_26.mp3",
+          "volume": 0.2
+        },
+        "se.rankIn": {
+          "file": "sounds/game/ニュースタイトル表示4.mp3",
           "volume": 0.2
         }
       },
