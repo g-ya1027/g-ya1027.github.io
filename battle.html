@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- spoon-battle-page v23 -->
+<!-- spoon-battle-page v24 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -187,11 +187,14 @@
   .encSide87.blue { background: radial-gradient(ellipse 95% 75% at 88% 8%, rgba(32,132,255,.65), rgba(8,44,120,.30) 55%, rgba(4,4,13,0) 78%); clip-path: polygon(63% 0, 100% 0, 100% 100%, 37% 100%); }
   .encSide87.red { background: radial-gradient(ellipse 95% 75% at 10% 94%, rgba(255,42,66,.65), rgba(120,8,30,.30) 55%, rgba(4,4,13,0) 78%); clip-path: polygon(0 0, 63% 0, 37% 100%, 0 100%); }
   .encSlash87 { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(255,90,110,.0), rgba(255,255,255,.85) 50%, rgba(110,190,255,0)); clip-path: polygon(62.4% 0, 63.6% 0, 37.6% 100%, 36.4% 100%); opacity: .55; }
-  .encFighter87 { position: absolute; top: 50%; width: 37%; max-width: 230px; text-align: center; z-index: 2; }
-  /* game91: 停止位置はアイコン中心が画面幅の約25%（自分）／約75%（相手）＝端と中央（VS）の中間。
-     幅 37% なので left／right は 25 - 37/2 = 6.5%（従来 4%＝中心約23%／77% から少し中央寄せ） */
-  .encFighter87.me { left: 6.5%; animation: encInL87 .55s cubic-bezier(.22,.9,.3,1) both; }
-  .encFighter87.foe { right: 6.5%; animation: encInR87 .55s cubic-bezier(.22,.9,.3,1) both; }
+  .encFighter87 { position: absolute; top: 50%; width: 30%; max-width: 200px; text-align: center; z-index: 2; }
+  /* game92: 停止位置は中央（VS）基準。アイコン中心の中央からの距離は min(15vw, 130px):
+     スマホ幅（360〜430px）では中心が約35%／65%に来て両アイコンが中央で接し、
+     広い画面では距離が 130px で頭打ちになり VS から離れすぎない。
+     left／right = 50% − 中心距離 − アイコン半幅 min(15%, 100px)（幅 min(30%, 200px) の半分）。
+     game91 の画面幅 25%／75% 方式は PC の広い画面で遠く感じたための置き換え */
+  .encFighter87.me { left: calc(50% - min(15vw, 130px) - min(15%, 100px)); animation: encInL87 .55s cubic-bezier(.22,.9,.3,1) both; }
+  .encFighter87.foe { right: calc(50% - min(15vw, 130px) - min(15%, 100px)); animation: encInR87 .55s cubic-bezier(.22,.9,.3,1) both; }
   .encFighter87 img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 16px; display: block; }
   .encFighter87.me img, .encFighter87.me .encPh87 { border: 3px solid #57b6ff; box-shadow: 0 0 26px rgba(64,150,255,.75), 0 10px 30px rgba(0,0,0,.6); }
   .encFighter87.foe img, .encFighter87.foe .encPh87 { border: 3px solid #ff5d72; box-shadow: 0 0 26px rgba(255,70,95,.75), 0 10px 30px rgba(0,0,0,.6); }
@@ -1466,7 +1469,7 @@
   var encounterTimers87 = [];
   var encounterShown87 = {}; // battleId -> 表示済み（本番は1対戦につき1回だけ）
   var battleFresh87 = false; // 直近の enterBattle が新規開始か（再入場・再接続は false）
-  var ENC_HOLD_MS91 = 2500; // game91: エンカウント画面の保持時間（1.5秒→2.5秒に延長。スライドイン等の時間は据え置き、タップで即スキップ可）
+  var ENC_HOLD_MS92 = 3000; // game92: エンカウント画面の保持時間（game87: 1.5秒→game91: 2.5秒→game92: 3秒。スライドイン等の時間は据え置き、タップで即スキップ可）
   function hideEncounter87() {
     for (var i = 0; i < encounterTimers87.length; i++) clearTimeout(encounterTimers87[i]);
     encounterTimers87 = [];
@@ -1494,7 +1497,7 @@
     ov.addEventListener('click', function () { dismissEncounter87(); }); // タップで即スキップ
     document.body.appendChild(ov);
     encounterEl87 = ov;
-    encounterTimers87.push(setTimeout(function () { dismissEncounter87(); }, ENC_HOLD_MS91));
+    encounterTimers87.push(setTimeout(function () { dismissEncounter87(); }, ENC_HOLD_MS92));
   }
   function enterBattle(id, opts) {
     battleId = id;
