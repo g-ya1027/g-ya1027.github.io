@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T09:58:46.694Z",
+  "updatedAt": "2026-11-22T10:01:29.862Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
@@ -86,6 +86,16 @@
       "token": "457cd0f8037d36ee",
       "nickname": "⚔️👑うみいろくん👑⚔️",
       "radioName": "彗星の狼将軍",
+      "status": "pending",
+      "pair": null,
+      "chosen": null,
+      "reroll": "notready",
+      "rerollNextAt": null
+    },
+    {
+      "token": "9b076a7fc2c9dfbc",
+      "nickname": "月野 弥太郎⑅︎◡̈︎*𓈒𓂂𖧷 ",
+      "radioName": "黄昏の流れ星の星",
       "status": "pending",
       "pair": null,
       "chosen": null,
