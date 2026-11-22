@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T10:02:29.550Z",
+  "updatedAt": "2026-11-22T10:06:29.559Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -285,7 +285,7 @@
       "signals": {
         "heartsLeft": 8,
         "spoonsLeft": 0,
-        "commentsLeft": 3,
+        "commentsLeft": 17,
         "visitsLeft": 4,
         "stayLeftSec": 817
       },
@@ -470,13 +470,13 @@
         "visitsLeft": 5,
         "stayLeftSec": 2
       },
-      "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-a.png",
+      "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-b.png",
       "pair": {
         "a": "chars/-WeTXIQQZKnw7bOqcJfAhg-a.png",
         "b": "chars/-WeTXIQQZKnw7bOqcJfAhg-b.png",
         "kind": "gender"
       },
-      "chosen": "a",
+      "chosen": "b",
       "lastAction": null
     }
   ],
