@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- spoon-radio-chars v1 -->
+<!-- spoon-radio-chars v2 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -27,7 +27,12 @@
   button.act:active { transform: translateY(3px); box-shadow: 0 1px 0 #4a1470; }
   button.sub2 { width: 100%; border: 2px solid rgba(160,120,255,.6); border-radius: 999px; padding: 9px 10px; font-size: 13.5px; font-weight: 700; color: #e8e2ff; background: rgba(30,20,70,.8); cursor: pointer; margin-top: 8px; }
   button[disabled] { opacity: .45; cursor: default; box-shadow: none; }
-  .dl { display: block; text-align: center; text-decoration: none; margin-top: 10px; border-radius: 999px; padding: 11px 10px; font-size: 15px; font-weight: 900; color: #07332b; background: linear-gradient(90deg, #00d1b2, #00b39b); }
+  .dl { display: block; width: 100%; border: none; font-family: inherit; cursor: pointer; text-align: center; text-decoration: none; margin-top: 10px; border-radius: 999px; padding: 11px 10px; font-size: 15px; font-weight: 900; color: #07332b; background: linear-gradient(90deg, #00d1b2, #00b39b); }
+  .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.93); z-index: 50; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 16px; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 100%; max-height: 76vh; border-radius: 10px; }
+  .lightbox .lbMsg { color: #fff; font-size: 14.5px; font-weight: 700; text-align: center; margin-top: 14px; line-height: 1.8; }
+  .lightbox .lbClose { margin-top: 12px; border: 2px solid rgba(255,255,255,.6); background: transparent; color: #fff; border-radius: 999px; padding: 9px 26px; font-size: 14px; font-weight: 700; font-family: inherit; cursor: pointer; }
   textarea { width: 100%; border-radius: 10px; border: 2px solid rgba(160,120,255,.5); background: rgba(10,6,32,.7); color: #fff; font-size: 14px; padding: 9px; min-height: 64px; }
   .lbl { font-size: 13.5px; font-weight: 700; margin: 12px 0 6px; }
   .msg { text-align: center; font-size: 13px; color: #bdb4e8; min-height: 18px; margin-top: 10px; line-height: 1.6; }
@@ -51,6 +56,11 @@
     ※選択や再抽選の反映には少し時間がかかります（配信中に bot が受け取って公開し直します）。
   </div>
 </div>
+<div class="lightbox" id="lightbox">
+  <img id="lbImg" src="" alt="">
+  <div class="lbMsg">画像を長押しして「写真に保存」（または「画像を保存」）してね。<br>終わったら「閉じる」を押してね。</div>
+  <button type="button" class="lbClose" id="lbClose">閉じる</button>
+</div>
 <script>
   var DB_URL = 'https://podcastse-default-rtdb.firebaseio.com';
   var ROOM_ID = '78f48ea742f74d19a3';
@@ -71,6 +81,59 @@
     return fetch(DB_URL + '/rooms/' + encodeURIComponent(ROOM_ID) + '/charops.json', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(op)
     }).then(function (r) { return r.ok; }).catch(function () { return false; });
+  }
+  function saveNameOf(url) {
+    var name = String(url || '').split('/').pop() || 'illust.png';
+    try { name = decodeURIComponent(name); } catch (e) {}
+    return name;
+  }
+  function showBigImage(url) {
+    var lb = document.getElementById('lightbox');
+    var img = document.getElementById('lbImg');
+    if (!lb || !img) return;
+    img.src = url;
+    lb.className = 'lightbox open';
+  }
+  function closeBigImage() {
+    var lb = document.getElementById('lightbox');
+    if (lb) lb.className = 'lightbox';
+  }
+  // イラスト保存（スマホ対応の段階式）:
+  // 1) fetch で Blob 化し、Web Share API（ファイル共有）が使えれば共有シートを開く（iPhone は「画像を保存」で写真に入る）
+  // 2) 使えなければ Blob の objectURL + a[download] で保存を試みる（Android Chrome・デスクトップ向け）
+  // 3) それも失敗したら、その場で大きく表示して長押し保存を案内する
+  function downloadIllust(url) {
+    var msgEl = document.getElementById('opMsg');
+    function note(t) { if (msgEl) msgEl.textContent = t; }
+    note('画像を準備中…');
+    fetch(url).then(function (r) {
+      if (!r.ok) throw new Error('fetch failed');
+      return r.blob();
+    }).then(function (blob) {
+      var file = null;
+      try { file = new File([blob], saveNameOf(url), { type: blob.type || 'image/png' }); } catch (e) {}
+      if (file && navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+        return navigator.share({ files: [file] }).then(function () {
+          note('共有シートを開きました。「画像を保存」を選ぶと写真に入ります。');
+        }).catch(function (err) {
+          if (err && err.name === 'AbortError') { note(''); return; }
+          throw err;
+        });
+      }
+      var objUrl = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = objUrl;
+      a.download = saveNameOf(url);
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(objUrl); }, 4000);
+      note('ダウンロードを始めました。保存できていないときは、画像を長押しして「写真に保存」してね。');
+      showBigImage(url);
+    }).catch(function () {
+      note('自動で保存できなかったので、画像を大きく表示します。長押しして「写真に保存」してね。');
+      showBigImage(url);
+    });
   }
   function dateStr(iso) {
     if (!iso) return '';
@@ -118,7 +181,7 @@
       var cur = p.pair[p.chosen];
       var other = p.chosen === 'a' ? 'b' : 'a';
       html += '<img class="char" src="' + esc(cur) + '" alt="" style="margin-top:10px">';
-      html += '<a class="dl" href="' + esc(cur) + '" download>⬇ このイラストをダウンロード</a>';
+      html += '<button type="button" class="dl" id="dlBtn">⬇ このイラストをダウンロード</button>';
       html += '<button type="button" class="sub2" data-choose="' + other + '">もう片方（' + capOf(p, other) + '）に変える</button>';
       html += '<div class="lbl">🎲 再抽選（描き直し）</div>';
       if (p.reroll === 'pending') {
@@ -134,6 +197,10 @@
     html += '<div class="msg" id="opMsg"></div></div>';
     mainEl.innerHTML = html;
     var msgEl = document.getElementById('opMsg');
+    var dlBtn = document.getElementById('dlBtn');
+    if (dlBtn) {
+      dlBtn.addEventListener('click', function () { downloadIllust(cur); });
+    }
     var chooseBtns = mainEl.querySelectorAll('[data-choose]');
     for (var i = 0; i < chooseBtns.length; i++) {
       chooseBtns[i].addEventListener('click', function () {
@@ -165,6 +232,10 @@
       subEl.textContent = '読み込めませんでした。少し待ってから開き直してね。';
     });
   }
+  var lbCloseBtn = document.getElementById('lbClose');
+  if (lbCloseBtn) lbCloseBtn.addEventListener('click', closeBigImage);
+  var lbEl = document.getElementById('lightbox');
+  if (lbEl) lbEl.addEventListener('click', function (ev) { if (ev.target === lbEl) closeBigImage(); });
   load();
   setInterval(load, 30000);
 </script>
