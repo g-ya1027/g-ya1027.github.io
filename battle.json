@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T10:15:49.065Z",
+  "updatedAt": "2026-11-22T10:20:37.179Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -107,11 +107,11 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 9,
+        "heartsLeft": 8,
         "spoonsLeft": 0,
-        "commentsLeft": 17,
+        "commentsLeft": 13,
         "visitsLeft": 4,
-        "stayLeftSec": 1497
+        "stayLeftSec": 1009
       },
       "img": null,
       "pair": {
@@ -199,7 +199,7 @@
         "spoonsLeft": 0,
         "commentsLeft": 7,
         "visitsLeft": 4,
-        "stayLeftSec": 1792
+        "stayLeftSec": 1305
       },
       "img": null,
       "pair": {
@@ -218,7 +218,7 @@
       "attr": null,
       "attrInitial": null,
       "level": 1,
-      "exp": 1,
+      "exp": 2,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -283,11 +283,11 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 7,
+        "heartsLeft": 6,
         "spoonsLeft": 0,
-        "commentsLeft": 10,
+        "commentsLeft": 7,
         "visitsLeft": 4,
-        "stayLeftSec": 217
+        "stayLeftSec": 1530
       },
       "img": "chars/gYutFvLTSj7NCj0XQuXOzQ-b.png",
       "pair": {
@@ -464,11 +464,11 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 6,
+        "heartsLeft": 5,
         "spoonsLeft": 0,
-        "commentsLeft": 15,
+        "commentsLeft": 13,
         "visitsLeft": 5,
-        "stayLeftSec": 1202
+        "stayLeftSec": 715
       },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-b.png",
       "pair": {
@@ -552,11 +552,11 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 8,
+        "heartsLeft": 7,
         "spoonsLeft": 0,
         "commentsLeft": 18,
         "visitsLeft": 5,
-        "stayLeftSec": 515
+        "stayLeftSec": 28
       },
       "img": null,
       "pair": {
@@ -644,7 +644,7 @@
         "spoonsLeft": 0,
         "commentsLeft": 17,
         "visitsLeft": 5,
-        "stayLeftSec": 980
+        "stayLeftSec": 492
       },
       "img": null,
       "pair": {
@@ -732,7 +732,7 @@
         "spoonsLeft": 0,
         "commentsLeft": 17,
         "visitsLeft": 5,
-        "stayLeftSec": 1143
+        "stayLeftSec": 655
       },
       "img": null,
       "pair": {
@@ -769,7 +769,7 @@
       "frame": "silver",
       "crown": false,
       "pvpWin": 0,
-      "exp": 1
+      "exp": 2
     },
     {
       "rank": 3,
