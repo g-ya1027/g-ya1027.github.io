@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T11:06:58.484Z",
+  "updatedAt": "2026-11-22T11:25:34.146Z",
   "live": false,
   "gkEnabled": true,
   "gkTiers": [
@@ -470,13 +470,13 @@
         "visitsLeft": 5,
         "stayLeftSec": 1534
       },
-      "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-b.png",
+      "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-a.png",
       "pair": {
         "a": "chars/-WeTXIQQZKnw7bOqcJfAhg-a.png",
         "b": "chars/-WeTXIQQZKnw7bOqcJfAhg-b.png",
         "kind": "gender"
       },
-      "chosen": "b",
+      "chosen": "a",
       "lastAction": null
     },
     {
