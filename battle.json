@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T10:23:59.044Z",
+  "updatedAt": "2026-11-22T10:25:37.212Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -60,7 +60,7 @@
         "draw": 0
       },
       "honors": {
-        "rank": 4,
+        "rank": 5,
         "titleId": "top10",
         "titleText": "FMスプニ レギュラーDJ",
         "frame": null,
@@ -111,7 +111,7 @@
         "spoonsLeft": 0,
         "commentsLeft": 13,
         "visitsLeft": 4,
-        "stayLeftSec": 1009
+        "stayLeftSec": 709
       },
       "img": null,
       "pair": {
@@ -195,11 +195,11 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 8,
+        "heartsLeft": 7,
         "spoonsLeft": 0,
         "commentsLeft": 7,
         "visitsLeft": 4,
-        "stayLeftSec": 1305
+        "stayLeftSec": 1005
       },
       "img": null,
       "pair": {
@@ -218,7 +218,7 @@
       "attr": null,
       "attrInitial": null,
       "level": 1,
-      "exp": 2,
+      "exp": 3,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -285,9 +285,9 @@
       "signals": {
         "heartsLeft": 6,
         "spoonsLeft": 0,
-        "commentsLeft": 3,
+        "commentsLeft": 20,
         "visitsLeft": 4,
-        "stayLeftSec": 1530
+        "stayLeftSec": 1230
       },
       "img": null,
       "pair": {
@@ -329,7 +329,7 @@
         "draw": 0
       },
       "honors": {
-        "rank": 5,
+        "rank": 6,
         "titleId": "top10",
         "titleText": "FMスプニ レギュラーDJ",
         "frame": null,
@@ -466,9 +466,9 @@
       "signals": {
         "heartsLeft": 5,
         "spoonsLeft": 0,
-        "commentsLeft": 13,
+        "commentsLeft": 12,
         "visitsLeft": 5,
-        "stayLeftSec": 715
+        "stayLeftSec": 415
       },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-b.png",
       "pair": {
@@ -487,7 +487,7 @@
       "attr": null,
       "attrInitial": null,
       "level": 1,
-      "exp": 0,
+      "exp": 1,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -510,7 +510,7 @@
         "draw": 0
       },
       "honors": {
-        "rank": 6,
+        "rank": 4,
         "titleId": "top10",
         "titleText": "FMスプニ レギュラーDJ",
         "frame": null,
@@ -556,7 +556,7 @@
         "spoonsLeft": 0,
         "commentsLeft": 18,
         "visitsLeft": 5,
-        "stayLeftSec": 28
+        "stayLeftSec": 1528
       },
       "img": "chars/hUooGCp0KaQn-5EswSh-3A-a.png",
       "pair": {
@@ -644,7 +644,7 @@
         "spoonsLeft": 0,
         "commentsLeft": 17,
         "visitsLeft": 5,
-        "stayLeftSec": 492
+        "stayLeftSec": 192
       },
       "img": "chars/q9SVhkXF0qTVgm_bgnkMNw-a.png",
       "pair": {
@@ -732,7 +732,7 @@
         "spoonsLeft": 0,
         "commentsLeft": 17,
         "visitsLeft": 5,
-        "stayLeftSec": 655
+        "stayLeftSec": 355
       },
       "img": null,
       "pair": {
@@ -769,7 +769,7 @@
       "frame": "silver",
       "crown": false,
       "pvpWin": 0,
-      "exp": 2
+      "exp": 3
     },
     {
       "rank": 3,
@@ -786,6 +786,19 @@
     },
     {
       "rank": 4,
+      "nickname": "ぁゎゎ",
+      "radioName": "疾風の船長将軍",
+      "level": 1,
+      "attr": null,
+      "titleId": "top10",
+      "titleText": "FMスプニ レギュラーDJ",
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 1
+    },
+    {
+      "rank": 5,
       "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
       "radioName": "夢追う番人卿",
       "level": 1,
@@ -798,22 +811,9 @@
       "exp": 0
     },
     {
-      "rank": 5,
+      "rank": 6,
       "nickname": "瑠璃𓈒𓂂𖧷",
       "radioName": "深夜の影総長",
-      "level": 1,
-      "attr": null,
-      "titleId": "top10",
-      "titleText": "FMスプニ レギュラーDJ",
-      "frame": null,
-      "crown": false,
-      "pvpWin": 0,
-      "exp": 0
-    },
-    {
-      "rank": 6,
-      "nickname": "ぁゎゎ",
-      "radioName": "疾風の船長将軍",
       "level": 1,
       "attr": null,
       "titleId": "top10",
