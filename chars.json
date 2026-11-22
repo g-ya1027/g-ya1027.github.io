@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T10:13:13.766Z",
+  "updatedAt": "2026-11-22T10:14:53.659Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
@@ -90,10 +90,14 @@
       "token": "457cd0f8037d36ee",
       "nickname": "⚔️👑うみいろくん👑⚔️",
       "radioName": "彗星の狼将軍",
-      "status": "pending",
-      "pair": null,
+      "status": "ready",
+      "pair": {
+        "a": "chars/q9SVhkXF0qTVgm_bgnkMNw-a.png",
+        "b": "chars/q9SVhkXF0qTVgm_bgnkMNw-b.png",
+        "kind": "gender"
+      },
       "chosen": null,
-      "reroll": "notready",
+      "reroll": "ok",
       "rerollNextAt": null
     },
     {
