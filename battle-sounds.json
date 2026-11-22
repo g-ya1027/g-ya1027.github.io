@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T14:25:31.060Z",
+  "updatedAt": "2026-11-22T22:16:07.684Z",
   "slots": {
     "bgm.title": {
       "url": "sounds/game/UrbanBGM_02.mp3",
@@ -12,6 +12,18 @@
     },
     "bgm.pvp": {
       "url": "sounds/game/RPG_Battle_04.mp3",
+      "volume": 0.2
+    },
+    "bgm.win": {
+      "url": "sounds/game/Fusion_01.mp3",
+      "volume": 0.2
+    },
+    "bgm.lose": {
+      "url": "sounds/game/LoFi_01.mp3",
+      "volume": 0.2
+    },
+    "bgm.draw": {
+      "url": "sounds/game/House_01.mp3",
       "volume": 0.2
     },
     "se.encounter": {
@@ -57,18 +69,6 @@
     "se.turnStart": {
       "url": "sounds/game/DJのスクラッチ1.mp3",
       "volume": 0.6
-    },
-    "se.win": {
-      "url": "sounds/game/Fusion_01.mp3",
-      "volume": 0.2
-    },
-    "se.lose": {
-      "url": "sounds/game/LoFi_01.mp3",
-      "volume": 0.2
-    },
-    "se.draw": {
-      "url": "sounds/game/House_01.mp3",
-      "volume": 0.2
     },
     "se.levelUp": {
       "url": "sounds/game/レベルアップ.mp3",
