@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T10:52:06.336Z",
+  "updatedAt": "2026-11-22T11:02:06.371Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -111,7 +111,7 @@
         "spoonsLeft": 0,
         "commentsLeft": 2,
         "visitsLeft": 4,
-        "stayLeftSec": 919
+        "stayLeftSec": 319
       },
       "img": null,
       "pair": {
@@ -199,7 +199,7 @@
         "spoonsLeft": 0,
         "commentsLeft": 20,
         "visitsLeft": 4,
-        "stayLeftSec": 1215
+        "stayLeftSec": 615
       },
       "img": null,
       "pair": {
@@ -218,7 +218,7 @@
       "attr": null,
       "attrInitial": null,
       "level": 1,
-      "exp": 5,
+      "exp": 6,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -283,11 +283,11 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 3,
+        "heartsLeft": 2,
         "spoonsLeft": 0,
-        "commentsLeft": 4,
+        "commentsLeft": 16,
         "visitsLeft": 4,
-        "stayLeftSec": 1440
+        "stayLeftSec": 839
       },
       "img": "chars/gYutFvLTSj7NCj0XQuXOzQ-b.png",
       "pair": {
@@ -394,7 +394,7 @@
       "attr": null,
       "attrInitial": null,
       "level": 1,
-      "exp": 8,
+      "exp": 9,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -464,11 +464,11 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 1,
+        "heartsLeft": 10,
         "spoonsLeft": 0,
-        "commentsLeft": 20,
+        "commentsLeft": 15,
         "visitsLeft": 5,
-        "stayLeftSec": 625
+        "stayLeftSec": 25
       },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-b.png",
       "pair": {
@@ -483,94 +483,6 @@
       "tokenHash": "0e32e8bb1099246e61be72e701825de6ca64447a7f8e7f90c1db333c33ecaeaa",
       "nickname": "ぁゎゎ",
       "radioName": "疾風の船長将軍",
-      "status": "awaiting",
-      "attr": null,
-      "attrInitial": null,
-      "level": 1,
-      "exp": 2,
-      "expNext": 10,
-      "params": {
-        "atk": 10,
-        "def": 5,
-        "attrValue": 10
-      },
-      "hp": {
-        "stored": 100,
-        "updatedAt": "2026-11-22T10:42:05.193Z"
-      },
-      "bp": 0,
-      "unspentAlloc": 0,
-      "record": {
-        "npcWin": 0,
-        "npcLose": 0,
-        "pvpWin": 0,
-        "pvpLose": 0,
-        "gkWin": 0,
-        "gkLose": 0,
-        "draw": 0
-      },
-      "honors": {
-        "rank": 4,
-        "titleId": "top10",
-        "titleText": "FMスプニ レギュラーDJ",
-        "frame": null,
-        "crown": false
-      },
-      "evolutionStage": 0,
-      "evolution": {
-        "stage": 0,
-        "nextKind": "evo1",
-        "eligible": false,
-        "queued": false,
-        "winsKind": "total",
-        "levelNow": 1,
-        "levelNeed": 50,
-        "winsNow": 0,
-        "winsNeed": 50
-      },
-      "illust": {
-        "evo1": null,
-        "evo2": null,
-        "gold": null,
-        "win": null,
-        "lose": null
-      },
-      "illustRequests": [],
-      "illustWeekDone": 0,
-      "skill": {
-        "learned": false,
-        "name": null,
-        "desc": null,
-        "price": 30
-      },
-      "gkLeft": {
-        "day": 1,
-        "week": 3
-      },
-      "training": {
-        "usedToday": 0,
-        "results": []
-      },
-      "signals": {
-        "heartsLeft": 5,
-        "spoonsLeft": 0,
-        "commentsLeft": 17,
-        "visitsLeft": 5,
-        "stayLeftSec": 1738
-      },
-      "img": "chars/hUooGCp0KaQn-5EswSh-3A-a.png",
-      "pair": {
-        "a": "chars/hUooGCp0KaQn-5EswSh-3A-a.png",
-        "b": "chars/hUooGCp0KaQn-5EswSh-3A-b.png",
-        "kind": "gender"
-      },
-      "chosen": "a",
-      "lastAction": null
-    },
-    {
-      "tokenHash": "6ae80de3678ecdf9df119837a74da9cc73c431d333e867c08d14f2c36f1a62bb",
-      "nickname": "⚔️👑うみいろくん👑⚔️",
-      "radioName": "彗星の狼将軍",
       "status": "awaiting",
       "attr": null,
       "attrInitial": null,
@@ -640,11 +552,99 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 5,
+        "heartsLeft": 4,
         "spoonsLeft": 0,
         "commentsLeft": 16,
         "visitsLeft": 5,
-        "stayLeftSec": 402
+        "stayLeftSec": 1138
+      },
+      "img": "chars/hUooGCp0KaQn-5EswSh-3A-a.png",
+      "pair": {
+        "a": "chars/hUooGCp0KaQn-5EswSh-3A-a.png",
+        "b": "chars/hUooGCp0KaQn-5EswSh-3A-b.png",
+        "kind": "gender"
+      },
+      "chosen": "a",
+      "lastAction": null
+    },
+    {
+      "tokenHash": "6ae80de3678ecdf9df119837a74da9cc73c431d333e867c08d14f2c36f1a62bb",
+      "nickname": "⚔️👑うみいろくん👑⚔️",
+      "radioName": "彗星の狼将軍",
+      "status": "awaiting",
+      "attr": null,
+      "attrInitial": null,
+      "level": 1,
+      "exp": 3,
+      "expNext": 10,
+      "params": {
+        "atk": 10,
+        "def": 5,
+        "attrValue": 10
+      },
+      "hp": {
+        "stored": 100,
+        "updatedAt": "2026-11-22T10:42:05.193Z"
+      },
+      "bp": 0,
+      "unspentAlloc": 0,
+      "record": {
+        "npcWin": 0,
+        "npcLose": 0,
+        "pvpWin": 0,
+        "pvpLose": 0,
+        "gkWin": 0,
+        "gkLose": 0,
+        "draw": 0
+      },
+      "honors": {
+        "rank": 4,
+        "titleId": "top10",
+        "titleText": "FMスプニ レギュラーDJ",
+        "frame": null,
+        "crown": false
+      },
+      "evolutionStage": 0,
+      "evolution": {
+        "stage": 0,
+        "nextKind": "evo1",
+        "eligible": false,
+        "queued": false,
+        "winsKind": "total",
+        "levelNow": 1,
+        "levelNeed": 50,
+        "winsNow": 0,
+        "winsNeed": 50
+      },
+      "illust": {
+        "evo1": null,
+        "evo2": null,
+        "gold": null,
+        "win": null,
+        "lose": null
+      },
+      "illustRequests": [],
+      "illustWeekDone": 0,
+      "skill": {
+        "learned": false,
+        "name": null,
+        "desc": null,
+        "price": 30
+      },
+      "gkLeft": {
+        "day": 1,
+        "week": 3
+      },
+      "training": {
+        "usedToday": 0,
+        "results": []
+      },
+      "signals": {
+        "heartsLeft": 5,
+        "spoonsLeft": 0,
+        "commentsLeft": 14,
+        "visitsLeft": 5,
+        "stayLeftSec": 1602
       },
       "img": "chars/q9SVhkXF0qTVgm_bgnkMNw-a.png",
       "pair": {
@@ -663,7 +663,7 @@
       "attr": null,
       "attrInitial": null,
       "level": 1,
-      "exp": 1,
+      "exp": 2,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -732,7 +732,7 @@
         "spoonsLeft": 0,
         "commentsLeft": 17,
         "visitsLeft": 5,
-        "stayLeftSec": 565
+        "stayLeftSec": 1765
       },
       "img": null,
       "pair": {
@@ -756,7 +756,7 @@
       "frame": "gold",
       "crown": true,
       "pvpWin": 0,
-      "exp": 8
+      "exp": 9
     },
     {
       "rank": 2,
@@ -769,7 +769,7 @@
       "frame": "silver",
       "crown": false,
       "pvpWin": 0,
-      "exp": 5
+      "exp": 6
     },
     {
       "rank": 3,
@@ -786,8 +786,8 @@
     },
     {
       "rank": 4,
-      "nickname": "ぁゎゎ",
-      "radioName": "疾風の船長将軍",
+      "nickname": "⚔️👑うみいろくん👑⚔️",
+      "radioName": "彗星の狼将軍",
       "level": 1,
       "attr": null,
       "titleId": "top10",
@@ -795,12 +795,12 @@
       "frame": null,
       "crown": false,
       "pvpWin": 0,
-      "exp": 2
+      "exp": 3
     },
     {
       "rank": 5,
-      "nickname": "⚔️👑うみいろくん👑⚔️",
-      "radioName": "彗星の狼将軍",
+      "nickname": "ぁゎゎ",
+      "radioName": "疾風の船長将軍",
       "level": 1,
       "attr": null,
       "titleId": "top10",
@@ -821,7 +821,7 @@
       "frame": null,
       "crown": false,
       "pvpWin": 0,
-      "exp": 1
+      "exp": 2
     },
     {
       "rank": 7,
