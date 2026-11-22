@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- spoon-battle-page v8 -->
+<!-- spoon-battle-page v9 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -18,6 +18,13 @@
   .lamp { font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 999px; border: 1px solid #4b4f8f; color: #9d92d6; background: rgba(13,16,48,.7); white-space: nowrap; }
   .lamp.on { color: #fff; border-color: #ff3b30; background: rgba(120,10,10,.55); box-shadow: 0 0 10px rgba(255,59,48,.55); }
   .iconBtn { font-size: 18px; line-height: 1; padding: 8px 10px; border-radius: 10px; border: 1px solid #4b4f8f; background: rgba(20,24,64,.85); color: #eef2ff; cursor: pointer; }
+  .soundBar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 10px 0 2px; padding: 8px 10px; border: 1px solid #3d4276; border-radius: 12px; background: rgba(20,24,64,.8); }
+  .sbLabel { font-size: 12px; font-weight: 800; color: #b9c2ff; white-space: nowrap; }
+  .sbSeg { display: flex; gap: 4px; }
+  .segBtn { padding: 6px 9px; font-size: 12px; font-weight: 800; border-radius: 999px; border: 1px solid #3d4276; background: rgba(13,16,48,.7); color: #b9c2ff; cursor: pointer; white-space: nowrap; }
+  .segBtn.sel { border-color: #00d1b2; color: #eafffa; background: rgba(0,80,66,.55); }
+  .sbVol { flex: 1; min-width: 56px; accent-color: #00d1b2; }
+  .sbVolVal { font-size: 12px; font-weight: 700; color: #b9c2ff; min-width: 36px; text-align: right; font-variant-numeric: tabular-nums; }
   .sub { text-align: center; font-size: 13px; color: #b9c2ff; line-height: 1.7; margin: 8px 0 12px; }
   .tabs { display: flex; gap: 8px; margin: 0 0 14px; }
   .tab { flex: 1; padding: 10px 4px; text-align: center; font-size: 15px; font-weight: 800; border-radius: 12px; border: 2px solid #3d4276; background: rgba(20,24,64,.8); color: #b9c2ff; cursor: pointer; }
@@ -63,13 +70,22 @@
   <div style="font-size:15px;letter-spacing:.25em;color:#7dfce8;">📻 FMスプニ ON AIR</div>
   <div style="font-size:26px;font-weight:900;margin:10px 0 18px;">⚔️ バトルゲーム</div>
   <button id="startBtn" type="button">タップしてはじめる</button>
-  <div class="note" style="margin-top:12px;">音が出るページです（ミュートは右上のボタン）</div>
+  <div class="note" style="margin-top:12px;">音が出るページです（音量・ミュートは上のバーで調整できます）</div>
 </div></div>
 <div class="wrap">
   <div class="topbar">
     <span class="lamp" id="liveLamp">● OFF AIR</span>
     <h1 class="title">バトルゲーム</h1>
-    <button class="iconBtn" id="muteBtn" type="button" title="音のオン／オフ">🔊</button>
+  </div>
+  <div class="soundBar" id="soundBar">
+    <span class="sbLabel">🔊 音</span>
+    <div class="sbSeg">
+      <button type="button" class="segBtn" id="modeBtn_normal">通常</button>
+      <button type="button" class="segBtn" id="modeBtn_stream">配信優先</button>
+      <button type="button" class="segBtn" id="modeBtn_mute">ミュート</button>
+    </div>
+    <input type="range" class="sbVol" id="volSlider" min="0" max="100" step="1" value="90" aria-label="音量（0〜100%）">
+    <span class="sbVolVal" id="volVal">90%</span>
   </div>
   <p class="sub">深夜放送局FMスプニの競演バトル。<br>配信でためた力で、キミのキャラが育っていくよ。</p>
   <div class="tabs">
@@ -102,10 +118,34 @@
   var sounds = {};
   var audioCtx = null;
   var bgmAudio = null;
-  var muted = false;
-  try { muted = localStorage.getItem('battleMuted') === '1'; } catch (e) {}
+  // __BATTLE_SOUND63_BEGIN__ 音モードと実効音量の純粋関数（サーバ側 battle-pages.js と同じソース）
+  function normalizeBattleSoundMode(v) {
+  return v === 'stream' || v === 'mute' ? v : 'normal';
+}
+  function clampBattleMasterVolume(v) {
+  var n = typeof v === 'number' ? v : parseFloat(v);
+  if (isNaN(n)) return 0.9;
+  return Math.min(1, Math.max(0, n));
+}
+  function effectiveBattleVolume(mode, isBgm, slotVolume, masterVolume) {
+  var m = mode === 'stream' || mode === 'mute' ? mode : 'normal';
+  if (m === 'mute') return 0;
+  if (m === 'stream' && isBgm) return 0;
+  var s = typeof slotVolume === 'number' && isFinite(slotVolume) ? Math.min(1, Math.max(0, slotVolume)) : 0.8;
+  var mv = typeof masterVolume === 'number' && isFinite(masterVolume) ? Math.min(1, Math.max(0, masterVolume)) : 0.9;
+  return s * mv;
+}
+  // __BATTLE_SOUND63_END__
+  var soundMode = 'normal';
+  try {
+    var savedMode63 = localStorage.getItem('battleSoundMode');
+    if (savedMode63) soundMode = normalizeBattleSoundMode(savedMode63);
+    else if (localStorage.getItem('battleMuted') === '1') soundMode = 'mute';
+  } catch (e) {}
   var masterVol = 0.9;
-  try { var mv = parseFloat(localStorage.getItem('battleVolume')); if (!isNaN(mv)) masterVol = mv; } catch (e) {}
+  try { masterVol = clampBattleMasterVolume(parseFloat(localStorage.getItem('battleVolume'))); } catch (e) {}
+  function isBgmSlotId(id) { return typeof id === 'string' && id.indexOf('bgm.') === 0; }
+  function effVol(id) { return effectiveBattleVolume(soundMode, isBgmSlotId(id), slotVol(id), masterVol); }
 
   function el(id) { return document.getElementById(id); }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -136,12 +176,13 @@
   }
   function slotVol(id) { var s = sounds[id]; return s && typeof s.volume === 'number' ? s.volume : 0.8; }
   function playSlot(id, loop) {
-    if (muted) return null;
+    var v = effVol(id);
+    if (v <= 0) return null;
     var s = sounds[id];
     if (!s || !s.url) return null;
     try {
       var a = new Audio(s.url);
-      a.volume = Math.max(0, Math.min(1, slotVol(id) * masterVol));
+      a.volume = v;
       a.loop = !!loop;
       a.play().catch(function () {});
       return a;
@@ -496,14 +537,56 @@
   el('tabRoster').addEventListener('click', function () { playSlot('se.uiTap'); switchView('roster'); });
   el('tabMine').addEventListener('click', function () { playSlot('se.uiTap'); switchView('mine'); });
   el('tabRanking').addEventListener('click', function () { playSlot('se.uiTap'); switchView('ranking'); });
-  function paintMute() { el('muteBtn').textContent = muted ? '🔇' : '🔊'; }
-  el('muteBtn').addEventListener('click', function () {
-    muted = !muted;
-    try { localStorage.setItem('battleMuted', muted ? '1' : '0'); } catch (e) {}
-    if (bgmAudio) { if (muted) bgmAudio.pause(); else bgmAudio.play().catch(function () {}); }
-    paintMute();
-  });
-  paintMute();
+  // ---- game63: 音コントロール（モード切替＋音量）の配線 ----
+  function paintSoundBar() {
+    var modes = ['normal', 'stream', 'mute'];
+    for (var i = 0; i < modes.length; i++) {
+      var b = el('modeBtn_' + modes[i]);
+      if (b) b.className = 'segBtn' + (soundMode === modes[i] ? ' sel' : '');
+    }
+    var sl = el('volSlider');
+    if (sl) sl.value = String(Math.round(masterVol * 100));
+    var vv = el('volVal');
+    if (vv) vv.textContent = Math.round(masterVol * 100) + '%';
+  }
+  function refreshLiveBgm() {
+    if (bgmAudio) {
+      bgmAudio.volume = effVol('bgm.title');
+      if (soundMode === 'normal') bgmAudio.play().catch(function () {}); else bgmAudio.pause();
+    }
+    if (battleBgm) {
+      battleBgm.volume = effVol(battleBgmSlot || 'bgm.battle');
+      if (soundMode === 'normal') battleBgm.play().catch(function () {}); else battleBgm.pause();
+    }
+  }
+  function setSoundMode(m) {
+    soundMode = normalizeBattleSoundMode(m);
+    try { localStorage.setItem('battleSoundMode', soundMode); } catch (e) {}
+    paintSoundBar();
+    refreshLiveBgm();
+    if (soundMode === 'normal' && !bgmAudio && !battleBgm) {
+      if (battleBgmSlot) playBattleBgm(battleBgmSlot); else startTitleBgm();
+    }
+  }
+  (function () {
+    var modes = ['normal', 'stream', 'mute'];
+    for (var i = 0; i < modes.length; i++) {
+      (function (m) {
+        var b = el('modeBtn_' + m);
+        if (b) b.addEventListener('click', function () { setSoundMode(m); });
+      })(modes[i]);
+    }
+    var sl = el('volSlider');
+    if (sl) sl.addEventListener('input', function () {
+      masterVol = clampBattleMasterVolume(parseInt(sl.value, 10) / 100);
+      try { localStorage.setItem('battleVolume', String(masterVol)); } catch (e) {}
+      var vv = el('volVal');
+      if (vv) vv.textContent = Math.round(masterVol * 100) + '%';
+      if (bgmAudio) bgmAudio.volume = effVol('bgm.title');
+      if (battleBgm) battleBgm.volume = effVol(battleBgmSlot || 'bgm.battle');
+    });
+  })();
+  paintSoundBar();
   el('startBtn').addEventListener('click', function () {
     unlockAudio();
     playSlot('se.uiDecide');
@@ -517,7 +600,7 @@
     } else {
       // 画面に戻ったら presence を即時書き直す（バックグラウンドでタイマーが絞られても不戦敗にしないため・§9.2.9）
       writePresence();
-      if (!muted) {
+      if (soundMode === 'normal') {
         if (bgmAudio) bgmAudio.play().catch(function () {});
         if (battleBgm) battleBgm.play().catch(function () {});
       }
