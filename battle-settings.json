@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T22:26:39.161Z",
+  "updatedAt": "2026-11-22T22:50:02.524Z",
   "featuresBattle": true,
   "battle": {
     "announce": {
@@ -33,7 +33,7 @@
         },
         "se.encounter": {
           "file": "sounds/game/jingle_26.mp3",
-          "volume": 0.1
+          "volume": 0.15
         },
         "se.uiTap": {
           "file": "sounds/game/タップ.mp3",
@@ -109,15 +109,15 @@
         },
         "bgm.win": {
           "file": "sounds/game/Fusion_01.mp3",
-          "volume": 0.05
+          "volume": 0.15
         },
         "bgm.lose": {
           "file": "sounds/game/LoFi_01.mp3",
-          "volume": 0.05
+          "volume": 0.15
         },
         "bgm.draw": {
           "file": "sounds/game/House_01.mp3",
-          "volume": 0.05
+          "volume": 0.15
         },
         "se.gkStart": {
           "file": "sounds/game/jingle_26.mp3",
