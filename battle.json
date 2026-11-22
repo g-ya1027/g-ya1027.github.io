@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T10:47:06.321Z",
+  "updatedAt": "2026-11-22T10:52:06.336Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -111,7 +111,7 @@
         "spoonsLeft": 0,
         "commentsLeft": 2,
         "visitsLeft": 4,
-        "stayLeftSec": 1219
+        "stayLeftSec": 919
       },
       "img": null,
       "pair": {
@@ -199,7 +199,7 @@
         "spoonsLeft": 0,
         "commentsLeft": 20,
         "visitsLeft": 4,
-        "stayLeftSec": 1515
+        "stayLeftSec": 1215
       },
       "img": null,
       "pair": {
@@ -218,7 +218,7 @@
       "attr": null,
       "attrInitial": null,
       "level": 1,
-      "exp": 4,
+      "exp": 5,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -283,11 +283,11 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 4,
+        "heartsLeft": 3,
         "spoonsLeft": 0,
-        "commentsLeft": 6,
+        "commentsLeft": 4,
         "visitsLeft": 4,
-        "stayLeftSec": 1740
+        "stayLeftSec": 1440
       },
       "img": "chars/gYutFvLTSj7NCj0XQuXOzQ-b.png",
       "pair": {
@@ -394,7 +394,7 @@
       "attr": null,
       "attrInitial": null,
       "level": 1,
-      "exp": 4,
+      "exp": 8,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -464,11 +464,11 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 3,
+        "heartsLeft": 1,
         "spoonsLeft": 0,
-        "commentsLeft": 2,
+        "commentsLeft": 20,
         "visitsLeft": 5,
-        "stayLeftSec": 925
+        "stayLeftSec": 625
       },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-b.png",
       "pair": {
@@ -487,7 +487,7 @@
       "attr": null,
       "attrInitial": null,
       "level": 1,
-      "exp": 1,
+      "exp": 2,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -556,7 +556,7 @@
         "spoonsLeft": 0,
         "commentsLeft": 17,
         "visitsLeft": 5,
-        "stayLeftSec": 238
+        "stayLeftSec": 1738
       },
       "img": "chars/hUooGCp0KaQn-5EswSh-3A-a.png",
       "pair": {
@@ -575,7 +575,7 @@
       "attr": null,
       "attrInitial": null,
       "level": 1,
-      "exp": 1,
+      "exp": 2,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -640,11 +640,11 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 6,
+        "heartsLeft": 5,
         "spoonsLeft": 0,
-        "commentsLeft": 17,
+        "commentsLeft": 16,
         "visitsLeft": 5,
-        "stayLeftSec": 702
+        "stayLeftSec": 402
       },
       "img": "chars/q9SVhkXF0qTVgm_bgnkMNw-a.png",
       "pair": {
@@ -732,7 +732,7 @@
         "spoonsLeft": 0,
         "commentsLeft": 17,
         "visitsLeft": 5,
-        "stayLeftSec": 865
+        "stayLeftSec": 565
       },
       "img": null,
       "pair": {
@@ -756,7 +756,7 @@
       "frame": "gold",
       "crown": true,
       "pvpWin": 0,
-      "exp": 4
+      "exp": 8
     },
     {
       "rank": 2,
@@ -769,7 +769,7 @@
       "frame": "silver",
       "crown": false,
       "pvpWin": 0,
-      "exp": 4
+      "exp": 5
     },
     {
       "rank": 3,
@@ -795,7 +795,7 @@
       "frame": null,
       "crown": false,
       "pvpWin": 0,
-      "exp": 1
+      "exp": 2
     },
     {
       "rank": 5,
@@ -808,7 +808,7 @@
       "frame": null,
       "crown": false,
       "pvpWin": 0,
-      "exp": 1
+      "exp": 2
     },
     {
       "rank": 6,
