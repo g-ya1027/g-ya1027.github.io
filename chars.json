@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T09:32:29.333Z",
+  "updatedAt": "2026-11-22T09:38:18.364Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
@@ -62,10 +62,14 @@
       "token": "346ff9043e49151e",
       "nickname": "kinou",
       "radioName": "永遠の貴公子の星",
-      "status": "pending",
-      "pair": null,
+      "status": "ready",
+      "pair": {
+        "a": "chars/-WeTXIQQZKnw7bOqcJfAhg-a.png",
+        "b": "chars/-WeTXIQQZKnw7bOqcJfAhg-b.png",
+        "kind": "gender"
+      },
       "chosen": null,
-      "reroll": "notready",
+      "reroll": "ok",
       "rerollNextAt": null
     }
   ]
