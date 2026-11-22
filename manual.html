@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- spoon-manual-page v2 -->
+<!-- spoon-manual-page v1 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -29,7 +29,6 @@
   code { font-family: "SF Mono", Menlo, Consolas, monospace; background: rgba(255,255,255,.12); border-radius: 5px; padding: 1px 6px; font-size: .92em; }
   pre.code { background: #120c33; border: 1px solid #5a4a9e; border-radius: 10px; padding: 12px 14px; overflow-x: auto; margin: 10px 0; }
   pre.code code { background: none; padding: 0; font-size: 13.5px; line-height: 1.7; color: #e8e2ff; white-space: pre; }
-  .codelabel { display: inline-block; font-size: 12px; font-weight: 900; color: #9df0e7; background: rgba(47,212,196,.14); border: 1px solid #2fd4c4; border-radius: 999px; padding: 1px 10px; margin: 10px 0 0; }
   .callout { border-radius: 12px; padding: 12px 16px; margin: 14px 0; font-size: 14.5px; line-height: 1.8; }
   .callout .ct { display: block; font-weight: 900; margin-bottom: 4px; }
   .callout.warn { background: rgba(120, 20, 40, .55); border: 2px solid #ff5d7a; }
@@ -44,11 +43,10 @@
   figure.shot { margin: 14px 0; text-align: center; }
   figure.shot img { max-width: 100%; border-radius: 10px; border: 1px solid #5a4a9e; box-shadow: 0 6px 16px rgba(0,0,0,.5); }
   figure.shot figcaption { font-size: 13px; color: #cfc6ff; margin-top: 8px; line-height: 1.6; }
-  table.perms, table.tbl { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
-  table.perms th, table.perms td, table.tbl th, table.tbl td { border: 1px solid #5a4a9e; padding: 8px 10px; text-align: left; line-height: 1.6; }
-  table.perms th, table.tbl th { background: rgba(255,211,77,.16); color: #ffd76a; }
+  table.perms { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+  table.perms th, table.perms td { border: 1px solid #5a4a9e; padding: 8px 10px; text-align: left; line-height: 1.6; }
+  table.perms th { background: rgba(255,211,77,.16); color: #ffd76a; }
   table.perms td:first-child { font-family: "SF Mono", Menlo, Consolas, monospace; white-space: nowrap; color: #9df0e7; }
-  .tblwrap { overflow-x: auto; }
   /* 図解: 仕組みの流れ */
   .flow { display: flex; flex-wrap: wrap; align-items: stretch; gap: 8px; margin: 14px 0; }
   .fbox { flex: 1 1 140px; background: rgba(255,255,255,.07); border: 2px solid #7a68c9; border-radius: 12px; padding: 12px 10px; text-align: center; }
@@ -56,11 +54,17 @@
   .fbox .ft { font-weight: 900; font-size: 15px; display: block; }
   .fbox .fd { font-size: 12.5px; color: #cfc6ff; line-height: 1.6; display: block; margin-top: 4px; }
   .fbox.hero { border-color: #ffd34d; background: rgba(255,211,77,.1); }
-  .farrow { align-self: center; font-size: 22px; color: #ffd34d; font-weight: 900; flex: 0 0 auto; text-align: center; }
-  .farrow .fl { display: block; font-size: 11px; color: #9df0e7; font-weight: 700; line-height: 1.45; }
+  .farrow { align-self: center; font-size: 22px; color: #ffd34d; font-weight: 900; flex: 0 0 auto; }
+  /* 図解: 2段構え */
+  .stages { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0; }
+  .stage { flex: 1 1 220px; border-radius: 12px; padding: 14px 16px; }
+  .stage.s1 { background: rgba(25,120,200,.25); border: 2px solid #57a8ff; }
+  .stage.s2 { background: rgba(190,60,160,.22); border: 2px solid #ff7ad9; }
+  .stage .st { font-weight: 900; font-size: 17px; }
+  .stage .sd { font-size: 13.5px; color: #e8e2ff; line-height: 1.7; margin-top: 4px; }
   /* 図解: OK/NG 対比 */
   .okng { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0; }
-  .okbox, .ngbox { flex: 1 1 240px; border-radius: 12px; padding: 12px 14px; min-width: 0; }
+  .okbox, .ngbox { flex: 1 1 240px; border-radius: 12px; padding: 12px 14px; }
   .okbox { background: rgba(16, 90, 50, .4); border: 2px solid #3ddc84; }
   .ngbox { background: rgba(120, 20, 40, .4); border: 2px solid #ff5d7a; }
   .okbox .tag, .ngbox .tag { font-weight: 900; font-size: 15px; display: block; margin-bottom: 6px; }
@@ -69,66 +73,12 @@
   /* 図解: 3ステップ */
   .steps3 { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0; }
   .step3 { flex: 1 1 180px; background: rgba(255,255,255,.07); border: 2px solid #7a68c9; border-radius: 12px; padding: 14px; }
-  .step3 .no, .step .no { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: radial-gradient(circle at 32% 28%, #fffbe8, #ffd34d 55%, #e79b1e); color: #3a2400; font-weight: 900; font-size: 17px; box-shadow: 0 2px 6px rgba(0,0,0,.4); flex: 0 0 auto; }
+  .step3 .no { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: radial-gradient(circle at 32% 28%, #fffbe8, #ffd34d 55%, #e79b1e); color: #3a2400; font-weight: 900; font-size: 17px; box-shadow: 0 2px 6px rgba(0,0,0,.4); }
   .step3 .st { font-weight: 900; font-size: 15.5px; display: block; margin-top: 8px; }
   .step3 .sd { font-size: 13px; color: #cfc6ff; line-height: 1.7; display: block; margin-top: 4px; }
-  /* ステップカード（縦並び） */
-  .steps { margin: 12px 0; }
-  .step { display: flex; gap: 12px; margin: 12px 0; }
-  .step .sb { flex: 1 1 auto; min-width: 0; }
-  .step .sb p:first-child { margin-top: 4px; }
-  /* OS別コマンド */
-  .cmdpair { display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0; }
-  .cmdos { flex: 1 1 290px; min-width: 0; }
-  .cmdos .os { display: inline-block; font-size: 12px; font-weight: 900; border-radius: 999px; padding: 2px 12px; }
-  .cmdos.mac .os { background: #4a4a52; color: #fff; border: 1px solid #9a9aa2; }
-  .cmdos.win .os { background: #0b4d91; color: #cfe8ff; border: 1px solid #57a8ff; }
-  .cmdos pre.code { margin: 5px 0 0; }
-  /* 模式図の注釈 */
-  .diagram { margin: 16px 0; }
-  .diagram .cap { font-size: 13px; color: #cfc6ff; text-align: center; margin-top: 8px; line-height: 1.6; }
-  .ring { outline: 3px solid #ff4747; outline-offset: 2px; border-radius: 6px; padding: 0 5px; }
-  .ringline { border: 3px solid #ff4747; border-radius: 8px; padding: 2px 8px; display: inline-block; }
-  .mark { background: linear-gradient(transparent 50%, rgba(255, 214, 64, .8) 50%); padding: 0 2px; border-radius: 2px; }
-  .point { display: inline-block; background: #ff4747; color: #fff; font-weight: 900; font-size: 12.5px; border-radius: 999px; padding: 1px 10px; margin-left: 8px; white-space: nowrap; vertical-align: middle; }
-  .kbd { display: inline-block; background: #2c2456; border: 1px solid #7a68c9; border-bottom-width: 3px; border-radius: 6px; padding: 0 8px; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: .92em; }
-  .rednote { color: #ff8080; font-weight: 900; }
-  /* ターミナル／PowerShell 模式図 */
-  .term { background: #1c1c1e; border: 1px solid #55555e; border-radius: 10px; overflow: hidden; box-shadow: 0 6px 16px rgba(0,0,0,.5); text-align: left; }
-  .term .tbar { background: #3a3a3c; padding: 7px 12px; display: flex; align-items: center; gap: 6px; }
-  .term .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; flex: 0 0 auto; }
-  .term .tt { color: #ddd; font-size: 12.5px; margin-left: 8px; }
-  .term .tbody { padding: 12px 14px; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13.5px; line-height: 2.1; color: #e8e8e8; overflow-x: auto; }
-  .term .tbody .ln { white-space: nowrap; }
-  .term.ps { background: #012456; border-color: #2f5aa8; }
-  .term.ps .tbar { background: #001c40; }
-  .term .dim { color: #9a9aa2; }
-  .term.ps .dim { color: #8fb4e8; }
-  .enterline { margin-top: 8px; font-family: "Hiragino Maru Gothic ProN", "Hiragino Sans", sans-serif; font-size: 13.5px; color: #ffd76a; font-weight: 700; }
-  /* Spotlight／スタートメニュー 模式図 */
-  .spot { background: rgba(38,38,44,.94); border: 1px solid #6a6a72; border-radius: 14px; padding: 16px; max-width: 540px; margin: 0 auto; box-shadow: 0 10px 24px rgba(0,0,0,.55); text-align: left; }
-  .spot .sfield { background: #55555e; border-radius: 9px; padding: 10px 14px; font-size: 16px; color: #fff; }
-  .spot .srow { margin-top: 10px; background: rgba(255,255,255,.09); border-radius: 9px; padding: 9px 14px; font-size: 15px; color: #eee; }
-  .spot.win { background: #1f2733; border-color: #3d4c63; }
-  .spot.win .sfield { background: #2c3849; }
-  .spot.win .srow { background: rgba(87,168,255,.14); }
-  /* フォルダツリー模式図 */
-  .tree { background: #120c33; border: 1px solid #5a4a9e; border-radius: 10px; padding: 12px 16px; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 14px; line-height: 2.05; overflow-x: auto; text-align: left; }
-  .tree .ln { white-space: nowrap; }
-  /* 吹き出し */
-  .bubbles { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 10px 0 2px; }
-  .bubble { background: #fff; color: #241a4d; border-radius: 14px; padding: 6px 14px; font-size: 13.5px; font-weight: 700; }
-  /* チェックリスト */
-  ul.check { list-style: none; padding-left: 0; }
-  ul.check li { margin: 9px 0; padding-left: 2em; position: relative; }
-  ul.check li::before { content: "☐"; position: absolute; left: .3em; color: #ffd76a; font-weight: 900; }
-  .goal { border: 3px solid #ffd34d; }
-  .part { text-align: center; font-weight: 900; font-size: 20px; letter-spacing: .06em; margin: 30px 0 14px; color: #ffd76a; }
-  .part small { display: block; font-size: 13px; color: #cfc6ff; letter-spacing: 0; margin-top: 4px; font-weight: 400; line-height: 1.7; }
   /* 目次 */
   .toc { columns: 2; column-gap: 26px; margin: 6px 0 2px; padding: 0; list-style: none; }
   .toc li { margin: 0 0 7px; font-size: 14.5px; break-inside: avoid; }
-  .toc li.tocpart { font-weight: 900; color: #ffd76a; margin-top: 12px; }
   .toc a { color: #e8e2ff; text-decoration: none; }
   .toc a:hover { color: #ffd76a; text-decoration: underline; }
   .toc .soon { color: #9d92d6; }
@@ -138,14 +88,14 @@
   .soonbadge { display: inline-block; font-size: 12px; font-weight: 900; background: #3a2f6b; color: #ffd76a; border-radius: 999px; padding: 2px 10px; margin-left: 8px; vertical-align: middle; }
   .foot { text-align: center; color: #9d92d6; font-size: 12px; margin-top: 10px; line-height: 1.8; }
   .foot a { color: #9d92d6; }
-  @media (max-width: 560px) { .toc { columns: 1; } .farrow { transform: rotate(90deg); margin: 0 auto; } .farrow .fl { transform: rotate(-90deg); } .term .tbody { font-size: 12.5px; } }
+  @media (max-width: 560px) { .toc { columns: 1; } .farrow { transform: rotate(90deg); margin: 0 auto; } }
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="mascot">🗿 SPOON 🗿</div>
   <h1 class="title">Spoon bot 導入マニュアル</h1>
-  <p class="sub">Spoon の公式機能「Spoon Developers」を使って、自分の配信で動く bot（自動で反応してくれる助手）を <strong>自分の手で作る</strong> ための手順書です。<br>必要なコードは全部このマニュアルに載っています。章の順にコピー＆ペーストして貼っていけば、標準機能だけの bot が完成します。</p>
+  <p class="sub">Spoon の公式機能「Spoon Developers」を使って、自分の配信に bot（自動で反応してくれる助手）を導入するまでの手順書です。<br>プログラミングの知識は不要です。手順どおりにコピー＆ペーストできれば進められます。</p>
 
   <div class="callout bookmark">
     <span class="ct">🔖 最初にブックマークしておくページ</span>
@@ -154,92 +104,68 @@
   </div>
 
   <div class="panel">
-    <span class="hen">目次</span>
-    <h2 class="chap">このマニュアルの歩き方</h2>
+    <span class="hen">もくじ</span>
+    <h2 class="chap">このマニュアルの構成</h2>
     <ul class="toc">
-      <li class="tocpart">第一部 共通編（申請まわり）</li>
-      <li><a href="#ch1">第1章 はじめに：自分で bot を作るということ</a></li>
-      <li><a href="#ch2">第2章 bot専用アカウントを用意する</a></li>
-      <li><a href="#ch3">第3章 Spoon Developers でアプリ登録と権限申請</a></li>
-      <li><a href="#ch4">第4章 アプリ側の設定：リダイレクトURL</a></li>
-      <li><a href="#ch5">第5章 審査承認後：Client ID と Client Secret</a></li>
-      <li class="tocpart">第二部 標準編（自分で作る）</li>
-      <li><a href="#ch6">第6章 標準編の進め方：全体像とファイル構成</a></li>
-      <li><a href="#ch7">第7章 Mac の準備：Node.js を入れる</a></li>
-      <li><a href="#ch8">第8章 Windows の準備：Node.js を入れる</a></li>
-      <li><a href="#ch9">第9章 秘密情報の置き場所：.env と env.js</a></li>
-      <li><a href="#ch10">第10章 部品1：認証（auth-server.js / auth.js）</a></li>
-      <li><a href="#ch11">第11章 部品2：接続（events.js）</a></li>
-      <li><a href="#ch12">第12章 部品3：チャット送信（chat.js）</a></li>
-      <li><a href="#ch13">第13章 部品4：キーワード反応（bot.js 前半 / config.json）</a></li>
-      <li><a href="#ch14">第14章 部品5：入室・フォローのお礼（bot.js 後半）</a></li>
-      <li><a href="#ch15">第15章 部品6：集計（stats.js）</a></li>
-      <li><a href="#ch16">第16章 部品7：管理画面（admin.js）</a></li>
-      <li><a href="#ch17">第17章 仕上げ：全部をつなぐ（index.js）</a></li>
-      <li><a href="#ch18">第18章 テスト配信（DRY_RUN）から本番へ</a></li>
-      <li><a href="#ch19">第19章 毎回の配信手順</a></li>
-      <li><a href="#ch20">第20章 ゴール：標準機能の bot の完成</a></li>
-      <li><a href="#ch21">第21章 自分の bot の直し方・広げ方</a></li>
-      <li class="tocpart">第三部 応用編 <span class="soon">（本文は準備中）</span></li>
-      <li><a href="#ch22">第22章 SE（効果音）の導入と設定</a></li>
-      <li><a href="#ch23">第23章 特別な人の入室挨拶</a></li>
-      <li><a href="#ch24">第24章 公開ページと短縮リンク</a></li>
-      <li><a href="#ch25">第25章 歌枠の機能：リクエスト・セトリ・歌える曲リスト</a></li>
-      <li><a href="#ch26">第26章 お題ガチャとヒットワード反応</a></li>
-      <li><a href="#ch27">第27章 ラジオネーム＆ジングル</a></li>
-      <li><a href="#ch28">第28章 教え込み</a></li>
-      <li><a href="#ch29">第29章 ビンゴ</a></li>
-      <li><a href="#ch30">第30章 イントロドン</a></li>
-      <li><a href="#ch31">第31章 歌詞定期</a></li>
-      <li><a href="#ch32">第32章 リスナーボタン</a></li>
-      <li><a href="#ch33">第33章 歌枠モード（SEミュート）</a></li>
-      <li><a href="#ch34">第34章 バトルゲーム</a></li>
-      <li><a href="#ch35">第35章 イメージキャラ</a></li>
-      <li class="tocpart">付録 <span class="soon">（本文は準備中）</span></li>
-      <li><a href="#ch36">第36章 つまずきポイント集</a></li>
+      <li>共通編 <a href="#ch1">第1章 はじめに：bot ができることと全体像</a></li>
+      <li>共通編 <a href="#ch2">第2章 bot専用アカウントを用意する</a></li>
+      <li>共通編 <a href="#ch3">第3章 Spoon Developers でアプリ登録と権限申請</a></li>
+      <li>共通編 <a href="#ch4">第4章 アプリ側の設定：リダイレクトURL</a></li>
+      <li>共通編 <a href="#ch5">第5章 審査承認後：Client ID と Client Secret</a></li>
+      <li>Mac編 <a href="#ch6">第6章 Mac の準備：Node.js を入れる</a></li>
+      <li>Mac編 <a href="#ch7">第7章 bot の設置：フォルダ配置と展開のしかた</a></li>
+      <li>Mac編 <a href="#ch8">第8章 .env の設定（秘密情報の入れ方）</a></li>
+      <li>Mac編 <a href="#ch9">第9章 config.json の作成</a></li>
+      <li>Mac編 <a href="#ch10">第10章 初回ログインとトークン取得（認証）</a></li>
+      <li>Mac編 <a href="#ch11">第11章 モックで動作確認</a></li>
+      <li>Mac編 <a href="#ch12">第12章 テスト配信（DRY_RUN）から本番へ</a></li>
+      <li>Mac編 <a href="#ch13">第13章 毎回の配信手順</a></li>
+      <li>Mac編 <a href="#ch14">第14章 管理画面の使い方</a></li>
+      <li>Mac編 <a href="#ch15">第15章 公開ページと短縮リンク</a></li>
+      <li>Mac編 <a href="#ch16">第16章 更新の受け方（新しい zip が届いたら）</a></li>
+      <li><span class="soon">第17章 Windows編（準備中）</span></li>
+      <li><span class="soon">第18章 クラウド編／スマホ用（準備中）</span></li>
+      <li><span class="soon">第19章 つまずきポイント集（準備中）</span></li>
     </ul>
   </div>
 
-  <div class="part">第一部 共通編<small>Spoon Developers への申請と承認（どの環境でも同じ手順です）</small></div>
-
   <section class="panel" id="ch1">
     <span class="hen">共通編</span>
-    <h2 class="chap">第1章 はじめに：自分で bot を作るということ</h2>
-    <p>このマニュアルは、Spoon の公式機能「Spoon Developers」を使って、自分の配信に bot（自動で反応してくれる助手）を <strong>自分の手で作る</strong> ための手順をまとめたものです。</p>
-    <p>「作る」と言っても、設計から全部を考えるわけではありません。<strong>必要なコードはすべてこのマニュアルに載っています。</strong> 章の順に、コードをコピーして自分のパソコンに貼っていくと、部品が1つずつ増えて、最後に bot が完成します。プログラミングの経験は不要です。</p>
-    <h3 class="subh">仕組みはシンプルです</h3>
+    <h2 class="chap">第1章 はじめに：bot ができることと全体像</h2>
+    <p>このマニュアルは、Spoon の公式機能「Spoon Developers」を使って、自分の配信に bot（自動で反応してくれる助手）を導入するまでの手順をまとめたものです。</p>
+    <p>仕組みはシンプルです。</p>
+    <div class="flow">
+      <div class="fbox"><span class="fe">📱</span><span class="ft">配信端末</span><span class="fd">タブレット／スマホの Spoon アプリで、いつもどおり配信を開く</span></div>
+      <div class="farrow">⇄</div>
+      <div class="fbox"><span class="fe">🔌</span><span class="ft">Spoon Developers（公式 API）</span><span class="fd">コメント・入室・ハート・spoon・フォローの出来事を bot へ届ける</span></div>
+      <div class="farrow">⇄</div>
+      <div class="fbox hero"><span class="fe">🤖</span><span class="ft">bot（PC 上のプログラム）</span><span class="fd">出来事を受け取って、決められた反応を返す</span></div>
+    </div>
     <ul>
-      <li>配信はいつもどおり、配信端末（タブレット／スマホ）の Spoon アプリで開きます。</li>
-      <li>bot は、自分の PC の上で動くプログラムです。配信中のコメント・入室・ハート・spoon・フォローを公式 API 経由で受け取り、決められた反応を返します。</li>
-      <li>このマニュアルのゴールは、<strong>標準機能だけの bot が自分の配信で動くところ</strong>です。標準機能は次の5つです。
+      <li>配信はいつもどおり配信端末（タブレット／スマホ）の Spoon アプリで開きます。</li>
+      <li>bot は PC（またはサーバー）の上で動くプログラムです。配信中のコメント・入室・ハート・spoon・フォローを公式 API 経由で受け取り、決められた反応を返します。</li>
+      <li>bot ができることの例：
         <ul>
-          <li>起動・ログイン（認証）して、マネージャーに任命された配信に接続する</li>
           <li>キーワードへの自動返信（例：「!help」と打たれたら使い方を返す）</li>
-          <li>入室・フォローのお礼（文面のみ）</li>
-          <li>リスナーごとの集計（コメント数・ハート・spoon を数える）</li>
-          <li>管理画面での設定の編集とバックアップ</li>
+          <li>リスナーごとの集計（コメント数・ハート・spoon を数えて公開する）</li>
+          <li>spoon の数やフォローに合わせた効果音（SE）の再生</li>
+          <li>曲リスト・ビンゴ・バトルなどの公開ページの自動更新</li>
         </ul>
       </li>
-      <li>効果音（SE）や公開ページ、ゲームなどの追加機能は、標準の先にある <strong>応用編</strong> で扱います。最初から全部を追う必要はありません。</li>
+      <li>音（SE）は bot が動いている PC から出ます。PC（Mac）の音をオーディオインターフェース（ミキサー）経由で配信に乗せる構成が前提です。</li>
     </ul>
-    <div class="diagram">
-      <div class="flow">
-        <div class="fbox"><span class="fe">📝</span><span class="ft">共通編</span><span class="fd">Spoon Developers への申請と承認</span></div>
-        <div class="farrow">➡</div>
-        <div class="fbox hero"><span class="fe">🧩</span><span class="ft">標準編</span><span class="fd">部品1〜7を順に貼って組み立てる</span></div>
-        <div class="farrow">➡</div>
-        <div class="fbox"><span class="fe">🧪</span><span class="ft">テスト配信</span><span class="fd">安全スイッチを入れたまま試す</span></div>
-        <div class="farrow">➡</div>
-        <div class="fbox"><span class="fe">🎙️</span><span class="ft">本番運用</span><span class="fd">いつもの配信で bot が働く</span></div>
-      </div>
-      <p class="cap">図：このマニュアル全体の流れ。共通編（申請）→ 標準編（組み立て）→ テスト配信 → 本番運用</p>
+    <p>進め方は大きく2段構えです。</p>
+    <div class="stages">
+      <div class="stage s1"><span class="st">STEP 1：共通編</span><div class="sd">Spoon Developers への申請と承認。どの環境でも手順は同じです（第1〜5章）。</div></div>
+      <div class="stage s2"><span class="st">STEP 2：環境別編</span><div class="sd">bot を動かす機械の準備。Mac編／Windows編／クラウド編のうち、自分の環境の章だけ読めば OK です。</div></div>
     </div>
-    <p>進め方は3部構成です。</p>
-    <ol>
-      <li><strong>共通編</strong>：Spoon Developers への申請と承認（どの環境でも同じ）</li>
-      <li><strong>標準編</strong>：自分の PC の準備（Mac／Windows のどちらか）→ 部品ごとにコードを貼って組み立てる → テスト配信 → 本番</li>
-      <li><strong>応用編</strong>：標準の bot に足したくなった機能（必要なものだけ拾って読む）</li>
-    </ol>
+    <div class="callout env">
+      <span class="ct">🖥️ このマニュアルの作成環境（具体例）</span>
+      このマニュアルの手順は、次の構成で実際に導入・運用して確認したものです。本文の手順説明では一般名で統一していますが、自分の環境と見比べるときの参考にしてください。<br>
+      ・配信端末：iPad<br>
+      ・オーディオインターフェース：Yamaha AG03 Mk2<br>
+      ・PC：iMac（Intel Mac、macOS Sequoia）
+    </div>
   </section>
 
   <section class="panel" id="ch2">
@@ -248,43 +174,55 @@
     <p>最初に決めることが1つあります。<strong>bot になる Spoon アカウント</strong>です。</p>
     <ul>
       <li>アプリ登録したアカウントが、そのまま bot アカウントになります。bot のチャットや入室の告知は、そのアカウントの名前で出ます。</li>
-      <li><strong>自分の DJ アカウントで登録してはいけません。</strong> 自分の配信に bot として接続できなくなります。</li>
+      <li><strong>自分の DJ アカウントで登録してはいけません。</strong>自分の配信に bot として接続できなくなります。</li>
       <li>用意のしかたは2通り：
         <ul>
           <li>新しく Spoon アカウントを作る</li>
           <li>すでに持っているサブアカウントを使う（実際にこの方法で運用しています）</li>
         </ul>
       </li>
+      <li>サブアカウントを使う場合の注意：
+        <ul>
+          <li>bot が接続している配信に、同じアカウントでアプリや Web から入らないでください。そのセッションが切れると bot も退室してしまいます。</li>
+          <li>bot の名前はリスナーにそのまま見えます。「誰の bot か」が分かる名前になります。静かに枠周りをしたい用途と兼ねるなら、新規アカウントの方が向いています。</li>
+        </ul>
+      </li>
+      <li>アカウントのパスワードは安全な場所に保管し、チャットや SNS に書かないでください。</li>
     </ul>
-    <div class="callout warn"><span class="ct">⚠️ サブアカウントを使う場合の注意</span>
-      ・bot が接続している配信に、同じアカウントでアプリや Web から入らないでください。そのセッションが切れると bot も退室してしまいます。<br>
-      ・bot の名前はリスナーにそのまま見えます。「誰の bot か」が分かる名前になります。静かに枠周りをしたい用途と兼ねるなら、新規アカウントの方が向いています。</div>
-    <p>アカウントのパスワードは安全な場所に保管し、チャットや SNS に書かないでください。</p>
-    <p>あわせて、アプリ名（Spoon Developers コンソールに登録する名前）も考えておくと次章がスムーズです。例：「○○雑談bot」のような、自分の配信の名前が分かるもの。</p>
+    <div class="callout warn">
+      <span class="ct">⚠️ ここだけは間違えないで</span>
+      アプリ登録は <strong>bot 用アカウント</strong> で行います。DJ 本人のアカウントで登録すると、自分の配信に bot として接続できなくなります。
+    </div>
+    <p>あわせて、アプリ名（Developer Center に登録する名前）も考えておくと次章がスムーズです。例：「○○雑談bot」のような、自分の配信の名前が分かるもの。</p>
   </section>
 
   <section class="panel" id="ch3">
     <span class="hen">共通編</span>
     <h2 class="chap">第3章 Spoon Developers でアプリ登録と権限申請</h2>
-    <div class="steps">
-      <div class="step"><span class="no">1</span><div class="sb"><p>ブラウザで <strong>Spoon Developers のスタートページ（https://developers.spooncast.net/jp）</strong> を開きます。ここがすべての入り口です。「アプリケーションを登録」から登録へ、「ドキュメントを見る」から API ドキュメントへ進めます。</p></div></div>
-      <div class="step"><span class="no">2</span><div class="sb"><p><strong>bot 用アカウントでログイン</strong>します（DJ 本人のアカウントでログインしないこと）。</p></div></div>
-      <div class="step"><span class="no">3</span><div class="sb"><p>新規アプリの作成を選びます。</p></div></div>
-    </div>
-    <figure class="shot"><img src="manual/shot1-console-myapps.png" alt="Spoon Developers コンソールのマイアプリ一覧画面"><figcaption>スクショ①：Spoon Developers コンソールのマイアプリ一覧（アプリ名とステータスが見える画面）</figcaption></figure>
-    <div class="steps">
-      <div class="step"><span class="no">4</span><div class="sb"><p>アプリ名と説明文を入力します。説明文のたたき台（自分の言葉に直して OK）：</p>
-        <div class="callout point"><span class="ct">📄 説明文のたたき台</span>自分のSpoon雑談配信を補助する個人用botです。配信中のチャット・入室・ハート・spoon・フォローのイベントを受け取り、キーワードへの自動返信、入室・フォローのお礼、リスナーごとの集計を行います。自分の配信でのみ使用します。</div></div></div>
-      <div class="step"><span class="no">5</span><div class="sb"><p>リダイレクトURL は、まず <code>http://localhost</code> と入れておきます（あとで第4章のとおり直します）。</p></div></div>
-      <div class="step"><span class="no">6</span><div class="sb"><p>権限は、画面にある <strong>12個すべて</strong> にチェックします。</p></div></div>
-    </div>
-    <figure class="shot"><img src="manual/shot3-console-scopes.png" alt="権限（API Scopes）の一覧画面"><figcaption>スクショ②：権限（API Scopes）の一覧（12権限が並ぶ画面）</figcaption></figure>
+    <ol>
+      <li>ブラウザで <strong>Spoon Developers のスタートページ（<a href="https://developers.spooncast.net/jp">https://developers.spooncast.net/jp</a>）</strong> を開きます。ここがすべての入り口です。「アプリケーションを登録」から登録へ、「ドキュメントを見る」から API ドキュメントへ進めます。</li>
+      <li><strong>bot 用アカウントでログイン</strong>します（DJ 本人のアカウントでログインしないこと）。</li>
+      <li>新規アプリの作成を選びます。</li>
+      <li>アプリ名と説明文を入力します。説明文のたたき台（自分の言葉に直して OK）：
+        <div class="callout point"><span class="ct">📝 説明文のたたき台</span>自分のSpoon雑談配信を補助する個人用botです。配信中のチャット・入室・ハート・spoon・フォローのイベントを受け取り、キーワードへの自動返信、リスナーごとの集計の公開、spoon数に応じたSE再生を行います。自分の配信でのみ使用します。</div>
+      </li>
+      <li>リダイレクトURL は、まず <code>http://localhost</code> と入れておきます（あとで第4章のとおり直します）。</li>
+      <li>権限は、画面にある <strong>12個すべて</strong> にチェックします。</li>
+    </ol>
+    <figure class="shot">
+      <img src="manual/shot1-console-myapps.png" alt="Spoon Developers コンソールのマイアプリ一覧画面">
+      <figcaption>コンソールの「マイアプリ」一覧。登録したアプリがここに並びます（Client ID はサイト側で省略表示されます）。</figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="manual/shot3-console-scopes.png" alt="権限（API Scopes）の一覧画面">
+      <figcaption>権限（API Scopes）の一覧。申請時は画面にある12個すべてにチェックします。</figcaption>
+    </figure>
     <p>12権限と、それぞれ何に使うかは次のとおりです。</p>
-    <div class="tblwrap"><table class="perms">
+    <table class="perms">
       <tr><th>権限</th><th>何に使うか</th></tr>
       <tr><td>me.read</td><td>bot アカウント自身の情報を取得する</td></tr>
       <tr><td>live.read</td><td>配信の情報を取得する</td></tr>
-      <tr><td>listeners.read</td><td>リスナー一覧を取得する</td></tr>
+      <tr><td>listeners.read</td><td>リスナー一覧を取得する（サブスクのプラン照合など）</td></tr>
       <tr><td>fans.read</td><td>ファンの情報を取得する</td></tr>
       <tr><td>donations.read</td><td>投げられた spoon の記録を取得する</td></tr>
       <tr><td>events.chat</td><td>コメントのイベントを受け取る</td></tr>
@@ -294,16 +232,20 @@
       <tr><td>events.follow</td><td>フォローのイベントを受け取る</td></tr>
       <tr><td>chat.send</td><td>チャットに返信を送る</td></tr>
       <tr><td>dj.follow</td><td>bot が DJ をフォローするために使う</td></tr>
-    </table></div>
-    <div class="callout point"><span class="ct">💡 ポイント</span>権限は <strong>最初に全部入れるのが大事</strong> です。承認されたあとで権限を足すと、再審査になる可能性があります。標準機能だけを使うつもりでも、応用編の機能まで含めて最初に申請しておくと、あとで機能を足すときに二度手間になりません。</div>
-    <div class="steps">
-      <div class="step"><span class="no">7</span><div class="sb"><p>申請を送信します。あとは審査の結果待ちです。</p>
+    </table>
+    <div class="callout point">
+      <span class="ct">💡 ポイント</span>
+      権限は <strong>最初に全部入れるのが大事</strong> です。承認されたあとで権限を足すと、再審査になる可能性があります。
+    </div>
+    <ol start="7">
+      <li>申請を送信します。あとは審査の結果待ちです。
         <ul>
           <li>審査期間の目安は公式には公表されていません。実例では、申請した翌日に承認されました（必ずこの日数で通るという保証ではありません）。</li>
           <li>差し戻された場合は理由が表示されるので、直して再審査に出せます。</li>
-        </ul></div></div>
-      <div class="step"><span class="no">8</span><div class="sb"><p>承認されたら、第5章に進みます。</p></div></div>
-    </div>
+        </ul>
+      </li>
+      <li>承認されたら、第5章に進みます。</li>
+    </ol>
     <p>なお、bot が配信に接続すると bot 名でのリスナー告知が自動で出ます（これは OFF にできません）。また、イベントの接続は1配信につき1本だけです。</p>
   </section>
 
@@ -312,1925 +254,312 @@
     <h2 class="chap">第4章 アプリ側の設定：リダイレクトURL</h2>
     <p>認証（初回ログイン）でつまずかないために、この章は飛ばさないでください。<strong>実際にここで失敗した経験</strong>をもとに書いています。</p>
     <p>リダイレクトURL の正解は次の形です。</p>
-    <pre class="code"><code>http://localhost:3000</code></pre>
-    <p>ポイントは2つです。</p>
-    <ul>
-      <li><strong>ポート番号（:3000）まで含める</strong></li>
-      <li><strong>後ろにパス（/callback など）を付けない</strong></li>
-    </ul>
-    <div class="diagram">
-      <div class="okng">
-        <div class="okbox"><span class="tag">○ 正解</span><code>http://localhost<span class="mark">:3000</span></code><span style="font-size:13.5px;">ポート番号まで含めて、これで全部です。</span></div>
-        <div class="ngbox"><span class="tag">× ダメな例</span><code>http://localhost</code><code>http://localhost:3000<span class="mark">/callback</span></code><span style="font-size:13.5px;">ポート無し、パス付きはどちらもダメです。</span></div>
-      </div>
-      <p class="cap">図：リダイレクトURL の OK／NG 対比（マーカー部分が間違えやすいところ）</p>
+    <div class="okng">
+      <div class="okbox"><span class="tag">✅ 正解（この形にそろえる）</span><code>http://localhost:3000</code>ポート番号（:3000）まで含める／後ろにパス（/callback など）を付けない</div>
+      <div class="ngbox"><span class="tag">❌ 失敗する形</span><code>http://localhost/</code><code>http://localhost:3000/callback</code>ポートなし・パス付きは、認証エラーや保存エラーになります</div>
     </div>
-    <h3 class="subh">実際に起きた失敗</h3>
+    <p>実際に起きた失敗：</p>
     <ul>
       <li>登録側が <code>http://localhost/</code>（ポート・パスなし）、bot 側が <code>http://localhost:3000/callback</code> になっていて、認証の同意画面で「このアプリとは連携できません」と表示され、先に進めませんでした。</li>
       <li><code>http://localhost:3000/callback</code> のようにパス付きで保存しようとすると、「The redirect URI format is invalid.」と出て保存自体ができません。</li>
       <li>両方を <code>http://localhost:3000</code> にそろえたら、その場で認証が通りました（再審査にはなりませんでした）。</li>
     </ul>
-    <div class="callout point"><span class="ct">💡 やること</span>アプリ側（コンソールのアプリ詳細）でリダイレクトURL を <code>http://localhost:3000</code> に直しておいてください。あとで bot 側の設定ファイル（.env）にも同じ値を入れます。<strong>両方が完全一致していないと認証できません。</strong></div>
+    <div class="callout warn">
+      <span class="ct">⚠️ 完全一致が必須</span>
+      アプリ側（Developer Center のアプリ詳細）でリダイレクトURL を <code>http://localhost:3000</code> に直しておいてください。あとで bot 側の設定ファイル（.env）にも同じ値を入れます。<strong>両方が完全一致していないと認証できません。</strong>
+    </div>
   </section>
 
   <section class="panel" id="ch5">
     <span class="hen">共通編</span>
     <h2 class="chap">第5章 審査承認後：Client ID と Client Secret</h2>
-    <p>承認されると、コンソールのアプリ詳細に <strong>Client ID</strong> と <strong>Client Secret</strong> が表示されます。</p>
-    <figure class="shot"><img src="manual/shot2-console-app-detail-public.png" alt="アプリ詳細画面（アプリ名・Client ID が表示される部分）"><figcaption>スクショ③：アプリ詳細画面（Client ID は公開用に伏せてあります）</figcaption></figure>
+    <p>承認されると、Developer Center のアプリ詳細に <strong>Client ID</strong> と <strong>Client Secret</strong> が表示されます。</p>
+    <figure class="shot">
+      <img src="manual/shot2-console-app-detail-public.png" alt="アプリ詳細画面（Client ID は公開用に伏せてあります）">
+      <figcaption>アプリ詳細画面。Client ID は bot の設定に使う「鍵」のひとつです（このマニュアルでは公開用に伏せてあります）。</figcaption>
+    </figure>
     <p>この2つは bot が API を使うための「鍵」です。扱いのルール：</p>
-    <div class="callout warn"><span class="ct">⚠️ 鍵の扱い</span>
-      ・<strong>Client Secret は、チャット・SNS・画面共有に絶対に出さない。</strong> 誰かに見せたり、公開したりしないでください。<br>
-      ・入力するのは、自分の PC の中の設定ファイルだけです（標準編の第9章で案内します）。<br>
-      ・Client ID も、むやみに公開しない方が安全です。</div>
-    <p>ここまでが共通編です。次は標準編に進み、自分の PC で bot を組み立てます。</p>
+    <div class="callout warn">
+      <span class="ct">🔑 鍵の扱いルール</span>
+      ・<strong>Client Secret は、チャット・SNS・画面共有に絶対に出さない。</strong>誰かに見せたり、公開したりしないでください。<br>
+      ・入力するのは、自分の PC の中の設定ファイルだけです（環境別編で案内します）。<br>
+      ・Client ID も、むやみに公開しない方が安全です。
+    </div>
+    <p>ここまでが共通編です。次は環境別編に進みます。このマニュアルでは Mac編を続けます。</p>
   </section>
 
-  <div class="part">第二部 標準編<small>自分の PC で、標準機能5つの bot を組み立てます</small></div>
-
   <section class="panel" id="ch6">
-    <span class="hen">標準編</span>
-    <h2 class="chap">第6章 標準編の進め方：作るものの全体像とファイル構成</h2>
-    <p>標準編のゴールは、標準機能（第1章に挙げた5つ）が自分の配信で動くことです。ここからは、コードを部品ごとに貼って bot を組み立てていきます。</p>
-    <h3 class="subh">bot の仕組み</h3>
-    <div class="diagram">
-      <div class="flow">
-        <div class="fbox"><span class="fe">📱</span><span class="ft">配信端末（Spoon アプリ）</span><span class="fd">いつもどおり配信を開く場所</span></div>
-        <div class="farrow"><span class="fl">出来事（イベント）</span>➡<br>⬅<span class="fl">返信（チャット）</span></div>
-        <div class="fbox"><span class="fe">☁️</span><span class="ft">Spoon の公式 API</span><span class="fd">配信の出来事を届ける窓口</span></div>
-        <div class="farrow"><span class="fl">コメント・入室・ハート・spoon・フォロー</span>➡<br>⬅<span class="fl">返信（チャット）</span></div>
-        <div class="fbox hero"><span class="fe">💻</span><span class="ft">自分の PC の bot</span><span class="fd">このマニュアルで作るもの</span></div>
-      </div>
-      <p class="cap">図：bot の仕組み。出来事は公式 API 経由で bot に届き、bot の返信はチャットで戻ります</p>
+    <span class="hen">Mac編</span>
+    <h2 class="chap">第6章 Mac の準備：Node.js を入れる</h2>
+    <p>対象：Mac。この編の手順は、Mac（macOS Sequoia）で実際に導入して確認したものです。</p>
+    <p>ターミナル（Terminal）というアプリを使います。Spotlight（⌘+スペース）で「ターミナル」と検索すると出てきます。コマンドは1行ずつコピーして貼り、Enter で実行します。</p>
+    <p>bot は Node.js という実行環境の上で動きます。まず入っているか確認します。</p>
+    <ol>
+      <li>ターミナルを開いて、次を入力します。
+        <pre class="code"><code>node -v</code></pre>
+      </li>
+      <li><code>v26.13.0</code> のようにバージョンが表示されれば、もう入っています。第7章へ進んでください。</li>
+      <li><code>command not found</code> と出たら、まだ入っていません。次の方法で入れます。
+        <ul>
+          <li>ブラウザで <strong>nodejs.org</strong> を開き、インストーラー（.pkg ファイル）をダウンロードします。</li>
+          <li>ダウンロードした .pkg をダブルクリックして、画面の案内どおりにインストールします。</li>
+          <li>インストールが終わったら、もう一度ターミナルで <code>node -v</code> を実行し、バージョンが表示されることを確認します。</li>
+        </ul>
+      </li>
+    </ol>
+    <div class="callout point">
+      <span class="ct">💡 ポイント</span>
+      動作に必要なのは <strong>Node 18 以上</strong> です。表示されたバージョンの最初の数字が 18 以上なら大丈夫です。<br>
+      補足：パッケージ管理ツール（Homebrew）経由の導入は、このマニュアルでは案内しません。現行の Homebrew インストーラは Intel Mac では使えなかったためです。公式サイトの .pkg が、実際に通った確実な方法です。
     </div>
-    <ul>
-      <li>配信は配信端末の Spoon アプリで開きます。bot は配信そのものには触りません。</li>
-      <li>bot は PC の上で動くプログラムです。公式 API から配信の出来事（イベント）を受け取り、決められた反応をチャットで返します。</li>
-      <li>bot が動くのは、自分の PC の中だけです。配信を閉じれば bot の仕事も終わります。</li>
-    </ul>
-    <h3 class="subh">ファイル構成と章の対応</h3>
-    <p>bot は、次のファイルでできています。章の順に1つずつ作っていくので、最初から全部を理解する必要はありません。</p>
-    <div class="tblwrap"><table class="tbl">
-      <tr><th>ファイル</th><th>役割</th><th>作る章</th></tr>
-      <tr><td><code>package.json</code></td><td>bot の名札と起動コマンドの定義</td><td>第9章</td></tr>
-      <tr><td><code>.env</code></td><td>秘密情報（鍵）の置き場所</td><td>第9章</td></tr>
-      <tr><td><code>src/env.js</code></td><td>.env を読み込む仕組み</td><td>第9章</td></tr>
-      <tr><td><code>src/auth.js</code></td><td>トークン（通行証）の保存・更新</td><td>第10章</td></tr>
-      <tr><td><code>src/auth-server.js</code></td><td>認証用サーバー（同意 → トークン取得）</td><td>第10章</td></tr>
-      <tr><td><code>src/events.js</code></td><td>イベント受信（配信の出来事を受け取る）</td><td>第11章</td></tr>
-      <tr><td><code>src/chat.js</code></td><td>チャット送信（安全スイッチ付き）</td><td>第12章</td></tr>
-      <tr><td><code>config.json</code></td><td>文面や反応の設定</td><td>第13章</td></tr>
-      <tr><td><code>src/config.js</code></td><td>設定の読み込み・保存</td><td>第13章</td></tr>
-      <tr><td><code>src/bot.js</code></td><td>頭脳（反応・お礼・集計の呼び出し）</td><td>第13〜14章</td></tr>
-      <tr><td><code>src/stats.js</code></td><td>集計（数えてファイルに保存）</td><td>第15章</td></tr>
-      <tr><td><code>src/admin.js</code></td><td>管理画面</td><td>第16章</td></tr>
-      <tr><td><code>src/index.js</code></td><td>起動（全部の部品をつなぐ）</td><td>第17章</td></tr>
-    </table></div>
-    <h3 class="subh">進め方の約束</h3>
-    <ul>
-      <li>各章では「貼るコード → 動かして確認 → つまずきポイント」の順で進みます。</li>
-      <li>コードは <strong>そのままコピー＆ペースト</strong> してください。1文字でも違うと動かないことがあります。自分で書き換えるのは、文面など「変えてよい」と案内した部分だけです。</li>
-      <li>章の途中で「まだ動きません」と書いてある場合は、そのとおりです。部品がそろう章で初めて動きます。</li>
-    </ul>
-    <div class="callout env"><span class="ct">🛠️ このマニュアルの作成環境</span>配信端末＝iPad、オーディオインターフェース＝Yamaha AG03 Mk2、PC＝iMac（Intel Mac、macOS Sequoia）。手順の表記は一般名（配信端末／オーディオインターフェース／PC）にそろえていますが、実践パートの Mac の手順はこの環境で確認したものです。</div>
-    <h3 class="subh">まず環境準備（次のどちらか一方）</h3>
-    <ul>
-      <li><strong>Mac の人</strong> → 第7章へ</li>
-      <li><strong>Windows の人</strong> → 第8章へ</li>
-    </ul>
-    <p>どちらの章も到達点は同じで、「Node.js が入り、作業フォルダができている」状態になります。そこから先（第9章以降）は OS 共通です。</p>
   </section>
 
   <section class="panel" id="ch7">
-    <span class="hen">標準編</span>
-    <h2 class="chap">第7章 Mac の準備：Node.js を入れる</h2>
-    <p>対象：Mac。この章の手順は、Intel Mac（macOS Sequoia）で実際に確認したものです。</p>
-    <p>bot は <strong>Node.js</strong> という実行環境の上で動きます。まず Node.js を入れ、bot の作業フォルダを作ります。作業には「ターミナル」というアプリを使います。初めて触る前提で、開き方から説明します。</p>
-    <h3 class="subh">ターミナルの開き方（初めての人向け）</h3>
-    <p>ターミナルは、文字で命令（コマンド）を打って Mac を操作するアプリです。このマニュアルでは、コマンドを打つ場所として何度も使います。開き方は2通りあります。どちらでも同じものが開きます。</p>
-    <p><strong>方法1：Spotlight（検索）で開く</strong></p>
-    <div class="steps">
-      <div class="step"><span class="no">1</span><div class="sb"><p>キーボードの <strong>⌘（コマンド）キーとスペースキーを同時に押します</strong>。画面の真ん中あたりに検索欄が出ます。</p></div></div>
-      <div class="step"><span class="no">2</span><div class="sb"><p>検索欄に「ターミナル」と入力します（「terminal」でも出ます）。</p></div></div>
-      <div class="step"><span class="no">3</span><div class="sb"><p>「ターミナル」というアプリが候補に出たら、<span class="kbd">Enter</span> キーを押します。</p></div></div>
-    </div>
-    <div class="diagram">
-      <div class="spot">
-        <div class="sfield">🔍 <span class="ring">ターミナル</span><span class="point">👈 ここに『ターミナル』と入力</span></div>
-        <div class="srow">🖥️ <span class="mark">ターミナル</span>　アプリケーション</div>
-      </div>
-      <p class="cap">図：Spotlight の模式図。検索欄に言葉を入れると、候補にターミナルが出ます</p>
-    </div>
-    <p><strong>方法2：Launchpad から開く</strong></p>
-    <ol>
-      <li>Dock（画面下のアイコン列）の Launchpad を開きます。</li>
-      <li>「その他」というフォルダの中に「ターミナル」があります。</li>
-    </ol>
-    <h3 class="subh">ターミナルの画面の見かた</h3>
-    <p>開くと、白（または黒）いウィンドウが出て、文字が数行表示されます。最後の行がこんな形になっています。</p>
-    <pre class="code"><code>（Macの名前） ~ （ユーザー名） %</code></pre>
-    <ul>
-      <li>行の最後にある <strong><code>%</code> の右側が、コマンドを打ち込む場所</strong> です。この「入力待ちの行」のことを <strong>プロンプト</strong> と呼びます。</li>
-      <li>コマンドを打つときは、まずターミナルのウィンドウをクリックして手前に出し（これをしないと、別のアプリに文字が入ってしまいます）、プロンプトの後ろに入力します。</li>
-    </ul>
-    <div class="diagram">
-      <div class="term">
-        <div class="tbar"><span class="dot" style="background:#ff5f57;"></span><span class="dot" style="background:#febc2e;"></span><span class="dot" style="background:#28c840;"></span><span class="tt">ターミナル — zsh</span></div>
-        <div class="tbody">
-          <div class="ln"><span class="dim">Last login: Sun Nov 22 09:00:00 on ttys000</span></div>
-          <div class="ln">MacBook-Pro ~ user <span class="ring">%</span><span class="point">👈 ここに入力します</span></div>
-          <div class="ln"><span class="dim">（貼り付けると、こうなります）</span></div>
-          <div class="ln">MacBook-Pro ~ user % <span class="mark">node -v</span></div>
-          <div class="enterline">↓ 貼り付けたら、最後に <span class="kbd">Enter</span> キーを押すと実行されます</div>
-        </div>
-      </div>
-      <p class="cap">図：Mac ターミナルの模式図。プロンプト（赤丸）の後ろにコマンド（マーカー）を貼ります</p>
-    </div>
-    <h3 class="subh">コマンドの実行のしかた（このマニュアル共通の約束）</h3>
-    <div class="steps">
-      <div class="step"><span class="no">1</span><div class="sb"><p>マニュアルに示されたコマンドを、マウスで選んでコピーします（⌘+C）。</p></div></div>
-      <div class="step"><span class="no">2</span><div class="sb"><p>ターミナルのウィンドウをクリックして手前に出します。</p></div></div>
-      <div class="step"><span class="no">3</span><div class="sb"><p><strong>⌘+V</strong> で貼り付けます。プロンプトの後ろにコマンドが入ります。</p></div></div>
-      <div class="step"><span class="no">4</span><div class="sb"><p><span class="kbd">Enter</span> キーを押すと実行されます。</p></div></div>
-      <div class="step"><span class="no">5</span><div class="sb"><p>実行が終わると、結果の表示のあとに <strong>もう一度プロンプトが出ます</strong>。これが「次のコマンドを受け付けられる状態」の合図です。</p></div></div>
+    <span class="hen">Mac編</span>
+    <h2 class="chap">第7章 bot の設置：フォルダ配置と展開のしかた</h2>
+    <p>bot 一式は zip ファイルで受け取ります。展開と配置は <strong>ターミナルで行います</strong>。</p>
+    <div class="callout warn">
+      <span class="ct">⚠️ Finder でコピー＆置き換えはしないでください</span>
+      実際に、Finder の「置き換え」では既存のファイルが確実に置き換わらず、古いファイルが残って「更新したのに直らない」状態になったことがあります。
     </div>
     <ul>
-      <li>コマンドは <strong>1行ずつ</strong> 貼って Enter、が基本です。画面の中で折り返して2行に見えても、長い1行は1行です。そのまま Enter で大丈夫です。</li>
-      <li>実行中（結果がまだ出ている途中）は、次のコマンドを打たないでください。プロンプトが戻ってから次へ進みます。</li>
-      <li>間違えて貼った場合は、Enter を押す前なら <span class="kbd">Control</span>+<span class="kbd">C</span> でその行を取り消せます（Control はキーボード左下のキーです）。</li>
+      <li>置き場所は <code>~/Downloads/bot</code>（ダウンロードフォルダの中の bot フォルダ）に統一します。以後の作業はすべてこのフォルダで行います。</li>
+      <li><strong>bot フォルダごと丸ごと置き換えるのは厳禁です。</strong>設定ファイル（.env）と認証ファイル（tokens.json）は zip に含まれていないので、フォルダごと消すと認証からやり直しになります。置き換えるのは中身のファイル・フォルダ単位です。</li>
     </ul>
-    <h3 class="subh">Node.js が入っているか確認する</h3>
-    <p>ターミナルで次を実行します。</p>
-    <pre class="code"><code>node -v</code></pre>
-    <ul>
-      <li><code>v26.13.1</code> のように表示されれば、もう入っています。最初の数字が <strong>18 以上</strong> なら大丈夫です。「作業フォルダを作る」へ進んでください。</li>
-      <li><code>command not found</code> と出たら、まだ入っていません。次の方法で入れます。</li>
-    </ul>
-    <h3 class="subh">Node.js を入れる（入っていない場合）</h3>
-    <div class="steps">
-      <div class="step"><span class="no">1</span><div class="sb"><p>ブラウザで <strong>nodejs.org</strong> を開き、インストーラー（.pkg ファイル）をダウンロードします。</p></div></div>
-      <div class="step"><span class="no">2</span><div class="sb"><p>ダウンロードした .pkg をダブルクリックして、画面の案内どおりにインストールします。</p></div></div>
-      <div class="step"><span class="no">3</span><div class="sb"><p>インストールが終わったら、ターミナルで <strong>もう一度</strong> <code>node -v</code> を実行し、バージョンが表示されることを確認します。</p></div></div>
-    </div>
-    <div class="callout point"><span class="ct">💡 補足</span>パッケージ管理ツール（Homebrew）経由の導入は、このマニュアルでは案内しません。現行の Homebrew インストーラは Intel Mac では使えなかったためです。公式サイトの .pkg が、実際に通った確実な方法です。</div>
-    <h3 class="subh">作業フォルダを作る</h3>
-    <p>bot のファイルは、ダウンロードフォルダの中の <code>bot</code> フォルダにまとめます。ターミナルで次を1行ずつ実行します。</p>
-    <pre class="code"><code>mkdir -p ~/Downloads/bot/src</code></pre>
-    <p>これは「ダウンロードフォルダの中に bot フォルダと、その中の src フォルダを作る」という命令です。何も表示されなければ成功です。</p>
-    <pre class="code"><code>cd ~/Downloads/bot</code></pre>
-    <p><code>cd</code> は「今いる場所を移る」命令です。これでターミナルの居場所が bot フォルダになりました。</p>
-    <pre class="code"><code>ls</code></pre>
-    <p><code>ls</code> は「今いる場所の中身を見る」命令です。<code>src</code> と表示されれば、フォルダ作りは完了です。</p>
-    <p>これから先の章では、ターミナルで作業するたびに、最初に <code>cd ~/Downloads/bot</code> を実行して bot フォルダに移ってから始めます。</p>
-    <div class="callout warn"><span class="ct">⚠️ つまずきポイント（第7章）</span>
-      ・<strong>貼ったのに文字が入らない</strong>：ターミナルのウィンドウが手前にない（別のアプリが前面）状態です。ウィンドウをクリックしてから ⌘+V してください。<br>
-      ・<strong><code>node -v</code> で <code>command not found</code></strong>：Node.js が入っていないか、インストール直後でターミナルが認識していません。ターミナルを一度閉じて開き直してから、もう一度試してください。<br>
-      ・<strong>プロンプトが戻ってこない</strong>：何かのプログラムが動き続けている状態です。この章の段階では起きないはずですが、<span class="kbd">Control</span>+<span class="kbd">C</span> で止められます。</div>
+    <h3 class="subh">📁 bot フォルダの構成（イメージ）</h3>
+    <pre class="code"><code>~/Downloads/bot/
+├─ .env               ← 秘密情報の設定（zip には入っていない）
+├─ tokens.json        ← 認証の鍵（zip には入っていない）
+├─ config.json        ← 自分用の設定（見本から作る）
+├─ config.example.json
+├─ src/               ← bot のプログラム本体
+├─ se/                ← 効果音（SE）の置き場所
+└─ data/              ← bot の記録データ</code></pre>
+    <p>初回設置の例（zip がダウンロードフォルダにある場合）：</p>
+    <pre class="code"><code>rm -rf /tmp/spoon-bot &amp;&amp; unzip -o ~/Downloads/spoon-bot.zip -d /tmp/spoon-bot &amp;&amp; cp -R /tmp/spoon-bot/bot/ ~/Downloads/bot/</code></pre>
+    <p>（zip のファイル名は、受け取ったものの名前に読み替えてください。）</p>
   </section>
 
   <section class="panel" id="ch8">
-    <span class="hen">標準編</span>
-    <h2 class="chap">第8章 Windows の準備：Node.js を入れる</h2>
-    <p>対象：Windows。</p>
-    <div class="callout warn"><span class="ct">⚠️ この章は、Windows 実機では未検証です</span>Mac編（Intel Mac・macOS Sequoia で実際に導入して確認した手順）と到達点をそろえ、手順を Windows の作法に置き換えて書いたものです。インストーラーの画面遷移など細部は、Windows やツールのバージョンにより表示が異なる場合があります。うまくいかない場合は、画面の文言を控えて相談してください。</div>
-    <p>bot は <strong>Node.js</strong> という実行環境の上で動きます（必要なのは <strong>Node 18 以上</strong>）。まず Node.js を入れ、bot の作業フォルダを作ります。作業には「PowerShell」というアプリを使います。初めて触る前提で、開き方から説明します。</p>
-    <h3 class="subh">PowerShell の開き方（初めての人向け）</h3>
-    <p>PowerShell は、文字で命令（コマンド）を打って Windows を操作するアプリで、Windows に最初から入っています。</p>
-    <div class="steps">
-      <div class="step"><span class="no">1</span><div class="sb"><p>画面左下の <strong>スタートボタン</strong> を押すか、キーボードの Windows キーを押します。</p></div></div>
-      <div class="step"><span class="no">2</span><div class="sb"><p>そのままキーボードで「powershell」と入力します。検索結果に <strong>「Windows PowerShell」</strong> が出ます。</p></div></div>
-      <div class="step"><span class="no">3</span><div class="sb"><p>「Windows PowerShell」をクリックして開きます。</p></div></div>
-    </div>
-    <div class="diagram">
-      <div class="spot win">
-        <div class="sfield">🔍 <span class="ring">powershell</span><span class="point">👈 ここに『powershell』と入力</span></div>
-        <div class="srow">🟦 <span class="mark">Windows PowerShell</span>　アプリ</div>
-      </div>
-      <p class="cap">図：Windows のスタートメニュー検索の模式図</p>
-    </div>
-    <ul>
-      <li>Windows 11 では「ターミナル（Windows Terminal）」というアプリで PowerShell が開く場合があります。そのままで大丈夫です（このマニュアルのコマンドはどちらでも動きます）。</li>
-    </ul>
-    <h3 class="subh">PowerShell の画面の見かた</h3>
-    <p>開くと、青（または黒）いウィンドウが出て、最後の行がこんな形になっています。</p>
-    <pre class="code"><code>PS C:\Users\（自分のユーザー名）&gt;</code></pre>
-    <ul>
-      <li>行の最後にある <strong><code>&gt;</code> の右側が、コマンドを打ち込む場所</strong> です。この「入力待ちの行」のことを <strong>プロンプト</strong> と呼びます。行頭の <code>PS</code> とパス（<code>C:\Users\…</code>）は「今いる場所」を表しています。</li>
-    </ul>
-    <div class="diagram">
-      <div class="term ps">
-        <div class="tbar"><span class="tt">🟦 Windows PowerShell</span></div>
-        <div class="tbody">
-          <div class="ln"><span class="dim">Windows PowerShell</span></div>
-          <div class="ln"><span class="dim">新しいクロスプラットフォームの PowerShell を試すには…</span></div>
-          <div class="ln">PS C:\Users\user&gt;<span class="ring">　</span><span class="point">👈 ここに入力します</span></div>
-          <div class="ln"><span class="dim">（貼り付けると、こうなります）</span></div>
-          <div class="ln">PS C:\Users\user&gt; <span class="mark">node -v</span></div>
-          <div class="enterline">貼り付けは <span class="kbd">Ctrl</span>+<span class="kbd">V</span>、または <strong>右クリックでも貼り付けられます</strong>。最後に <span class="kbd">Enter</span> を押します</div>
-        </div>
-      </div>
-      <p class="cap">図：PowerShell の模式図。プロンプトの <code>&gt;</code> の右側（赤丸）にコマンド（マーカー）を貼ります</p>
-    </div>
-    <h3 class="subh">コマンドの実行のしかた（このマニュアル共通の約束）</h3>
-    <div class="steps">
-      <div class="step"><span class="no">1</span><div class="sb"><p>マニュアルに示されたコマンドを、マウスで選んでコピーします（<span class="kbd">Ctrl</span>+<span class="kbd">C</span>）。</p></div></div>
-      <div class="step"><span class="no">2</span><div class="sb"><p>PowerShell のウィンドウをクリックして手前に出します。</p></div></div>
-      <div class="step"><span class="no">3</span><div class="sb"><p>貼り付けます。方法は2通りあります。<br>・<strong>Ctrl+V</strong>（Windows Terminal や最近の PowerShell ではこちら）<br>・<strong>右クリック</strong>（従来の PowerShell の画面では、右クリックが貼り付けになります）</p></div></div>
-      <div class="step"><span class="no">4</span><div class="sb"><p><span class="kbd">Enter</span> キーを押すと実行されます。</p></div></div>
-      <div class="step"><span class="no">5</span><div class="sb"><p>実行が終わると、結果の表示のあとに <strong>もう一度プロンプトが出ます</strong>。これが「次のコマンドを受け付けられる状態」の合図です。</p></div></div>
-    </div>
-    <ul>
-      <li>コマンドは <strong>1行ずつ</strong> 貼って Enter、が基本です。画面の中で折り返して2行に見えても、長い1行は1行です。</li>
-      <li>実行中は次のコマンドを打たないでください。プロンプトが戻ってから次へ進みます。</li>
-      <li>間違えて貼った場合は、Enter を押す前なら <span class="kbd">Ctrl</span>+<span class="kbd">C</span> でその行を取り消せます。</li>
-    </ul>
-    <h3 class="subh">Node.js が入っているか確認する</h3>
-    <p>PowerShell で次を実行します。</p>
-    <pre class="code"><code>node -v</code></pre>
-    <ul>
-      <li><code>v22.x.x</code> のように表示されれば、もう入っています。最初の数字が <strong>18 以上</strong> なら大丈夫です。あわせて <code>npm -v</code> も実行し、こちらもバージョンが表示されることを確認してください（bot の起動には npm を使います）。</li>
-      <li>「'node' は、内部コマンドまたは外部コマンド……として認識されていません」のようなエラーが出たら、まだ入っていません。次の方法で入れます。</li>
-    </ul>
-    <h3 class="subh">Node.js を入れる（入っていない場合）</h3>
-    <div class="steps">
-      <div class="step"><span class="no">1</span><div class="sb"><p>ブラウザで <strong>nodejs.org</strong> を開き、<strong>LTS</strong> と書かれた <strong>Windows Installer（.msi）</strong> をダウンロードします（画面のボタンや案内はバージョンにより異なります）。</p></div></div>
-      <div class="step"><span class="no">2</span><div class="sb"><p>ダウンロードした .msi をダブルクリックして、画面の案内どおりにインストールします。途中の選択肢は、基本的に初期状態のまま「次へ」で進めて構いません（インストール先や「PATH への追加」は初期状態で有効になっています）。</p></div></div>
-      <div class="step"><span class="no">3</span><div class="sb"><p>インストール中に「このアプリがデバイスに変更を加えることを許可しますか？」と出たら「はい」を選びます。ダウンロードしたファイルの実行時に Windows の保護画面（SmartScreen）が出た場合は、「詳細情報」を開いてから「実行」を選ぶと進めます。</p></div></div>
-      <div class="step"><span class="no">4</span><div class="sb"><p>インストールが終わったら、<strong>開いていた PowerShell をいったん閉じて、開き直してから</strong> もう一度 <code>node -v</code> を実行し、バージョンが表示されることを確認します（開きっぱなしの画面では、新しく入れた Node を認識しないことがあります）。</p></div></div>
-    </div>
-    <h3 class="subh">作業フォルダを作る</h3>
-    <p>bot のファイルは、ダウンロードフォルダの中の <code>bot</code> フォルダにまとめます。PowerShell で次を1行ずつ実行します。</p>
-    <pre class="code"><code>mkdir $HOME\Downloads\bot
-mkdir $HOME\Downloads\bot\src</code></pre>
-    <p>これは「ダウンロードフォルダの中に bot フォルダを、その中に src フォルダを作る」という命令です。作ったフォルダの情報が表示されれば成功です（<code>$HOME</code> は自分のユーザーフォルダを表す書き方です）。</p>
-    <pre class="code"><code>cd $HOME\Downloads\bot</code></pre>
-    <p><code>cd</code> は「今いる場所を移る」命令です。プロンプトの表示が <code>PS C:\Users\（自分のユーザー名）\Downloads\bot&gt;</code> に変わります。</p>
-    <pre class="code"><code>dir</code></pre>
-    <p><code>dir</code> は「今いる場所の中身を見る」命令です。<code>src</code> というフォルダが見えれば、フォルダ作りは完了です。</p>
-    <p>これから先の章では、PowerShell で作業するたびに、最初に <code>cd $HOME\Downloads\bot</code> を実行して bot フォルダに移ってから始めます。エクスプローラーで bot フォルダを開いて <strong>アドレスバーに <code>powershell</code> と入力して Enter</strong> すると、そのフォルダを場所として PowerShell が開くので、慣れてきたらこちらも便利です。</p>
-    <div class="callout warn"><span class="ct">⚠️ つまずきポイント（第8章）</span>
-      ・<strong>貼ったのに文字が入らない</strong>：PowerShell のウィンドウが手前にない状態です。ウィンドウをクリックしてから貼り付けてください。従来の画面では Ctrl+V が効かず、右クリックが貼り付けになる場合があります。<br>
-      ・<strong><code>npm</code> のコマンドだけ止まる</strong>：PowerShell の設定（実行ポリシー）によっては、後の章で使う <code>npm run …</code> が「npm.ps1 を読み込めません。スクリプトの実行が無効になっています」というエラーで止まることがあります。対処は第10章のコラムにまとめてあります（コマンドプロンプトに切り替える方法と、実行ポリシーを変える方法）。この章の <code>node -v</code> は影響を受けません。<br>
-      ・<strong>プロンプトが戻ってこない</strong>：何かのプログラムが動き続けている状態です。<span class="kbd">Ctrl</span>+<span class="kbd">C</span> で止められます。</div>
+    <span class="hen">Mac編</span>
+    <h2 class="chap">第8章 .env の設定（秘密情報の入れ方）</h2>
+    <p><code>.env</code> は、鍵などの秘密情報を入れる設定ファイルです。bot フォルダの中で作ります。</p>
+    <ol>
+      <li>bot フォルダに移動します。
+        <pre class="code"><code>cd ~/Downloads/bot</code></pre>
+      </li>
+      <li>見本をコピーして <code>.env</code> を作ります。
+        <pre class="code"><code>cp .env.example .env</code></pre>
+      </li>
+      <li>テキストエディットで開きます。
+        <pre class="code"><code>open -e ~/Downloads/bot/.env</code></pre>
+      </li>
+      <li>次の項目を書き換えます（**** の部分に、Developer Center に表示された自分の値を入れます）。
+        <pre class="code"><code>SPOON_CLIENT_ID=****
+SPOON_CLIENT_SECRET=****
+SPOON_REDIRECT_URI=http://localhost:3000
+DRY_RUN=1</code></pre>
+        <ul>
+          <li><code>SPOON_REDIRECT_URI</code> は第4章の値と完全一致させます。</li>
+          <li><code>DRY_RUN=1</code> は安全スイッチです。1 の間は bot は実際にチャットを送らず、画面に表示するだけになります。<strong>最初は必ず 1 のまま</strong>にしてください。本番で送り始めるときだけ 0 に変えます。</li>
+          <li>ファイルを保存して閉じます。</li>
+        </ul>
+      </li>
+      <li>設定できたかは、<strong>中身を表示せずに</strong>確かめられます。次のコマンドは、値が入っている行の「件数」だけを表示します。
+        <pre class="code"><code>grep -c "SPOON_CLIENT_ID=" ~/Downloads/bot/.env
+grep -c "SPOON_CLIENT_SECRET=" ~/Downloads/bot/.env</code></pre>
+        両方とも <code>1</code> と出れば、項目自体は書けています（値の中身は画面に出ません）。
+      </li>
+    </ol>
   </section>
 
   <section class="panel" id="ch9">
-    <span class="hen">標準編</span>
-    <h2 class="chap">第9章 秘密情報の置き場所：.env と env.js</h2>
-    <p>ここから組み立てに入ります。最初に作るのは、鍵（Client ID と Client Secret）を入れる場所と、それを読む仕組みです。</p>
-    <p>この章で作るもの：</p>
-    <ul>
-      <li><code>.env.example</code>（鍵入れの見本ファイル）→ コピーして <code>.env</code>（実際に使う鍵入れ）</li>
-      <li><code>src/env.js</code>（.env を読む仕組み）</li>
-      <li><code>package.json</code>（bot の名札と起動コマンドの定義）</li>
-    </ul>
-    <h3 class="subh">ファイルの作り方（初めての人向け）</h3>
-    <p>コードのファイルは、テキストエディタで作ります。OS ごとに、失敗しにくい作り方をまとめます。</p>
-    <p><strong>Mac（テキストエディット）の場合</strong></p>
-    <div class="steps">
-      <div class="step"><span class="no">1</span><div class="sb"><p>テキストエディットを開き、新規書類を作ります。</p></div></div>
-      <div class="step"><span class="no">2</span><div class="sb"><p>メニューの「フォーマット」→ <strong>「標準テキストにする」</strong> を選びます。（これをしないと、文字が装飾付きの形式で保存されてしまい、コードとして読めません。）</p></div></div>
-      <div class="step"><span class="no">3</span><div class="sb"><p>マニュアルのコードを貼り付けます。</p></div></div>
-      <div class="step"><span class="no">4</span><div class="sb"><p>「ファイル」→「保存」で、保存先フォルダとファイル名を指定して保存します。</p>
+    <span class="hen">Mac編</span>
+    <h2 class="chap">第9章 config.json の作成</h2>
+    <p>文面や機能の ON/OFF は <code>config.json</code> という設定ファイルで管理します。</p>
+    <ol>
+      <li>見本から自分用を作ります。
+        <pre class="code"><code>cp ~/Downloads/bot/config.example.json ~/Downloads/bot/config.json</code></pre>
+      </li>
+      <li>ルール：
         <ul>
-          <li>名前の最後が指定どおりの拡張子（<code>.js</code> や <code>.json</code>）になっているか確認してください。「.txt を追加」というチェックが出たら外します。拡張子が違うという警告が出たら「.js を使用」（指定した拡張子を使う方）を選びます。</li>
-          <li>コードの中の引用符（<code>"</code> や <code>'</code>）が、丸まった形（“ ”）に化けていないかも見てください。化ける場合は、テキストエディットの環境設定で「スマート引用符」をオフにしてから貼り直します。</li>
-        </ul></div></div>
-    </div>
-    <p><strong>Windows（メモ帳）の場合</strong></p>
-    <div class="steps">
-      <div class="step"><span class="no">1</span><div class="sb"><p>メモ帳を開き、マニュアルのコードを貼り付けます。</p></div></div>
-      <div class="step"><span class="no">2</span><div class="sb"><p>「ファイル」→「名前を付けて保存」で、保存先フォルダを選びます。</p></div></div>
-      <div class="step"><span class="no">3</span><div class="sb"><p><strong>ファイル名は指定どおりに</strong>（例：<code>env.js</code>）、<strong>ファイルの種類は「すべてのファイル」</strong> にしてから保存します。（種類が「テキスト文書」のままだと、<code>env.js.txt</code> のような名前で保存されてしまいます。）</p></div></div>
-      <div class="step"><span class="no">4</span><div class="sb"><p>文字コードの選択肢が出る場合は <strong>「UTF-8」</strong> を選びます。</p></div></div>
-      <div class="step"><span class="no">5</span><div class="sb"><p>事故に気づけるよう、エクスプローラーの「表示」設定で <strong>「ファイル名拡張子」にチェック</strong> を入れておくことをおすすめします。拡張子が見えれば、<code>env.js.txt</code> になっているかどうか目で確認できます。</p></div></div>
-    </div>
-    <div class="callout point"><span class="ct">💡 共通の約束</span>どちらの OS でも、<strong>保存したらエディタを閉じる</strong> のが安全です（開いたままだと、古い内容で上書きしてしまうことがあります）。</div>
-    <h3 class="subh">.env.example を作る</h3>
-    <p>次の内容を、そのまま <code>.env.example</code> という名前で、bot フォルダ（<code>Downloads/bot</code>）の直下に保存します。</p>
-    <pre class="code"><code># このファイルをコピーして「.env」という名前で保存し、審査承認後に値を入れます。
-# 注意: Client Secret は絶対にチャットやSNSに貼らないでください。このファイル自体も公開しないこと。
-
-# 日本リージョンのAPIアドレス（固定でOK）
-SPOON_BASE_URL=https://jp-openapi.spooncast.net
-
-# 審査承認後に Developer Center に表示される値（今は空でOK）
-SPOON_CLIENT_ID=
-SPOON_CLIENT_SECRET=
-
-# アプリ登録時に入れたリダイレクトURLと完全一致させること（ポート番号まで）
-SPOON_REDIRECT_URI=http://localhost:3000
-
-# 安全スイッチ: 1 の間は実際にチャットを送らず、画面に表示するだけです。
-# 本番で送り始めるときにだけ 0 に変えます。最初は必ず 1 のまま。
-DRY_RUN=1</code></pre>
-    <h3 class="subh">.env を作って鍵を入れる</h3>
-    <div class="steps">
-      <div class="step"><span class="no">1</span><div class="sb"><p>ターミナル（Mac）／PowerShell（Windows）で bot フォルダに移り、見本をコピーして <code>.env</code> を作ります。</p></div></div>
-    </div>
-    <div class="cmdpair">
-      <div class="cmdos mac"><span class="os">🍎 Mac</span><pre class="code"><code>cd ~/Downloads/bot
-cp .env.example .env</code></pre></div>
-      <div class="cmdos win"><span class="os">🪟 Windows</span><pre class="code"><code>cd $HOME\Downloads\bot
-copy .env.example .env</code></pre></div>
-    </div>
-    <div class="steps">
-      <div class="step"><span class="no">2</span><div class="sb"><p><code>.env</code> をエディタで開きます。</p></div></div>
-    </div>
-    <div class="cmdpair">
-      <div class="cmdos mac"><span class="os">🍎 Mac</span><pre class="code"><code>open -e ~/Downloads/bot/.env</code></pre></div>
-      <div class="cmdos win"><span class="os">🪟 Windows</span><pre class="code"><code>notepad .env</code></pre></div>
-    </div>
-    <div class="steps">
-      <div class="step"><span class="no">3</span><div class="sb"><p>次の2行の <code>=</code> の後ろに、第5章で確認した <strong>自分の値</strong> を入れます（ここでは伏せ字で示します）。</p></div></div>
-    </div>
-    <pre class="code"><code>SPOON_CLIENT_ID=****
-SPOON_CLIENT_SECRET=****</code></pre>
-    <ul>
-      <li>値を「"」（引用符）で囲む必要はありません。そのまま貼り付けます。行の途中や末尾に余分な空白を入れないでください。</li>
-      <li><code>SPOON_REDIRECT_URI</code> は第4章の値（アプリ側に登録したもの）と完全一致させます。</li>
-      <li><code>DRY_RUN=1</code> は安全スイッチです。1 の間は bot は実際にチャットを送らず、画面に表示するだけになります。<strong>最初は必ず 1 のまま</strong>にしてください。本番で送り始めるときだけ 0 に変えます。</li>
-      <li>保存してエディタを閉じます。</li>
-    </ul>
-    <div class="steps">
-      <div class="step"><span class="no">4</span><div class="sb"><p>設定できたかは、<strong>中身を表示せずに</strong>確かめられます。次のコマンドは、値が入っている行の「件数」だけを表示します。</p></div></div>
-    </div>
-    <div class="cmdpair">
-      <div class="cmdos mac"><span class="os">🍎 Mac</span><pre class="code"><code>grep -c "SPOON_CLIENT_ID=" ~/Downloads/bot/.env
-grep -c "SPOON_CLIENT_SECRET=" ~/Downloads/bot/.env</code></pre></div>
-      <div class="cmdos win"><span class="os">🪟 Windows</span><pre class="code"><code>(Select-String -Path .env -Pattern "SPOON_CLIENT_ID=").Count
-(Select-String -Path .env -Pattern "SPOON_CLIENT_SECRET=").Count</code></pre></div>
-    </div>
-    <p>両方とも <code>1</code> と出れば、項目自体は書けています（値の中身は画面に出ません）。</p>
-    <h3 class="subh">src/env.js を作る</h3>
-    <p>次に、<code>.env</code> を読み込む仕組みを作ります。次のコードを、そのまま <code>env.js</code> という名前で <strong>src フォルダの中</strong> に保存します。</p>
-    <span class="codelabel">📄 src/env.js</span>
-    <pre class="code"><code>// .env ファイルを読み込む小さな仕組み（外部ライブラリなし）
-// すでに環境変数として設定されている値は上書きしません。
-import { existsSync, readFileSync } from 'node:fs';
-import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-const projectRoot = join(dirname(fileURLToPath(import.meta.url)), '..');
-
-export function loadEnv() {
-  const envPath = join(projectRoot, '.env');
-  if (!existsSync(envPath)) return;
-  const text = readFileSync(envPath, 'utf8');
-  for (const line of text.split(/\r?\n/)) {
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith('#')) continue;
-    const eq = trimmed.indexOf('=');
-    if (eq === -1) continue;
-    const key = trimmed.slice(0, eq).trim();
-    const value = trimmed.slice(eq + 1).trim();
-    if (key &amp;&amp; process.env[key] === undefined) {
-      process.env[key] = value;
-    }
-  }
-}
-
-export function getEnv(name, fallback = '') {
-  const value = process.env[name];
-  return value === undefined || value === '' ? fallback : value;
-}
-
-// 安全スイッチ: DRY_RUN が "0" のときだけ本番送信。それ以外（未設定含む）は安全側。
-export function isDryRun() {
-  return process.env.DRY_RUN !== '0';
-}
-
-export { projectRoot };</code></pre>
-    <p>このファイルの役割は3つです。</p>
-    <ul>
-      <li><code>loadEnv()</code>：<code>.env</code> の中身を読んで、プログラムから使えるようにする</li>
-      <li><code>getEnv(名前)</code>：鍵などの値を取り出す</li>
-      <li><code>isDryRun()</code>：安全スイッチ（DRY_RUN）の状態を答える。<code>0</code> のときだけ本番送信で、それ以外は安全側（送らない）に倒れる作りです</li>
-    </ul>
-    <h3 class="subh">package.json を作る</h3>
-    <p>最後に、bot の名札を作ります。次の内容を <code>package.json</code> という名前で、bot フォルダの直下に保存します。（見やすく改行してありますが、内容は完成形そのものです。）</p>
-    <span class="codelabel">📄 package.json</span>
-    <pre class="code"><code>{
-  "description": "マニュアル掲載用の最小サンプルbot（Spoon Developers・標準機能だけを実装）",
-  "engines": {
-    "node": "&gt;=18"
-  },
-  "name": "spoon-minimal-bot",
-  "scripts": {
-    "auth": "node src/auth-server.js",
-    "mock": "node test/mock.js",
-    "start": "node src/index.js"
-  },
-  "type": "module",
-  "version": "0.1.0"
-}</code></pre>
-    <ul>
-      <li><code>scripts</code> の <code>auth</code> が「認証を実行するコマンド」、<code>start</code> が「bot を起動するコマンド」の定義です。第10章以降で <code>npm run auth</code>、<code>npm start</code> と打つのは、この定義を呼び出しています。</li>
-      <li><code>mock</code> は検証用のコマンドです。このマニュアルでは使いません（載せてあるのは完成形に合わせるためです）。</li>
-      <li><code>"type": "module"</code> は、コードの書き方（import を使う方式）の指定です。以後のコードは全部この方式で書かれています。</li>
-    </ul>
-    <div class="diagram">
-      <div class="tree">
-        <div class="ln">📁 bot</div>
-        <div class="ln">　📄 <span class="mark">.env</span><span class="point">👈 第9章で作ったもの</span></div>
-        <div class="ln">　📄 <span class="mark">.env.example</span></div>
-        <div class="ln">　📄 <span class="mark">package.json</span></div>
-        <div class="ln">　📁 src</div>
-        <div class="ln">　　📄 <span class="mark">env.js</span></div>
-      </div>
-      <p class="cap">図：ここまでのフォルダ構成（マーカーが、この章で作ったもの）</p>
-    </div>
-    <div class="callout warn"><span class="ct">⚠️ つまずきポイント（第9章）</span>
-      ・<strong>ファイル名に <code>.txt</code> が付いている</strong>（例：<code>env.js.txt</code>）：エディタの保存の仕方が原因です。Mac は「.txt を追加」を外す、Windows はファイルの種類を「すべてのファイル」にして、名前を付け直してください。<br>
-      ・<strong><code>.env</code> が見つからない</strong>：<code>.env</code> は先頭がドットのファイルで、通常の表示では見えないことがあります（Mac の Finder では ⌘+Shift+. で表示されます）。ターミナル／PowerShell で <code>ls</code>／<code>dir</code> を実行すると、隠れていても名前が確認できます。<br>
-      ・<strong>鍵の値に空白が混ざっている</strong>：貼り付けのときに前後の空白や改行が入ると、認証で失敗します。値の前後はきれいにそろえてください。</div>
+          <li><strong><code>config.example.json</code> を直接編集しない。</strong>更新のたびに上書きされて、編集が消えてしまいます。</li>
+          <li>編集は <code>config.json</code> に対して行います（第14章の管理画面からも編集できます）。</li>
+          <li>設定を変えたら bot の再起動で反映されます。再起動の前に第11章のモックで確認すると安全です。</li>
+        </ul>
+      </li>
+    </ol>
   </section>
 
   <section class="panel" id="ch10">
-    <span class="hen">標準編</span>
-    <h2 class="chap">第10章 部品1：認証（auth-server.js / auth.js）</h2>
-    <p>部品の1つ目は「認証」です。bot が Spoon の API を使うための通行証（トークン）を、最初に1回だけ取得します。</p>
-    <p>仕組みはこうです。</p>
-    <div class="diagram">
-      <div class="flow">
-        <div class="fbox"><span class="fe">🖥️</span><span class="ft">認証用サーバー</span><span class="fd">自分の PC で起動する</span></div>
-        <div class="farrow">➡</div>
-        <div class="fbox"><span class="fe">✅</span><span class="ft">ブラウザの同意画面</span><span class="fd">DJ 本人が同意する</span></div>
-        <div class="farrow">➡</div>
-        <div class="fbox"><span class="fe">🔑</span><span class="ft">code が戻ってくる</span><span class="fd"><span class="rednote">有効期限は60秒</span></span></div>
-        <div class="farrow">➡</div>
-        <div class="fbox hero"><span class="fe">🎫</span><span class="ft">トークンに交換</span><span class="fd">tokens.json に保存</span></div>
-      </div>
-      <p class="cap">図：認証の流れ。code の有効期限は60秒と短いので、受け取ったらすぐ交換します</p>
-    </div>
-    <ul>
-      <li>ブラウザで同意画面を開き、<strong>DJ 本人のアカウント</strong> で同意します。</li>
-      <li>同意すると、自分の PC で動いている認証用サーバーに「code」という短い合言葉が戻ってきます。</li>
-      <li>サーバーは code をトークンに交換し、<code>tokens.json</code> というファイルに保存します。以後はこのトークンで API を使います。</li>
-    </ul>
-    <p>作るファイルは2つです。</p>
-    <h3 class="subh">src/auth.js を作る</h3>
-    <p>次のコードを、そのまま <code>auth.js</code> という名前で src フォルダの中に保存します。</p>
-    <span class="codelabel">📄 src/auth.js</span>
-    <pre class="code"><code>// 認証（OAuth）まわり。
-// - トークンは tokens.json に保存します（このファイルは秘密情報です。共有禁止）
-// - Client Secret やトークンの値は、絶対に画面に表示しません
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
-import { getEnv, projectRoot } from './env.js';
-
-const tokensPath = join(projectRoot, 'tokens.json');
-
-export function loadTokens() {
-  if (!existsSync(tokensPath)) return null;
-  try {
-    return JSON.parse(readFileSync(tokensPath, 'utf8'));
-  } catch {
-    console.error('tokens.json が壊れているようです。削除して認証をやり直してください。');
-    return null;
-  }
-}
-
-export function hasTokens() {
-  const t = loadTokens();
-  return Boolean(t?.access_token &amp;&amp; t?.refresh_token);
-}
-
-export function saveTokens(tokenResponse) {
-  const now = Date.now();
-  const expiresInSec = Number(tokenResponse.expires_in ?? 3600);
-  const tokens = {
-    access_token: tokenResponse.access_token,
-    refresh_token: tokenResponse.refresh_token,
-    // 有効期限の少し前（60秒前）には更新するように、期限時刻を記録します
-    expires_at: now + expiresInSec * 1000,
-    scope: tokenResponse.scope ?? '',
-    saved_at: new Date(now).toISOString(),
-  };
-  writeFileSync(tokensPath, JSON.stringify(tokens, null, 2), { mode: 0o600 });
-  console.log('トークンを tokens.json に保存しました（内容は表示しません）。');
-  return tokens;
-}
-
-function basicAuthHeader() {
-  const id = getEnv('SPOON_CLIENT_ID');
-  const secret = getEnv('SPOON_CLIENT_SECRET');
-  if (!id || !secret) {
-    throw new Error('.env に SPOON_CLIENT_ID と SPOON_CLIENT_SECRET を入れてください（承認後に表示されます）。');
-  }
-  return 'Basic ' + Buffer.from(`${id}:${secret}`).toString('base64');
-}
-
-async function requestToken(formFields) {
-  const base = getEnv('SPOON_BASE_URL', 'https://jp-openapi.spooncast.net');
-  const res = await fetch(`${base}/v1/oauth/token`, {
-    method: 'POST',
-    headers: {
-      Authorization: basicAuthHeader(),
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: new URLSearchParams(formFields).toString(),
-  });
-  if (!res.ok) {
-    // エラー内容に秘密情報は含まれない想定ですが、本文はそのまま出さず状態だけ伝えます
-    throw new Error(`トークン取得に失敗しました（HTTP ${res.status}）。時間をおいて認証をやり直してください。`);
-  }
-  return res.json();
-}
-
-// 同意画面から戻ってきた code（有効期限60秒）をトークンに交換します。
-export async function exchangeCode(code) {
-  const data = await requestToken({
-    grant_type: 'authorization_code',
-    code,
-    redirect_uri: getEnv('SPOON_REDIRECT_URI', 'http://localhost:3000'),
-  });
-  return saveTokens(data);
-}
-
-// リフレッシュトークンで新しいトークンの組をもらいます。
-// 注意: 更新すると古いリフレッシュトークンは即座に無効になるため、必ず新しい組を保存します。
-export async function refreshTokens() {
-  const current = loadTokens();
-  if (!current?.refresh_token) {
-    throw new Error('tokens.json にリフレッシュトークンがありません。先に認証（npm run auth）を実行してください。');
-  }
-  const data = await requestToken({
-    grant_type: 'refresh_token',
-    refresh_token: current.refresh_token,
-  });
-  return saveTokens(data);
-}
-
-// 有効なアクセストークンを返します。期限が近ければ自動で更新します。
-export async function getValidAccessToken() {
-  let tokens = loadTokens();
-  if (!tokens?.access_token) {
-    throw new Error('tokens.json がありません。先に認証（npm run auth）を実行してください。');
-  }
-  const safetyMarginMs = 60 * 1000;
-  if (!tokens.expires_at || Date.now() &gt; tokens.expires_at - safetyMarginMs) {
-    console.log('アクセストークンの期限が近いので更新します…');
-    tokens = await refreshTokens();
-  }
-  return tokens.access_token;
-}</code></pre>
-    <p>役割の要点だけ押さえてください。</p>
-    <ul>
-      <li>トークンは <code>tokens.json</code> に保存されます。<strong>このファイルは認証の鍵そのもの</strong> なので、.env と同じく公開・共有は厳禁です。</li>
-      <li>トークンには有効期限があります。期限が近づくと <code>getValidAccessToken()</code> が自動で新しい組に更新します。<strong>更新すると古い組は即座に無効になる</strong> ため、コードは必ず新しい組を保存する作りになっています（ここを書き換えないでください）。</li>
-    </ul>
-    <h3 class="subh">src/auth-server.js を作る</h3>
-    <p>次のコードを、そのまま <code>auth-server.js</code> という名前で src フォルダの中に保存します。</p>
-    <span class="codelabel">📄 src/auth-server.js</span>
-    <pre class="code"><code>// 認証用の小さなローカルサーバー。
-// 役割: 同意画面のURLを表示する → 同意後に戻ってきた code を受け取る → トークンに交換して保存する。
-// このサーバーは自分のパソコンの中（localhost）でだけ動きます。外からはアクセスできません。
-import { createServer } from 'node:http';
-import { randomBytes } from 'node:crypto';
-import { loadEnv, getEnv } from './env.js';
-import { exchangeCode } from './auth.js';
-
-loadEnv();
-
-const redirectUri = getEnv('SPOON_REDIRECT_URI', 'http://localhost:3000');
-const redirectUrl = new URL(redirectUri);
-const port = Number(redirectUrl.port || 3000);
-const callbackPath = redirectUrl.pathname || '/callback';
-const clientId = getEnv('SPOON_CLIENT_ID');
-
-// ============================================================
-// 同意画面（authorize）のURL形式は公式ガイド「Build a bot」で確認済み:
-//   https://developers.spooncast.net/jp/oauth/authorize
-//     ?response_type=code&amp;client_id=...&amp;redirect_uri=...&amp;scope=...&amp;state=...
-// リージョンは /jp（日本）。APIのベースURL（jp-openapi...）とは別なので注意。
-// scope はアプリ登録時に申請した権限と一致させること。登録内容と違う場合は、
-// この scope の文字列を登録した権限に合わせて直してください。
-// ============================================================
-const consentState = randomBytes(16).toString('hex');
-function buildConsentUrl() {
-  const scope = 'me.read live.read listeners.read fans.read donations.read events.chat events.presence events.like events.donation events.follow chat.send dj.follow';
-  const params = new URLSearchParams({
-    response_type: 'code',
-    client_id: clientId,
-    redirect_uri: redirectUri,
-    scope,
-    state: consentState,
-  });
-  return `https://developers.spooncast.net/jp/oauth/authorize?${params.toString()}`;
-}
-
-if (!clientId || !getEnv('SPOON_CLIENT_SECRET')) {
-  console.log(
-    '.env に SPOON_CLIENT_ID と SPOON_CLIENT_SECRET が入っていません。\n' +
-      '審査承認後に表示される値を、安全な方法で .env に入れてから、もう一度実行してください。',
-  );
-  process.exit(0);
-}
-
-const server = createServer(async (req, res) =&gt; {
-  const url = new URL(req.url, redirectUri);
-  if (url.pathname !== callbackPath) {
-    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
-    res.end('ここではありません。同意後に自動で戻ってくるページです。');
-    return;
-  }
-  const code = url.searchParams.get('code');
-  const error = url.searchParams.get('error');
-  const returnedState = url.searchParams.get('state');
-  if (returnedState &amp;&amp; returnedState !== consentState) {
-    res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' });
-    res.end('安全確認（state）が一致しませんでした。最初からやり直してください。');
-    console.error('state が一致しなかったため、認証を中止しました。');
-    return;
-  }
-  if (error || !code) {
-    res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' });
-    res.end('同意が完了しなかったようです。画面の案内を確認して、もう一度お試しください。');
-    console.error('同意が完了しませんでした（code が返ってきませんでした）。');
-    return;
-  }
-  try {
-    // code の有効期限は60秒と短いので、受け取ったらすぐ交換します
-    await exchangeCode(code);
-    res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
-    res.end('認証が完了しました。このページは閉じて大丈夫です。元の画面に戻ってください。');
-    console.log('認証が完了しました。トークンを保存しました。このサーバーは Ctrl+C で止めて大丈夫です。');
-  } catch (err) {
-    res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
-    res.end('トークンの取得に失敗しました。元の画面の表示を確認してください。');
-    console.error(`トークン取得に失敗しました: ${err.message}（code は60秒で切れるため、最初からやり直すのが確実です）`);
-  }
-});
-
-server.listen(port, '127.0.0.1', () =&gt; {
-  console.log(`認証用サーバーを起動しました: http://localhost:${port}`);
-  console.log('');
-  console.log('次の順番で進めてください:');
-  console.log('  1. 下のURLをブラウザで開く');
-  console.log('  2. 配信する DJ 本人のアカウントで同意する ※bot用アカウントではなく、配信者本人の同意です');
-  console.log('  3. 自動でこのサーバーに戻ってくれば完了です');
-  console.log('');
-  console.log(buildConsentUrl());
-});</code></pre>
-    <ul>
-      <li>コードの中ほどにある <code>scope</code> の文字列は、第3章で申請した12権限と一致させてあります。申請した権限がこれと違う場合は、その文字列を自分の申請内容に合わせて直してください。</li>
-      <li>このサーバーは自分の PC の中（localhost）でだけ動きます。外からはアクセスできません。</li>
-    </ul>
-    <h3 class="subh">動かして確認：認証を実行する</h3>
-    <div class="steps">
-      <div class="step"><span class="no">1</span><div class="sb"><p>ターミナル（Mac）／PowerShell（Windows）で bot フォルダに移り、認証を実行します。</p></div></div>
-    </div>
-    <div class="cmdpair">
-      <div class="cmdos mac"><span class="os">🍎 Mac</span><pre class="code"><code>cd ~/Downloads/bot
-npm run auth</code></pre></div>
-      <div class="cmdos win"><span class="os">🪟 Windows</span><pre class="code"><code>cd $HOME\Downloads\bot
-npm run auth</code></pre></div>
-    </div>
-    <div class="steps">
-      <div class="step"><span class="no">2</span><div class="sb"><p>画面に「認証用サーバーを起動しました」と、進め方と長い URL が表示されます。</p>
-        <ul><li>もし「.env に SPOON_CLIENT_ID と SPOON_CLIENT_SECRET が入っていません」と出たら、第9章に戻って .env の記入を確認してください。</li></ul></div></div>
-      <div class="step"><span class="no">3</span><div class="sb"><p>表示された URL をブラウザで開きます。</p></div></div>
-      <div class="step"><span class="no">4</span><div class="sb"><p><strong>ここが大事な分かれ道です。</strong> 同意は <strong>DJ 本人のアカウント</strong> で行います。</p>
+    <span class="hen">Mac編</span>
+    <h2 class="chap">第10章 初回ログインとトークン取得（認証）</h2>
+    <p>bot が本物の Spoon API につながるための、最初の認証です。</p>
+    <ol>
+      <li>ターミナルで bot フォルダにいることを確認し、次を実行します。
+        <pre class="code"><code>cd ~/Downloads/bot
+npm run auth</code></pre>
+      </li>
+      <li>ブラウザで Spoon の同意画面が開きます。</li>
+      <li><strong>ここが大事な分かれ道です。</strong>同意は <strong>DJ 本人のアカウント</strong> で行います。
         <ul>
           <li>画面に表示されているアカウント名を確認してください。bot 用アカウントの名前になっていたら、いったんログアウトして DJ 本人のアカウントでログインし直します。</li>
           <li>bot 用アカウントのまま同意すると「このアプリとは連携できません」と表示されて進めません（実際にこの切り分けで解決しました）。</li>
-        </ul></div></div>
-      <div class="step"><span class="no">5</span><div class="sb"><p>同意すると、ブラウザが自動で認証用サーバーに戻り、「認証が完了しました」と表示されます。ターミナル／PowerShell 側にも「トークンを tokens.json に保存しました」と出ます。</p></div></div>
-      <div class="step"><span class="no">6</span><div class="sb"><p>bot フォルダに <code>tokens.json</code> ができていれば認証は完了です。認証用サーバーは <span class="kbd">Ctrl</span>+<span class="kbd">C</span> で止めて構いません。</p></div></div>
+        </ul>
+      </li>
+      <li>同意すると、bot フォルダに <code>tokens.json</code> というファイルができます。これで認証は完了です。</li>
+      <li>うまくいかないときは、まず第4章のリダイレクトURL（アプリ側と .env が両方とも <code>http://localhost:3000</code> で一致しているか）を確認してください。失敗のほとんどはここです。</li>
+    </ol>
+    <div class="callout warn">
+      <span class="ct">🔑 tokens.json も鍵そのもの</span>
+      <code>tokens.json</code> は認証の鍵そのものです。.env と同じく、公開・共有はしないでください。
     </div>
-    <div class="callout point"><span class="ct">💡 code の有効期限は60秒</span>同意の途中で手間取って失敗したら、慌てずにもう一度 <code>npm run auth</code> からやり直してください（何度やり直しても問題ありません）。</div>
-    <div class="callout env"><span class="ct">📚 コラム（Windows）：PowerShell で npm が止まる場合</span>PowerShell の設定（実行ポリシー）によっては、<code>npm run auth</code> の時点で「npm.ps1 を読み込めません。スクリプトの実行が無効になっています」のようなエラーが出て、コマンド自体が動かないことがあります。その場合は次のどちらかで進めます。<br>
-      ・簡単な方法：<strong>コマンドプロンプト</strong>を使う。スタートメニューで「cmd」と検索して開き、<code>cd %USERPROFILE%\Downloads\bot</code> で bot フォルダに移動してから、同じ <code>npm run auth</code> などを実行します。このマニュアルのコマンドは、ほとんどがコマンドプロンプトでもそのまま使えます（<code>copy</code> や <code>cd</code>、<code>npm</code> 系は共通です）。<br>
-      ・PowerShell のまま使う方法：<code>Set-ExecutionPolicy -Scope CurrentUser RemoteSigned</code> を実行して「Y」で確定すると、自分のユーザー範囲だけスクリプト実行が許可されます（管理者権限は不要です）。元に戻す必要は基本的にありません。<br>
-      なお、これは npm コマンドが止まる場合だけの対処です。bot 本体の動作には関係ありません。</div>
-    <div class="callout warn"><span class="ct">⚠️ つまずきポイント（第10章）</span>
-      ・<strong>「このアプリとは連携できません」</strong>：同意したアカウントが bot 用アカウントになっています。DJ 本人のアカウントでログインし直してから同意してください。それでも直らない場合は、第4章のリダイレクトURL（アプリ側と .env が両方とも <code>http://localhost:3000</code> で一致しているか）を確認してください。失敗のほとんどはこの2つです。<br>
-      ・<strong>ブラウザが戻ってこない／エラーになる</strong>：code の60秒切れの可能性があります。<code>npm run auth</code> からやり直してください。<br>
-      ・<strong>tokens.json は絶対に人に渡さない</strong>：認証の鍵そのものです。.env と同じ扱いをしてください。</div>
   </section>
 
   <section class="panel" id="ch11">
-    <span class="hen">標準編</span>
-    <h2 class="chap">第11章 部品2：接続（events.js）</h2>
-    <p>部品の2つ目は「接続」です。配信中の出来事（イベント）を、リアルタイムで受け取る仕組みを作ります。</p>
-    <p>イベントの種類は次の5つ＋終了通知です。</p>
-    <div class="tblwrap"><table class="tbl">
-      <tr><th>イベント</th><th>届くタイミング</th></tr>
-      <tr><td><code>chat</code></td><td>コメントが投稿されたとき</td></tr>
-      <tr><td><code>presence</code></td><td>入室・退室があったとき</td></tr>
-      <tr><td><code>like</code></td><td>ハートが押されたとき</td></tr>
-      <tr><td><code>donation</code></td><td>spoon が投げられたとき</td></tr>
-      <tr><td><code>follow</code></td><td>フォローされたとき</td></tr>
-      <tr><td><code>end</code></td><td>接続が終わるとき（理由つき）</td></tr>
-    </table></div>
-    <div class="diagram">
-      <div class="flow">
-        <div class="fbox"><span class="fe">📱</span><span class="ft">配信（配信端末）</span><span class="fd">出来事が起きる場所</span></div>
-        <div class="farrow">➡</div>
-        <div class="fbox"><span class="fe">☁️</span><span class="ft">公式 API</span><span class="fd">出来事をそのまま届ける</span></div>
-        <div class="farrow">➡</div>
-        <div class="fbox hero"><span class="fe">💻</span><span class="ft">自分の PC の bot</span><span class="fd">次々と受け取る</span></div>
-      </div>
-      <div class="bubbles"><span class="bubble">💬 コメント</span><span class="bubble">🚪 入室</span><span class="bubble">❤️ ハート</span><span class="bubble">🥄 spoon</span><span class="bubble">➕ フォロー</span></div>
-      <p class="cap">図：イベントの流れ。配信で起きた出来事が、公式 API を通って bot に次々届きます</p>
-    </div>
-    <h3 class="subh">src/events.js を作る</h3>
-    <p>次のコードを、そのまま <code>events.js</code> という名前で src フォルダの中に保存します。</p>
-    <span class="codelabel">📄 src/events.js</span>
-    <pre class="code"><code>// イベント受信（SSE: Server-Sent Events）の仕組み。
-// 配信中のチャット・入室・ハート・spoon・フォローをリアルタイムで受け取ります。
-import { getEnv } from './env.js';
-import { getValidAccessToken, refreshTokens } from './auth.js';
-
-const sleep = (ms) =&gt; new Promise((resolve) =&gt; setTimeout(resolve, ms));
-
-// SSEのテキストを少しずつ受け取り、イベント単位に切り分けるパーサー。
-// - 空行がイベントの区切り
-// - 「:」で始まる行はハートビート（接続維持用）なので無視
-// - event: が種類、data: が中身（JSON）
-export function createSSEParser(onEvent) {
-  let buffer = '';
-
-  function handleFrame(frame) {
-    let eventName = 'message';
-    const dataLines = [];
-    for (const rawLine of frame.split('\n')) {
-      const line = rawLine.replace(/\r$/, '');
-      if (line === '' || line.startsWith(':')) continue; // ハートビート等
-      if (line.startsWith('event:')) eventName = line.slice(6).trim();
-      else if (line.startsWith('data:')) dataLines.push(line.slice(5).trim());
-    }
-    if (dataLines.length === 0) return;
-    let data = null;
-    try {
-      data = JSON.parse(dataLines.join('\n'));
-    } catch {
-      return; // JSONでないデータは読み飛ばす
-    }
-    onEvent(eventName, data);
-  }
-
-  return {
-    push(chunkText) {
-      buffer += chunkText;
-      // フレームの区切りは空行（\n\n）。環境差を吸収するため \r\n\r\n も扱う
-      buffer = buffer.replace(/\r\n/g, '\n');
-      let idx;
-      while ((idx = buffer.indexOf('\n\n')) !== -1) {
-        const frame = buffer.slice(0, idx);
-        buffer = buffer.slice(idx + 2);
-        if (frame.trim()) handleFrame(frame);
-      }
-    },
-    flush() {
-      if (buffer.trim()) handleFrame(buffer);
-      buffer = '';
-    },
-  };
-}
-
-// イベントに接続し続けます。
-// handlers: { chat(data), presence(data), like(data), donation(data), follow(data), end(data) }
-// 戻り値: 停止するための関数を持つオブジェクト
-export async function connectEvents(handlers, options = {}) {
-  const base = getEnv('SPOON_BASE_URL', 'https://jp-openapi.spooncast.net');
-  const getToken = options.getAccessToken ?? getValidAccessToken;
-  const doRefresh = options.refreshTokens ?? refreshTokens;
-  const fetchImpl = options.fetchImpl ?? fetch;
-  const sleepImpl = options.sleep ?? sleep;
-
-  let stopped = false;
-  let backoffMs = 5_000;
-  const maxBackoffMs = 60_000;
-
-  const stop = () =&gt; {
-    stopped = true;
-  };
-
-  (async () =&gt; {
-    while (!stopped) {
-      let endReason = null;
-
-      try {
-        const accessToken = await getToken();
-        const res = await fetchImpl(`${base}/v1/live/events`, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            Accept: 'text/event-stream',
-          },
-        });
-
-        if (res.status === 404) {
-          // 配信していないだけ（エラーではない）。待ってから接続し直す
-          options.onStatus?.('待機中（配信していません）');
-          console.log(`配信中ではありません。${Math.round(backoffMs / 1000)}秒後に再接続します…`);
-          await sleepImpl(backoffMs);
-          backoffMs = Math.min(backoffMs * 2, maxBackoffMs);
-          continue;
-        }
-        if (!res.ok || !res.body) {
-          console.error(`イベント接続に失敗しました（HTTP ${res.status}）。${Math.round(backoffMs / 1000)}秒後に再接続します…`);
-          await sleepImpl(backoffMs);
-          backoffMs = Math.min(backoffMs * 2, maxBackoffMs);
-          continue;
-        }
-
-        console.log('イベントに接続しました。配信の様子を見守ります。');
-        options.onStatus?.('接続中');
-        backoffMs = 5_000;
-
-        const parser = createSSEParser((eventName, data) =&gt; {
-          if (eventName === 'end') {
-            endReason = data?.reason ?? null;
-            handlers.end?.(data);
-            return;
-          }
-          handlers[eventName]?.(data);
-        });
-
-        const reader = res.body.getReader();
-        const decoder = new TextDecoder();
-        while (!stopped) {
-          const { value, done } = await reader.read();
-          if (done) break;
-          parser.push(decoder.decode(value, { stream: true }));
-          if (endReason) break;
-        }
-        parser.flush();
-      } catch (err) {
-        if (!stopped) {
-          console.error(`イベント受信で問題が起きました: ${err.message}。${Math.round(backoffMs / 1000)}秒後に再接続します…`);
-          await sleepImpl(backoffMs);
-          backoffMs = Math.min(backoffMs * 2, maxBackoffMs);
-          continue;
-        }
-      }
-
-      // end イベントの理由ごとの扱い
-      if (endReason === 'DUPLICATE_CONNECTION') {
-        // すでに別の接続が生きている。再接続すると互いに切断し合うので、ここで完全停止
-        console.error('別の接続がすでにあります（DUPLICATE_CONNECTION）。二重起動していないか確認してください。このbotは停止します。');
-        stopped = true;
-        break;
-      }
-      if (stopped) break;
-      if (endReason === 'TOKEN_EXPIRED') {
-        console.log('トークンの期限切れで接続が終わりました。更新して再接続します…');
-        try {
-          await doRefresh();
-        } catch (err) {
-          console.error(`トークン更新に失敗しました: ${err.message}`);
-          await sleepImpl(backoffMs);
-        }
-        continue;
-      }
-      if (endReason === 'LIVE_ENDED') {
-        options.onStatus?.('待機中（配信は終了しました）');
-        console.log('配信が終了しました。次の配信に備えて待機します…');
-        await sleepImpl(backoffMs);
-        continue;
-      }
-      // RECONNECT は公式推奨どおり、待ち時間なしで即再接続（配信もトークンも正常なため）
-      if (endReason === 'RECONNECT') {
-        console.log('サーバー側の都合で接続が切り替わりました。すぐに再接続します…');
-        continue;
-      }
-      // その他の理由は少し待って再接続
-      if (endReason) {
-        console.log(`接続が終了しました（理由: ${endReason}）。再接続します…`);
-        await sleepImpl(3_000);
-      }
-    }
-    console.log('イベント受信を停止しました。');
-  })();
-
-  return { stop };
-}</code></pre>
-    <p>このファイルの肝は2つです。</p>
+    <span class="hen">Mac編</span>
+    <h2 class="chap">第11章 モックで動作確認</h2>
+    <p>本物の配信につなぐ前に、練習実行で bot の動きを確かめます。</p>
+    <pre class="code"><code>cd ~/Downloads/bot
+npm run mock</code></pre>
     <ul>
-      <li><strong>受け取りの形式（SSE）</strong>：イベントは少しずつ流れてくるので、区切りごとに切り分けて「種類」と「中身」に分ける処理（パーサー）が入っています。</li>
-      <li><strong>切れても立て直す</strong>：接続が切れたら、理由に応じて「待ってからつなぎ直す」「トークンを更新してつなぎ直す」などを自動で行います。特に <strong>404 はエラーではなく「今は配信していない」という意味</strong> です。待機して再接続を繰り返します。</li>
+      <li>モックは、偽のコメントや spoon などのイベントを bot に渡して、返信が正しく作られるかを表示する仕組みです。本物の配信にはつながりません。</li>
+      <li>画面に bot の返信の件数と内容が出ます。出てきた返信が想定どおりなら、設定とプログラムはひとまず正常です。</li>
+      <li>モックは設定ミスの発見にも使えます。たとえば config.json が古いままだと、新しい機能の返信がモックにも出てきません。「更新したのに新機能が動かない」ときは、まずモックで切り分けてください。</li>
     </ul>
-    <h3 class="subh">動かして確認：イベントが見えるか</h3>
-    <p>部品だけでは起動できないので、ここからは <strong>確認専用の使い捨てファイル <code>check.js</code></strong> を使います。これは bot の部品ではなく、部品の動きを見るためだけのファイルです。第17章で全部をつないだら消します。</p>
-    <p>次の内容を <code>check.js</code> という名前で、bot フォルダの直下（src の中ではありません）に保存します。</p>
-    <span class="codelabel">🧪 check.js（確認専用）</span>
-    <pre class="code"><code>// 確認専用の使い捨てファイルです（bot の部品ではありません。第17章で消します）
-import { loadEnv } from './src/env.js';
-import { connectEvents } from './src/events.js';
-
-loadEnv();
-
-await connectEvents({
-  chat: (data) =&gt; console.log('チャット:', data?.user?.nickname, data?.message),
-  presence: (data) =&gt; console.log('入室・退室:', data?.type, data?.user?.nickname),
-  like: (data) =&gt; console.log('ハート:', data?.user?.nickname, data?.amount),
-  donation: (data) =&gt; console.log('spoon:', data?.user?.nickname, data?.amount),
-  follow: (data) =&gt; console.log('フォロー:', data?.user?.nickname),
-  end: (data) =&gt; console.log('終了通知:', data?.reason),
-});
-console.log('確認用に接続しました。止めるときは Ctrl+C です。');</code></pre>
-    <p>確認の手順：</p>
-    <div class="steps">
-      <div class="step"><span class="no">1</span><div class="sb"><p>配信端末で、<strong>ファン限定のテスト配信</strong> を開きます（この時点では bot はまだ何も返しません。出来事を受け取るだけです）。</p></div></div>
-      <div class="step"><span class="no">2</span><div class="sb"><p>ターミナル（Mac）／PowerShell（Windows）で bot フォルダに移り、check.js を実行します。</p></div></div>
-    </div>
-    <div class="cmdpair">
-      <div class="cmdos mac"><span class="os">🍎 Mac</span><pre class="code"><code>cd ~/Downloads/bot
-node check.js</code></pre></div>
-      <div class="cmdos win"><span class="os">🪟 Windows</span><pre class="code"><code>cd $HOME\Downloads\bot
-node check.js</code></pre></div>
-    </div>
-    <div class="steps">
-      <div class="step"><span class="no">3</span><div class="sb"><p>「イベントに接続しました」と表示されたら接続成功です。その状態で、配信にコメントを打ったり、入室したりしてみてください。画面に「チャット:（名前）（内容）」のように、出来事が1行ずつ表示されれば、部品2は動いています。</p></div></div>
-      <div class="step"><span class="no">4</span><div class="sb"><p>確認が終わったら <span class="kbd">Ctrl</span>+<span class="kbd">C</span> で止めます。</p></div></div>
-    </div>
-    <div class="callout point"><span class="ct">💡 待機中の表示</span>配信を開いていない状態で実行すると、「配信中ではありません。○秒後に再接続します…」と表示され続けます。これは故障ではなく待機中という意味です。</div>
-    <div class="callout warn"><span class="ct">⚠️ つまずきポイント（第11章）</span>
-      ・<strong>「別の接続がすでにあります（DUPLICATE_CONNECTION）」</strong>：bot（や check.js）が二重に動いています。イベントの接続は1配信につき1本だけです。動いているものを全部 <span class="kbd">Ctrl</span>+<span class="kbd">C</span> で止めてから、1つだけ実行してください。<br>
-      ・<strong>ずっと「配信中ではありません」</strong>：配信が開かれていないか、認証した DJ 本人の配信ではない可能性があります。テスト配信が開いているか確認してください。</div>
   </section>
 
   <section class="panel" id="ch12">
-    <span class="hen">標準編</span>
-    <h2 class="chap">第12章 部品3：チャット送信（chat.js）</h2>
-    <p>部品の3つ目は「チャット送信」です。bot が配信のチャット欄に文を送る仕組みを作ります。</p>
-    <h3 class="subh">src/chat.js を作る</h3>
-    <p>次のコードを、そのまま <code>chat.js</code> という名前で src フォルダの中に保存します。</p>
-    <span class="codelabel">📄 src/chat.js</span>
-    <pre class="code"><code>// 配信にチャットを送る仕組み。
-// DRY_RUN が有効な間は、実際には送らず画面に表示するだけ（安全スイッチ）。
-import { getEnv, isDryRun } from './env.js';
-import { getValidAccessToken } from './auth.js';
-
-export async function sendChat(message) {
-  const text = String(message ?? '').trim();
-  if (!text) return false;
-
-  // 公式仕様：message は最大200文字（UTF-16コード単位＝JSのlengthと同じ数え方）。
-  // 超える文はエラーになるので、送らずに知らせる。
-  if (text.length &gt; 200) {
-    console.error(`チャット送信を止めました（${text.length}文字で、公式上限200文字を超えています）: ${text.slice(0, 50)}…`);
-    return false;
-  }
-
-  if (isDryRun()) {
-    console.log(`[DRY_RUN] 送信しません（本番ではこの文を送ります）: ${text}`);
-    return true;
-  }
-
-  const base = getEnv('SPOON_BASE_URL', 'https://jp-openapi.spooncast.net');
-  const accessToken = await getValidAccessToken();
-  const res = await fetch(`${base}/v1/live/chat`, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      'Content-Type': 'application/json',
-    },
-    // 公式仕様で確認済み：送信フィールドは message（最大200文字）
-    body: JSON.stringify({ message: text }),
-  });
-  if (res.status !== 204 &amp;&amp; !res.ok) {
-    console.error(`チャット送信に失敗しました（HTTP ${res.status}）。`);
-    return false;
-  }
-  console.log(`チャットを送信しました: ${text}`);
-  return true;
-}</code></pre>
-    <p>大事な点は2つです。</p>
-    <ul>
-      <li><strong>200文字の上限</strong>：チャットの文は公式仕様で最大200文字です。超える文は送らずに知らせる作りになっています（返信文を作るときの目安にしてください）。</li>
-      <li><strong>安全スイッチ（DRY_RUN）</strong>：.env の <code>DRY_RUN</code> が <code>1</code> の間は、実際には送らず「[DRY_RUN] 送信しません（本番ではこの文を送ります）: …」と画面に表示するだけです。組み立ての間はこの状態で確認するので、誤って本物の配信に bot の文が流れることはありません。</li>
-    </ul>
-    <h3 class="subh">動かして確認：送信の形が見えるか</h3>
-    <p>check.js を、次の内容に <strong>丸ごと差し替えて</strong> 保存します（接続の確認に、送信の確認を1つ足したものです）。</p>
-    <span class="codelabel">🧪 check.js（確認専用・差し替え）</span>
-    <pre class="code"><code>// 確認専用の使い捨てファイルです（bot の部品ではありません。第17章で消します）
-import { loadEnv } from './src/env.js';
-import { connectEvents } from './src/events.js';
-import { sendChat } from './src/chat.js';
-
-loadEnv();
-
-await connectEvents({
-  chat: (data) =&gt; console.log('チャット:', data?.user?.nickname, data?.message),
-  presence: (data) =&gt; console.log('入室・退室:', data?.type, data?.user?.nickname),
-  like: (data) =&gt; console.log('ハート:', data?.user?.nickname, data?.amount),
-  donation: (data) =&gt; console.log('spoon:', data?.user?.nickname, data?.amount),
-  follow: (data) =&gt; console.log('フォロー:', data?.user?.nickname),
-  end: (data) =&gt; console.log('終了通知:', data?.reason),
-});
-await sendChat('bot の送信テストです');
-console.log('確認用に接続しました。止めるときは Ctrl+C です。');</code></pre>
-    <div class="steps">
-      <div class="step"><span class="no">1</span><div class="sb"><p>テスト配信を開いた状態で、もう一度 <code>node check.js</code> を実行します（第11章と同じコマンドです）。</p></div></div>
-      <div class="step"><span class="no">2</span><div class="sb"><p>画面に <strong>[DRY_RUN] 送信しません（本番ではこの文を送ります）: bot の送信テストです</strong> と出れば成功です。実際のチャット欄には何も出ていないことも確認してください（それが安全スイッチの働きです）。</p></div></div>
-      <div class="step"><span class="no">3</span><div class="sb"><p>確認が終わったら <span class="kbd">Ctrl</span>+<span class="kbd">C</span> で止めます。</p></div></div>
+    <span class="hen">Mac編</span>
+    <h2 class="chap">第12章 テスト配信（DRY_RUN）から本番へ</h2>
+    <p>いよいよ実配信で試します。最初は安全スイッチを入れたまま、ファン限定のテスト配信で行います。</p>
+    <h3 class="subh">テスト配信（DRY_RUN=1）</h3>
+    <p>前提：.env の <code>DRY_RUN</code> が <code>1</code> のままであること。</p>
+    <ol>
+      <li>配信端末（タブレット／スマホ）でファン限定のテスト配信を開始します。</li>
+      <li>Mac のターミナルで bot を起動します。
+        <pre class="code"><code>cd ~/Downloads/bot
+npm start</code></pre>
+      </li>
+      <li><strong>bot の接続が完了するまで少し待ちます。</strong>リスナー一覧に bot アカウントが出てきたら準備 OK です。</li>
+      <li>DJ 側のリスナー一覧から、bot を <strong>マネージャーに任命</strong> します。</li>
+      <li>DJ がチャットで <code>!help</code> と打ちます。</li>
+      <li>DRY_RUN 中は実際のチャットには何も出ません。代わりに、bot が「送るはずだった返信」がターミナルに表示されます。これが見えれば接続成功です。</li>
+    </ol>
+    <div class="callout point">
+      <span class="ct">💡 注意</span>
+      ・bot が接続している間は、bot 用アカウントでアプリや Web から同じ配信に入らないでください。<br>
+      ・<code>npm start</code> は1つだけ起動してください。
     </div>
-    <div class="callout warn"><span class="ct">⚠️ つまずきポイント（第12章）</span>
-      ・<strong>[DRY_RUN] の行が出ない</strong>：check.js の差し替えが保存できていないか、実行しているフォルダが違います。<code>cd</code> で bot フォルダにいることと、ファイル名が <code>check.js</code> で合っていることを確認してください。<br>
-      ・<strong>いきなり本物のチャットに送ってしまった</strong>：.env の <code>DRY_RUN</code> が <code>0</code> になっている可能性があります。第9章の設定を確認してください。組み立ての間は必ず <code>1</code> です。</div>
+    <h3 class="subh">本番モード（DRY_RUN=0）へ</h3>
+    <ol>
+      <li>ターミナルで Ctrl+C を押して bot を止めます。</li>
+      <li>.env を開き、<code>DRY_RUN=1</code> を <code>DRY_RUN=0</code> に書き換えて保存します。
+        <pre class="code"><code>open -e ~/Downloads/bot/.env</code></pre>
+      </li>
+      <li>もう一度 <code>npm start</code> で起動します。</li>
+      <li>テスト配信のまま <code>!help</code> と打つと、今度は <strong>実際のチャット欄に bot の返信が表示されます</strong>。ここまで確認できたら導入完了です。</li>
+      <li>後片付けとして、テストが終わったら配信を終了し、bot も Ctrl+C で止めます。</li>
+    </ol>
   </section>
 
   <section class="panel" id="ch13">
-    <span class="hen">標準編</span>
-    <h2 class="chap">第13章 部品4：キーワード反応（bot.js 前半 / config.json）</h2>
-    <p>部品の4つ目は「キーワード反応」です。チャットに決められた言葉が打たれたら、決められた文を返す——bot の「頭脳」の前半を作ります。あわせて、文面などの設定ファイルも用意します。</p>
-    <h3 class="subh">src/config.js を作る</h3>
-    <p>次のコードを、そのまま <code>config.js</code> という名前で src フォルダの中に保存します。</p>
-    <span class="codelabel">📄 src/config.js</span>
-    <pre class="code"><code>// 設定ファイルの読み込みと保存。
-// config.json があればそれを、無ければ config.example.json（見本）を使います。
-// 保存はいつも config.json へ書きます（見本ファイルは上書きしません）。
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
-import { projectRoot } from './env.js';
-
-const configPath = join(projectRoot, 'config.json');
-const examplePath = join(projectRoot, 'config.example.json');
-
-export function loadConfig() {
-  const fromOwn = existsSync(configPath);
-  const path = fromOwn ? configPath : examplePath;
-  const config = JSON.parse(readFileSync(path, 'utf8'));
-  console.log(`設定ファイルを読み込みました: ${fromOwn ? 'config.json' : 'config.example.json（見本）'}`);
-  return config;
-}
-
-export function saveConfig(config) {
-  writeFileSync(configPath, JSON.stringify(config, null, 2), 'utf8');
-  console.log('設定を config.json に保存しました。');
-  return config;
-}
-
-// 文面の {nickname} を実際のニックネームに置き換えます。
-export function fillTemplate(template, values) {
-  return String(template ?? '').replace(/\{(nickname|chats|likes|spoons)\}/g, (_, key) =&gt; {
-    const v = values?.[key];
-    return v === undefined || v === null ? '' : String(v);
-  });
-}</code></pre>
-    <ul>
-      <li>設定は <code>config.json</code> というファイルに置きます。保存は管理画面（第16章）からも行われますが、書き先はいつもこのファイルです。</li>
-      <li><code>fillTemplate()</code> は、文面の中の <code>{nickname}</code> を、実際のリスナーの名前に置き換える仕組みです。文面を書くときに使えます。</li>
-    </ul>
-    <h3 class="subh">config.json を作る</h3>
-    <p>次の内容を <code>config.json</code> という名前で、bot フォルダの直下に保存します。（見やすく改行してありますが、内容は完成形そのものです。）</p>
-    <span class="codelabel">📄 config.json</span>
-    <pre class="code"><code>{
-  "commands": {
-    "!help": "使い方: !help でこの案内、!記録 で自分の記録（コメント数など）が見られます",
-    "!おはよう": "{nickname}さん、おはようございます！"
-  },
-  "followReply": "{nickname}さん、フォローありがとうございます！",
-  "joinReply": "{nickname}さん、いらっしゃい！"
-}</code></pre>
-    <p>中身の意味は次のとおりです。</p>
-    <div class="diagram">
-      <div class="tree">
-        <div class="ln">{</div>
-        <div class="ln">　"commands": {</div>
-        <div class="ln">　　<span class="mark">"!help": "使い方: …"</span><span class="point">👈 打たれた言葉 = 返す文</span></div>
-        <div class="ln">　　"!おはよう": "{nickname}さん、おはようございます！"</div>
-        <div class="ln">　},</div>
-        <div class="ln">　"joinReply": "{nickname}さん、いらっしゃい！" <span class="dim" style="color:#9d92d6;">← 入室のお礼</span></div>
-        <div class="ln">　"followReply": "{nickname}さん、フォローありがとうございます！" <span class="dim" style="color:#9d92d6;">← フォローのお礼</span></div>
-        <div class="ln">}</div>
-      </div>
-      <p class="cap">図：config.json の見かた。<code>commands</code> が「言葉 = 返信文」の対応表です</p>
+    <span class="hen">Mac編</span>
+    <h2 class="chap">第13章 毎回の配信手順</h2>
+    <p>通常の配信では、この3ステップだけです。</p>
+    <div class="steps3">
+      <div class="step3"><span class="no">1</span><span class="st">配信を開始する</span><span class="sd">配信端末（タブレット／スマホ）で、いつもどおり配信を開きます。</span></div>
+      <div class="step3"><span class="no">2</span><span class="st">bot を起動する</span><span class="sd">Mac のターミナルで <code>cd ~/Downloads/bot</code> してから <code>npm start</code>。</span></div>
+      <div class="step3"><span class="no">3</span><span class="st">マネージャーに任命する</span><span class="sd">リスナー一覧に bot が出る（＝接続完了）のを待ってから任命します。</span></div>
     </div>
-    <ul>
-      <li><code>commands</code>：キーワード反応の対応表です。<strong>「!コマンド = 返信文」</strong> の形で、1行に1つ書きます。</li>
-      <li><code>joinReply</code>：入室のお礼文（第14章で使います）。</li>
-      <li><code>followReply</code>：フォローのお礼文（第14章で使います）。</li>
-      <li>文面の中の <code>{nickname}</code> は、相手の名前に置き換わります。</li>
-    </ul>
-    <h3 class="subh">src/bot.js を作る（前半）</h3>
-    <p>次に頭脳の本体です。<strong>この章では bot.js の前半だけを貼ります。この時点ではまだファイルが完成していないので動きません。</strong> 第14章で後半を足して完成させます。</p>
-    <p>次のコードを <code>bot.js</code> という名前で src フォルダの中に保存します（第14章で、このファイルの続きに後半を貼り足します）。</p>
-    <span class="codelabel">📄 src/bot.js（前半）</span>
-    <pre class="code"><code>// bot の頭脳：届いたイベントを見て、反応するかどうかを決める場所。
-// 標準機能のうち「キーワード反応」「入室・フォローのお礼」「集計の呼び出し」はここに集まっています。
-import { sendChat } from './chat.js';
-import { fillTemplate } from './config.js';
-
-// getConfig: 最新の設定を返す関数（管理画面で保存したらすぐ反映されるように、毎回呼びます）
-// stats: 集計（stats.js）
-// sendChatImpl: チャット送信（モック検証で差し替えられるよう、差し替え可能にしてあります）
-export function createBot({ getConfig, stats, sendChatImpl = sendChat, log = console.log }) {
-  const nicknameOf = (data) =&gt; data?.user?.nickname ?? 'リスナー';
-
-  // チャット：数える → キーワード反応 の順に処理します
-  async function onChat(data) {
-    const message = String(data?.message ?? '');
-    if (!message) return false;
-    const isDj = data?.isDj === true;
-
-    // 集計：DJ本人以外のコメントを数える（bot自身の送信文はイベントとして届かないので対象外）
-    if (!isDj) stats?.recordChat(data?.user);
-
-    const config = getConfig();
-    const trimmed = message.trim();
-
-    // キーワード反応：設定の commands にある言葉と完全一致したら、その返信文を送る
-    const reply = (config.commands ?? {})[trimmed];
-    if (typeof reply === 'string' &amp;&amp; reply) {
-      return sendChatImpl(fillTemplate(reply, { nickname: nicknameOf(data) }));
-    }
-
-    // 組み込みコマンド !記録：自分の集計を返す（commands に !記録 があればそちらが優先されます）
-    if (trimmed === '!記録') {
-      const rec = stats?.get(data?.user?.id) ?? { chats: 0, likes: 0, spoons: 0 };
-      const text = fillTemplate(
-        '{nickname}さんの記録: コメント{chats}回 / ハート{likes}個 / spoon{spoons}個',
-        { nickname: nicknameOf(data), chats: rec.chats, likes: rec.likes, spoons: rec.spoons },
-      );
-      return sendChatImpl(text);
-    }
-    return false;
-  }</code></pre>
-    <p>読みどころは次のとおりです。</p>
-    <ul>
-      <li>チャットが届いたら、まず集計に渡し（集計の部品は第15章で作ります。今は空振りで問題ありません）、次にキーワード反応を調べます。</li>
-      <li>キーワード反応は <strong>完全一致</strong> です。<code>commands</code> にある言葉とチャットがぴったり一致したときだけ返します（文の一部に含まれているだけでは反応しません）。</li>
-      <li><code>!記録</code> は組み込みのコマンドで、自分の集計を返します（第15章で中身が生きてきます）。<code>commands</code> に <code>!記録</code> を自分で書いた場合は、そちらが優先されます。</li>
-    </ul>
-    <div class="callout warn"><span class="ct">⚠️ つまずきポイント（第13章）</span>
-      ・<strong>bot.js を貼ったのにエラーになる</strong>：この章の時点では bot.js は未完成なので、実行するとエラーになります。それで正常です。第14章で完成させてから確認します。<br>
-      ・<strong>config.json の文法エラー</strong>：JSON は <code>,</code> の付け忘れや <code>"</code> の閉じ忘れで読めなくなります。編集したら、第14章の確認で「設定ファイルを読み込みました」と出るかを見てください。</div>
+    <p>配信が終わったら、ターミナルで Ctrl+C を押して bot を止めます。</p>
+    <div class="callout warn">
+      <span class="ct">⚠️ 毎回の注意点</span>
+      ・配信開始直後は、bot の接続が完了する前にコマンドを打っても反応しません。リスナー一覧に bot が出てから任命とテストを行ってください。<br>
+      ・<code>npm start</code> の二重起動は厳禁です。2つ起動すると互いに切断し合います。「反応しないな」と思ったら、まず起動し直す前に、今動いている bot を Ctrl+C で止めてから起動し直してください。<br>
+      ・マネージャー任命は配信ごとに必要な手順です。忘れると bot が正しく反応できません。
+    </div>
   </section>
 
   <section class="panel" id="ch14">
-    <span class="hen">標準編</span>
-    <h2 class="chap">第14章 部品5：入室・フォローのお礼（bot.js 後半）</h2>
-    <p>部品の5つ目は「入室・フォローのお礼」です。第13章で作った bot.js に後半を貼り足して、頭脳を完成させます。</p>
-    <h3 class="subh">src/bot.js に後半を貼り足す</h3>
-    <p><code>bot.js</code> をエディタで開き、<strong>ファイルの最後に</strong> 次のコードをそのまま貼り足します（前半の続きとしてつながります）。</p>
-    <span class="codelabel">📄 src/bot.js（後半・貼り足し）</span>
-    <pre class="code"><code>  // 入室：JOIN のときだけお礼（挨拶）を送る。退室（LEAVE）では何もしない
-  async function onPresence(data) {
-    if (data?.type !== 'JOIN') return false;
-    if (data?.isDj === true) return false; // DJ本人には送らない
-    const template = getConfig().joinReply;
-    if (!template) return false;
-    return sendChatImpl(fillTemplate(template, { nickname: nicknameOf(data) }));
-  }
-
-  // ハート：集計に足すだけ（お礼は送らない）
-  async function onLike(data) {
-    stats?.recordLike(data?.user, data?.amount);
-    return false;
-  }
-
-  // spoon（投げ銭）：集計に足すだけ（お礼は送らない）
-  async function onDonation(data) {
-    stats?.recordDonation(data?.user, data?.amount);
-    return false;
-  }
-
-  // フォロー：お礼を送る
-  async function onFollow(data) {
-    const template = getConfig().followReply;
-    if (!template) return false;
-    return sendChatImpl(fillTemplate(template, { nickname: nicknameOf(data) }));
-  }
-
-  // connectEvents にそのまま渡せる形
-  const handlers = {
-    chat: (data) =&gt; void onChat(data),
-    presence: (data) =&gt; void onPresence(data),
-    like: (data) =&gt; void onLike(data),
-    donation: (data) =&gt; void onDonation(data),
-    follow: (data) =&gt; void onFollow(data),
-    end: (data) =&gt; {
-      log(`イベント終了通知: ${data?.reason ?? '理由不明'}`);
-    },
-  };
-
-  return { handlers, onChat, onPresence, onLike, onDonation, onFollow };
-}</code></pre>
-    <p>線引きのルールは次のとおりです。</p>
-    <ul>
-      <li>入室のお礼は <strong>JOIN（入室）のときだけ</strong>。退室（LEAVE）では何もしません。</li>
-      <li><strong>DJ 本人にはお礼を送りません。</strong></li>
-      <li>ハートと spoon は、集計に足すだけでお礼は送りません（お礼は第15章の集計と合わせて静かに数えます）。</li>
-      <li>お礼文を空にしておくと、そのお礼は送られません（止めたいときは文面を空にするのがスイッチ代わりです）。</li>
-    </ul>
-    <h3 class="subh">動かして確認：反応とお礼が見えるか</h3>
-    <p>check.js を、次の内容に <strong>丸ごと差し替えて</strong> 保存します（頭脳を使う形に変わります）。</p>
-    <span class="codelabel">🧪 check.js（確認専用・差し替え）</span>
-    <pre class="code"><code>// 確認専用の使い捨てファイルです（bot の部品ではありません。第17章で消します）
-import { loadEnv } from './src/env.js';
-import { loadConfig } from './src/config.js';
-import { createBot } from './src/bot.js';
-import { connectEvents } from './src/events.js';
-
-loadEnv();
-
-let config = loadConfig();
-const bot = createBot({ getConfig: () =&gt; config });
-await connectEvents(bot.handlers);
-console.log('確認用に接続しました。止めるときは Ctrl+C です。');</code></pre>
-    <div class="steps">
-      <div class="step"><span class="no">1</span><div class="sb"><p>テスト配信を開いた状態で、<code>node check.js</code> を実行します（コマンドは第11章と同じです）。</p></div></div>
-      <div class="step"><span class="no">2</span><div class="sb"><p>「設定ファイルを読み込みました: config.json」と「イベントに接続しました」が出れば起動 OK です。</p></div></div>
-      <div class="step"><span class="no">3</span><div class="sb"><p>配信のチャットで <strong><code>!help</code></strong> と打ってみてください。画面に <strong>[DRY_RUN] 送信しません（本番ではこの文を送ります）: 使い方: …</strong> と出れば、キーワード反応が動いています。</p></div></div>
-      <div class="step"><span class="no">4</span><div class="sb"><p>別のアカウント（または入り直し）で入室すると、入室のお礼が [DRY_RUN] の形で表示されます。フォローでも同様です。</p></div></div>
-      <div class="step"><span class="no">5</span><div class="sb"><p>確認が終わったら <span class="kbd">Ctrl</span>+<span class="kbd">C</span> で止めます。</p></div></div>
-    </div>
-    <div class="callout warn"><span class="ct">⚠️ つまずきポイント（第14章）</span>
-      ・<strong><code>!help</code> に反応しない</strong>：config.json の <code>commands</code> に <code>!help</code> があるか、チャットの文字が完全一致しているか（前後の空白や全角・半角の違い）を確認してください。<br>
-      ・<strong>「設定ファイルを読み込みました: config.example.json（見本）」と出る</strong>：config.json が見つかっていません。ファイルの置き場所（bot フォルダの直下）と名前（<code>config.json.txt</code> になっていないか）を確認してください。<br>
-      ・<strong>お礼が二重に出る</strong>：check.js や bot が二重に動いている可能性があります。動いているものを全部止めてから、1つだけ実行してください。</div>
+    <span class="hen">Mac編</span>
+    <h2 class="chap">第14章 管理画面の使い方</h2>
+    <p>文面や機能の設定は、ブラウザの管理画面から変更できます。</p>
+    <ol>
+      <li>bot が起動している状態（<code>npm start</code> のターミナルが動いている状態）で、ブラウザで次を開きます。
+        <pre class="code"><code>http://localhost:3939</code></pre>
+      </li>
+    </ol>
+    <figure class="shot">
+      <img src="manual/shot4-admin-top.png" alt="bot 管理画面のトップ">
+      <figcaption>管理画面のトップ。機能の設定や文面の編集はこの画面から行います。</figcaption>
+    </figure>
+    <ol start="2">
+      <li>画面でできることの例：
+        <ul>
+          <li>機能ごとの ON/OFF の切り替え</li>
+          <li>反応文・お礼文などの文面の編集</li>
+          <li>SE（効果音）の割り当てと音量の調整</li>
+          <li>特別な人（入室時に特別な挨拶をする相手）の登録</li>
+        </ul>
+      </li>
+      <li>編集したら画面の保存ボタンを押します。設定の反映には bot の再起動が必要な場合があります。</li>
+      <li><strong>音量は 0〜1 の範囲</strong>で指定します。1 が最大です。1.5 のような 1 を超える値は使えません。「もっと大きくしたい」ときは、音源ファイル自体の音量を上げるか、ミキサー側のゲインで調整します。</li>
+    </ol>
+    <p>管理画面だけを単体で開きたい場合は、ターミナルで <code>npm run admin</code> でも起動できます（アドレスは同じ http://localhost:3939 です）。</p>
   </section>
 
   <section class="panel" id="ch15">
-    <span class="hen">標準編</span>
-    <h2 class="chap">第15章 部品6：集計（stats.js）</h2>
-    <p>部品の6つ目は「集計」です。コメント数・ハート・spoon を、リスナーごとに数えてファイルに保存します。</p>
-    <h3 class="subh">src/stats.js を作る</h3>
-    <p>次のコードを、そのまま <code>stats.js</code> という名前で src フォルダの中に保存します。</p>
-    <span class="codelabel">📄 src/stats.js</span>
-    <pre class="code"><code>// 集計：コメント数・ハート数・spoon数を、リスナーの user.id ごとに数えます。
-// - 数えた結果は data/stats.json に保存するので、bot を止めても消えません（通算）
-// - DJ本人は数えません（呼び出した側で isDj を見て、コメントだけ除外します）
-// - ニックネームは変わることがあるので、最新のものを覚え直します
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { dirname } from 'node:path';
-
-export function createStats({ file } = {}) {
-  let byUser = {};
-  try {
-    if (file &amp;&amp; existsSync(file)) byUser = JSON.parse(readFileSync(file, 'utf8')) ?? {};
-  } catch {
-    console.error('[集計] 記録ファイルの読み込みに失敗したため、新しく作り直します');
-    byUser = {};
-  }
-
-  function save() {
-    if (!file) return;
-    try {
-      mkdirSync(dirname(file), { recursive: true });
-      writeFileSync(file, JSON.stringify(byUser, null, 2), 'utf8');
-    } catch (err) {
-      console.error(`[集計] 記録の保存に失敗しました: ${err.message}`);
-    }
-  }
-
-  function entryFor(user) {
-    const id = user?.id;
-    if (id === undefined || id === null || id === '') return null;
-    const key = String(id);
-    let entry = byUser[key];
-    if (!entry) {
-      entry = { nickname: user?.nickname ?? 'リスナー', chats: 0, likes: 0, spoons: 0 };
-      byUser[key] = entry;
-    }
-    if (user?.nickname) entry.nickname = user.nickname;
-    return entry;
-  }
-
-  return {
-    recordChat(user) {
-      const e = entryFor(user);
-      if (e) {
-        e.chats += 1;
-        save();
-      }
-    },
-    recordLike(user, amount = 1) {
-      const e = entryFor(user);
-      if (e) {
-        e.likes += Math.max(1, Number(amount) || 1);
-        save();
-      }
-    },
-    recordDonation(user, amount = 0) {
-      const e = entryFor(user);
-      if (e) {
-        e.spoons += Math.max(0, Number(amount) || 0);
-        save();
-      }
-    },
-    // 1人分の記録を返す（!記録 コマンド用）
-    get(userId) {
-      if (userId === undefined || userId === null) return null;
-      return byUser[String(userId)] ?? null;
-    },
-    // 全員分を配列で返す（管理画面の集計一覧用）
-    all() {
-      return Object.entries(byUser).map(([id, e]) =&gt; ({ id, ...e }));
-    },
-    // バックアップの読み込み用：中身を丸ごと差し替えて保存する
-    replaceAll(obj) {
-      byUser = obj &amp;&amp; typeof obj === 'object' &amp;&amp; !Array.isArray(obj) ? obj : {};
-      save();
-    },
-    raw() {
-      return byUser;
-    },
-  };
-}</code></pre>
-    <p>仕様の要点です。</p>
+    <span class="hen">Mac編</span>
+    <h2 class="chap">第15章 公開ページ（曲リスト・ビンゴ・ポータルなど）と短縮リンク</h2>
+    <p>bot には、リスナー向けの公開ページ（曲リスト、ビンゴ、バトル、イメージキャラ名鑑などをまとめたポータル）があります。</p>
     <ul>
-      <li>数える単位は <strong>リスナーの user.id</strong> です。ニックネームが変わっても、同じ人として数え続けます（表示用の名前は最新のものを覚え直します）。</li>
-      <li>結果は <code>data/stats.json</code> に <strong>その都度保存</strong> されます。bot を止めても消えない <strong>通算</strong> の記録です（<code>data</code> フォルダは、初めて保存するときに自動で作られます）。</li>
-      <li><strong>DJ 本人のコメントは数えません</strong>（bot.js 側で見分けて、コメントだけ除外しています。ハートと spoon は、投げた人がそのまま記録されます）。</li>
+      <li>公開ページは、bot が <strong>GitHub Pages</strong> へ自動で公開する仕組みです（.env に GitHub の設定を入れている場合）。bot が止まっている間も、公開済みのページはそのまま見られます。</li>
+      <li>公開されたページの URL は長いので、<strong>短縮リンク</strong>（is.gd などのサービス）を作っておくと便利です。</li>
+      <li>運用のしかた：短縮リンクを配信の固定コメントに貼っておき、リスナーにそこから各ページへ行ってもらいます。</li>
+      <li>細かい公開設定は管理画面の案内に従ってください。この章では要点のみとします。</li>
     </ul>
-    <h3 class="subh">動かして確認：数が増えるか</h3>
-    <p>check.js を、次の内容に <strong>丸ごと差し替えて</strong> 保存します（集計を頭脳に渡す形に変わります）。</p>
-    <span class="codelabel">🧪 check.js（確認専用・差し替え）</span>
-    <pre class="code"><code>// 確認専用の使い捨てファイルです（bot の部品ではありません。第17章で消します）
-import { join } from 'node:path';
-import { loadEnv, projectRoot } from './src/env.js';
-import { loadConfig } from './src/config.js';
-import { createStats } from './src/stats.js';
-import { createBot } from './src/bot.js';
-import { connectEvents } from './src/events.js';
-
-loadEnv();
-
-let config = loadConfig();
-const stats = createStats({ file: join(projectRoot, 'data', 'stats.json') });
-const bot = createBot({ getConfig: () =&gt; config, stats });
-await connectEvents(bot.handlers);
-console.log('確認用に接続しました。止めるときは Ctrl+C です。');</code></pre>
-    <div class="steps">
-      <div class="step"><span class="no">1</span><div class="sb"><p>テスト配信を開いた状態で、<code>node check.js</code> を実行します。</p></div></div>
-      <div class="step"><span class="no">2</span><div class="sb"><p>リスナー側のアカウントで、コメントを何回か打ち、ハートを押し、（可能なら）spoon を投げてみてください。</p></div></div>
-      <div class="step"><span class="no">3</span><div class="sb"><p>チャットで <strong><code>!記録</code></strong> と打つと、[DRY_RUN] の形で「（名前）さんの記録: コメント○回 / ハート○個 / spoon○個」と、その人の数が表示されます。</p></div></div>
-      <div class="step"><span class="no">4</span><div class="sb"><p>bot フォルダの <code>data</code> フォルダに <code>stats.json</code> ができていれば、保存まで動いています。</p></div></div>
-      <div class="step"><span class="no">5</span><div class="sb"><p>確認が終わったら <span class="kbd">Ctrl</span>+<span class="kbd">C</span> で止めます。</p></div></div>
-    </div>
-    <div class="callout warn"><span class="ct">⚠️ つまずきポイント（第15章）</span>
-      ・<strong><code>!記録</code> の数が全部 0</strong>：<code>commands</code> に <code>!記録</code> を自作していないか確認してください（自作があるとそちらが優先されます）。また、DJ 本人のコメントは数えない仕様なので、確認はリスナー側のアカウントで行ってください。<br>
-      ・<strong>stats.json ができない</strong>：コメントなどがまだ届いていない可能性があります。イベントが届いているかは、第14章までの確認（画面に出来事が出るか）に戻って切り分けてください。</div>
   </section>
 
   <section class="panel" id="ch16">
-    <span class="hen">標準編</span>
-    <h2 class="chap">第16章 部品7：管理画面（admin.js）</h2>
-    <p>部品の7つ目、最後の部品は「管理画面」です。ブラウザで開く小さな設定ページで、できることは3つだけに絞ってあります。</p>
+    <span class="hen">Mac編</span>
+    <h2 class="chap">第16章 更新の受け方（新しい zip が届いたら）</h2>
+    <p>bot は改良版の zip で更新されていきます。受け取り方はいつも同じ手順です。</p>
     <ol>
-      <li>返信文とキーワード反応の編集 → 保存（config.json に書く。再起動なしで反映）</li>
-      <li>集計の一覧表示（見るだけ）</li>
-      <li>バックアップの書き出し（ダウンロード）／読み込み（貼り付け）</li>
+      <li>動いている bot を、ターミナルで Ctrl+C を押して止めます。</li>
+      <li>ターミナルで新しい zip を展開し、上書きコピーします（第7章と同じ方式です。Finder は使いません）。
+        <pre class="code"><code>rm -rf /tmp/gameXX &amp;&amp; unzip -o ~/Downloads/spoon-bot-gameXX.zip -d /tmp/gameXX &amp;&amp; cp -R /tmp/gameXX/bot/ ~/Downloads/bot/</code></pre>
+        （<code>gameXX</code> の部分は、届いた zip の名前に読み替えてください。）
+      </li>
+      <li><strong>.env と tokens.json は zip に含まれていないので、この手順では消えません。</strong>フォルダごと置き換えさえしなければ大丈夫です。</li>
+      <li>config.json の作り直しは、<strong>案内があったときだけ</strong>行います。
+        <div class="callout warn"><span class="ct">⚠️ 作り直しの注意</span><code>cp config.example.json config.json</code> で作り直すと、特別な人などの <strong>手入力した登録が消えてしまいます</strong>。作り直す前に、登録内容の控えを取るか、管理画面のバックアップ機能（設定の書き出し）を使ってください。</div>
+      </li>
+      <li>最後にモックで確認します。
+        <pre class="code"><code>cd ~/Downloads/bot
+npm run mock</code></pre>
+      </li>
+      <li>モックが問題なければ、テスト配信（または次の通常配信）で実物の反応を確かめて完了です。</li>
     </ol>
-    <h3 class="subh">src/admin.js を作る</h3>
-    <p>次のコードを、そのまま <code>admin.js</code> という名前で src フォルダの中に保存します。（長いですが、これが最後の部品です。）</p>
-    <span class="codelabel">📄 src/admin.js</span>
-    <pre class="code"><code>// 管理画面：ブラウザで開く小さな設定ページ（http://localhost:3939）。
-// できることは3つだけに絞っています。
-//   1. 返信文とキーワード反応の編集 → 保存（config.json に書く）
-//   2. 集計の一覧表示（見るだけ）
-//   3. バックアップの書き出し（ダウンロード）／読み込み（貼り付け）
-// このサーバーは自分のパソコンの中（localhost）でだけ動きます。外からはアクセスできません。
-import { createServer } from 'node:http';
-
-export const BACKUP_APP = 'spoon-minimal-bot-backup';
-export const BACKUP_VERSION = 1;
-
-// HTMLに値を埋め込むときの安全処理（&lt; や &gt; をそのまま出さない）
-function escapeHtml(value) {
-  return String(value ?? '')
-    .replace(/&amp;/g, '&amp;amp;')
-    .replace(/&lt;/g, '&amp;lt;')
-    .replace(/&gt;/g, '&amp;gt;')
-    .replace(/"/g, '&amp;quot;');
-}
-
-// キーワード反応を、テキストエリア用の「!コマンド = 返信文」（1行に1つ）の形にする
-export function commandsToText(commands) {
-  return Object.entries(commands ?? {})
-    .map(([cmd, reply]) =&gt; `${cmd} = ${reply}`)
-    .join('\n');
-}
-
-// テキストエリアの内容をキーワード反応の設定に戻す。おかしな行があればエラーを返す
-export function textToCommands(text) {
-  const commands = {};
-  const lines = String(text ?? '').split(/\r?\n/);
-  for (const rawLine of lines) {
-    const line = rawLine.trim();
-    if (!line || line.startsWith('#')) continue;
-    const eq = line.indexOf('=');
-    if (eq === -1) return { ok: false, error: `「=」が無い行があります: ${line}` };
-    const cmd = line.slice(0, eq).trim();
-    const reply = line.slice(eq + 1).trim();
-    if (!cmd.startsWith('!')) return { ok: false, error: `コマンドは「!」で始めてください: ${cmd}` };
-    if (!reply) return { ok: false, error: `返信文が空です: ${cmd}` };
-    commands[cmd] = reply;
-  }
-  return { ok: true, commands };
-}
-
-// バックアップの中身チェック。通らなかったら理由を返し、何も書きません。
-export function validateBackup(input) {
-  if (!input || typeof input !== 'object' || Array.isArray(input)) {
-    return { ok: false, error: 'バックアップの形式が違います（JSONオブジェクトではありません）' };
-  }
-  if (input.app !== BACKUP_APP) {
-    return { ok: false, error: 'このbotのバックアップファイルではありません' };
-  }
-  if (input.version !== BACKUP_VERSION) {
-    return { ok: false, error: `対応していないバックアップの版です（version: ${String(input.version ?? 'なし')}）` };
-  }
-  if (!input.config || typeof input.config !== 'object' || Array.isArray(input.config)) {
-    return { ok: false, error: '設定（config）が入っていません' };
-  }
-  if (input.stats !== undefined &amp;&amp; (typeof input.stats !== 'object' || Array.isArray(input.stats) || input.stats === null)) {
-    return { ok: false, error: '集計（stats）の形式が違います' };
-  }
-  return { ok: true, config: input.config, stats: input.stats ?? null };
-}
-
-export function createAdminServer({ port = 3939, getConfig, saveConfig, stats, log = console.log }) {
-  function renderPage(message = '') {
-    const config = getConfig();
-    const rows = (stats?.all() ?? [])
-      .map(
-        (e) =&gt;
-          `&lt;tr&gt;&lt;td&gt;${escapeHtml(e.nickname)}&lt;/td&gt;&lt;td&gt;${e.chats}&lt;/td&gt;&lt;td&gt;${e.likes}&lt;/td&gt;&lt;td&gt;${e.spoons}&lt;/td&gt;&lt;/tr&gt;`,
-      )
-      .join('\n');
-    return `&lt;!DOCTYPE html&gt;
-&lt;html lang="ja"&gt;
-&lt;head&gt;
-&lt;meta charset="utf-8"&gt;
-&lt;title&gt;最小サンプルbot 管理画面&lt;/title&gt;
-&lt;style&gt;
-  body { font-family: sans-serif; margin: 2em auto; max-width: 720px; padding: 0 1em; }
-  label { display: block; margin-top: 1em; font-weight: bold; }
-  input[type="text"], textarea { width: 100%; box-sizing: border-box; padding: 0.5em; margin-top: 0.3em; }
-  button { padding: 0.5em 1.5em; margin-top: 1em; }
-  table { border-collapse: collapse; margin-top: 0.5em; }
-  th, td { border: 1px solid #999; padding: 0.3em 0.8em; text-align: left; }
-  .msg { background: #eef7ee; border: 1px solid #8a8; padding: 0.5em 1em; }
-  .note { color: #555; font-size: 0.9em; }
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;h1&gt;🥄 最小サンプルbot 管理画面&lt;/h1&gt;
-${message ? `&lt;p class="msg"&gt;${escapeHtml(message)}&lt;/p&gt;` : ''}
-
-&lt;h2&gt;返信文とキーワード反応&lt;/h2&gt;
-&lt;form method="post" action="/save"&gt;
-  &lt;label&gt;入室のお礼（{nickname} が名前に置き換わります。空にすると送りません）
-    &lt;input type="text" name="joinReply" value="${escapeHtml(config.joinReply ?? '')}"&gt;
-  &lt;/label&gt;
-  &lt;label&gt;フォローのお礼（{nickname} が名前に置き換わります。空にすると送りません）
-    &lt;input type="text" name="followReply" value="${escapeHtml(config.followReply ?? '')}"&gt;
-  &lt;/label&gt;
-  &lt;label&gt;キーワード反応（1行に1つ、「!コマンド = 返信文」の形で書きます）
-    &lt;textarea name="commands" rows="6"&gt;${escapeHtml(commandsToText(config.commands))}&lt;/textarea&gt;
-  &lt;/label&gt;
-  &lt;button type="submit"&gt;保存する&lt;/button&gt;
-&lt;/form&gt;
-
-&lt;h2&gt;集計（これまでの通算）&lt;/h2&gt;
-&lt;table&gt;
-&lt;tr&gt;&lt;th&gt;ニックネーム&lt;/th&gt;&lt;th&gt;コメント&lt;/th&gt;&lt;th&gt;ハート&lt;/th&gt;&lt;th&gt;spoon&lt;/th&gt;&lt;/tr&gt;
-${rows || '&lt;tr&gt;&lt;td colspan="4"&gt;まだ記録がありません&lt;/td&gt;&lt;/tr&gt;'}
-&lt;/table&gt;
-
-&lt;h2&gt;バックアップ&lt;/h2&gt;
-&lt;p&gt;&lt;a href="/export"&gt;設定と集計を書き出す（ダウンロード）&lt;/a&gt;&lt;/p&gt;
-&lt;form method="post" action="/import"&gt;
-  &lt;label&gt;バックアップの読み込み（書き出したファイルの中身を、ここに貼り付けてください）
-    &lt;textarea name="backup" rows="6" placeholder='{"app":"spoon-minimal-bot-backup", ...}'&gt;&lt;/textarea&gt;
-  &lt;/label&gt;
-  &lt;input type="file" id="backupFile"&gt;
-  &lt;p class="note"&gt;ファイルを選ぶと中身が上の欄に入ります。「読み込む」を押すと今の設定と集計が置き換わります。&lt;/p&gt;
-  &lt;button type="submit"&gt;読み込む&lt;/button&gt;
-&lt;/form&gt;
-&lt;script&gt;
-  document.getElementById('backupFile').addEventListener('change', async (ev) =&gt; {
-    const file = ev.target.files[0];
-    if (file) document.querySelector('textarea[name="backup"]').value = await file.text();
-  });
-&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;`;
-  }
-
-  async function readForm(req) {
-    const chunks = [];
-    for await (const chunk of req) chunks.push(chunk);
-    return new URLSearchParams(Buffer.concat(chunks).toString('utf8'));
-  }
-
-  const server = createServer(async (req, res) =&gt; {
-    const url = new URL(req.url, `http://localhost:${port}`);
-    try {
-      if (req.method === 'GET' &amp;&amp; url.pathname === '/') {
-        const message = url.searchParams.get('msg') ?? '';
-        res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-        res.end(renderPage(message));
-        return;
-      }
-      if (req.method === 'POST' &amp;&amp; url.pathname === '/save') {
-        const form = await readForm(req);
-        const parsed = textToCommands(form.get('commands') ?? '');
-        if (!parsed.ok) {
-          res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' });
-          res.end(`保存できませんでした: ${parsed.error}`);
-          return;
-        }
-        saveConfig({
-          commands: parsed.commands,
-          joinReply: (form.get('joinReply') ?? '').trim(),
-          followReply: (form.get('followReply') ?? '').trim(),
-        });
-        res.writeHead(303, { Location: '/?msg=' + encodeURIComponent('保存しました') });
-        res.end();
-        return;
-      }
-      if (req.method === 'GET' &amp;&amp; url.pathname === '/export') {
-        const backup = {
-          app: BACKUP_APP,
-          version: BACKUP_VERSION,
-          exportedAt: new Date().toISOString(),
-          config: getConfig(),
-          stats: stats?.raw() ?? {},
-        };
-        res.writeHead(200, {
-          'Content-Type': 'application/json; charset=utf-8',
-          'Content-Disposition': 'attachment; filename="spoon-minimal-bot-backup.json"',
-        });
-        res.end(JSON.stringify(backup, null, 2));
-        return;
-      }
-      if (req.method === 'POST' &amp;&amp; url.pathname === '/import') {
-        const form = await readForm(req);
-        let input = null;
-        try {
-          input = JSON.parse(form.get('backup') ?? '');
-        } catch {
-          res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' });
-          res.end('読み込めませんでした: JSONとして読み取れませんでした');
-          return;
-        }
-        const validated = validateBackup(input);
-        if (!validated.ok) {
-          res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' });
-          res.end(`読み込めませんでした: ${validated.error}`);
-          return;
-        }
-        saveConfig(validated.config);
-        if (validated.stats) stats?.replaceAll(validated.stats);
-        res.writeHead(303, { Location: '/?msg=' + encodeURIComponent('バックアップを読み込みました') });
-        res.end();
-        return;
-      }
-      res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
-      res.end('ここではありません。');
-    } catch (err) {
-      res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
-      res.end('内部で問題が起きました。');
-      log(`管理画面で問題が起きました: ${err.message}`);
-    }
-  });
-
-  return {
-    listen() {
-      return new Promise((resolve) =&gt; {
-        server.listen(port, '127.0.0.1', () =&gt; {
-          const address = server.address();
-          log(`管理画面: http://localhost:${address.port}`);
-          resolve(address);
-        });
-      });
-    },
-    close() {
-      return new Promise((resolve) =&gt; server.close(() =&gt; resolve()));
-    },
-  };
-}</code></pre>
-    <h3 class="subh">動かして確認：管理画面だけを先に開く</h3>
-    <p>check.js を、次の内容に <strong>丸ごと差し替えて</strong> 保存します（管理画面だけを起動する形です）。</p>
-    <span class="codelabel">🧪 check.js（確認専用・差し替え）</span>
-    <pre class="code"><code>// 確認専用の使い捨てファイルです（bot の部品ではありません。第17章で消します）
-import { join } from 'node:path';
-import { loadEnv, projectRoot } from './src/env.js';
-import { loadConfig, saveConfig } from './src/config.js';
-import { createStats } from './src/stats.js';
-import { createAdminServer } from './src/admin.js';
-
-loadEnv();
-
-let config = loadConfig();
-const stats = createStats({ file: join(projectRoot, 'data', 'stats.json') });
-const admin = createAdminServer({
-  port: 3939,
-  getConfig: () =&gt; config,
-  saveConfig: (next) =&gt; { config = saveConfig(next); },
-  stats,
-});
-await admin.listen();
-console.log('管理画面の確認中です。止めるときは Ctrl+C です。');</code></pre>
-    <div class="steps">
-      <div class="step"><span class="no">1</span><div class="sb"><p><code>node check.js</code> を実行します。「管理画面: http://localhost:3939」と表示されます。</p></div></div>
-      <div class="step"><span class="no">2</span><div class="sb"><p>ブラウザで <strong>http://localhost:3939</strong> を開きます。</p></div></div>
-    </div>
-    <figure class="shot"><img src="manual/shot4-admin-top.png" alt="サンプル bot の管理画面トップ"><figcaption>スクショ④：サンプル bot の管理画面トップ（返信文の編集欄・集計の表・バックアップの欄。集計の名前と数字はサンプルです）</figcaption></figure>
-    <div class="steps">
-      <div class="step"><span class="no">3</span><div class="sb"><p>次の3つを試してください。</p>
-        <ul>
-          <li><strong>編集と保存</strong>：入室のお礼の文を少し変えて「保存する」を押す → 「保存しました」と出れば OK です（この確認用の起動では、変わった文は config.json に保存されています）。</li>
-          <li><strong>集計の表示</strong>：第15章までの確認で記録があれば、表に出ています。</li>
-          <li><strong>バックアップ</strong>：「設定と集計を書き出す」からファイルをダウンロードし、その中身を読み込み欄に貼って「読み込む」を押す → 「バックアップを読み込みました」と出れば OK です。</li>
-        </ul></div></div>
-      <div class="step"><span class="no">4</span><div class="sb"><p>確認が終わったら <span class="kbd">Ctrl</span>+<span class="kbd">C</span> で止めます。</p></div></div>
-    </div>
-    <ul>
-      <li>この管理画面は <strong>自分の PC の中だけで開く</strong> ページです。外の人には見えません。</li>
-      <li>バックアップの読み込みは、今の設定と集計を <strong>置き換え</strong> ます。読み込む前に、今の状態も書き出しておくと二重に安全です。</li>
-    </ul>
-    <div class="callout warn"><span class="ct">⚠️ つまずきポイント（第16章）</span>
-      ・<strong>ページが開かない</strong>：check.js が動いているか（「管理画面: …」の表示があるか）を確認してください。3939 という番号が他のソフトと重なっている場合は、そのソフトを止めてから試します。<br>
-      ・<strong>保存でエラーになる</strong>：キーワード反応の書き方のチェックに引っかかっています。「!コマンド = 返信文」の形になっているか（<code>=</code> があるか、コマンドが <code>!</code> で始まっているか、返信文が空でないか）を見直してください。エラーの文面がそのまま理由になっています。</div>
   </section>
 
-  <section class="panel" id="ch17">
-    <span class="hen">標準編</span>
-    <h2 class="chap">第17章 仕上げ：全部をつなぐ（index.js / package.json）</h2>
-    <p>最後に、全部の部品をつなぐ起動役を作ります。これで bot が完成します。</p>
-    <h3 class="subh">src/index.js を作る</h3>
-    <p>次のコードを、そのまま <code>index.js</code> という名前で src フォルダの中に保存します。</p>
-    <span class="codelabel">📄 src/index.js</span>
-    <pre class="code"><code>// 起動の本体：全部の部品をつないで bot を動かします。
-// 使い方:
-//   初回だけ認証: npm run auth
-//   起動:         npm start
-// 起動中は、管理画面（http://localhost:3939）とイベント受信が同時に動きます。
-import { join } from 'node:path';
-import { loadEnv, projectRoot } from './env.js';
-import { hasTokens } from './auth.js';
-import { loadConfig, saveConfig } from './config.js';
-import { createStats } from './stats.js';
-import { createBot } from './bot.js';
-import { connectEvents } from './events.js';
-import { createAdminServer } from './admin.js';
-
-loadEnv();
-
-// 設定は「今の状態」を1つ持ち、管理画面で保存されたら差し替えます。
-// bot 側は毎回 getConfig() で最新を読むので、再起動なしで反映されます。
-const state = { config: loadConfig() };
-const stats = createStats({ file: join(projectRoot, 'data', 'stats.json') });
-const bot = createBot({ getConfig: () =&gt; state.config, stats });
-
-const admin = createAdminServer({
-  port: Number(process.env.ADMIN_PORT ?? 3939),
-  getConfig: () =&gt; state.config,
-  saveConfig: (next) =&gt; {
-    state.config = saveConfig(next);
-  },
-  stats,
-});
-await admin.listen();
-
-if (!hasTokens()) {
-  console.log('まだ認証が済んでいません。先に npm run auth を実行してください。');
-  console.log('（管理画面だけは開けますが、配信には接続できません）');
-  process.exit(0);
-}
-
-console.log('bot を起動しました。止めるときは Ctrl+C です。');
-await connectEvents(bot.handlers, {
-  onStatus: (status) =&gt; console.log(`状態: ${status}`),
-});</code></pre>
-    <ul>
-      <li>起動すると、管理画面とイベント受信が <strong>同時に</strong> 動き出します。</li>
-      <li>設定は「今の状態」を1つ持ち、管理画面で保存されたらその場で差し替わります。bot 側は反応のたびに最新の設定を読むので、<strong>文面の変更に再起動は要りません</strong>。</li>
-      <li><code>package.json</code> は第9章で作ったものを使います。<code>npm start</code> がこの index.js を起動し、<code>npm run auth</code> が第10章の認証を実行します。</li>
-    </ul>
-    <h3 class="subh">動かして確認：完成形を起動する</h3>
-    <div class="steps">
-      <div class="step"><span class="no">1</span><div class="sb"><p>確認用の check.js は、もう卒業です。bot フォルダから <strong>check.js を削除</strong> してください（部品ではなく確認用だったため、残しておく必要はありません）。</p></div></div>
-      <div class="step"><span class="no">2</span><div class="sb"><p>ターミナル（Mac）／PowerShell（Windows）で bot フォルダに移り、起動します。</p></div></div>
-    </div>
-    <div class="cmdpair">
-      <div class="cmdos mac"><span class="os">🍎 Mac</span><pre class="code"><code>cd ~/Downloads/bot
-npm start</code></pre></div>
-      <div class="cmdos win"><span class="os">🪟 Windows</span><pre class="code"><code>cd $HOME\Downloads\bot
-npm start</code></pre></div>
-    </div>
-    <div class="steps">
-      <div class="step"><span class="no">3</span><div class="sb"><p>次の表示が出れば起動成功です。</p>
-        <ul>
-          <li>「設定ファイルを読み込みました: config.json」</li>
-          <li>「管理画面: http://localhost:3939」</li>
-          <li>「bot を起動しました。止めるときは Ctrl+C です。」</li>
-          <li>「イベントに接続しました」（配信が開かれている場合）／「配信中ではありません…」（待機中）</li>
-        </ul></div></div>
-      <div class="step"><span class="no">4</span><div class="sb"><p>テスト配信を開いた状態で、第14〜16章で確認した動き（<code>!help</code> の反応、入室のお礼、<code>!記録</code>、管理画面）を、完成形でもう一度なぞってください。今度は管理画面で文面を変えると、<strong>再起動なしで</strong> 次の反応から変わることも確認できます。</p></div></div>
-      <div class="step"><span class="no">5</span><div class="sb"><p>止めるときは <span class="kbd">Ctrl</span>+<span class="kbd">C</span> です（Windows で「バッチ ジョブを終了しますか？」と聞かれたら「Y」で確定します）。</p></div></div>
-    </div>
-    <div class="callout warn"><span class="ct">⚠️ つまずきポイント（第17章）</span>
-      ・<strong>「まだ認証が済んでいません」</strong>：tokens.json がありません。第10章の認証を先に済ませてください。<br>
-      ・<strong>起動中のターミナル／PowerShell には、別のコマンドを打てません</strong>：bot がその画面を占有しています。別の作業をしたいときは、新しいウィンドウを開いてください（Mac：ターミナルで ⌘+N、Windows：PowerShell をもう1つ開く）。<br>
-      ・<strong><code>npm start</code> は1つだけ</strong>：二重に起動すると、接続が互いに切断し合います（DUPLICATE_CONNECTION）。「反応しないな」と思ったら、まず今動いているものを <span class="kbd">Ctrl</span>+<span class="kbd">C</span> で止めてから、起動し直してください。</div>
-  </section>
-
-  <section class="panel" id="ch18">
-    <span class="hen">標準編</span>
-    <h2 class="chap">第18章 テスト配信（DRY_RUN）から本番へ</h2>
-    <p>完成した bot を、実配信で試します。最初は安全スイッチを入れたまま、ファン限定のテスト配信で行います。</p>
-    <h3 class="subh">テスト配信（DRY_RUN=1）</h3>
-    <p>前提：.env の <code>DRY_RUN</code> が <code>1</code> のままであること。</p>
-    <div class="steps">
-      <div class="step"><span class="no">1</span><div class="sb"><p>配信端末でファン限定のテスト配信を開始します。</p></div></div>
-      <div class="step"><span class="no">2</span><div class="sb"><p>PC のターミナル（Mac）／PowerShell（Windows）で bot を起動します（<code>npm start</code>、コマンドは第17章のとおり）。</p></div></div>
-      <div class="step"><span class="no">3</span><div class="sb"><p><strong>bot の接続が完了するまで少し待ちます。</strong> リスナー一覧に bot アカウントが出てきたら準備 OK です。</p></div></div>
-      <div class="step"><span class="no">4</span><div class="sb"><p>DJ 側のリスナー一覧から、bot を <strong>マネージャーに任命</strong> します。</p></div></div>
-      <div class="step"><span class="no">5</span><div class="sb"><p>DJ がチャットで <code>!help</code> と打ちます。</p></div></div>
-      <div class="step"><span class="no">6</span><div class="sb"><p>DRY_RUN 中は実際のチャットには何も出ません。代わりに、bot が「送るはずだった返信」が画面に [DRY_RUN] として表示されます。これが見えれば接続成功です。</p></div></div>
-    </div>
-    <div class="callout warn"><span class="ct">⚠️ 注意</span>
-      ・bot が接続している間は、bot 用アカウントでアプリや Web から同じ配信に入らないでください。<br>
-      ・<code>npm start</code> は1つだけ起動してください。</div>
-    <div class="callout point"><span class="ct">💡 ヒント（固定マネージャー）</span>マネージャー任命は、原則として配信のたびに必要な手順です。ただし、毎回任命してくれるマネージャーがいない人は、アプリ側の設定で bot を固定マネージャーにしておくと、毎回の任命を省けて楽になる場合があります。固定マネージャーの設定ができるかどうかは、Spoon Developers コンソールのアプリ設定や Spoon アプリの設定を確認してください（設定の場所や文言は、アプリのバージョンにより異なります）。</div>
-    <h3 class="subh">本番モード（DRY_RUN=0）へ</h3>
-    <div class="steps">
-      <div class="step"><span class="no">1</span><div class="sb"><p>bot を <span class="kbd">Ctrl</span>+<span class="kbd">C</span> で止めます。</p></div></div>
-      <div class="step"><span class="no">2</span><div class="sb"><p>.env を開き、<code>DRY_RUN=1</code> を <code>DRY_RUN=0</code> に書き換えて保存します。</p></div></div>
-    </div>
-    <div class="diagram">
-      <div class="tree">
-        <div class="ln"><span class="dim" style="color:#9d92d6;"># 鍵の値（ここでは伏せ字で描いています）</span></div>
-        <div class="ln">SPOON_CLIENT_ID=****</div>
-        <div class="ln">SPOON_CLIENT_SECRET=****</div>
-        <div class="ln">SPOON_REDIRECT_URI=http://localhost:3000</div>
-        <div class="ln"><span class="ring">DRY_RUN=1</span><span class="point">👈 本番にするときは、ここの 1 を 0 に変える</span></div>
-      </div>
-      <p class="cap">図：.env の模式図。本番化で変えるのは DRY_RUN の行だけです</p>
-    </div>
-    <div class="cmdpair">
-      <div class="cmdos mac"><span class="os">🍎 Mac</span><pre class="code"><code>open -e ~/Downloads/bot/.env</code></pre></div>
-      <div class="cmdos win"><span class="os">🪟 Windows</span><pre class="code"><code>notepad .env</code></pre></div>
-    </div>
-    <p>（Windows の <code>notepad .env</code> は、PowerShell で bot フォルダにいるときの開き方です。別の場所にいる場合は、先に <code>cd $HOME\Downloads\bot</code> を実行してください。）</p>
-    <div class="steps">
-      <div class="step"><span class="no">3</span><div class="sb"><p>もう一度 <code>npm start</code> で起動します。</p></div></div>
-      <div class="step"><span class="no">4</span><div class="sb"><p>テスト配信のまま <code>!help</code> と打つと、今度は <strong>実際のチャット欄に bot の返信が表示されます</strong>。入室のお礼も、実際にチャットへ出ます。ここまで確認できたら、起動・ログイン・任命（標準機能①）は完了です。</p></div></div>
-      <div class="step"><span class="no">5</span><div class="sb"><p>後片付けとして、テストが終わったら配信を終了し、bot も <span class="kbd">Ctrl</span>+<span class="kbd">C</span> で止めます。</p></div></div>
-    </div>
-  </section>
-
-  <section class="panel" id="ch19">
-    <span class="hen">標準編</span>
-    <h2 class="chap">第19章 毎回の配信手順</h2>
-    <p>通常の配信では、この3ステップだけです。</p>
-    <div class="diagram">
-      <div class="steps3">
-        <div class="step3"><span class="no">1</span><span class="st">配信端末で配信を開始</span><span class="sd">いつもどおり Spoon アプリで配信を開きます。</span></div>
-        <div class="step3"><span class="no">2</span><span class="st">PC で bot を起動</span><span class="sd">ターミナル／PowerShell で <code>npm start</code>。接続が完了するまで少し待ちます。</span></div>
-        <div class="step3"><span class="no">3</span><span class="st">マネージャーに任命</span><span class="sd">リスナー一覧に bot が出たら、DJ 側からマネージャーに任命します。</span></div>
-      </div>
-      <p class="cap">図：毎回の配信3ステップカード</p>
-    </div>
-    <p>配信が終わったら、bot を <span class="kbd">Ctrl</span>+<span class="kbd">C</span> で止めます。</p>
-    <h3 class="subh">毎回の注意点</h3>
-    <ul>
-      <li>配信開始直後は、bot の接続が完了する前にコマンドを打っても反応しません。リスナー一覧に bot が出てから任命とテストを行ってください。</li>
-      <li>マネージャー任命は配信ごとに必要な手順です。忘れると bot が正しく反応できません。毎回の任命が負担な場合は、第18章のヒント（固定マネージャー）も参考にしてください。</li>
-      <li>文面を変えたくなったら、配信中でも管理画面（http://localhost:3939）から変えられます。再起動は要りません。</li>
-    </ul>
-  </section>
-
-  <section class="panel goal" id="ch20">
-    <span class="hen">標準編</span>
-    <h2 class="chap">第20章 ゴール：標準機能の bot の完成 🎉</h2>
-    <p>ここまで進めば、標準機能の bot は完成です。最後にチェックリストで確認してください。</p>
-    <ul class="check">
-      <li>申請と承認が終わり、鍵（Client ID / Client Secret）を .env に入れた（共通編・第9章）</li>
-      <li>認証が終わり、tokens.json ができている（第10章）</li>
-      <li>bot を起動して配信に接続できる（第17章・第18章）</li>
-      <li>マネージャー任命ができる（または固定マネージャーの設定を確認した）（第18章）</li>
-      <li><code>!help</code> などのキーワードに bot が反応する（第13〜14章）</li>
-      <li>入室・フォローのお礼文が出る（第14章）</li>
-      <li>コメント／ハート／spoon が集計され、<code>!記録</code> で返ってくる（第15章）</li>
-      <li>管理画面で文面を変えられて、設定のバックアップが取ってある（第16章）</li>
-    </ul>
-    <p><strong>ここまでが、このマニュアルのゴールです。</strong> 日常の運用で必要なのは、第19章（毎回の配信手順）だけです。</p>
-    <p>もっと機能を足したくなったら、第三部の応用編から必要なものだけを選んで進めてください。効果音（SE）、公開ページ、歌枠の機能、ゲームなどが用意されています。</p>
-  </section>
-
-  <section class="panel" id="ch21">
-    <span class="hen">標準編</span>
-    <h2 class="chap">第21章 自分の bot の直し方・広げ方</h2>
-    <p>完成した bot は、自分の bot です。ここでは、日常の直し方と、広げ方の入口だけを案内します。</p>
-    <h3 class="subh">文面を変える</h3>
-    <ul>
-      <li>入室・フォローのお礼文と、キーワード反応は、<strong>管理画面</strong>（http://localhost:3939）で変えるのが一番簡単です。保存すれば再起動なしで反映されます。</li>
-      <li>管理画面を使わずに直す場合は、<code>config.json</code> をエディタで書き換えます（その場合は bot の再起動で反映されます）。</li>
-    </ul>
-    <h3 class="subh">反応を足す</h3>
-    <ul>
-      <li>キーワード反応を足すだけなら、管理画面の「キーワード反応」の欄に「!コマンド = 返信文」を1行追加して保存するだけです。コードを触る必要はありません。</li>
-      <li>言葉の一部に反応させたい、条件で文を変えたい、といった作り込みは、<code>src/bot.js</code> の <code>onChat</code> が担当場所です。第13〜14章で貼ったコードを読み返しながら、少しずつ試してください。試すときは .env の <code>DRY_RUN</code> を <code>1</code> に戻すと、本番のチャットに流さずに確認できます。</li>
-    </ul>
-    <h3 class="subh">困ったときの切り分け</h3>
-    <p>画面（ターミナル／PowerShell）の表示が手がかりです。</p>
-    <div class="tblwrap"><table class="tbl">
-      <tr><th>表示・症状</th><th>意味と対処</th></tr>
-      <tr><td>「配信中ではありません。○秒後に再接続します…」</td><td>配信が開かれていないだけです。故障ではありません</td></tr>
-      <tr><td>「別の接続がすでにあります（DUPLICATE_CONNECTION）」</td><td>bot の二重起動です。全部止めて、1つだけ起動し直します</td></tr>
-      <tr><td>反応が [DRY_RUN] でしか出ない</td><td>.env の <code>DRY_RUN</code> が <code>1</code> のままです。本番化は第18章</td></tr>
-      <tr><td>チャットに何も出ない（[DRY_RUN] も出ない）</td><td>接続できていないか、マネージャー任命がまだです。第19章の手順を見直します</td></tr>
-      <tr><td>「tokens.json がありません」</td><td>認証がまだです。第10章を実行します</td></tr>
-      <tr><td>設定が古いまま</td><td>config.json の場所と名前（<code>.txt</code> が付いていないか）を確認します</td></tr>
-    </table></div>
-    <ul>
-      <li>付録の第36章（つまずきポイント集）にも、よくある失敗と対処をまとめています。</li>
-      <li>もっと機能を足したくなったら、第三部の応用編へどうぞ。</li>
-    </ul>
-  </section>
-
-  <div class="part">第三部 応用編<small>標準機能の bot が動いたら、あとは必要な機能だけを選んで足していきます。各章は「標準の bot に自分で機能を足す」という位置づけで書く予定です</small></div>
-
-  <div class="sooncard" id="ch22">
-    <h2>第22章 SE（効果音）の導入と設定<span class="soonbadge">準備中</span></h2>
-    <p>音を配信に乗せる構成（PC の音をオーディオインターフェース（ミキサー）へ入れる）が前提の章です。標準から外した理由（SE を導入している人がまだ少ないこと）もあわせて扱います。</p>
+  <div class="sooncard" id="ch17">
+    <h2>第17章 Windows編<span class="soonbadge">準備中</span></h2>
+    <p>Windows での導入手順（Node.js の入れ方、PowerShell を使う手順など）は現在準備中です。bot 本体は Windows 対応済みですが、実機での導入確認が取れ次第、この章を追加します。</p>
   </div>
 
-  <div class="sooncard" id="ch23">
-    <h2>第23章 特別な人の入室挨拶<span class="soonbadge">準備中</span></h2>
-    <p>入室時に通常のお礼とは別の挨拶を返す相手の登録と文面を扱います。</p>
+  <div class="sooncard" id="ch18">
+    <h2>第18章 クラウド編／スマホ用<span class="soonbadge">準備中</span></h2>
+    <p>PC がない人向けに、クラウドサーバー（VPS）へ bot を置く手順は現在準備中です。なおこの構成では、チャット返信・集計・公開ページは動きますが、<strong>SE の音は配信に乗らない機能限定版</strong>になります（サーバー上の bot には音を出す先がないため）。あわせてサーバー代（月額の固定費）もかかります。</p>
   </div>
 
-  <div class="sooncard" id="ch24">
-    <h2>第24章 公開ページと短縮リンク<span class="soonbadge">準備中</span></h2>
-    <p>集計などをリスナー向けページで公開する仕組みと、短縮リンクの運用を扱います。</p>
-  </div>
-
-  <div class="sooncard" id="ch25">
-    <h2>第25章 歌枠の機能：リクエスト・セトリ・歌える曲リスト<span class="soonbadge">準備中</span></h2>
-    <p>歌枠向けの曲リクエスト受け付け、セトリ管理、歌える曲リストの公開を扱います。</p>
-  </div>
-
-  <div class="sooncard" id="ch26">
-    <h2>第26章 お題ガチャとヒットワード反応<span class="soonbadge">準備中</span></h2>
-    <p>雑談の話題を引くお題ガチャと、特定の言葉への反応（部分一致）を扱います。</p>
-  </div>
-
-  <div class="sooncard" id="ch27">
-    <h2>第27章 ラジオネーム＆ジングル<span class="soonbadge">準備中</span></h2>
-    <p>リスナーへのラジオネーム付与と入室ジングルを扱います。ジングルは SE を使うため、第22章が前提になります。</p>
-  </div>
-
-  <div class="sooncard" id="ch28">
-    <h2>第28章 教え込み<span class="soonbadge">準備中</span></h2>
-    <p>リスナーが bot の反応を教え込める機能を扱います。</p>
-  </div>
-
-  <div class="sooncard" id="ch29">
-    <h2>第29章 ビンゴ<span class="soonbadge">準備中</span></h2>
-    <p>枠内完結のビンゴゲームを扱います。公開ページ（第24章）と組み合わせて使います。</p>
-  </div>
-
-  <div class="sooncard" id="ch30">
-    <h2>第30章 イントロドン<span class="soonbadge">準備中</span></h2>
-    <p>曲のイントロ当てゲームを扱います。音源の再生を伴うため、第22章が前提になります。</p>
-  </div>
-
-  <div class="sooncard" id="ch31">
-    <h2>第31章 歌詞定期<span class="soonbadge">準備中</span></h2>
-    <p>歌詞の定期投稿を扱います。JASRAC 管理楽曲の扱いなど、権利面の注意を含みます。</p>
-  </div>
-
-  <div class="sooncard" id="ch32">
-    <h2>第32章 リスナーボタン<span class="soonbadge">準備中</span></h2>
-    <p>公開ページのボタンから配信に SE を鳴らす機能を扱います。SE を使うため、第22章が前提になります。</p>
-  </div>
-
-  <div class="sooncard" id="ch33">
-    <h2>第33章 歌枠モード（SEミュート）<span class="soonbadge">準備中</span></h2>
-    <p>歌枠の間だけ bot の SE を一括で止めるモードを扱います。第22章で SE を導入した人向けです。</p>
-  </div>
-
-  <div class="sooncard" id="ch34">
-    <h2>第34章 バトルゲーム<span class="soonbadge">準備中</span></h2>
-    <p>リスナーのキャラクターが対戦するゲーム一式を扱います。公開ページ（第24章）と組み合わせて使います。</p>
-  </div>
-
-  <div class="sooncard" id="ch35">
-    <h2>第35章 イメージキャラ<span class="soonbadge">準備中</span></h2>
-    <p>リスナーのイメージキャラクター（イラスト）の名鑑と、公開ページ連携を扱います。</p>
-  </div>
-
-  <div class="part">付録<small>困ったときの早見表です</small></div>
-
-  <div class="sooncard" id="ch36">
-    <h2>第36章 つまずきポイント集<span class="soonbadge">準備中</span></h2>
-    <p>実際に起きた失敗と対処を一覧にします。項目と参照先：認証の失敗→第4章・第10章／code の60秒切れ→第10章／リダイレクトURLの不一致→第4章／tokens.json の扱い→第10章／ファイル名に .txt が付く→第9章／config.json の文法エラー→第13章／DRY_RUN の切り替え忘れ→第18章／反応しない→第19章・第21章／二重起動→第11章・第17章。当面は各章の「つまずきポイント」と第21章の切り分け表を参照してください。</p>
+  <div class="sooncard" id="ch19">
+    <h2>第19章 つまずきポイント集<span class="soonbadge">準備中</span></h2>
+    <p>実際に起きた失敗と対処法の一覧は現在準備中です。当面は各章の「注意」コールアウトを参照してください（認証の失敗は第4章、更新時の注意は第16章）。</p>
   </div>
 
   <div class="foot">
-    Spoon bot 導入マニュアル（自分で作る版：共通編＋標準編）<br>
+    Spoon bot 導入マニュアル（共通編＋Mac編）<br>
     <a href="portal.html">← リスナーページ（ポータル）へ戻る</a>
   </div>
 </div>
