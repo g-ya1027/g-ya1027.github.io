@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T10:25:37.214Z",
+  "updatedAt": "2026-11-22T10:33:52.631Z",
   "metric": "exp",
   "entries": [
     {
@@ -14,7 +14,7 @@
       "frame": "gold",
       "crown": true,
       "pvpWin": 0,
-      "exp": 3
+      "exp": 4
     },
     {
       "rank": 2,
@@ -40,7 +40,7 @@
       "frame": "bronze",
       "crown": false,
       "pvpWin": 0,
-      "exp": 1
+      "exp": 2
     },
     {
       "rank": 4,
@@ -57,6 +57,32 @@
     },
     {
       "rank": 5,
+      "nickname": "⚔️👑うみいろくん👑⚔️",
+      "radioName": "彗星の狼将軍",
+      "level": 1,
+      "attr": null,
+      "titleId": "top10",
+      "titleText": "FMスプニ レギュラーDJ",
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 1
+    },
+    {
+      "rank": 6,
+      "nickname": "月野 弥太郎⑅︎◡̈︎*𓈒𓂂𖧷 ",
+      "radioName": "黄昏の流れ星の星",
+      "level": 1,
+      "attr": null,
+      "titleId": "top10",
+      "titleText": "FMスプニ レギュラーDJ",
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 1
+    },
+    {
+      "rank": 7,
       "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
       "radioName": "夢追う番人卿",
       "level": 1,
@@ -69,35 +95,9 @@
       "exp": 0
     },
     {
-      "rank": 6,
+      "rank": 8,
       "nickname": "瑠璃𓈒𓂂𖧷",
       "radioName": "深夜の影総長",
-      "level": 1,
-      "attr": null,
-      "titleId": "top10",
-      "titleText": "FMスプニ レギュラーDJ",
-      "frame": null,
-      "crown": false,
-      "pvpWin": 0,
-      "exp": 0
-    },
-    {
-      "rank": 7,
-      "nickname": "⚔️👑うみいろくん👑⚔️",
-      "radioName": "彗星の狼将軍",
-      "level": 1,
-      "attr": null,
-      "titleId": "top10",
-      "titleText": "FMスプニ レギュラーDJ",
-      "frame": null,
-      "crown": false,
-      "pvpWin": 0,
-      "exp": 0
-    },
-    {
-      "rank": 8,
-      "nickname": "月野 弥太郎⑅︎◡̈︎*𓈒𓂂𖧷 ",
-      "radioName": "黄昏の流れ星の星",
       "level": 1,
       "attr": null,
       "titleId": "top10",
