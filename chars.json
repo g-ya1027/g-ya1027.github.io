@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T10:07:50.406Z",
+  "updatedAt": "2026-11-22T10:13:13.766Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
@@ -76,10 +76,14 @@
       "token": "d64b2d75ebd6e20f",
       "nickname": "ぁゎゎ",
       "radioName": "疾風の船長将軍",
-      "status": "pending",
-      "pair": null,
+      "status": "ready",
+      "pair": {
+        "a": "chars/hUooGCp0KaQn-5EswSh-3A-a.png",
+        "b": "chars/hUooGCp0KaQn-5EswSh-3A-b.png",
+        "kind": "gender"
+      },
       "chosen": null,
-      "reroll": "notready",
+      "reroll": "ok",
       "rerollNextAt": null
     },
     {
