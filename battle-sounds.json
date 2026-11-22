@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T22:16:07.684Z",
+  "updatedAt": "2026-11-22T22:26:39.161Z",
   "slots": {
     "bgm.title": {
       "url": "sounds/game/UrbanBGM_02.mp3",
@@ -16,35 +16,35 @@
     },
     "bgm.win": {
       "url": "sounds/game/Fusion_01.mp3",
-      "volume": 0.2
+      "volume": 0.05
     },
     "bgm.lose": {
       "url": "sounds/game/LoFi_01.mp3",
-      "volume": 0.2
+      "volume": 0.05
     },
     "bgm.draw": {
       "url": "sounds/game/House_01.mp3",
-      "volume": 0.2
+      "volume": 0.05
     },
     "se.encounter": {
       "url": "sounds/game/jingle_26.mp3",
-      "volume": 0.2
+      "volume": 0.1
     },
     "se.uiTap": {
       "url": "sounds/game/タップ.mp3",
-      "volume": 0.2
+      "volume": 0.1
     },
     "se.uiDecide": {
       "url": "sounds/game/決定.mp3",
-      "volume": 0.2
+      "volume": 0.1
     },
     "se.uiCancel": {
       "url": "sounds/game/キャンセル.mp3",
-      "volume": 0.2
+      "volume": 0.1
     },
     "se.moveSelect": {
       "url": "sounds/game/手札選択.mp3",
-      "volume": 0.6
+      "volume": 0.1
     },
     "se.attackNormal": {
       "url": "sounds/game/高速移動.mp3",
@@ -72,11 +72,11 @@
     },
     "se.levelUp": {
       "url": "sounds/game/レベルアップ.mp3",
-      "volume": 0.6
+      "volume": 0.3
     },
     "se.heal": {
       "url": "sounds/game/ステータス治療1.mp3",
-      "volume": 0.6
+      "volume": 0.3
     },
     "se.alloc": {
       "url": "sounds/game/決定.mp3",
@@ -87,16 +87,16 @@
       "volume": 0.2
     },
     "se.ranking": {
-      "url": "sounds/game/ランキング.mp3",
+      "url": "sounds/game/ニュースタイトル表示3.mp3",
       "volume": 0.2
     },
     "se.gkStart": {
-      "url": "sounds/game/RPG_Battle_04.mp3",
-      "volume": 1
+      "url": "sounds/game/jingle_26.mp3",
+      "volume": 0.2
     },
     "se.rankIn": {
-      "url": "sounds/game/Ska_03(1).mp3",
-      "volume": 0.8
+      "url": "sounds/game/ニュースタイトル表示4.mp3",
+      "volume": 0.2
     }
   }
 }
