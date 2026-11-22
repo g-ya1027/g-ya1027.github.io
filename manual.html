@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<!-- spoon-manual-page v1 -->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>📖 Spoon bot 導入マニュアル | Spoon Developers</title>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: "Hiragino Maru Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif; color: #fff; background-color: #0b0821;
+    background-image: radial-gradient(620px 320px at 12% -5%, rgba(255,46,136,.38), rgba(255,46,136,0) 60%), radial-gradient(720px 360px at 92% -10%, rgba(25,191,255,.32), rgba(25,191,255,0) 60%), radial-gradient(560px 520px at 50% 112%, rgba(123,47,247,.38), rgba(123,47,247,0) 62%), radial-gradient(circle, rgba(255,255,255,.5) 1px, rgba(255,255,255,0) 1.7px);
+    background-size: auto, auto, auto, 110px 110px; background-attachment: fixed; min-height: 100vh; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 20px 14px 48px; }
+  .mascot { text-align: center; font-size: 15px; letter-spacing: .25em; color: #ffd9ec; text-shadow: 0 0 10px rgba(255,79,163,.8); }
+  h1.title { text-align: center; margin: 4px 0 0; font-size: 40px; font-size: clamp(28px, 7vw, 44px); font-weight: 900; letter-spacing: .03em; line-height: 1.25;
+    background: linear-gradient(180deg, #fff6c9 5%, #ffd34d 35%, #ff9d2e 62%, #ffe98a 96%); -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 3px 0 #7a2c00) drop-shadow(0 8px 16px rgba(0,0,0,.55)); }
+  .sub { text-align: center; font-size: 14px; color: #cfc6ff; line-height: 1.8; margin: 10px 0 18px; }
+  .panel { background: linear-gradient(180deg, rgba(43,30,96,.92), rgba(20,14,54,.95)); border: 2px solid #d9a441; border-radius: 16px; padding: 18px 18px 20px; margin: 0 0 18px; box-shadow: 0 8px 18px rgba(0,0,0,.45); }
+  .hen { display: inline-block; font-size: 12px; font-weight: 900; letter-spacing: .12em; color: #241a4d; background: linear-gradient(90deg, #ffd34d, #ff9d2e); border-radius: 999px; padding: 3px 12px; margin-bottom: 8px; }
+  h2.chap { font-size: 22px; font-weight: 900; margin: 2px 0 12px; line-height: 1.4; }
+  h3.subh { font-size: 17px; font-weight: 900; margin: 20px 0 8px; color: #ffd76a; }
+  p, li { font-size: 15px; line-height: 1.85; }
+  p { margin: 8px 0; }
+  ul, ol { margin: 8px 0; padding-left: 1.4em; }
+  li { margin: 4px 0; }
+  a { color: #7dd7ff; }
+  code { font-family: "SF Mono", Menlo, Consolas, monospace; background: rgba(255,255,255,.12); border-radius: 5px; padding: 1px 6px; font-size: .92em; }
+  pre.code { background: #120c33; border: 1px solid #5a4a9e; border-radius: 10px; padding: 12px 14px; overflow-x: auto; margin: 10px 0; }
+  pre.code code { background: none; padding: 0; font-size: 13.5px; line-height: 1.7; color: #e8e2ff; white-space: pre; }
+  .callout { border-radius: 12px; padding: 12px 16px; margin: 14px 0; font-size: 14.5px; line-height: 1.8; }
+  .callout .ct { display: block; font-weight: 900; margin-bottom: 4px; }
+  .callout.warn { background: rgba(120, 20, 40, .55); border: 2px solid #ff5d7a; }
+  .callout.warn .ct { color: #ffb3c1; }
+  .callout.point { background: rgba(10, 70, 66, .55); border: 2px solid #2fd4c4; }
+  .callout.point .ct { color: #9df0e7; }
+  .callout.env { background: rgba(64, 48, 8, .55); border: 2px dashed #ffd34d; }
+  .callout.env .ct { color: #ffd76a; }
+  .callout.bookmark { background: rgba(24, 60, 120, .55); border: 2px solid #57a8ff; text-align: center; }
+  .callout.bookmark .ct { color: #a8d4ff; font-size: 16px; }
+  .callout.bookmark .url { font-size: 17px; font-weight: 900; word-break: break-all; }
+  figure.shot { margin: 14px 0; text-align: center; }
+  figure.shot img { max-width: 100%; border-radius: 10px; border: 1px solid #5a4a9e; box-shadow: 0 6px 16px rgba(0,0,0,.5); }
+  figure.shot figcaption { font-size: 13px; color: #cfc6ff; margin-top: 8px; line-height: 1.6; }
+  table.perms { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+  table.perms th, table.perms td { border: 1px solid #5a4a9e; padding: 8px 10px; text-align: left; line-height: 1.6; }
+  table.perms th { background: rgba(255,211,77,.16); color: #ffd76a; }
+  table.perms td:first-child { font-family: "SF Mono", Menlo, Consolas, monospace; white-space: nowrap; color: #9df0e7; }
+  /* 図解: 仕組みの流れ */
+  .flow { display: flex; flex-wrap: wrap; align-items: stretch; gap: 8px; margin: 14px 0; }
+  .fbox { flex: 1 1 140px; background: rgba(255,255,255,.07); border: 2px solid #7a68c9; border-radius: 12px; padding: 12px 10px; text-align: center; }
+  .fbox .fe { font-size: 30px; display: block; margin-bottom: 4px; }
+  .fbox .ft { font-weight: 900; font-size: 15px; display: block; }
+  .fbox .fd { font-size: 12.5px; color: #cfc6ff; line-height: 1.6; display: block; margin-top: 4px; }
+  .fbox.hero { border-color: #ffd34d; background: rgba(255,211,77,.1); }
+  .farrow { align-self: center; font-size: 22px; color: #ffd34d; font-weight: 900; flex: 0 0 auto; }
+  /* 図解: 2段構え */
+  .stages { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0; }
+  .stage { flex: 1 1 220px; border-radius: 12px; padding: 14px 16px; }
+  .stage.s1 { background: rgba(25,120,200,.25); border: 2px solid #57a8ff; }
+  .stage.s2 { background: rgba(190,60,160,.22); border: 2px solid #ff7ad9; }
+  .stage .st { font-weight: 900; font-size: 17px; }
+  .stage .sd { font-size: 13.5px; color: #e8e2ff; line-height: 1.7; margin-top: 4px; }
+  /* 図解: OK/NG 対比 */
+  .okng { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0; }
+  .okbox, .ngbox { flex: 1 1 240px; border-radius: 12px; padding: 12px 14px; }
+  .okbox { background: rgba(16, 90, 50, .4); border: 2px solid #3ddc84; }
+  .ngbox { background: rgba(120, 20, 40, .4); border: 2px solid #ff5d7a; }
+  .okbox .tag, .ngbox .tag { font-weight: 900; font-size: 15px; display: block; margin-bottom: 6px; }
+  .okbox .tag { color: #8df5bb; } .ngbox .tag { color: #ffb3c1; }
+  .okbox code, .ngbox code { display: block; background: rgba(0,0,0,.35); padding: 8px 10px; border-radius: 6px; margin: 6px 0; word-break: break-all; }
+  /* 図解: 3ステップ */
+  .steps3 { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0; }
+  .step3 { flex: 1 1 180px; background: rgba(255,255,255,.07); border: 2px solid #7a68c9; border-radius: 12px; padding: 14px; }
+  .step3 .no { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: radial-gradient(circle at 32% 28%, #fffbe8, #ffd34d 55%, #e79b1e); color: #3a2400; font-weight: 900; font-size: 17px; box-shadow: 0 2px 6px rgba(0,0,0,.4); }
+  .step3 .st { font-weight: 900; font-size: 15.5px; display: block; margin-top: 8px; }
+  .step3 .sd { font-size: 13px; color: #cfc6ff; line-height: 1.7; display: block; margin-top: 4px; }
+  /* 目次 */
+  .toc { columns: 2; column-gap: 26px; margin: 6px 0 2px; padding: 0; list-style: none; }
+  .toc li { margin: 0 0 7px; font-size: 14.5px; break-inside: avoid; }
+  .toc a { color: #e8e2ff; text-decoration: none; }
+  .toc a:hover { color: #ffd76a; text-decoration: underline; }
+  .toc .soon { color: #9d92d6; }
+  .sooncard { border: 2px dashed #7a68c9; border-radius: 16px; padding: 16px 18px; margin: 0 0 18px; background: rgba(255,255,255,.04); }
+  .sooncard h2 { font-size: 19px; margin: 0 0 6px; font-weight: 900; color: #cfc6ff; }
+  .sooncard p { font-size: 14px; color: #bdb4e8; margin: 4px 0; }
+  .soonbadge { display: inline-block; font-size: 12px; font-weight: 900; background: #3a2f6b; color: #ffd76a; border-radius: 999px; padding: 2px 10px; margin-left: 8px; vertical-align: middle; }
+  .foot { text-align: center; color: #9d92d6; font-size: 12px; margin-top: 10px; line-height: 1.8; }
+  .foot a { color: #9d92d6; }
+  @media (max-width: 560px) { .toc { columns: 1; } .farrow { transform: rotate(90deg); margin: 0 auto; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="mascot">🗿 SPOON 🗿</div>
+  <h1 class="title">Spoon bot 導入マニュアル</h1>
+  <p class="sub">Spoon の公式機能「Spoon Developers」を使って、自分の配信に bot（自動で反応してくれる助手）を導入するまでの手順書です。<br>プログラミングの知識は不要です。手順どおりにコピー＆ペーストできれば進められます。</p>
+
+  <div class="callout bookmark">
+    <span class="ct">🔖 最初にブックマークしておくページ</span>
+    <span class="url"><a href="https://developers.spooncast.net/jp">https://developers.spooncast.net/jp</a></span><br>
+    Spoon Developers のスタートページです。このページは <strong>Spoon アプリの中からは見つかりにくい</strong> 場所にあります。申請もドキュメントもここが入り口なので、作業を始める前にブラウザへブックマークしておくのがおすすめです。
+  </div>
+
+  <div class="panel">
+    <span class="hen">もくじ</span>
+    <h2 class="chap">このマニュアルの構成</h2>
+    <ul class="toc">
+      <li>共通編 <a href="#ch1">第1章 はじめに：bot ができることと全体像</a></li>
+      <li>共通編 <a href="#ch2">第2章 bot専用アカウントを用意する</a></li>
+      <li>共通編 <a href="#ch3">第3章 Spoon Developers でアプリ登録と権限申請</a></li>
+      <li>共通編 <a href="#ch4">第4章 アプリ側の設定：リダイレクトURL</a></li>
+      <li>共通編 <a href="#ch5">第5章 審査承認後：Client ID と Client Secret</a></li>
+      <li>Mac編 <a href="#ch6">第6章 Mac の準備：Node.js を入れる</a></li>
+      <li>Mac編 <a href="#ch7">第7章 bot の設置：フォルダ配置と展開のしかた</a></li>
+      <li>Mac編 <a href="#ch8">第8章 .env の設定（秘密情報の入れ方）</a></li>
+      <li>Mac編 <a href="#ch9">第9章 config.json の作成</a></li>
+      <li>Mac編 <a href="#ch10">第10章 初回ログインとトークン取得（認証）</a></li>
+      <li>Mac編 <a href="#ch11">第11章 モックで動作確認</a></li>
+      <li>Mac編 <a href="#ch12">第12章 テスト配信（DRY_RUN）から本番へ</a></li>
+      <li>Mac編 <a href="#ch13">第13章 毎回の配信手順</a></li>
+      <li>Mac編 <a href="#ch14">第14章 管理画面の使い方</a></li>
+      <li>Mac編 <a href="#ch15">第15章 公開ページと短縮リンク</a></li>
+      <li>Mac編 <a href="#ch16">第16章 更新の受け方（新しい zip が届いたら）</a></li>
+      <li><span class="soon">第17章 Windows編（準備中）</span></li>
+      <li><span class="soon">第18章 クラウド編／スマホ用（準備中）</span></li>
+      <li><span class="soon">第19章 つまずきポイント集（準備中）</span></li>
+    </ul>
+  </div>
+
+  <section class="panel" id="ch1">
+    <span class="hen">共通編</span>
+    <h2 class="chap">第1章 はじめに：bot ができることと全体像</h2>
+    <p>このマニュアルは、Spoon の公式機能「Spoon Developers」を使って、自分の配信に bot（自動で反応してくれる助手）を導入するまでの手順をまとめたものです。</p>
+    <p>仕組みはシンプルです。</p>
+    <div class="flow">
+      <div class="fbox"><span class="fe">📱</span><span class="ft">配信端末</span><span class="fd">タブレット／スマホの Spoon アプリで、いつもどおり配信を開く</span></div>
+      <div class="farrow">⇄</div>
+      <div class="fbox"><span class="fe">🔌</span><span class="ft">Spoon Developers（公式 API）</span><span class="fd">コメント・入室・ハート・spoon・フォローの出来事を bot へ届ける</span></div>
+      <div class="farrow">⇄</div>
+      <div class="fbox hero"><span class="fe">🤖</span><span class="ft">bot（PC 上のプログラム）</span><span class="fd">出来事を受け取って、決められた反応を返す</span></div>
+    </div>
+    <ul>
+      <li>配信はいつもどおり配信端末（タブレット／スマホ）の Spoon アプリで開きます。</li>
+      <li>bot は PC（またはサーバー）の上で動くプログラムです。配信中のコメント・入室・ハート・spoon・フォローを公式 API 経由で受け取り、決められた反応を返します。</li>
+      <li>bot ができることの例：
+        <ul>
+          <li>キーワードへの自動返信（例：「!help」と打たれたら使い方を返す）</li>
+          <li>リスナーごとの集計（コメント数・ハート・spoon を数えて公開する）</li>
+          <li>spoon の数やフォローに合わせた効果音（SE）の再生</li>
+          <li>曲リスト・ビンゴ・バトルなどの公開ページの自動更新</li>
+        </ul>
+      </li>
+      <li>音（SE）は bot が動いている PC から出ます。PC（Mac）の音をオーディオインターフェース（ミキサー）経由で配信に乗せる構成が前提です。</li>
+    </ul>
+    <p>進め方は大きく2段構えです。</p>
+    <div class="stages">
+      <div class="stage s1"><span class="st">STEP 1：共通編</span><div class="sd">Spoon Developers への申請と承認。どの環境でも手順は同じです（第1〜5章）。</div></div>
+      <div class="stage s2"><span class="st">STEP 2：環境別編</span><div class="sd">bot を動かす機械の準備。Mac編／Windows編／クラウド編のうち、自分の環境の章だけ読めば OK です。</div></div>
+    </div>
+    <div class="callout env">
+      <span class="ct">🖥️ このマニュアルの作成環境（具体例）</span>
+      このマニュアルの手順は、次の構成で実際に導入・運用して確認したものです。本文の手順説明では一般名で統一していますが、自分の環境と見比べるときの参考にしてください。<br>
+      ・配信端末：iPad<br>
+      ・オーディオインターフェース：Yamaha AG03 Mk2<br>
+      ・PC：iMac（Intel Mac、macOS Sequoia）
+    </div>
+  </section>
+
+  <section class="panel" id="ch2">
+    <span class="hen">共通編</span>
+    <h2 class="chap">第2章 bot専用アカウントを用意する</h2>
+    <p>最初に決めることが1つあります。<strong>bot になる Spoon アカウント</strong>です。</p>
+    <ul>
+      <li>アプリ登録したアカウントが、そのまま bot アカウントになります。bot のチャットや入室の告知は、そのアカウントの名前で出ます。</li>
+      <li><strong>自分の DJ アカウントで登録してはいけません。</strong>自分の配信に bot として接続できなくなります。</li>
+      <li>用意のしかたは2通り：
+        <ul>
+          <li>新しく Spoon アカウントを作る</li>
+          <li>すでに持っているサブアカウントを使う（実際にこの方法で運用しています）</li>
+        </ul>
+      </li>
+      <li>サブアカウントを使う場合の注意：
+        <ul>
+          <li>bot が接続している配信に、同じアカウントでアプリや Web から入らないでください。そのセッションが切れると bot も退室してしまいます。</li>
+          <li>bot の名前はリスナーにそのまま見えます。「誰の bot か」が分かる名前になります。静かに枠周りをしたい用途と兼ねるなら、新規アカウントの方が向いています。</li>
+        </ul>
+      </li>
+      <li>アカウントのパスワードは安全な場所に保管し、チャットや SNS に書かないでください。</li>
+    </ul>
+    <div class="callout warn">
+      <span class="ct">⚠️ ここだけは間違えないで</span>
+      アプリ登録は <strong>bot 用アカウント</strong> で行います。DJ 本人のアカウントで登録すると、自分の配信に bot として接続できなくなります。
+    </div>
+    <p>あわせて、アプリ名（Developer Center に登録する名前）も考えておくと次章がスムーズです。例：「○○雑談bot」のような、自分の配信の名前が分かるもの。</p>
+  </section>
+
+  <section class="panel" id="ch3">
+    <span class="hen">共通編</span>
+    <h2 class="chap">第3章 Spoon Developers でアプリ登録と権限申請</h2>
+    <ol>
+      <li>ブラウザで <strong>Spoon Developers のスタートページ（<a href="https://developers.spooncast.net/jp">https://developers.spooncast.net/jp</a>）</strong> を開きます。ここがすべての入り口です。「アプリケーションを登録」から登録へ、「ドキュメントを見る」から API ドキュメントへ進めます。</li>
+      <li><strong>bot 用アカウントでログイン</strong>します（DJ 本人のアカウントでログインしないこと）。</li>
+      <li>新規アプリの作成を選びます。</li>
+      <li>アプリ名と説明文を入力します。説明文のたたき台（自分の言葉に直して OK）：
+        <div class="callout point"><span class="ct">📝 説明文のたたき台</span>自分のSpoon雑談配信を補助する個人用botです。配信中のチャット・入室・ハート・spoon・フォローのイベントを受け取り、キーワードへの自動返信、リスナーごとの集計の公開、spoon数に応じたSE再生を行います。自分の配信でのみ使用します。</div>
+      </li>
+      <li>リダイレクトURL は、まず <code>http://localhost</code> と入れておきます（あとで第4章のとおり直します）。</li>
+      <li>権限は、画面にある <strong>12個すべて</strong> にチェックします。</li>
+    </ol>
+    <figure class="shot">
+      <img src="manual/shot1-console-myapps.png" alt="Spoon Developers コンソールのマイアプリ一覧画面">
+      <figcaption>コンソールの「マイアプリ」一覧。登録したアプリがここに並びます（Client ID はサイト側で省略表示されます）。</figcaption>
+    </figure>
+    <figure class="shot">
+      <img src="manual/shot3-console-scopes.png" alt="権限（API Scopes）の一覧画面">
+      <figcaption>権限（API Scopes）の一覧。申請時は画面にある12個すべてにチェックします。</figcaption>
+    </figure>
+    <p>12権限と、それぞれ何に使うかは次のとおりです。</p>
+    <table class="perms">
+      <tr><th>権限</th><th>何に使うか</th></tr>
+      <tr><td>me.read</td><td>bot アカウント自身の情報を取得する</td></tr>
+      <tr><td>live.read</td><td>配信の情報を取得する</td></tr>
+      <tr><td>listeners.read</td><td>リスナー一覧を取得する（サブスクのプラン照合など）</td></tr>
+      <tr><td>fans.read</td><td>ファンの情報を取得する</td></tr>
+      <tr><td>donations.read</td><td>投げられた spoon の記録を取得する</td></tr>
+      <tr><td>events.chat</td><td>コメントのイベントを受け取る</td></tr>
+      <tr><td>events.presence</td><td>入室・退室のイベントを受け取る</td></tr>
+      <tr><td>events.like</td><td>ハートのイベントを受け取る</td></tr>
+      <tr><td>events.donation</td><td>spoon のイベントを受け取る</td></tr>
+      <tr><td>events.follow</td><td>フォローのイベントを受け取る</td></tr>
+      <tr><td>chat.send</td><td>チャットに返信を送る</td></tr>
+      <tr><td>dj.follow</td><td>bot が DJ をフォローするために使う</td></tr>
+    </table>
+    <div class="callout point">
+      <span class="ct">💡 ポイント</span>
+      権限は <strong>最初に全部入れるのが大事</strong> です。承認されたあとで権限を足すと、再審査になる可能性があります。
+    </div>
+    <ol start="7">
+      <li>申請を送信します。あとは審査の結果待ちです。
+        <ul>
+          <li>審査期間の目安は公式には公表されていません。実例では、申請した翌日に承認されました（必ずこの日数で通るという保証ではありません）。</li>
+          <li>差し戻された場合は理由が表示されるので、直して再審査に出せます。</li>
+        </ul>
+      </li>
+      <li>承認されたら、第5章に進みます。</li>
+    </ol>
+    <p>なお、bot が配信に接続すると bot 名でのリスナー告知が自動で出ます（これは OFF にできません）。また、イベントの接続は1配信につき1本だけです。</p>
+  </section>
+
+  <section class="panel" id="ch4">
+    <span class="hen">共通編</span>
+    <h2 class="chap">第4章 アプリ側の設定：リダイレクトURL</h2>
+    <p>認証（初回ログイン）でつまずかないために、この章は飛ばさないでください。<strong>実際にここで失敗した経験</strong>をもとに書いています。</p>
+    <p>リダイレクトURL の正解は次の形です。</p>
+    <div class="okng">
+      <div class="okbox"><span class="tag">✅ 正解（この形にそろえる）</span><code>http://localhost:3000</code>ポート番号（:3000）まで含める／後ろにパス（/callback など）を付けない</div>
+      <div class="ngbox"><span class="tag">❌ 失敗する形</span><code>http://localhost/</code><code>http://localhost:3000/callback</code>ポートなし・パス付きは、認証エラーや保存エラーになります</div>
+    </div>
+    <p>実際に起きた失敗：</p>
+    <ul>
+      <li>登録側が <code>http://localhost/</code>（ポート・パスなし）、bot 側が <code>http://localhost:3000/callback</code> になっていて、認証の同意画面で「このアプリとは連携できません」と表示され、先に進めませんでした。</li>
+      <li><code>http://localhost:3000/callback</code> のようにパス付きで保存しようとすると、「The redirect URI format is invalid.」と出て保存自体ができません。</li>
+      <li>両方を <code>http://localhost:3000</code> にそろえたら、その場で認証が通りました（再審査にはなりませんでした）。</li>
+    </ul>
+    <div class="callout warn">
+      <span class="ct">⚠️ 完全一致が必須</span>
+      アプリ側（Developer Center のアプリ詳細）でリダイレクトURL を <code>http://localhost:3000</code> に直しておいてください。あとで bot 側の設定ファイル（.env）にも同じ値を入れます。<strong>両方が完全一致していないと認証できません。</strong>
+    </div>
+  </section>
+
+  <section class="panel" id="ch5">
+    <span class="hen">共通編</span>
+    <h2 class="chap">第5章 審査承認後：Client ID と Client Secret</h2>
+    <p>承認されると、Developer Center のアプリ詳細に <strong>Client ID</strong> と <strong>Client Secret</strong> が表示されます。</p>
+    <figure class="shot">
+      <img src="manual/shot2-console-app-detail-public.png" alt="アプリ詳細画面（Client ID は公開用に伏せてあります）">
+      <figcaption>アプリ詳細画面。Client ID は bot の設定に使う「鍵」のひとつです（このマニュアルでは公開用に伏せてあります）。</figcaption>
+    </figure>
+    <p>この2つは bot が API を使うための「鍵」です。扱いのルール：</p>
+    <div class="callout warn">
+      <span class="ct">🔑 鍵の扱いルール</span>
+      ・<strong>Client Secret は、チャット・SNS・画面共有に絶対に出さない。</strong>誰かに見せたり、公開したりしないでください。<br>
+      ・入力するのは、自分の PC の中の設定ファイルだけです（環境別編で案内します）。<br>
+      ・Client ID も、むやみに公開しない方が安全です。
+    </div>
+    <p>ここまでが共通編です。次は環境別編に進みます。このマニュアルでは Mac編を続けます。</p>
+  </section>
+
+  <section class="panel" id="ch6">
+    <span class="hen">Mac編</span>
+    <h2 class="chap">第6章 Mac の準備：Node.js を入れる</h2>
+    <p>対象：Mac。この編の手順は、Mac（macOS Sequoia）で実際に導入して確認したものです。</p>
+    <p>ターミナル（Terminal）というアプリを使います。Spotlight（⌘+スペース）で「ターミナル」と検索すると出てきます。コマンドは1行ずつコピーして貼り、Enter で実行します。</p>
+    <p>bot は Node.js という実行環境の上で動きます。まず入っているか確認します。</p>
+    <ol>
+      <li>ターミナルを開いて、次を入力します。
+        <pre class="code"><code>node -v</code></pre>
+      </li>
+      <li><code>v26.13.0</code> のようにバージョンが表示されれば、もう入っています。第7章へ進んでください。</li>
+      <li><code>command not found</code> と出たら、まだ入っていません。次の方法で入れます。
+        <ul>
+          <li>ブラウザで <strong>nodejs.org</strong> を開き、インストーラー（.pkg ファイル）をダウンロードします。</li>
+          <li>ダウンロードした .pkg をダブルクリックして、画面の案内どおりにインストールします。</li>
+          <li>インストールが終わったら、もう一度ターミナルで <code>node -v</code> を実行し、バージョンが表示されることを確認します。</li>
+        </ul>
+      </li>
+    </ol>
+    <div class="callout point">
+      <span class="ct">💡 ポイント</span>
+      動作に必要なのは <strong>Node 18 以上</strong> です。表示されたバージョンの最初の数字が 18 以上なら大丈夫です。<br>
+      補足：パッケージ管理ツール（Homebrew）経由の導入は、このマニュアルでは案内しません。現行の Homebrew インストーラは Intel Mac では使えなかったためです。公式サイトの .pkg が、実際に通った確実な方法です。
+    </div>
+  </section>
+
+  <section class="panel" id="ch7">
+    <span class="hen">Mac編</span>
+    <h2 class="chap">第7章 bot の設置：フォルダ配置と展開のしかた</h2>
+    <p>bot 一式は zip ファイルで受け取ります。展開と配置は <strong>ターミナルで行います</strong>。</p>
+    <div class="callout warn">
+      <span class="ct">⚠️ Finder でコピー＆置き換えはしないでください</span>
+      実際に、Finder の「置き換え」では既存のファイルが確実に置き換わらず、古いファイルが残って「更新したのに直らない」状態になったことがあります。
+    </div>
+    <ul>
+      <li>置き場所は <code>~/Downloads/bot</code>（ダウンロードフォルダの中の bot フォルダ）に統一します。以後の作業はすべてこのフォルダで行います。</li>
+      <li><strong>bot フォルダごと丸ごと置き換えるのは厳禁です。</strong>設定ファイル（.env）と認証ファイル（tokens.json）は zip に含まれていないので、フォルダごと消すと認証からやり直しになります。置き換えるのは中身のファイル・フォルダ単位です。</li>
+    </ul>
+    <h3 class="subh">📁 bot フォルダの構成（イメージ）</h3>
+    <pre class="code"><code>~/Downloads/bot/
+├─ .env               ← 秘密情報の設定（zip には入っていない）
+├─ tokens.json        ← 認証の鍵（zip には入っていない）
+├─ config.json        ← 自分用の設定（見本から作る）
+├─ config.example.json
+├─ src/               ← bot のプログラム本体
+├─ se/                ← 効果音（SE）の置き場所
+└─ data/              ← bot の記録データ</code></pre>
+    <p>初回設置の例（zip がダウンロードフォルダにある場合）：</p>
+    <pre class="code"><code>rm -rf /tmp/spoon-bot &amp;&amp; unzip -o ~/Downloads/spoon-bot.zip -d /tmp/spoon-bot &amp;&amp; cp -R /tmp/spoon-bot/bot/ ~/Downloads/bot/</code></pre>
+    <p>（zip のファイル名は、受け取ったものの名前に読み替えてください。）</p>
+  </section>
+
+  <section class="panel" id="ch8">
+    <span class="hen">Mac編</span>
+    <h2 class="chap">第8章 .env の設定（秘密情報の入れ方）</h2>
+    <p><code>.env</code> は、鍵などの秘密情報を入れる設定ファイルです。bot フォルダの中で作ります。</p>
+    <ol>
+      <li>bot フォルダに移動します。
+        <pre class="code"><code>cd ~/Downloads/bot</code></pre>
+      </li>
+      <li>見本をコピーして <code>.env</code> を作ります。
+        <pre class="code"><code>cp .env.example .env</code></pre>
+      </li>
+      <li>テキストエディットで開きます。
+        <pre class="code"><code>open -e ~/Downloads/bot/.env</code></pre>
+      </li>
+      <li>次の項目を書き換えます（**** の部分に、Developer Center に表示された自分の値を入れます）。
+        <pre class="code"><code>SPOON_CLIENT_ID=****
+SPOON_CLIENT_SECRET=****
+SPOON_REDIRECT_URI=http://localhost:3000
+DRY_RUN=1</code></pre>
+        <ul>
+          <li><code>SPOON_REDIRECT_URI</code> は第4章の値と完全一致させます。</li>
+          <li><code>DRY_RUN=1</code> は安全スイッチです。1 の間は bot は実際にチャットを送らず、画面に表示するだけになります。<strong>最初は必ず 1 のまま</strong>にしてください。本番で送り始めるときだけ 0 に変えます。</li>
+          <li>ファイルを保存して閉じます。</li>
+        </ul>
+      </li>
+      <li>設定できたかは、<strong>中身を表示せずに</strong>確かめられます。次のコマンドは、値が入っている行の「件数」だけを表示します。
+        <pre class="code"><code>grep -c "SPOON_CLIENT_ID=" ~/Downloads/bot/.env
+grep -c "SPOON_CLIENT_SECRET=" ~/Downloads/bot/.env</code></pre>
+        両方とも <code>1</code> と出れば、項目自体は書けています（値の中身は画面に出ません）。
+      </li>
+    </ol>
+  </section>
+
+  <section class="panel" id="ch9">
+    <span class="hen">Mac編</span>
+    <h2 class="chap">第9章 config.json の作成</h2>
+    <p>文面や機能の ON/OFF は <code>config.json</code> という設定ファイルで管理します。</p>
+    <ol>
+      <li>見本から自分用を作ります。
+        <pre class="code"><code>cp ~/Downloads/bot/config.example.json ~/Downloads/bot/config.json</code></pre>
+      </li>
+      <li>ルール：
+        <ul>
+          <li><strong><code>config.example.json</code> を直接編集しない。</strong>更新のたびに上書きされて、編集が消えてしまいます。</li>
+          <li>編集は <code>config.json</code> に対して行います（第14章の管理画面からも編集できます）。</li>
+          <li>設定を変えたら bot の再起動で反映されます。再起動の前に第11章のモックで確認すると安全です。</li>
+        </ul>
+      </li>
+    </ol>
+  </section>
+
+  <section class="panel" id="ch10">
+    <span class="hen">Mac編</span>
+    <h2 class="chap">第10章 初回ログインとトークン取得（認証）</h2>
+    <p>bot が本物の Spoon API につながるための、最初の認証です。</p>
+    <ol>
+      <li>ターミナルで bot フォルダにいることを確認し、次を実行します。
+        <pre class="code"><code>cd ~/Downloads/bot
+npm run auth</code></pre>
+      </li>
+      <li>ブラウザで Spoon の同意画面が開きます。</li>
+      <li><strong>ここが大事な分かれ道です。</strong>同意は <strong>DJ 本人のアカウント</strong> で行います。
+        <ul>
+          <li>画面に表示されているアカウント名を確認してください。bot 用アカウントの名前になっていたら、いったんログアウトして DJ 本人のアカウントでログインし直します。</li>
+          <li>bot 用アカウントのまま同意すると「このアプリとは連携できません」と表示されて進めません（実際にこの切り分けで解決しました）。</li>
+        </ul>
+      </li>
+      <li>同意すると、bot フォルダに <code>tokens.json</code> というファイルができます。これで認証は完了です。</li>
+      <li>うまくいかないときは、まず第4章のリダイレクトURL（アプリ側と .env が両方とも <code>http://localhost:3000</code> で一致しているか）を確認してください。失敗のほとんどはここです。</li>
+    </ol>
+    <div class="callout warn">
+      <span class="ct">🔑 tokens.json も鍵そのもの</span>
+      <code>tokens.json</code> は認証の鍵そのものです。.env と同じく、公開・共有はしないでください。
+    </div>
+  </section>
+
+  <section class="panel" id="ch11">
+    <span class="hen">Mac編</span>
+    <h2 class="chap">第11章 モックで動作確認</h2>
+    <p>本物の配信につなぐ前に、練習実行で bot の動きを確かめます。</p>
+    <pre class="code"><code>cd ~/Downloads/bot
+npm run mock</code></pre>
+    <ul>
+      <li>モックは、偽のコメントや spoon などのイベントを bot に渡して、返信が正しく作られるかを表示する仕組みです。本物の配信にはつながりません。</li>
+      <li>画面に bot の返信の件数と内容が出ます。出てきた返信が想定どおりなら、設定とプログラムはひとまず正常です。</li>
+      <li>モックは設定ミスの発見にも使えます。たとえば config.json が古いままだと、新しい機能の返信がモックにも出てきません。「更新したのに新機能が動かない」ときは、まずモックで切り分けてください。</li>
+    </ul>
+  </section>
+
+  <section class="panel" id="ch12">
+    <span class="hen">Mac編</span>
+    <h2 class="chap">第12章 テスト配信（DRY_RUN）から本番へ</h2>
+    <p>いよいよ実配信で試します。最初は安全スイッチを入れたまま、ファン限定のテスト配信で行います。</p>
+    <h3 class="subh">テスト配信（DRY_RUN=1）</h3>
+    <p>前提：.env の <code>DRY_RUN</code> が <code>1</code> のままであること。</p>
+    <ol>
+      <li>配信端末（タブレット／スマホ）でファン限定のテスト配信を開始します。</li>
+      <li>Mac のターミナルで bot を起動します。
+        <pre class="code"><code>cd ~/Downloads/bot
+npm start</code></pre>
+      </li>
+      <li><strong>bot の接続が完了するまで少し待ちます。</strong>リスナー一覧に bot アカウントが出てきたら準備 OK です。</li>
+      <li>DJ 側のリスナー一覧から、bot を <strong>マネージャーに任命</strong> します。</li>
+      <li>DJ がチャットで <code>!help</code> と打ちます。</li>
+      <li>DRY_RUN 中は実際のチャットには何も出ません。代わりに、bot が「送るはずだった返信」がターミナルに表示されます。これが見えれば接続成功です。</li>
+    </ol>
+    <div class="callout point">
+      <span class="ct">💡 注意</span>
+      ・bot が接続している間は、bot 用アカウントでアプリや Web から同じ配信に入らないでください。<br>
+      ・<code>npm start</code> は1つだけ起動してください。
+    </div>
+    <h3 class="subh">本番モード（DRY_RUN=0）へ</h3>
+    <ol>
+      <li>ターミナルで Ctrl+C を押して bot を止めます。</li>
+      <li>.env を開き、<code>DRY_RUN=1</code> を <code>DRY_RUN=0</code> に書き換えて保存します。
+        <pre class="code"><code>open -e ~/Downloads/bot/.env</code></pre>
+      </li>
+      <li>もう一度 <code>npm start</code> で起動します。</li>
+      <li>テスト配信のまま <code>!help</code> と打つと、今度は <strong>実際のチャット欄に bot の返信が表示されます</strong>。ここまで確認できたら導入完了です。</li>
+      <li>後片付けとして、テストが終わったら配信を終了し、bot も Ctrl+C で止めます。</li>
+    </ol>
+  </section>
+
+  <section class="panel" id="ch13">
+    <span class="hen">Mac編</span>
+    <h2 class="chap">第13章 毎回の配信手順</h2>
+    <p>通常の配信では、この3ステップだけです。</p>
+    <div class="steps3">
+      <div class="step3"><span class="no">1</span><span class="st">配信を開始する</span><span class="sd">配信端末（タブレット／スマホ）で、いつもどおり配信を開きます。</span></div>
+      <div class="step3"><span class="no">2</span><span class="st">bot を起動する</span><span class="sd">Mac のターミナルで <code>cd ~/Downloads/bot</code> してから <code>npm start</code>。</span></div>
+      <div class="step3"><span class="no">3</span><span class="st">マネージャーに任命する</span><span class="sd">リスナー一覧に bot が出る（＝接続完了）のを待ってから任命します。</span></div>
+    </div>
+    <p>配信が終わったら、ターミナルで Ctrl+C を押して bot を止めます。</p>
+    <div class="callout warn">
+      <span class="ct">⚠️ 毎回の注意点</span>
+      ・配信開始直後は、bot の接続が完了する前にコマンドを打っても反応しません。リスナー一覧に bot が出てから任命とテストを行ってください。<br>
+      ・<code>npm start</code> の二重起動は厳禁です。2つ起動すると互いに切断し合います。「反応しないな」と思ったら、まず起動し直す前に、今動いている bot を Ctrl+C で止めてから起動し直してください。<br>
+      ・マネージャー任命は配信ごとに必要な手順です。忘れると bot が正しく反応できません。
+    </div>
+  </section>
+
+  <section class="panel" id="ch14">
+    <span class="hen">Mac編</span>
+    <h2 class="chap">第14章 管理画面の使い方</h2>
+    <p>文面や機能の設定は、ブラウザの管理画面から変更できます。</p>
+    <ol>
+      <li>bot が起動している状態（<code>npm start</code> のターミナルが動いている状態）で、ブラウザで次を開きます。
+        <pre class="code"><code>http://localhost:3939</code></pre>
+      </li>
+    </ol>
+    <figure class="shot">
+      <img src="manual/shot4-admin-top.png" alt="bot 管理画面のトップ">
+      <figcaption>管理画面のトップ。機能の設定や文面の編集はこの画面から行います。</figcaption>
+    </figure>
+    <ol start="2">
+      <li>画面でできることの例：
+        <ul>
+          <li>機能ごとの ON/OFF の切り替え</li>
+          <li>反応文・お礼文などの文面の編集</li>
+          <li>SE（効果音）の割り当てと音量の調整</li>
+          <li>特別な人（入室時に特別な挨拶をする相手）の登録</li>
+        </ul>
+      </li>
+      <li>編集したら画面の保存ボタンを押します。設定の反映には bot の再起動が必要な場合があります。</li>
+      <li><strong>音量は 0〜1 の範囲</strong>で指定します。1 が最大です。1.5 のような 1 を超える値は使えません。「もっと大きくしたい」ときは、音源ファイル自体の音量を上げるか、ミキサー側のゲインで調整します。</li>
+    </ol>
+    <p>管理画面だけを単体で開きたい場合は、ターミナルで <code>npm run admin</code> でも起動できます（アドレスは同じ http://localhost:3939 です）。</p>
+  </section>
+
+  <section class="panel" id="ch15">
+    <span class="hen">Mac編</span>
+    <h2 class="chap">第15章 公開ページ（曲リスト・ビンゴ・ポータルなど）と短縮リンク</h2>
+    <p>bot には、リスナー向けの公開ページ（曲リスト、ビンゴ、バトル、イメージキャラ名鑑などをまとめたポータル）があります。</p>
+    <ul>
+      <li>公開ページは、bot が <strong>GitHub Pages</strong> へ自動で公開する仕組みです（.env に GitHub の設定を入れている場合）。bot が止まっている間も、公開済みのページはそのまま見られます。</li>
+      <li>公開されたページの URL は長いので、<strong>短縮リンク</strong>（is.gd などのサービス）を作っておくと便利です。</li>
+      <li>運用のしかた：短縮リンクを配信の固定コメントに貼っておき、リスナーにそこから各ページへ行ってもらいます。</li>
+      <li>細かい公開設定は管理画面の案内に従ってください。この章では要点のみとします。</li>
+    </ul>
+  </section>
+
+  <section class="panel" id="ch16">
+    <span class="hen">Mac編</span>
+    <h2 class="chap">第16章 更新の受け方（新しい zip が届いたら）</h2>
+    <p>bot は改良版の zip で更新されていきます。受け取り方はいつも同じ手順です。</p>
+    <ol>
+      <li>動いている bot を、ターミナルで Ctrl+C を押して止めます。</li>
+      <li>ターミナルで新しい zip を展開し、上書きコピーします（第7章と同じ方式です。Finder は使いません）。
+        <pre class="code"><code>rm -rf /tmp/gameXX &amp;&amp; unzip -o ~/Downloads/spoon-bot-gameXX.zip -d /tmp/gameXX &amp;&amp; cp -R /tmp/gameXX/bot/ ~/Downloads/bot/</code></pre>
+        （<code>gameXX</code> の部分は、届いた zip の名前に読み替えてください。）
+      </li>
+      <li><strong>.env と tokens.json は zip に含まれていないので、この手順では消えません。</strong>フォルダごと置き換えさえしなければ大丈夫です。</li>
+      <li>config.json の作り直しは、<strong>案内があったときだけ</strong>行います。
+        <div class="callout warn"><span class="ct">⚠️ 作り直しの注意</span><code>cp config.example.json config.json</code> で作り直すと、特別な人などの <strong>手入力した登録が消えてしまいます</strong>。作り直す前に、登録内容の控えを取るか、管理画面のバックアップ機能（設定の書き出し）を使ってください。</div>
+      </li>
+      <li>最後にモックで確認します。
+        <pre class="code"><code>cd ~/Downloads/bot
+npm run mock</code></pre>
+      </li>
+      <li>モックが問題なければ、テスト配信（または次の通常配信）で実物の反応を確かめて完了です。</li>
+    </ol>
+  </section>
+
+  <div class="sooncard" id="ch17">
+    <h2>第17章 Windows編<span class="soonbadge">準備中</span></h2>
+    <p>Windows での導入手順（Node.js の入れ方、PowerShell を使う手順など）は現在準備中です。bot 本体は Windows 対応済みですが、実機での導入確認が取れ次第、この章を追加します。</p>
+  </div>
+
+  <div class="sooncard" id="ch18">
+    <h2>第18章 クラウド編／スマホ用<span class="soonbadge">準備中</span></h2>
+    <p>PC がない人向けに、クラウドサーバー（VPS）へ bot を置く手順は現在準備中です。なおこの構成では、チャット返信・集計・公開ページは動きますが、<strong>SE の音は配信に乗らない機能限定版</strong>になります（サーバー上の bot には音を出す先がないため）。あわせてサーバー代（月額の固定費）もかかります。</p>
+  </div>
+
+  <div class="sooncard" id="ch19">
+    <h2>第19章 つまずきポイント集<span class="soonbadge">準備中</span></h2>
+    <p>実際に起きた失敗と対処法の一覧は現在準備中です。当面は各章の「注意」コールアウトを参照してください（認証の失敗は第4章、更新時の注意は第16章）。</p>
+  </div>
+
+  <div class="foot">
+    Spoon bot 導入マニュアル（共通編＋Mac編）<br>
+    <a href="portal.html">← リスナーページ（ポータル）へ戻る</a>
+  </div>
+</div>
+</body>
+</html>
