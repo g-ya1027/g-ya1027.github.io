@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T10:07:31.261Z",
+  "updatedAt": "2026-11-22T10:12:29.577Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -60,10 +60,10 @@
         "draw": 0
       },
       "honors": {
-        "rank": 3,
-        "titleId": "medalist",
-        "titleText": "レゾナンス・メダリスト",
-        "frame": "bronze",
+        "rank": 4,
+        "titleId": "top10",
+        "titleText": "FMスプニ レギュラーDJ",
+        "frame": null,
         "crown": false
       },
       "evolutionStage": 0,
@@ -107,11 +107,11 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 10,
+        "heartsLeft": 9,
         "spoonsLeft": 0,
-        "commentsLeft": 19,
+        "commentsLeft": 17,
         "visitsLeft": 4,
-        "stayLeftSec": 1797
+        "stayLeftSec": 1497
       },
       "img": null,
       "pair": {
@@ -130,7 +130,7 @@
       "attr": null,
       "attrInitial": null,
       "level": 1,
-      "exp": 0,
+      "exp": 1,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -153,10 +153,10 @@
         "draw": 0
       },
       "honors": {
-        "rank": 4,
-        "titleId": "top10",
-        "titleText": "FMスプニ レギュラーDJ",
-        "frame": null,
+        "rank": 3,
+        "titleId": "medalist",
+        "titleText": "レゾナンス・メダリスト",
+        "frame": "bronze",
         "crown": false
       },
       "evolutionStage": 0,
@@ -199,7 +199,7 @@
         "spoonsLeft": 0,
         "commentsLeft": 7,
         "visitsLeft": 4,
-        "stayLeftSec": 292
+        "stayLeftSec": 1792
       },
       "img": null,
       "pair": {
@@ -283,11 +283,11 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 8,
+        "heartsLeft": 7,
         "spoonsLeft": 0,
-        "commentsLeft": 17,
+        "commentsLeft": 14,
         "visitsLeft": 4,
-        "stayLeftSec": 517
+        "stayLeftSec": 217
       },
       "img": "chars/gYutFvLTSj7NCj0XQuXOzQ-b.png",
       "pair": {
@@ -466,9 +466,9 @@
       "signals": {
         "heartsLeft": 6,
         "spoonsLeft": 0,
-        "commentsLeft": 20,
+        "commentsLeft": 16,
         "visitsLeft": 5,
-        "stayLeftSec": 1502
+        "stayLeftSec": 1202
       },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-b.png",
       "pair": {
@@ -509,8 +509,8 @@
     },
     {
       "rank": 3,
-      "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
-      "radioName": "夢追う番人卿",
+      "nickname": "しゅーくりーむ  ",
+      "radioName": "深夜の貴公子名人",
       "level": 1,
       "attr": null,
       "titleId": "medalist",
@@ -518,12 +518,12 @@
       "frame": "bronze",
       "crown": false,
       "pvpWin": 0,
-      "exp": 0
+      "exp": 1
     },
     {
       "rank": 4,
-      "nickname": "しゅーくりーむ  ",
-      "radioName": "深夜の貴公子名人",
+      "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
+      "radioName": "夢追う番人卿",
       "level": 1,
       "attr": null,
       "titleId": "top10",
