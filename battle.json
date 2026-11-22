@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T01:30:02.651Z",
-  "live": false,
+  "updatedAt": "2026-11-22T09:32:12.868Z",
+  "live": true,
   "gkEnabled": true,
   "gkTiers": [
     {
@@ -46,7 +46,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-21T19:38:15.579Z"
+        "updatedAt": "2026-11-22T09:32:10.360Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -139,7 +139,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-21T19:38:15.585Z"
+        "updatedAt": "2026-11-22T09:32:10.360Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -227,7 +227,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-21T19:38:15.585Z"
+        "updatedAt": "2026-11-22T09:32:10.360Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -315,7 +315,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-21T19:38:27.914Z"
+        "updatedAt": "2026-11-22T09:32:10.360Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
