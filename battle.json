@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T01:21:02.560Z",
+  "updatedAt": "2026-11-22T01:21:04.718Z",
   "live": false,
   "gkEnabled": true,
   "gkTiers": [
@@ -21,10 +21,6 @@
     }
   ],
   "pvpEnabled": true,
-  "training": {
-    "enabled": true,
-    "dailyLimit": 3
-  },
   "illustWeeklyCap": 5,
   "illustWeeklyCapPerUser": 1,
   "illustWeekDoneAll": 1,
@@ -101,10 +97,6 @@
       "gkLeft": {
         "day": 1,
         "week": 3
-      },
-      "training": {
-        "usedToday": 0,
-        "results": []
       },
       "signals": {
         "heartsLeft": 10,
@@ -190,10 +182,6 @@
         "day": 1,
         "week": 3
       },
-      "training": {
-        "usedToday": 0,
-        "results": []
-      },
       "signals": {
         "heartsLeft": 10,
         "spoonsLeft": 0,
@@ -278,10 +266,6 @@
         "day": 1,
         "week": 3
       },
-      "training": {
-        "usedToday": 0,
-        "results": []
-      },
       "signals": {
         "heartsLeft": 10,
         "spoonsLeft": 0,
@@ -365,10 +349,6 @@
       "gkLeft": {
         "day": 1,
         "week": 3
-      },
-      "training": {
-        "usedToday": 0,
-        "results": []
       },
       "signals": {
         "heartsLeft": 10,
