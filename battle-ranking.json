@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T10:07:31.263Z",
+  "updatedAt": "2026-11-22T10:12:29.579Z",
   "metric": "exp",
   "entries": [
     {
@@ -31,8 +31,8 @@
     },
     {
       "rank": 3,
-      "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
-      "radioName": "夢追う番人卿",
+      "nickname": "しゅーくりーむ  ",
+      "radioName": "深夜の貴公子名人",
       "level": 1,
       "attr": null,
       "titleId": "medalist",
@@ -40,12 +40,12 @@
       "frame": "bronze",
       "crown": false,
       "pvpWin": 0,
-      "exp": 0
+      "exp": 1
     },
     {
       "rank": 4,
-      "nickname": "しゅーくりーむ  ",
-      "radioName": "深夜の貴公子名人",
+      "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
+      "radioName": "夢追う番人卿",
       "level": 1,
       "attr": null,
       "titleId": "top10",
