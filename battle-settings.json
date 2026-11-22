@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-21T13:06:10.563Z",
+  "updatedAt": "2026-11-22T00:40:55.322Z",
   "featuresBattle": true,
   "battle": {
     "announce": {
@@ -20,19 +20,19 @@
     "sounds": {
       "page": {
         "bgm.title": {
-          "file": "",
+          "file": "sounds/game/bgm-title.mp3",
           "volume": 0.8
         },
         "bgm.battle": {
-          "file": "",
+          "file": "sounds/game/bgm-battle.mp3",
           "volume": 0.8
         },
         "bgm.pvp": {
-          "file": "",
+          "file": "sounds/game/bgm-pvp.mp3",
           "volume": 0.8
         },
         "se.encounter": {
-          "file": "",
+          "file": "sounds/game/se-encounter.mp3",
           "volume": 0.8
         },
         "se.uiTap": {
