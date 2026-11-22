@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- spoon-manual-page v2 -->
+<!-- spoon-manual-page v4 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -10,7 +10,7 @@
   html { scroll-behavior: smooth; }
   body { margin: 0; font-family: "Hiragino Maru Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif; color: #fff; background-color: #0b0821;
     background-image: radial-gradient(620px 320px at 12% -5%, rgba(255,46,136,.38), rgba(255,46,136,0) 60%), radial-gradient(720px 360px at 92% -10%, rgba(25,191,255,.32), rgba(25,191,255,0) 60%), radial-gradient(560px 520px at 50% 112%, rgba(123,47,247,.38), rgba(123,47,247,0) 62%), radial-gradient(circle, rgba(255,255,255,.5) 1px, rgba(255,255,255,0) 1.7px);
-    background-size: auto, auto, auto, 110px 110px; background-attachment: fixed; min-height: 100vh; }
+    background-size: auto, auto, auto, 110px 110px; background-attachment: fixed; min-height: 100vh; overflow-wrap: break-word; }
   .wrap { max-width: 860px; margin: 0 auto; padding: 20px 14px 48px; }
   .mascot { text-align: center; font-size: 15px; letter-spacing: .25em; color: #ffd9ec; text-shadow: 0 0 10px rgba(255,79,163,.8); }
   h1.title { text-align: center; margin: 4px 0 0; font-size: 40px; font-size: clamp(28px, 7vw, 44px); font-weight: 900; letter-spacing: .03em; line-height: 1.25;
@@ -26,7 +26,7 @@
   ul, ol { margin: 8px 0; padding-left: 1.4em; }
   li { margin: 4px 0; }
   a { color: #7dd7ff; }
-  code { font-family: "SF Mono", Menlo, Consolas, monospace; background: rgba(255,255,255,.12); border-radius: 5px; padding: 1px 6px; font-size: .92em; }
+  code { font-family: "SF Mono", Menlo, Consolas, monospace; background: rgba(255,255,255,.12); border-radius: 5px; padding: 1px 6px; font-size: .92em; overflow-wrap: anywhere; }
   pre.code { background: #120c33; border: 1px solid #5a4a9e; border-radius: 10px; padding: 12px 14px; overflow-x: auto; margin: 10px 0; }
   pre.code code { background: none; padding: 0; font-size: 13.5px; line-height: 1.7; color: #e8e2ff; white-space: pre; }
   .codelabel { display: inline-block; font-size: 12px; font-weight: 900; color: #9df0e7; background: rgba(47,212,196,.14); border: 1px solid #2fd4c4; border-radius: 999px; padding: 1px 10px; margin: 10px 0 0; }
@@ -90,7 +90,7 @@
   .ring { outline: 3px solid #ff4747; outline-offset: 2px; border-radius: 6px; padding: 0 5px; }
   .ringline { border: 3px solid #ff4747; border-radius: 8px; padding: 2px 8px; display: inline-block; }
   .mark { background: linear-gradient(transparent 50%, rgba(255, 214, 64, .8) 50%); padding: 0 2px; border-radius: 2px; }
-  .point { display: inline-block; background: #ff4747; color: #fff; font-weight: 900; font-size: 12.5px; border-radius: 999px; padding: 1px 10px; margin-left: 8px; white-space: nowrap; vertical-align: middle; }
+  span.point { display: inline-block; background: #ff4747; color: #fff; font-weight: 900; font-size: 12.5px; border-radius: 999px; padding: 1px 10px; margin-left: 8px; white-space: nowrap; vertical-align: middle; }
   .kbd { display: inline-block; background: #2c2456; border: 1px solid #7a68c9; border-bottom-width: 3px; border-radius: 6px; padding: 0 8px; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: .92em; }
   .rednote { color: #ff8080; font-weight: 900; }
   /* ターミナル／PowerShell 模式図 */
@@ -138,7 +138,7 @@
   .soonbadge { display: inline-block; font-size: 12px; font-weight: 900; background: #3a2f6b; color: #ffd76a; border-radius: 999px; padding: 2px 10px; margin-left: 8px; vertical-align: middle; }
   .foot { text-align: center; color: #9d92d6; font-size: 12px; margin-top: 10px; line-height: 1.8; }
   .foot a { color: #9d92d6; }
-  @media (max-width: 560px) { .toc { columns: 1; } .farrow { transform: rotate(90deg); margin: 0 auto; } .farrow .fl { transform: rotate(-90deg); } .term .tbody { font-size: 12.5px; } }
+  @media (max-width: 560px) { .toc { columns: 1; } .farrow { transform: rotate(90deg); margin: 0 auto; } .term .tbody { font-size: 12.5px; } }
 </style>
 </head>
 <body>
@@ -146,6 +146,11 @@
   <div class="mascot">🗿 SPOON 🗿</div>
   <h1 class="title">Spoon bot 導入マニュアル</h1>
   <p class="sub">Spoon の公式機能「Spoon Developers」を使って、自分の配信で動く bot（自動で反応してくれる助手）を <strong>自分の手で作る</strong> ための手順書です。<br>必要なコードは全部このマニュアルに載っています。章の順にコピー＆ペーストして貼っていけば、標準機能だけの bot が完成します。</p>
+
+  <div class="callout point">
+    <span class="ct">📢 作者からひとこと</span>
+    俺氏はAIさんに丸投げしてるので、詳しいこと聞かれてもわかりまてん！（by G_YA）
+  </div>
 
   <div class="callout bookmark">
     <span class="ct">🔖 最初にブックマークしておくページ</span>
@@ -180,23 +185,6 @@
       <li><a href="#ch19">第19章 毎回の配信手順</a></li>
       <li><a href="#ch20">第20章 ゴール：標準機能の bot の完成</a></li>
       <li><a href="#ch21">第21章 自分の bot の直し方・広げ方</a></li>
-      <li class="tocpart">第三部 応用編 <span class="soon">（本文は準備中）</span></li>
-      <li><a href="#ch22">第22章 SE（効果音）の導入と設定</a></li>
-      <li><a href="#ch23">第23章 特別な人の入室挨拶</a></li>
-      <li><a href="#ch24">第24章 公開ページと短縮リンク</a></li>
-      <li><a href="#ch25">第25章 歌枠の機能：リクエスト・セトリ・歌える曲リスト</a></li>
-      <li><a href="#ch26">第26章 お題ガチャとヒットワード反応</a></li>
-      <li><a href="#ch27">第27章 ラジオネーム＆ジングル</a></li>
-      <li><a href="#ch28">第28章 教え込み</a></li>
-      <li><a href="#ch29">第29章 ビンゴ</a></li>
-      <li><a href="#ch30">第30章 イントロドン</a></li>
-      <li><a href="#ch31">第31章 歌詞定期</a></li>
-      <li><a href="#ch32">第32章 リスナーボタン</a></li>
-      <li><a href="#ch33">第33章 歌枠モード（SEミュート）</a></li>
-      <li><a href="#ch34">第34章 バトルゲーム</a></li>
-      <li><a href="#ch35">第35章 イメージキャラ</a></li>
-      <li class="tocpart">付録 <span class="soon">（本文は準備中）</span></li>
-      <li><a href="#ch36">第36章 つまずきポイント集</a></li>
     </ul>
   </div>
 
@@ -220,7 +208,7 @@
           <li>管理画面での設定の編集とバックアップ</li>
         </ul>
       </li>
-      <li>効果音（SE）や公開ページ、ゲームなどの追加機能は、標準の先にある <strong>応用編</strong> で扱います。最初から全部を追う必要はありません。</li>
+      <li>効果音（SE）や公開ページ、ゲームなどの追加機能は、このマニュアルの範囲外です。まずは標準機能だけの bot を完成させましょう。</li>
     </ul>
     <div class="diagram">
       <div class="flow">
@@ -234,11 +222,10 @@
       </div>
       <p class="cap">図：このマニュアル全体の流れ。共通編（申請）→ 標準編（組み立て）→ テスト配信 → 本番運用</p>
     </div>
-    <p>進め方は3部構成です。</p>
+    <p>進め方は2部構成です。</p>
     <ol>
       <li><strong>共通編</strong>：Spoon Developers への申請と承認（どの環境でも同じ）</li>
       <li><strong>標準編</strong>：自分の PC の準備（Mac／Windows のどちらか）→ 部品ごとにコードを貼って組み立てる → テスト配信 → 本番</li>
-      <li><strong>応用編</strong>：標準の bot に足したくなった機能（必要なものだけ拾って読む）</li>
     </ol>
   </section>
 
@@ -295,7 +282,7 @@
       <tr><td>chat.send</td><td>チャットに返信を送る</td></tr>
       <tr><td>dj.follow</td><td>bot が DJ をフォローするために使う</td></tr>
     </table></div>
-    <div class="callout point"><span class="ct">💡 ポイント</span>権限は <strong>最初に全部入れるのが大事</strong> です。承認されたあとで権限を足すと、再審査になる可能性があります。標準機能だけを使うつもりでも、応用編の機能まで含めて最初に申請しておくと、あとで機能を足すときに二度手間になりません。</div>
+    <div class="callout point"><span class="ct">💡 ポイント</span>権限は <strong>最初に全部入れるのが大事</strong> です。承認されたあとで権限を足すと、再審査になる可能性があります。標準機能だけを使うつもりでも、あとから足す機能の分まで含めて最初に申請しておくと、あとで機能を足すときに二度手間になりません。</div>
     <div class="steps">
       <div class="step"><span class="no">7</span><div class="sb"><p>申請を送信します。あとは審査の結果待ちです。</p>
         <ul>
@@ -2116,7 +2103,7 @@ npm start</code></pre></div>
       <li>管理画面で文面を変えられて、設定のバックアップが取ってある（第16章）</li>
     </ul>
     <p><strong>ここまでが、このマニュアルのゴールです。</strong> 日常の運用で必要なのは、第19章（毎回の配信手順）だけです。</p>
-    <p>もっと機能を足したくなったら、第三部の応用編から必要なものだけを選んで進めてください。効果音（SE）、公開ページ、歌枠の機能、ゲームなどが用意されています。</p>
+    <p>機能の足し方・広げ方の入口は、次の第21章で案内します。</p>
   </section>
 
   <section class="panel" id="ch21">
@@ -2144,90 +2131,8 @@ npm start</code></pre></div>
       <tr><td>「tokens.json がありません」</td><td>認証がまだです。第10章を実行します</td></tr>
       <tr><td>設定が古いまま</td><td>config.json の場所と名前（<code>.txt</code> が付いていないか）を確認します</td></tr>
     </table></div>
-    <ul>
-      <li>付録の第36章（つまずきポイント集）にも、よくある失敗と対処をまとめています。</li>
-      <li>もっと機能を足したくなったら、第三部の応用編へどうぞ。</li>
-    </ul>
+    <p>このマニュアルはここまでです。おつかれさまでした。あとは第19章の手順で、いつもの配信を楽しんでください。</p>
   </section>
-
-  <div class="part">第三部 応用編<small>標準機能の bot が動いたら、あとは必要な機能だけを選んで足していきます。各章は「標準の bot に自分で機能を足す」という位置づけで書く予定です</small></div>
-
-  <div class="sooncard" id="ch22">
-    <h2>第22章 SE（効果音）の導入と設定<span class="soonbadge">準備中</span></h2>
-    <p>音を配信に乗せる構成（PC の音をオーディオインターフェース（ミキサー）へ入れる）が前提の章です。標準から外した理由（SE を導入している人がまだ少ないこと）もあわせて扱います。</p>
-  </div>
-
-  <div class="sooncard" id="ch23">
-    <h2>第23章 特別な人の入室挨拶<span class="soonbadge">準備中</span></h2>
-    <p>入室時に通常のお礼とは別の挨拶を返す相手の登録と文面を扱います。</p>
-  </div>
-
-  <div class="sooncard" id="ch24">
-    <h2>第24章 公開ページと短縮リンク<span class="soonbadge">準備中</span></h2>
-    <p>集計などをリスナー向けページで公開する仕組みと、短縮リンクの運用を扱います。</p>
-  </div>
-
-  <div class="sooncard" id="ch25">
-    <h2>第25章 歌枠の機能：リクエスト・セトリ・歌える曲リスト<span class="soonbadge">準備中</span></h2>
-    <p>歌枠向けの曲リクエスト受け付け、セトリ管理、歌える曲リストの公開を扱います。</p>
-  </div>
-
-  <div class="sooncard" id="ch26">
-    <h2>第26章 お題ガチャとヒットワード反応<span class="soonbadge">準備中</span></h2>
-    <p>雑談の話題を引くお題ガチャと、特定の言葉への反応（部分一致）を扱います。</p>
-  </div>
-
-  <div class="sooncard" id="ch27">
-    <h2>第27章 ラジオネーム＆ジングル<span class="soonbadge">準備中</span></h2>
-    <p>リスナーへのラジオネーム付与と入室ジングルを扱います。ジングルは SE を使うため、第22章が前提になります。</p>
-  </div>
-
-  <div class="sooncard" id="ch28">
-    <h2>第28章 教え込み<span class="soonbadge">準備中</span></h2>
-    <p>リスナーが bot の反応を教え込める機能を扱います。</p>
-  </div>
-
-  <div class="sooncard" id="ch29">
-    <h2>第29章 ビンゴ<span class="soonbadge">準備中</span></h2>
-    <p>枠内完結のビンゴゲームを扱います。公開ページ（第24章）と組み合わせて使います。</p>
-  </div>
-
-  <div class="sooncard" id="ch30">
-    <h2>第30章 イントロドン<span class="soonbadge">準備中</span></h2>
-    <p>曲のイントロ当てゲームを扱います。音源の再生を伴うため、第22章が前提になります。</p>
-  </div>
-
-  <div class="sooncard" id="ch31">
-    <h2>第31章 歌詞定期<span class="soonbadge">準備中</span></h2>
-    <p>歌詞の定期投稿を扱います。JASRAC 管理楽曲の扱いなど、権利面の注意を含みます。</p>
-  </div>
-
-  <div class="sooncard" id="ch32">
-    <h2>第32章 リスナーボタン<span class="soonbadge">準備中</span></h2>
-    <p>公開ページのボタンから配信に SE を鳴らす機能を扱います。SE を使うため、第22章が前提になります。</p>
-  </div>
-
-  <div class="sooncard" id="ch33">
-    <h2>第33章 歌枠モード（SEミュート）<span class="soonbadge">準備中</span></h2>
-    <p>歌枠の間だけ bot の SE を一括で止めるモードを扱います。第22章で SE を導入した人向けです。</p>
-  </div>
-
-  <div class="sooncard" id="ch34">
-    <h2>第34章 バトルゲーム<span class="soonbadge">準備中</span></h2>
-    <p>リスナーのキャラクターが対戦するゲーム一式を扱います。公開ページ（第24章）と組み合わせて使います。</p>
-  </div>
-
-  <div class="sooncard" id="ch35">
-    <h2>第35章 イメージキャラ<span class="soonbadge">準備中</span></h2>
-    <p>リスナーのイメージキャラクター（イラスト）の名鑑と、公開ページ連携を扱います。</p>
-  </div>
-
-  <div class="part">付録<small>困ったときの早見表です</small></div>
-
-  <div class="sooncard" id="ch36">
-    <h2>第36章 つまずきポイント集<span class="soonbadge">準備中</span></h2>
-    <p>実際に起きた失敗と対処を一覧にします。項目と参照先：認証の失敗→第4章・第10章／code の60秒切れ→第10章／リダイレクトURLの不一致→第4章／tokens.json の扱い→第10章／ファイル名に .txt が付く→第9章／config.json の文法エラー→第13章／DRY_RUN の切り替え忘れ→第18章／反応しない→第19章・第21章／二重起動→第11章・第17章。当面は各章の「つまずきポイント」と第21章の切り分け表を参照してください。</p>
-  </div>
 
   <div class="foot">
     Spoon bot 導入マニュアル（自分で作る版：共通編＋標準編）<br>
