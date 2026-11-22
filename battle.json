@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T10:42:05.175Z",
-  "live": false,
+  "updatedAt": "2026-11-22T10:43:07.795Z",
+  "live": true,
   "gkEnabled": true,
   "gkTiers": [
     {
@@ -46,7 +46,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T10:28:50.420Z"
+        "updatedAt": "2026-11-22T10:42:05.193Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -139,7 +139,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T10:28:50.420Z"
+        "updatedAt": "2026-11-22T10:42:05.193Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -227,7 +227,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T10:28:50.420Z"
+        "updatedAt": "2026-11-22T10:42:05.193Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -315,7 +315,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T10:28:50.420Z"
+        "updatedAt": "2026-11-22T10:42:05.193Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -403,7 +403,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T10:28:50.420Z"
+        "updatedAt": "2026-11-22T10:42:05.193Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -466,7 +466,7 @@
       "signals": {
         "heartsLeft": 3,
         "spoonsLeft": 0,
-        "commentsLeft": 3,
+        "commentsLeft": 2,
         "visitsLeft": 5,
         "stayLeftSec": 1419
       },
@@ -496,7 +496,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T10:28:50.420Z"
+        "updatedAt": "2026-11-22T10:42:05.193Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -584,7 +584,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T10:28:50.420Z"
+        "updatedAt": "2026-11-22T10:42:05.193Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -672,7 +672,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T10:28:50.420Z"
+        "updatedAt": "2026-11-22T10:42:05.193Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
