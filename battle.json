@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T10:43:07.795Z",
+  "updatedAt": "2026-11-22T10:47:06.321Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -109,9 +109,9 @@
       "signals": {
         "heartsLeft": 6,
         "spoonsLeft": 0,
-        "commentsLeft": 5,
+        "commentsLeft": 2,
         "visitsLeft": 4,
-        "stayLeftSec": 1714
+        "stayLeftSec": 1219
       },
       "img": null,
       "pair": {
@@ -130,7 +130,7 @@
       "attr": null,
       "attrInitial": null,
       "level": 1,
-      "exp": 2,
+      "exp": 3,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -199,7 +199,7 @@
         "spoonsLeft": 0,
         "commentsLeft": 20,
         "visitsLeft": 4,
-        "stayLeftSec": 209
+        "stayLeftSec": 1515
       },
       "img": null,
       "pair": {
@@ -218,7 +218,7 @@
       "attr": null,
       "attrInitial": null,
       "level": 1,
-      "exp": 3,
+      "exp": 4,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -285,9 +285,9 @@
       "signals": {
         "heartsLeft": 4,
         "spoonsLeft": 0,
-        "commentsLeft": 11,
+        "commentsLeft": 6,
         "visitsLeft": 4,
-        "stayLeftSec": 434
+        "stayLeftSec": 1740
       },
       "img": "chars/gYutFvLTSj7NCj0XQuXOzQ-b.png",
       "pair": {
@@ -468,7 +468,7 @@
         "spoonsLeft": 0,
         "commentsLeft": 2,
         "visitsLeft": 5,
-        "stayLeftSec": 1419
+        "stayLeftSec": 925
       },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-b.png",
       "pair": {
@@ -556,7 +556,7 @@
         "spoonsLeft": 0,
         "commentsLeft": 17,
         "visitsLeft": 5,
-        "stayLeftSec": 732
+        "stayLeftSec": 238
       },
       "img": "chars/hUooGCp0KaQn-5EswSh-3A-a.png",
       "pair": {
@@ -644,7 +644,7 @@
         "spoonsLeft": 0,
         "commentsLeft": 17,
         "visitsLeft": 5,
-        "stayLeftSec": 1197
+        "stayLeftSec": 702
       },
       "img": "chars/q9SVhkXF0qTVgm_bgnkMNw-a.png",
       "pair": {
@@ -732,7 +732,7 @@
         "spoonsLeft": 0,
         "commentsLeft": 17,
         "visitsLeft": 5,
-        "stayLeftSec": 1360
+        "stayLeftSec": 865
       },
       "img": null,
       "pair": {
@@ -769,7 +769,7 @@
       "frame": "silver",
       "crown": false,
       "pvpWin": 0,
-      "exp": 3
+      "exp": 4
     },
     {
       "rank": 3,
@@ -782,7 +782,7 @@
       "frame": "bronze",
       "crown": false,
       "pvpWin": 0,
-      "exp": 2
+      "exp": 3
     },
     {
       "rank": 4,
