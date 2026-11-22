@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T09:46:06.180Z",
+  "updatedAt": "2026-11-22T09:47:08.145Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -60,11 +60,11 @@
         "draw": 0
       },
       "honors": {
-        "rank": 1,
-        "titleId": "champion",
-        "titleText": "キング・オブ・レゾナンス",
-        "frame": "gold",
-        "crown": true
+        "rank": 2,
+        "titleId": "medalist",
+        "titleText": "レゾナンス・メダリスト",
+        "frame": "silver",
+        "crown": false
       },
       "evolutionStage": 0,
       "evolution": {
@@ -153,182 +153,6 @@
         "draw": 0
       },
       "honors": {
-        "rank": 3,
-        "titleId": "medalist",
-        "titleText": "レゾナンス・メダリスト",
-        "frame": "bronze",
-        "crown": false
-      },
-      "evolutionStage": 0,
-      "evolution": {
-        "stage": 0,
-        "nextKind": "evo1",
-        "eligible": false,
-        "queued": false,
-        "winsKind": "total",
-        "levelNow": 1,
-        "levelNeed": 50,
-        "winsNow": 0,
-        "winsNeed": 50
-      },
-      "illust": {
-        "evo1": null,
-        "evo2": null,
-        "gold": null,
-        "win": null,
-        "lose": null
-      },
-      "illustRequests": [],
-      "illustWeekDone": 0,
-      "skill": {
-        "learned": false,
-        "name": null,
-        "desc": null,
-        "price": 30
-      },
-      "gkLeft": {
-        "day": 1,
-        "week": 3
-      },
-      "training": {
-        "usedToday": 0,
-        "results": []
-      },
-      "signals": {
-        "heartsLeft": 9,
-        "spoonsLeft": 0,
-        "commentsLeft": 17,
-        "visitsLeft": 5,
-        "stayLeftSec": 1800
-      },
-      "img": null,
-      "pair": {
-        "a": "chars/Lnrdo_b3TeGyRY8fNTyEhA-a.png",
-        "b": "chars/Lnrdo_b3TeGyRY8fNTyEhA-b.png",
-        "kind": "gender"
-      },
-      "chosen": null,
-      "lastAction": null
-    },
-    {
-      "tokenHash": "d4d7a310bb1e5d42850173c3760252b4c3334d4ace11cf96aa644e981739bf27",
-      "nickname": "しょこ",
-      "radioName": "黄昏の番人総長",
-      "status": "awaiting",
-      "attr": null,
-      "attrInitial": null,
-      "level": 1,
-      "exp": 0,
-      "expNext": 10,
-      "params": {
-        "atk": 10,
-        "def": 5,
-        "attrValue": 10
-      },
-      "hp": {
-        "stored": 100,
-        "updatedAt": "2026-11-22T09:42:04.017Z"
-      },
-      "bp": 0,
-      "unspentAlloc": 0,
-      "record": {
-        "npcWin": 0,
-        "npcLose": 0,
-        "pvpWin": 0,
-        "pvpLose": 0,
-        "gkWin": 0,
-        "gkLose": 0,
-        "draw": 0
-      },
-      "honors": {
-        "rank": 2,
-        "titleId": "medalist",
-        "titleText": "レゾナンス・メダリスト",
-        "frame": "silver",
-        "crown": false
-      },
-      "evolutionStage": 0,
-      "evolution": {
-        "stage": 0,
-        "nextKind": "evo1",
-        "eligible": false,
-        "queued": false,
-        "winsKind": "total",
-        "levelNow": 1,
-        "levelNeed": 50,
-        "winsNow": 0,
-        "winsNeed": 50
-      },
-      "illust": {
-        "evo1": null,
-        "evo2": null,
-        "gold": null,
-        "win": null,
-        "lose": null
-      },
-      "illustRequests": [],
-      "illustWeekDone": 0,
-      "skill": {
-        "learned": false,
-        "name": null,
-        "desc": null,
-        "price": 30
-      },
-      "gkLeft": {
-        "day": 1,
-        "week": 3
-      },
-      "training": {
-        "usedToday": 0,
-        "results": []
-      },
-      "signals": {
-        "heartsLeft": 10,
-        "spoonsLeft": 0,
-        "commentsLeft": 20,
-        "visitsLeft": 5,
-        "stayLeftSec": 1800
-      },
-      "img": null,
-      "pair": {
-        "a": "chars/gYutFvLTSj7NCj0XQuXOzQ-a.png",
-        "b": "chars/gYutFvLTSj7NCj0XQuXOzQ-b.png",
-        "kind": "gender"
-      },
-      "chosen": null,
-      "lastAction": null
-    },
-    {
-      "tokenHash": "580653798fb924313bd1efa8d8b63ad0d22ac245954577c41881a3a71c7a3718",
-      "nickname": "瑠璃𓈒𓂂𖧷",
-      "radioName": "深夜の影総長",
-      "status": "awaiting",
-      "attr": null,
-      "attrInitial": null,
-      "level": 1,
-      "exp": 0,
-      "expNext": 10,
-      "params": {
-        "atk": 10,
-        "def": 5,
-        "attrValue": 10
-      },
-      "hp": {
-        "stored": 100,
-        "updatedAt": "2026-11-22T09:42:04.017Z"
-      },
-      "bp": 0,
-      "unspentAlloc": 0,
-      "record": {
-        "npcWin": 0,
-        "npcLose": 0,
-        "pvpWin": 0,
-        "pvpLose": 0,
-        "gkWin": 0,
-        "gkLose": 0,
-        "draw": 0
-      },
-      "honors": {
         "rank": 4,
         "titleId": "top10",
         "titleText": "FMスプニ レギュラーDJ",
@@ -371,25 +195,113 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 10,
+        "heartsLeft": 9,
         "spoonsLeft": 0,
-        "commentsLeft": 20,
-        "visitsLeft": 5,
-        "stayLeftSec": 1800
+        "commentsLeft": 14,
+        "visitsLeft": 4,
+        "stayLeftSec": 1516
       },
       "img": null,
       "pair": {
-        "a": "chars/jikCsQVNM6OnpwFu1fHkDg-a.png",
-        "b": "chars/jikCsQVNM6OnpwFu1fHkDg-b.png",
+        "a": "chars/Lnrdo_b3TeGyRY8fNTyEhA-a.png",
+        "b": "chars/Lnrdo_b3TeGyRY8fNTyEhA-b.png",
         "kind": "gender"
       },
       "chosen": null,
       "lastAction": null
     },
     {
-      "tokenHash": "4852c0ca50451d63714045d8fafb76b112007ac98b45d745f262f7f52a530ade",
-      "nickname": "kinou",
-      "radioName": "永遠の貴公子の星",
+      "tokenHash": "d4d7a310bb1e5d42850173c3760252b4c3334d4ace11cf96aa644e981739bf27",
+      "nickname": "しょこ",
+      "radioName": "黄昏の番人総長",
+      "status": "awaiting",
+      "attr": null,
+      "attrInitial": null,
+      "level": 1,
+      "exp": 0,
+      "expNext": 10,
+      "params": {
+        "atk": 10,
+        "def": 5,
+        "attrValue": 10
+      },
+      "hp": {
+        "stored": 100,
+        "updatedAt": "2026-11-22T09:42:04.017Z"
+      },
+      "bp": 0,
+      "unspentAlloc": 0,
+      "record": {
+        "npcWin": 0,
+        "npcLose": 0,
+        "pvpWin": 0,
+        "pvpLose": 0,
+        "gkWin": 0,
+        "gkLose": 0,
+        "draw": 0
+      },
+      "honors": {
+        "rank": 3,
+        "titleId": "medalist",
+        "titleText": "レゾナンス・メダリスト",
+        "frame": "bronze",
+        "crown": false
+      },
+      "evolutionStage": 0,
+      "evolution": {
+        "stage": 0,
+        "nextKind": "evo1",
+        "eligible": false,
+        "queued": false,
+        "winsKind": "total",
+        "levelNow": 1,
+        "levelNeed": 50,
+        "winsNow": 0,
+        "winsNeed": 50
+      },
+      "illust": {
+        "evo1": null,
+        "evo2": null,
+        "gold": null,
+        "win": null,
+        "lose": null
+      },
+      "illustRequests": [],
+      "illustWeekDone": 0,
+      "skill": {
+        "learned": false,
+        "name": null,
+        "desc": null,
+        "price": 30
+      },
+      "gkLeft": {
+        "day": 1,
+        "week": 3
+      },
+      "training": {
+        "usedToday": 0,
+        "results": []
+      },
+      "signals": {
+        "heartsLeft": 10,
+        "spoonsLeft": 0,
+        "commentsLeft": 17,
+        "visitsLeft": 4,
+        "stayLeftSec": 1741
+      },
+      "img": null,
+      "pair": {
+        "a": "chars/gYutFvLTSj7NCj0XQuXOzQ-a.png",
+        "b": "chars/gYutFvLTSj7NCj0XQuXOzQ-b.png",
+        "kind": "gender"
+      },
+      "chosen": null,
+      "lastAction": null
+    },
+    {
+      "tokenHash": "580653798fb924313bd1efa8d8b63ad0d22ac245954577c41881a3a71c7a3718",
+      "nickname": "瑠璃𓈒𓂂𖧷",
+      "radioName": "深夜の影総長",
       "status": "awaiting",
       "attr": null,
       "attrInitial": null,
@@ -459,11 +371,104 @@
         "results": []
       },
       "signals": {
+        "heartsLeft": 10,
+        "spoonsLeft": 0,
+        "commentsLeft": 20,
+        "visitsLeft": 5,
+        "stayLeftSec": 1800
+      },
+      "img": null,
+      "pair": {
+        "a": "chars/jikCsQVNM6OnpwFu1fHkDg-a.png",
+        "b": "chars/jikCsQVNM6OnpwFu1fHkDg-b.png",
+        "kind": "gender"
+      },
+      "chosen": null,
+      "lastAction": null
+    },
+    {
+      "tokenHash": "4852c0ca50451d63714045d8fafb76b112007ac98b45d745f262f7f52a530ade",
+      "nickname": "kinou",
+      "radioName": "永遠の貴公子の星",
+      "status": "awaiting",
+      "attr": null,
+      "attrInitial": null,
+      "level": 1,
+      "exp": 1,
+      "expNext": 10,
+      "params": {
+        "atk": 10,
+        "def": 5,
+        "attrValue": 10
+      },
+      "hp": {
+        "stored": 100,
+        "updatedAt": "2026-11-22T09:42:04.017Z"
+      },
+      "bp": 0,
+      "unspentAlloc": 0,
+      "record": {
+        "npcWin": 0,
+        "npcLose": 0,
+        "pvpWin": 0,
+        "pvpLose": 0,
+        "gkWin": 0,
+        "gkLose": 0,
+        "draw": 0
+      },
+      "honors": {
+        "rank": 1,
+        "titleId": "champion",
+        "titleText": "キング・オブ・レゾナンス",
+        "frame": "gold",
+        "crown": true
+      },
+      "evolutionStage": 0,
+      "evolution": {
+        "stage": 0,
+        "nextKind": "evo1",
+        "eligible": false,
+        "queued": false,
+        "winsKind": "total",
+        "levelNow": 1,
+        "levelNeed": 50,
+        "winsNow": 0,
+        "winsNeed": 50
+      },
+      "illust": {
+        "evo1": null,
+        "evo2": null,
+        "gold": null,
+        "win": null,
+        "lose": null
+      },
+      "illustRequests": [
+        {
+          "kind": "gold",
+          "status": "queued"
+        }
+      ],
+      "illustWeekDone": 0,
+      "skill": {
+        "learned": false,
+        "name": null,
+        "desc": null,
+        "price": 30
+      },
+      "gkLeft": {
+        "day": 1,
+        "week": 3
+      },
+      "training": {
+        "usedToday": 0,
+        "results": []
+      },
+      "signals": {
         "heartsLeft": 8,
         "spoonsLeft": 0,
         "commentsLeft": 11,
         "visitsLeft": 5,
-        "stayLeftSec": 1519
+        "stayLeftSec": 926
       },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-b.png",
       "pair": {
@@ -478,8 +483,8 @@
   "ranking": [
     {
       "rank": 1,
-      "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
-      "radioName": "夢追う番人卿",
+      "nickname": "kinou",
+      "radioName": "永遠の貴公子の星",
       "level": 1,
       "attr": null,
       "titleId": "champion",
@@ -487,12 +492,12 @@
       "frame": "gold",
       "crown": true,
       "pvpWin": 0,
-      "exp": 0
+      "exp": 1
     },
     {
       "rank": 2,
-      "nickname": "しょこ",
-      "radioName": "黄昏の番人総長",
+      "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
+      "radioName": "夢追う番人卿",
       "level": 1,
       "attr": null,
       "titleId": "medalist",
@@ -504,8 +509,8 @@
     },
     {
       "rank": 3,
-      "nickname": "しゅーくりーむ  ",
-      "radioName": "深夜の貴公子名人",
+      "nickname": "しょこ",
+      "radioName": "黄昏の番人総長",
       "level": 1,
       "attr": null,
       "titleId": "medalist",
@@ -517,8 +522,8 @@
     },
     {
       "rank": 4,
-      "nickname": "瑠璃𓈒𓂂𖧷",
-      "radioName": "深夜の影総長",
+      "nickname": "しゅーくりーむ  ",
+      "radioName": "深夜の貴公子名人",
       "level": 1,
       "attr": null,
       "titleId": "top10",
@@ -530,8 +535,8 @@
     },
     {
       "rank": 5,
-      "nickname": "kinou",
-      "radioName": "永遠の貴公子の星",
+      "nickname": "瑠璃𓈒𓂂𖧷",
+      "radioName": "深夜の影総長",
       "level": 1,
       "attr": null,
       "titleId": "top10",
