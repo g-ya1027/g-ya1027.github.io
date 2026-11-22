@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- spoon-battle-page v19 -->
+<!-- spoon-battle-page v21 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -164,6 +164,7 @@
   .vsWave i { flex: 1; min-height: 3px; border-radius: 1px; }
   .vsWave i.l { background: linear-gradient(180deg, #7dfce8, #00c2a8); box-shadow: 0 0 5px rgba(0,209,178,.55); }
   .vsWave i.r { background: linear-gradient(180deg, #a8dcff, #3a7bd5); box-shadow: 0 0 5px rgba(88,160,255,.55); }
+  .vsWave i.off { background: #23275c; box-shadow: none; }
   .vsText { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
   .vsText .vs { font-size: 40px; font-weight: 900; font-style: italic; color: #fff; text-shadow: 0 0 16px rgba(125,252,232,.9), 0 3px 0 rgba(6,63,54,.9); }
   .vsDmg { position: absolute; top: 4px; right: 12px; font-size: 34px; font-weight: 900; color: #ffb340; text-shadow: 0 0 12px rgba(255,179,64,.8), 0 2px 0 rgba(90,45,0,.9); transform: rotate(6deg); }
@@ -702,9 +703,102 @@
     var leftPct = Math.max(0, Math.round((1 - (rk.progress || 0)) * 100));
     return esc(rk.name) + '（次は' + esc(rk.nextName) + 'まで あと' + leftPct + '%）';
   }
-  // ペア切替（game82）: キャラ画面で表示中の絵の側（'a'/'b'）。表示だけの切替で、
-  // 実際に使う絵は従来どおり選択中（chosen）の側。未操作なら選択中の側から始める
+  // ペア切替（game82→game88）: キャラ画面で表示中の絵の側（'a'/'b'）。未操作なら選択中の側から始める。
+  // game88: 本番では切替＝本物の選択変更（名鑑ページと同じ choose を発行して bot 側の chosen を変える）。
+  // テストプレイ（TEST_MODE）では従来どおり表示だけの切替で、実データには触れない
   var minePairView82 = null;
+  // ペア切替の選択変更（game88）: 送信した choose が公開データに反映されたかを見張る係。
+  // bot から個別の返事は来ないので、chars.json／battle.json の chosen の変化で判定する
+  // （名鑑ページの watchPendingOp と同じ考え方・同じ再読込間隔 4/15/35/72 秒・期限70秒）。
+  var pairPending88 = null;
+  var pairNotice88 = '';
+  var PAIR_LOCK_MSG88 = 'この端末からは変更できません。最初に選んだ端末で開くか、枠主に頼んでください';
+  // 端末キー: 名鑑ページ（chars.html）の ownerKey と同一実装・同一の保存先（同一オリジンなので共有される）
+  function charOwnerKey88() {
+    try {
+      var k = localStorage.getItem('spoonChars.deviceKey');
+      if (k) return k;
+      var legacy = localStorage.getItem('spoonChars.ownerKey.' + token);
+      if (legacy) {
+        try { localStorage.setItem('spoonChars.deviceKey', legacy); } catch (e2) {}
+        return legacy;
+      }
+      var arr = new Uint8Array(18);
+      if (window.crypto && crypto.getRandomValues) crypto.getRandomValues(arr);
+      else for (var i = 0; i < arr.length; i++) arr[i] = Math.floor(Math.random() * 256);
+      k = Array.prototype.map.call(arr, function (b) { return ('0' + b.toString(16)).slice(-2); }).join('');
+      localStorage.setItem('spoonChars.deviceKey', k);
+      return k;
+    } catch (e) { return ''; }
+  }
+  // charops への書き込み: 名鑑ページの postOp と同一形式（{kind, token, choice, k, t} を
+  // rooms/<ROOM_ID>/charops.json へ POST）。Firebase ルールの検証（kind・token・t・選択肢フィールド・k）も
+  // chars.html の書き込みとまったく同じ形なので、ルール変更なしで bot の中継がそのまま受け付ける
+  function postCharOp88(op) {
+    if (!DB_URL || !ROOM_ID) return Promise.resolve(false);
+    op.t = Date.now();
+    return fetch(DB_URL + '/rooms/' + encodeURIComponent(ROOM_ID) + '/charops.json', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(op)
+    }).then(function (r) { return r.ok; }).catch(function () { return false; });
+  }
+  function confirmPair88() {
+    pairPending88 = null;
+    pairNotice88 = '反映しました♪';
+    loadData();
+    renderMine();
+  }
+  function revertPair88() {
+    pairPending88 = null;
+    pairNotice88 = PAIR_LOCK_MSG88;
+    var me = myEntry();
+    minePairView82 = me && me.chosen === 'b' ? 'b' : 'a';
+    renderMine();
+  }
+  // chars.json（choose の受理で bot が即時に再公開する）を見て反映を判定する
+  function watchPair88() {
+    if (!pairPending88) return;
+    fetch('chars.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+      if (!pairPending88) return;
+      var ppl = (j && j.people) || [];
+      var mine = null;
+      for (var i = 0; i < ppl.length; i++) if (ppl[i].token === token) mine = ppl[i];
+      if (mine && mine.chosen === pairPending88.want) { confirmPair88(); return; }
+      if (Date.now() > pairPending88.deadline) revertPair88();
+    }).catch(function () {
+      if (pairPending88 && Date.now() > pairPending88.deadline) revertPair88();
+    });
+  }
+  // battle.json の定期読み込み（loadData）でも、chosen が変わっていれば確定扱いにする
+  function checkPairPending88() {
+    if (!pairPending88) return;
+    var me = myEntry();
+    if (me && me.chosen === pairPending88.want) {
+      pairPending88 = null;
+      pairNotice88 = '反映しました♪';
+    }
+  }
+  // ペア切替ボタンの処理（game88）: 本番は choose を発行して本物の選択変更にする
+  function pairChoose88(side) {
+    var me = myEntry();
+    if (!me) return;
+    minePairView82 = side;
+    playSlot('se.uiTap');
+    if (TEST_MODE) { renderMine(); return; } // テストプレイは表示だけ（実データに触れない）
+    var chosenSide = me.chosen === 'b' ? 'b' : 'a';
+    if (side === chosenSide) { renderMine(); return; } // 既に選択中の側なら送らない
+    if (!token || !DB_URL || !ROOM_ID) {
+      pairNotice88 = '接続先が未設定です（DJ側の設定待ち）';
+      minePairView82 = chosenSide;
+      renderMine();
+      return;
+    }
+    pairNotice88 = '変更を送信しました…';
+    pairPending88 = { want: side, deadline: Date.now() + 70000 };
+    renderMine();
+    postCharOp88({ kind: 'choose', token: token, choice: side, k: charOwnerKey88() });
+    var delays88 = [4000, 15000, 35000, 72000];
+    for (var di88 = 0; di88 < delays88.length; di88++) setTimeout(watchPair88, delays88[di88]);
+  }
   function statRow82(stat, label, val, points) {
     return '<div class="statRow"><span class="sname">' + label + '</span><span class="sval">' + val + '</span>'
       + '<button type="button" class="allocPlus" data-alloc="' + stat + '"' + (points > 0 ? '' : ' disabled') + ' aria-label="' + label + 'に振り分け">＋</button></div>';
@@ -765,7 +859,8 @@
       + (titleChip(me) ? '<div style="margin-top:6px;">' + titleChip(me) + (me.honors && me.honors.rank ? ' <span class="note">ランキング ' + me.honors.rank + '位</span>' : '') + '</div>' : '')
       + (pair82 ? '<div class="pairSwitch"><div class="pairSwitchLabel">ペア切替</div><div class="pairBtns">'
         + '<button type="button" class="pairBtn' + (minePairView82 === 'a' ? ' sel' : '') + '" data-pair="a">A</button>'
-        + '<button type="button" class="pairBtn' + (minePairView82 === 'b' ? ' sel' : '') + '" data-pair="b">B</button></div></div>' : '')
+        + '<button type="button" class="pairBtn' + (minePairView82 === 'b' ? ' sel' : '') + '" data-pair="b">B</button></div></div>'
+        + '<div class="note" id="pairMsg88">' + esc(pairNotice88) + '</div>' : '')
       + (dispImg ? '<div class="mineImgWrap"><img src="' + esc(dispImg) + '" alt=""></div>' : '')
       + (goldImg && goldImg !== mImg ? '<div class="meta" style="margin-top:10px;">👑 金ランク記念イラスト</div><img class="img" style="width:100%;border-radius:10px;margin-top:6px;" src="' + esc(goldImg) + '" alt="">' : '')
       + '<div class="statusPanel" id="allocArea"><div class="panelHead">― ステータス ―</div>'
@@ -813,9 +908,7 @@
     box.innerHTML = html;
     var pairBtns82 = box.querySelectorAll('[data-pair]');
     for (var pi82 = 0; pi82 < pairBtns82.length; pi82++) pairBtns82[pi82].addEventListener('click', function () {
-      minePairView82 = this.getAttribute('data-pair');
-      playSlot('se.uiTap');
-      renderMine();
+      pairChoose88(this.getAttribute('data-pair'));
     });
     var hmb82 = el('headMuteBtn');
     if (hmb82) hmb82.addEventListener('click', function () { setSoundMode(soundMode === 'mute' ? 'normal' : 'mute'); });
@@ -926,7 +1019,7 @@
   }
   function loadData(cb) {
     fetch('battle.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
-      if (j) { data = j; checkRankingSound(); checkEvolutionSound(); checkLevelUpSound(); checkRankInSound(); renderAll(); }
+      if (j) { data = j; checkPairPending88(); checkRankingSound(); checkEvolutionSound(); checkLevelUpSound(); checkRankInSound(); renderAll(); }
       if (cb) cb();
     }).catch(function () { if (cb) cb(); });
   }
@@ -1431,6 +1524,28 @@
     var m = root.querySelector('[data-cmeter86="' + key + '"]');
     if (m) m.innerHTML = waveMeter82(pct, (key === 'foe' ? 'foe' : '') + (pct <= 20 ? ' low' : ''), key === 'foe' ? 11 : 29);
   }
+  // ===== game89: VS波形ゲージを両者の表示HPに連動させる =====
+  // 左半分（22本）＝自分の表示HP割合、右半分（22本）＝相手の表示HP割合だけ点灯させる。
+  // 点灯バーは外側（自陣側）に寄せ、HPが減ると中央（VS）側から消えていく「押し込まれ」表現にする
+  function vsLit89(pct) {
+    return Math.round(22 * Math.max(0, Math.min(100, pct == null ? 100 : pct)) / 100);
+  }
+  // VS波形をその場で更新する（バーの 'off' クラスの付け外しだけ。再描画しないので
+  // game86 の再生中モーションの画像要素は壊れない。表示HPが増えたら消えたバーが再点灯する）
+  function paintVs89(root, myPct, foePct) {
+    if (!root) return;
+    var w = root.querySelector('[data-cvs89]');
+    if (!w || !w.children || w.children.length !== 44) return;
+    var litL = vsLit89(myPct);
+    var litR = vsLit89(foePct);
+    for (var i = 0; i < 44; i++) {
+      // 左半分は左端（外側）から litL 本、右半分は右端（外側）から litR 本が点灯。残りは中央側から消灯
+      var off = i < 22 ? (i >= litL) : ((i - 22) < (22 - litR));
+      var b = w.children[i];
+      if (off) { if (!b.classList.contains('off')) b.classList.add('off'); }
+      else if (b.classList.contains('off')) b.classList.remove('off');
+    }
+  }
   // 攻撃モーション本体: 拡大 scale(1.3)＋VS側への移動＋小刻みな振動＋色の点滅。
   // charge（間を取る）は攻撃ではないので、拡大・移動なしの軽いグローの脈動だけ。
   // 要素が再描画で消えても落ちないよう、終了は finished の成否どちらでも拾い、保険タイマーも置く
@@ -1514,6 +1629,8 @@
       if (!isCharge && entry.damage > 0) playSlot(entry.damage >= 20 ? 'se.hitBig' : 'se.hit');
       paintHp86(root, 'foe', a.dispHp[1 - ms], a.hpStarts[1 - ms]);
       paintHp86(root, 'mine', a.dispHp[ms], a.hpStarts[ms]);
+      // game89: VS波形も同じタイミング・同じ表示HPでその場更新する（回復で増えたら再点灯）
+      paintVs89(root, a.hpStarts[ms] > 0 ? a.dispHp[ms] * 100 / a.hpStarts[ms] : 0, a.hpStarts[1 - ms] > 0 ? a.dispHp[1 - ms] * 100 / a.hpStarts[1 - ms] : 0);
     };
     var hitTimer = setTimeout(applyImpact, isCharge ? 260 : ANIM_HIT_MS86);
     playAttackMotion86(imgEl, { foe: isFoeAtk, color: color, charge: isCharge }).then(function () {
@@ -1586,6 +1703,8 @@
       if (!isCharge && entry.damage > 0) playSlot(entry.damage >= 20 ? 'se.hitBig' : 'se.hit');
       paintHp86(root, 'foe', myTrain.dispHp[1], myTrain.hpStarts[1]);
       paintHp86(root, 'mine', myTrain.dispHp[0], myTrain.hpStarts[0]);
+      // game89: VS波形も同じタイミング・同じ表示HPでその場更新する（本番と同じ）
+      paintVs89(root, myTrain.hpStarts[0] > 0 ? myTrain.dispHp[0] * 100 / myTrain.hpStarts[0] : 0, myTrain.hpStarts[1] > 0 ? myTrain.dispHp[1] * 100 / myTrain.hpStarts[1] : 0);
     };
     var hitTimer = setTimeout(applyImpact, isCharge ? 260 : ANIM_HIT_MS86);
     playAttackMotion86(imgEl, { foe: isFoeAtk, color: color, charge: isCharge }).then(function () {
@@ -1708,13 +1827,18 @@
     if (!o.isFoe && o.chargeBuff) html += '<div class="chargeBanner">✨ 間を取った！ 次の攻撃 ×1.5 ✨</div>';
     return html;
   }
-  function vsZone82(lastDmg) {
+  // game89: 第2・第3引数に両者の表示HP割合（％）を受け、点灯本数を連動させる。
+  // 左半分は左端から、右半分は右端から点灯し、減ると中央（VS）側から消える
+  function vsZone82(lastDmg, myPct, foePct) {
+    var litL = vsLit89(myPct);
+    var litR = vsLit89(foePct);
     var bars = '';
     for (var i = 0; i < 44; i++) {
       var h = 14 + Math.round(38 * Math.abs(Math.sin(i * 0.7)) * (0.4 + 0.6 * Math.abs(Math.sin(i * 0.21))));
-      bars += '<i class="' + (i < 22 ? 'l' : 'r') + '" style="height:' + h + 'px"></i>';
+      var off = i < 22 ? (i >= litL) : ((i - 22) < (22 - litR));
+      bars += '<i class="' + (i < 22 ? 'l' : 'r') + (off ? ' off' : '') + '" style="height:' + h + 'px"></i>';
     }
-    return '<div class="vsZone"><div class="vsWave">' + bars + '</div>'
+    return '<div class="vsZone"><div class="vsWave" data-cvs89="1">' + bars + '</div>'
       + '<div class="vsText"><span class="vs">VS</span></div>'
       + (lastDmg != null && lastDmg > 0 ? '<div class="vsDmg">' + lastDmg + '</div>' : '')
       + '</div>';
@@ -1785,7 +1909,7 @@
     var myP82 = myEntry();
     var head = '<div class="panel">' + battleTop82('オンエア残り時間', ring82)
       + sideCard82({ img: face82 ? face82.img : null, name: face82 ? face82.name : foe.nickname, attr: foe.attr, level: foe.level, hp: disp86 ? disp86[1 - ms] : foe.hp, hpMax: foe.hpStart || 100, isFoe: true, charging: foe.charging, skill: foe.skill })
-      + vsZone82(lastDmg82)
+      + vsZone82(lastDmg82, (disp86 ? disp86[ms] : me.hp) * 100 / (me.hpStart || 100), (disp86 ? disp86[1 - ms] : foe.hp) * 100 / (foe.hpStart || 100))
       + sideCard82({ img: myP82 ? mainImg(myP82) : null, name: me.nickname, attr: me.attr, level: me.level, hp: disp86 ? disp86[ms] : me.hp, hpMax: me.hpStart || 100, isFoe: false, chargeBuff: me.chargeBuff, skill: me.skill });
     if (mirror.mode === 'pvp' && mirror.status === 'in_progress' && foe.unstable) {
       head += '<div class="warn">相手の接続が不安定です。このまま接続が戻らなければ、相手の不戦敗になります。</div>';
@@ -2095,7 +2219,7 @@
     var tMeP82 = myEntry();
     var head = '<div class="panel">' + battleTop82(headLabel, turnRing82(st.turnNo, 'ターン', st.turnNo / 20))
       + sideCard82({ img: tFace82 ? tFace82.img : null, name: tFace82 ? tFace82.name : foe.nickname, attr: foe.attr, level: foe.level, hp: tDisp86 ? tDisp86[1] : foe.hp, hpMax: foe.hpStart || 100, isFoe: true, charging: foe.charging, skill: null })
-      + vsZone82(tDmg82)
+      + vsZone82(tDmg82, (tDisp86 ? tDisp86[0] : me.hp) * 100 / (me.hpStart || 100), (tDisp86 ? tDisp86[1] : foe.hp) * 100 / (foe.hpStart || 100))
       + sideCard82({ img: tMeP82 ? mainImg(tMeP82) : null, name: me.nickname, attr: me.attr, level: me.level, hp: tDisp86 ? tDisp86[0] : me.hp, hpMax: me.hpStart || 100, isFoe: false, chargeBuff: me.chargeBuff, skill: me.skill });
     if (st.finished && animating86) {
       // game86: 最後の攻撃モーションが終わるまで結果（勝敗SE・結果画面）は出さない
