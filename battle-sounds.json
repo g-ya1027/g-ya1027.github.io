@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T22:50:02.524Z",
+  "updatedAt": "2026-11-22T22:51:47.835Z",
   "slots": {
     "bgm.title": {
       "url": "sounds/game/UrbanBGM_02.mp3",
@@ -16,19 +16,19 @@
     },
     "bgm.win": {
       "url": "sounds/game/Fusion_01.mp3",
-      "volume": 0.15
+      "volume": 0.2
     },
     "bgm.lose": {
       "url": "sounds/game/LoFi_01.mp3",
-      "volume": 0.15
+      "volume": 0.2
     },
     "bgm.draw": {
       "url": "sounds/game/House_01.mp3",
-      "volume": 0.15
+      "volume": 0.2
     },
     "se.encounter": {
       "url": "sounds/game/jingle_26.mp3",
-      "volume": 0.15
+      "volume": 0.2
     },
     "se.uiTap": {
       "url": "sounds/game/タップ.mp3",
