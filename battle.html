@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- spoon-battle-page v21 -->
+<!-- spoon-battle-page v22 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -1028,6 +1028,8 @@
     if (v !== 'roster') detailHash = null;
     // game87: 対戦画面（本番／訓練）以外へ移ったらエンカウント画面を残留させない
     if (v !== 'battle' && v !== 'training') hideEncounter87();
+    // game90: 結果画面（対戦／訓練ビュー）を離れたら結果BGMを止め、タイトルBGMへ戻す
+    if (v !== 'battle' && v !== 'training' && resultBgm) { stopResultBgm90(); startTitleBgm(); }
     renderAll();
   }
 
@@ -1060,13 +1062,18 @@
       battleBgm.volume = effVol(battleBgmSlot || 'bgm.battle');
       if (soundMode === 'normal') battleBgm.play().catch(function () {}); else battleBgm.pause();
     }
+    // game90: 結果BGMも他の BGM と同じくモード連動（配信優先／ミュートでは止まる）
+    if (resultBgm) {
+      resultBgm.volume = effVol(resultBgmSlot || 'bgm.win');
+      if (soundMode === 'normal') resultBgm.play().catch(function () {}); else resultBgm.pause();
+    }
   }
   function setSoundMode(m) {
     soundMode = normalizeBattleSoundMode(m);
     try { localStorage.setItem('battleSoundMode', soundMode); } catch (e) {}
     paintSoundBar();
     refreshLiveBgm();
-    if (soundMode === 'normal' && !bgmAudio && !battleBgm) {
+    if (soundMode === 'normal' && !bgmAudio && !battleBgm && !resultBgm) {
       if (battleBgmSlot) playBattleBgm(battleBgmSlot); else startTitleBgm();
     }
   }
@@ -1405,11 +1412,43 @@
   var battleBgmSlot = null;
   function playBattleBgm(slotId) {
     if (battleBgm) { battleBgm.pause(); battleBgm = null; }
+    // game90: 新しい対戦が始まったら結果BGMも止める
+    stopResultBgm90();
     // game85: 対戦BGMを始める経路はすべてここを通るので、タイトルBGMの停止もここに一本化する
     // （従来は enterBattle だけが呼び出し前に手動で止めており、テスト対戦・訓練の直接呼び出しではタイトルBGMが残り続けた）
     if (bgmAudio) { bgmAudio.pause(); bgmAudio = null; }
     battleBgmSlot = slotId || 'bgm.battle';
     battleBgm = playSlot(battleBgmSlot, true);
+  }
+  // ===== game90: 結果BGM（勝利・敗北・引き分け） =====
+  // 結果音は SE から BGM へ移した。SE は BGM と別プレイヤーで鳴るため BGM を止めず、
+  // 結果画面でタイトルBGMと重なってしまう。BGM にすればシーンミュージックとして入れ替わる。
+  // 結果BGMはループなしで1回だけ鳴らし、専用変数で保持する。止める条件は次の2つ:
+  // (a) 新しい対戦が始まる（playBattleBgm） (b) 結果画面を離れる（switchView で battle/training 以外へ）
+  // BGM スロットなので音量は effVol の BGM 扱いに従い、配信優先／ミュートでは鳴らない（SE との挙動差）。
+  var resultBgm = null;
+  var resultBgmSlot = null;
+  function stopResultBgm90() {
+    if (resultBgm) { try { resultBgm.pause(); } catch (e) {} resultBgm = null; }
+    resultBgmSlot = null;
+  }
+  function playResultBgm90(kind) {
+    stopResultBgm90();
+    if (battleBgm) { battleBgm.pause(); battleBgm = null; }
+    battleBgmSlot = null;
+    if (bgmAudio) { bgmAudio.pause(); bgmAudio = null; }
+    var slotId = 'bgm.' + kind;
+    var a = playSlot(slotId, false); // ループなしで1回だけ
+    if (!a) { startTitleBgm(); return; } // 未設定・ミュート等では従来どおりタイトルBGMへ
+    resultBgmSlot = slotId;
+    resultBgm = a;
+    a.addEventListener('ended', function () {
+      if (resultBgm !== a) return;
+      resultBgm = null;
+      resultBgmSlot = null;
+      // 再生が自然に終わった時点でまだ結果画面にいるなら、タイトルBGMを静かに再開する
+      if (view === 'battle' || view === 'training') startTitleBgm();
+    });
   }
   // ===== game87: エンカウント画面（対戦開始時の VS スライドイン演出） =====
   // 対戦相手が確定した瞬間に全画面オーバーレイを出し、両者のアイコンが画面外の左右から
@@ -1646,7 +1685,7 @@
       a.hpStarts = [mirror.participants[0].hpStart || 100, mirror.participants[1].hpStart || 100];
     }
     if (a.finishPending) {
-      // 保留していた対戦終了処理（結果SE・結果画面）は、最後のモーションが終わったここで流す
+      // 保留していた対戦終了処理（結果BGM・結果画面）は、最後のモーションが終わったここで流す
       a.finishPending = false;
       if (mirror) { setMirror(mirror); return; }
     }
@@ -1776,20 +1815,22 @@
     }
     // game86: 手番開始SEの旧発火（phase/turnSide の変化検知）は現行フローで鳴らないため撤去した。
     // 新しい発火点は maybeTurnStart86（逐次再生が終わって入力可能になった瞬間）に一本化している
-    // game86: 再生キューが残っている間は、対戦終了処理（結果SE・BGM切替）を最後のモーションの後まで保留する
+    // game86: 再生キューが残っている間は、対戦終了処理（結果BGM切替・結果画面）を最後のモーションの後まで保留する
     var holdFinish86 = m.status === 'finished' && !resultPlayed && !!(anim86 && (anim86.playing || anim86.queue.length));
     if (holdFinish86) anim86.finishPending = true;
     if (m.status === 'finished' && !resultPlayed && !holdFinish86) {
       resultPlayed = true;
-      if (battleBgm) { battleBgm.pause(); battleBgm = null; }
-      battleBgmSlot = null;
-      // game85: 対戦終了後はタイトルBGMを再開する（サウンドモードの判定は startTitleBgm→playSlot→effVol が担い、mute/stream では鳴らない）
-      startTitleBgm();
       var ms = mySideIndex();
-      if (!m.result || m.result.reason === 'void') {}
-      else if (m.result.winnerSide === null) playSlot('se.draw');
-      else if (m.result.winnerSide === ms) playSlot('se.win');
-      else playSlot('se.lose');
+      // game90: 結果音は SE から結果BGM（bgm.win/lose/draw）への切り替えにする
+      // （playResultBgm90 が対戦BGM・タイトルBGMを止める。無効試合は従来どおりタイトルBGMへ）
+      if (!m.result || m.result.reason === 'void') {
+        if (battleBgm) { battleBgm.pause(); battleBgm = null; }
+        battleBgmSlot = null;
+        startTitleBgm();
+      }
+      else if (m.result.winnerSide === null) playResultBgm90('draw');
+      else if (m.result.winnerSide === ms) playResultBgm90('win');
+      else playResultBgm90('lose');
       resumeBattleId = null;
       setTimeout(loadData, 2500);
     }
@@ -2222,20 +2263,17 @@
       + vsZone82(tDmg82, (tDisp86 ? tDisp86[0] : me.hp) * 100 / (me.hpStart || 100), (tDisp86 ? tDisp86[1] : foe.hp) * 100 / (foe.hpStart || 100))
       + sideCard82({ img: tMeP82 ? mainImg(tMeP82) : null, name: me.nickname, attr: me.attr, level: me.level, hp: tDisp86 ? tDisp86[0] : me.hp, hpMax: me.hpStart || 100, isFoe: false, chargeBuff: me.chargeBuff, skill: me.skill });
     if (st.finished && animating86) {
-      // game86: 最後の攻撃モーションが終わるまで結果（勝敗SE・結果画面）は出さない
+      // game86: 最後の攻撃モーションが終わるまで結果（勝敗BGM・結果画面）は出さない
       box.innerHTML = head + '<div class="note" style="margin-top:12px;">対戦が終わりました…</div></div>' + trainHistHtml();
       return;
     }
     if (st.finished) {
       if (!train.resultPlayed) {
         train.resultPlayed = true;
-        if (battleBgm) { battleBgm.pause(); battleBgm = null; }
-        battleBgmSlot = null;
-        // game85: 訓練・テスト対戦の終了後もタイトルBGMを再開する（本番の終了処理と同じ）
-        startTitleBgm();
-        if (st.winner === null) playSlot('se.draw');
-        else if (st.winner === 0) playSlot('se.win');
-        else playSlot('se.lose');
+        // game90: 訓練・テストの結果音も、本番と同じ結果BGM（bgm.win/lose/draw）への切り替えにする
+        if (st.winner === null) playResultBgm90('draw');
+        else if (st.winner === 0) playResultBgm90('win');
+        else playResultBgm90('lose');
       }
       var title = st.winner === null ? '引き分け' : (st.winner === 0 ? '🎉 勝ち！' : '負け…');
       var left = trainingLeft();
