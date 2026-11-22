@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T10:14:53.659Z",
+  "updatedAt": "2026-11-22T10:15:45.208Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
@@ -104,10 +104,14 @@
       "token": "9b076a7fc2c9dfbc",
       "nickname": "月野 弥太郎⑅︎◡̈︎*𓈒𓂂𖧷 ",
       "radioName": "黄昏の流れ星の星",
-      "status": "pending",
-      "pair": null,
+      "status": "ready",
+      "pair": {
+        "a": "chars/dOKX_qA4YFBFYT1wVyAPLQ-a.png",
+        "b": "chars/dOKX_qA4YFBFYT1wVyAPLQ-b.png",
+        "kind": "gender"
+      },
       "chosen": null,
-      "reroll": "notready",
+      "reroll": "ok",
       "rerollNextAt": null
     }
   ]
