@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T10:13:32.638Z",
+  "updatedAt": "2026-11-22T10:14:57.675Z",
   "metric": "exp",
   "entries": [
     {
@@ -72,6 +72,19 @@
       "rank": 6,
       "nickname": "ぁゎゎ",
       "radioName": "疾風の船長将軍",
+      "level": 1,
+      "attr": null,
+      "titleId": "top10",
+      "titleText": "FMスプニ レギュラーDJ",
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 0
+    },
+    {
+      "rank": 7,
+      "nickname": "⚔️👑うみいろくん👑⚔️",
+      "radioName": "彗星の狼将軍",
       "level": 1,
       "attr": null,
       "titleId": "top10",
