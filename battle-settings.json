@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T14:25:31.059Z",
+  "updatedAt": "2026-11-22T22:16:07.684Z",
   "featuresBattle": true,
   "battle": {
     "announce": {
@@ -114,6 +114,18 @@
         "se.rankIn": {
           "file": "se/game/Ska_03(1).mp3",
           "volume": 0.8
+        },
+        "bgm.win": {
+          "file": "sounds/game/Fusion_01.mp3",
+          "volume": 0.2
+        },
+        "bgm.lose": {
+          "file": "sounds/game/LoFi_01.mp3",
+          "volume": 0.2
+        },
+        "bgm.draw": {
+          "file": "sounds/game/House_01.mp3",
+          "volume": 0.2
         }
       },
       "bot": {}
