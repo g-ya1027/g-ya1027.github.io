@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T14:17:51.376Z",
+  "updatedAt": "2026-11-22T15:00:16.137Z",
   "live": false,
   "gkEnabled": true,
   "gkTiers": [
@@ -27,7 +27,7 @@
   },
   "illustWeeklyCap": 5,
   "illustWeeklyCapPerUser": 1,
-  "illustWeekDoneAll": 1,
+  "illustWeekDoneAll": 0,
   "people": [
     {
       "tokenHash": "a4a3d479ae7142a3a2bc8f18389ec12e05bcb0235a5a9ec37f4306c5e352352c",
@@ -96,7 +96,7 @@
           "status": "done"
         }
       ],
-      "illustWeekDone": 1,
+      "illustWeekDone": 0,
       "skill": {
         "learned": false,
         "name": null,
