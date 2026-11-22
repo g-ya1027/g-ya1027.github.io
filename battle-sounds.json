@@ -1,22 +1,94 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T02:46:11.418Z",
+  "updatedAt": "2026-11-22T04:23:22.442Z",
   "slots": {
     "bgm.title": {
       "url": "sounds/game/UrbanBGM_02.mp3",
-      "volume": 0.8
+      "volume": 0.2
     },
     "bgm.battle": {
-      "url": "sounds/game/bgm-battle.mp3",
-      "volume": 0.8
+      "url": "sounds/game/RPG_Battle_01.mp3",
+      "volume": 0.2
     },
     "bgm.pvp": {
-      "url": "sounds/game/bgm-pvp.mp3",
-      "volume": 0.8
+      "url": "sounds/game/RPG_Battle_04.mp3",
+      "volume": 0.2
     },
     "se.encounter": {
-      "url": "sounds/game/se-encounter.mp3",
-      "volume": 0.8
+      "url": "sounds/game/jingle_26.mp3",
+      "volume": 0.2
+    },
+    "se.uiTap": {
+      "url": "sounds/game/タップ.mp3",
+      "volume": 0.2
+    },
+    "se.uiDecide": {
+      "url": "sounds/game/決定.mp3",
+      "volume": 0.2
+    },
+    "se.uiCancel": {
+      "url": "sounds/game/キャンセル.mp3",
+      "volume": 0.2
+    },
+    "se.moveSelect": {
+      "url": "sounds/game/手札選択.mp3",
+      "volume": 0.6
+    },
+    "se.attackNormal": {
+      "url": "sounds/game/高速移動.mp3",
+      "volume": 0.6
+    },
+    "se.attackAttr": {
+      "url": "sounds/game/属性攻撃.mp3",
+      "volume": 0.6
+    },
+    "se.charge": {
+      "url": "sounds/game/パワーチャージ.mp3",
+      "volume": 0.6
+    },
+    "se.hit": {
+      "url": "sounds/game/打撃3.mp3",
+      "volume": 0.4
+    },
+    "se.hitBig": {
+      "url": "sounds/game/会心の一撃3.mp3",
+      "volume": 0.4
+    },
+    "se.turnStart": {
+      "url": "sounds/game/DJのスクラッチ1.mp3",
+      "volume": 0.6
+    },
+    "se.win": {
+      "url": "sounds/game/Fusion_01.mp3",
+      "volume": 0.2
+    },
+    "se.lose": {
+      "url": "sounds/game/LoFi_01.mp3",
+      "volume": 0.2
+    },
+    "se.draw": {
+      "url": "sounds/game/House_01.mp3",
+      "volume": 0.2
+    },
+    "se.levelUp": {
+      "url": "sounds/game/レベルアップ.mp3",
+      "volume": 0.6
+    },
+    "se.heal": {
+      "url": "sounds/game/ステータス治療1.mp3",
+      "volume": 0.6
+    },
+    "se.alloc": {
+      "url": "sounds/game/決定.mp3",
+      "volume": 0.2
+    },
+    "se.evolution": {
+      "url": "sounds/game/進化.mp3",
+      "volume": 0.2
+    },
+    "se.ranking": {
+      "url": "sounds/game/ランキング.mp3",
+      "volume": 0.2
     }
   }
 }
