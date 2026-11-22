@@ -1,20 +1,20 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T11:02:06.374Z",
+  "updatedAt": "2026-11-22T11:06:58.486Z",
   "metric": "exp",
   "entries": [
     {
       "rank": 1,
       "nickname": "kinou",
       "radioName": "永遠の貴公子の星",
-      "level": 1,
+      "level": 2,
       "attr": null,
       "titleId": "champion",
       "titleText": "キング・オブ・レゾナンス",
       "frame": "gold",
       "crown": true,
       "pvpWin": 0,
-      "exp": 9
+      "exp": 10
     },
     {
       "rank": 2,
