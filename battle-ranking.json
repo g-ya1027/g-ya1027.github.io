@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T10:52:06.338Z",
+  "updatedAt": "2026-11-22T11:02:06.374Z",
   "metric": "exp",
   "entries": [
     {
@@ -14,7 +14,7 @@
       "frame": "gold",
       "crown": true,
       "pvpWin": 0,
-      "exp": 8
+      "exp": 9
     },
     {
       "rank": 2,
@@ -27,7 +27,7 @@
       "frame": "silver",
       "crown": false,
       "pvpWin": 0,
-      "exp": 5
+      "exp": 6
     },
     {
       "rank": 3,
@@ -44,8 +44,8 @@
     },
     {
       "rank": 4,
-      "nickname": "ぁゎゎ",
-      "radioName": "疾風の船長将軍",
+      "nickname": "⚔️👑うみいろくん👑⚔️",
+      "radioName": "彗星の狼将軍",
       "level": 1,
       "attr": null,
       "titleId": "top10",
@@ -53,12 +53,12 @@
       "frame": null,
       "crown": false,
       "pvpWin": 0,
-      "exp": 2
+      "exp": 3
     },
     {
       "rank": 5,
-      "nickname": "⚔️👑うみいろくん👑⚔️",
-      "radioName": "彗星の狼将軍",
+      "nickname": "ぁゎゎ",
+      "radioName": "疾風の船長将軍",
       "level": 1,
       "attr": null,
       "titleId": "top10",
@@ -79,7 +79,7 @@
       "frame": null,
       "crown": false,
       "pvpWin": 0,
-      "exp": 1
+      "exp": 2
     },
     {
       "rank": 7,
