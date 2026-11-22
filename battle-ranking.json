@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T10:47:06.323Z",
+  "updatedAt": "2026-11-22T10:52:06.338Z",
   "metric": "exp",
   "entries": [
     {
@@ -14,7 +14,7 @@
       "frame": "gold",
       "crown": true,
       "pvpWin": 0,
-      "exp": 4
+      "exp": 8
     },
     {
       "rank": 2,
@@ -27,7 +27,7 @@
       "frame": "silver",
       "crown": false,
       "pvpWin": 0,
-      "exp": 4
+      "exp": 5
     },
     {
       "rank": 3,
@@ -53,7 +53,7 @@
       "frame": null,
       "crown": false,
       "pvpWin": 0,
-      "exp": 1
+      "exp": 2
     },
     {
       "rank": 5,
@@ -66,7 +66,7 @@
       "frame": null,
       "crown": false,
       "pvpWin": 0,
-      "exp": 1
+      "exp": 2
     },
     {
       "rank": 6,
