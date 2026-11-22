@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T09:47:42.120Z",
-  "live": false,
+  "updatedAt": "2026-11-22T09:48:44.210Z",
+  "live": true,
   "gkEnabled": true,
   "gkTiers": [
     {
@@ -46,7 +46,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T09:42:04.017Z"
+        "updatedAt": "2026-11-22T09:47:42.132Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -139,7 +139,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T09:42:04.017Z"
+        "updatedAt": "2026-11-22T09:47:42.132Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -197,7 +197,7 @@
       "signals": {
         "heartsLeft": 9,
         "spoonsLeft": 0,
-        "commentsLeft": 14,
+        "commentsLeft": 13,
         "visitsLeft": 4,
         "stayLeftSec": 1516
       },
@@ -227,7 +227,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T09:42:04.017Z"
+        "updatedAt": "2026-11-22T09:47:42.132Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -315,7 +315,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T09:42:04.017Z"
+        "updatedAt": "2026-11-22T09:47:42.132Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -403,7 +403,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T09:42:04.017Z"
+        "updatedAt": "2026-11-22T09:47:42.132Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
