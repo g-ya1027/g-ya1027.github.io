@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- spoon-manual-page v4 -->
+<!-- spoon-manual-page v5 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -559,7 +559,8 @@ mkdir $HOME\Downloads\bot\src</code></pre>
     <div class="callout warn"><span class="ct">⚠️ つまずきポイント（第8章）</span>
       ・<strong>貼ったのに文字が入らない</strong>：PowerShell のウィンドウが手前にない状態です。ウィンドウをクリックしてから貼り付けてください。従来の画面では Ctrl+V が効かず、右クリックが貼り付けになる場合があります。<br>
       ・<strong><code>npm</code> のコマンドだけ止まる</strong>：PowerShell の設定（実行ポリシー）によっては、後の章で使う <code>npm run …</code> が「npm.ps1 を読み込めません。スクリプトの実行が無効になっています」というエラーで止まることがあります。対処は第10章のコラムにまとめてあります（コマンドプロンプトに切り替える方法と、実行ポリシーを変える方法）。この章の <code>node -v</code> は影響を受けません。<br>
-      ・<strong>プロンプトが戻ってこない</strong>：何かのプログラムが動き続けている状態です。<span class="kbd">Ctrl</span>+<span class="kbd">C</span> で止められます。</div>
+      ・<strong>プロンプトが戻ってこない</strong>：何かのプログラムが動き続けている状態です。<span class="kbd">Ctrl</span>+<span class="kbd">C</span> で止められます。<br>
+      ・<strong>第10章のログインで、同意してもブラウザが戻ってこない</strong>：ファイアウォールの許可が関係している場合があります。第10章のコラム「ファイアウォールの許可」を見てください。</div>
   </section>
 
   <section class="panel" id="ch9">
@@ -992,6 +993,9 @@ npm run auth</code></pre></div>
       ・簡単な方法：<strong>コマンドプロンプト</strong>を使う。スタートメニューで「cmd」と検索して開き、<code>cd %USERPROFILE%\Downloads\bot</code> で bot フォルダに移動してから、同じ <code>npm run auth</code> などを実行します。このマニュアルのコマンドは、ほとんどがコマンドプロンプトでもそのまま使えます（<code>copy</code> や <code>cd</code>、<code>npm</code> 系は共通です）。<br>
       ・PowerShell のまま使う方法：<code>Set-ExecutionPolicy -Scope CurrentUser RemoteSigned</code> を実行して「Y」で確定すると、自分のユーザー範囲だけスクリプト実行が許可されます（管理者権限は不要です）。元に戻す必要は基本的にありません。<br>
       なお、これは npm コマンドが止まる場合だけの対処です。bot 本体の動作には関係ありません。</div>
+    <div class="callout env"><span class="ct">📚 コラム（Windows）：ファイアウォールの許可</span>Windows では、Node.js を初めて動かしたとき（この章の <code>npm run auth</code> など）に、「Windows Defender ファイアウォール」の許可ダイアログ（「このアプリの機能のいくつかが Windows Defender ファイアウォールでブロックされています」など）が出ることがあります。その場合は <strong>Node.js を許可</strong> してください。<br>
+      ・許可しない／ブロックしたままだと、同意のあとにブラウザが認証用サーバー（<code>http://localhost:3000</code>）へ戻れず、<strong>ログイン（認証）が完了しない</strong>ことがあります。自分の PC の中だけの通信（localhost）は通常は素通りしますが、ダイアログでブロックしてしまった場合や、別のセキュリティソフトを併用している場合は失敗することがあります。<br>
+      ・ブロックしてしまった場合は、「設定」→「プライバシーとセキュリティ」→「Windows セキュリティ」→「ファイアウォールとネットワーク保護」→「アプリがファイアウォールを通るのを許可」で <strong>Node.js（node.exe）</strong> の通信を許可してください（ファイアウォールの「受信の規則」で node.exe・ポート <code>3000</code> の通信を許可する形でも構いません）。許可できたら、もう一度 <code>npm run auth</code> からやり直してください。</div>
     <div class="callout warn"><span class="ct">⚠️ つまずきポイント（第10章）</span>
       ・<strong>「このアプリとは連携できません」</strong>：同意したアカウントが bot 用アカウントになっています。DJ 本人のアカウントでログインし直してから同意してください。それでも直らない場合は、第4章のリダイレクトURL（アプリ側と .env が両方とも <code>http://localhost:3000</code> で一致しているか）を確認してください。失敗のほとんどはこの2つです。<br>
       ・<strong>ブラウザが戻ってこない／エラーになる</strong>：code の60秒切れの可能性があります。<code>npm run auth</code> からやり直してください。<br>
