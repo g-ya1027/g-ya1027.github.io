@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T10:14:57.668Z",
+  "updatedAt": "2026-11-22T10:15:49.065Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -46,7 +46,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T09:57:27.417Z"
+        "updatedAt": "2026-11-22T10:15:34.970Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -139,7 +139,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T09:57:27.417Z"
+        "updatedAt": "2026-11-22T10:15:34.970Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -227,7 +227,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T09:57:27.417Z"
+        "updatedAt": "2026-11-22T10:15:34.970Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -285,7 +285,7 @@
       "signals": {
         "heartsLeft": 7,
         "spoonsLeft": 0,
-        "commentsLeft": 13,
+        "commentsLeft": 10,
         "visitsLeft": 4,
         "stayLeftSec": 217
       },
@@ -315,7 +315,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T09:57:27.417Z"
+        "updatedAt": "2026-11-22T10:15:34.970Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -403,7 +403,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T09:57:27.417Z"
+        "updatedAt": "2026-11-22T10:15:34.970Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -496,7 +496,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T10:13:15.356Z"
+        "updatedAt": "2026-11-22T10:15:34.970Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -584,7 +584,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T10:14:55.165Z"
+        "updatedAt": "2026-11-22T10:15:34.970Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -650,6 +650,94 @@
       "pair": {
         "a": "chars/q9SVhkXF0qTVgm_bgnkMNw-a.png",
         "b": "chars/q9SVhkXF0qTVgm_bgnkMNw-b.png",
+        "kind": "gender"
+      },
+      "chosen": null,
+      "lastAction": null
+    },
+    {
+      "tokenHash": "3b0e540c4acf7723d624964762335cb585731ea7773eb8c84f70887610cd73d0",
+      "nickname": "月野 弥太郎⑅︎◡̈︎*𓈒𓂂𖧷 ",
+      "radioName": "黄昏の流れ星の星",
+      "status": "awaiting",
+      "attr": null,
+      "attrInitial": null,
+      "level": 1,
+      "exp": 0,
+      "expNext": 10,
+      "params": {
+        "atk": 10,
+        "def": 5,
+        "attrValue": 10
+      },
+      "hp": {
+        "stored": 100,
+        "updatedAt": "2026-11-22T10:15:46.564Z"
+      },
+      "bp": 0,
+      "unspentAlloc": 0,
+      "record": {
+        "npcWin": 0,
+        "npcLose": 0,
+        "pvpWin": 0,
+        "pvpLose": 0,
+        "gkWin": 0,
+        "gkLose": 0,
+        "draw": 0
+      },
+      "honors": {
+        "rank": 8,
+        "titleId": "top10",
+        "titleText": "FMスプニ レギュラーDJ",
+        "frame": null,
+        "crown": false
+      },
+      "evolutionStage": 0,
+      "evolution": {
+        "stage": 0,
+        "nextKind": "evo1",
+        "eligible": false,
+        "queued": false,
+        "winsKind": "total",
+        "levelNow": 1,
+        "levelNeed": 50,
+        "winsNow": 0,
+        "winsNeed": 50
+      },
+      "illust": {
+        "evo1": null,
+        "evo2": null,
+        "gold": null,
+        "win": null,
+        "lose": null
+      },
+      "illustRequests": [],
+      "illustWeekDone": 0,
+      "skill": {
+        "learned": false,
+        "name": null,
+        "desc": null,
+        "price": 30
+      },
+      "gkLeft": {
+        "day": 1,
+        "week": 3
+      },
+      "training": {
+        "usedToday": 0,
+        "results": []
+      },
+      "signals": {
+        "heartsLeft": 8,
+        "spoonsLeft": 0,
+        "commentsLeft": 17,
+        "visitsLeft": 5,
+        "stayLeftSec": 1143
+      },
+      "img": null,
+      "pair": {
+        "a": "chars/dOKX_qA4YFBFYT1wVyAPLQ-a.png",
+        "b": "chars/dOKX_qA4YFBFYT1wVyAPLQ-b.png",
         "kind": "gender"
       },
       "chosen": null,
@@ -739,6 +827,19 @@
       "rank": 7,
       "nickname": "⚔️👑うみいろくん👑⚔️",
       "radioName": "彗星の狼将軍",
+      "level": 1,
+      "attr": null,
+      "titleId": "top10",
+      "titleText": "FMスプニ レギュラーDJ",
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 0
+    },
+    {
+      "rank": 8,
+      "nickname": "月野 弥太郎⑅︎◡̈︎*𓈒𓂂𖧷 ",
+      "radioName": "黄昏の流れ星の星",
       "level": 1,
       "attr": null,
       "titleId": "top10",
