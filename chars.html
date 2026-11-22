@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- spoon-radio-chars v4 -->
+<!-- spoon-radio-chars v5 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -83,18 +83,23 @@
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(op)
     }).then(function (r) { return r.ok; }).catch(function () { return false; });
   }
-  // 端末バインド（game75）: この端末の「持ち主キー」。最初に操作した端末のキーが bot に登録され、
-  // 以後の選択・再抽選は同じキーを持つ端末からだけ受け付けられます。
+  // 端末バインド（game75／game80で共通化）: この端末の「持ち主キー」。全カード共通の1個を持ち、
+  // 最初に操作した端末のキーが bot に登録され、以後の選択・再抽選は同じキーを持つ端末からだけ受け付けられます。
+  // game75 のカード別キー（spoonChars.ownerKey.<token>）が残っていれば、その値を共通キーとして引き継ぎます。
   function ownerKey() {
-    var storageKey = 'spoonChars.ownerKey.' + token;
     try {
-      var k = localStorage.getItem(storageKey);
+      var k = localStorage.getItem('spoonChars.deviceKey');
       if (k) return k;
+      var legacy = localStorage.getItem('spoonChars.ownerKey.' + token);
+      if (legacy) {
+        try { localStorage.setItem('spoonChars.deviceKey', legacy); } catch (e2) {}
+        return legacy;
+      }
       var arr = new Uint8Array(18);
       if (window.crypto && crypto.getRandomValues) crypto.getRandomValues(arr);
       else for (var i = 0; i < arr.length; i++) arr[i] = Math.floor(Math.random() * 256);
       k = Array.prototype.map.call(arr, function (b) { return ('0' + b.toString(16)).slice(-2); }).join('');
-      localStorage.setItem(storageKey, k);
+      localStorage.setItem('spoonChars.deviceKey', k);
       return k;
     } catch (e) { return ''; }
   }
