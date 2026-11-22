@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T02:42:41.454Z",
+  "updatedAt": "2026-11-22T02:46:11.418Z",
   "featuresBattle": true,
   "battle": {
     "announce": {
@@ -20,7 +20,7 @@
     "sounds": {
       "page": {
         "bgm.title": {
-          "file": "sounds/game/Ska_01(1).mp3",
+          "file": "sounds/game/UrbanBGM_02.mp3",
           "volume": 0.8
         },
         "bgm.battle": {
@@ -111,15 +111,15 @@
       "bot": {
         "se.levelUp": {
           "file": "se/game/レベルアップ.mp3",
-          "volume": 0.8
+          "volume": 1
         },
         "se.evolution": {
           "file": "se/game/jingle_26.mp3",
-          "volume": 0.8
+          "volume": 1
         },
         "se.gkStart": {
-          "file": "se/game/Ska_01(1).mp3",
-          "volume": 0.8
+          "file": "se/game/RPG_Battle_04.mp3",
+          "volume": 1
         },
         "se.rankIn": {
           "file": "se/game/Ska_03(1).mp3",
