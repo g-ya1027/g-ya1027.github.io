@@ -147,6 +147,17 @@ input[type=range]{width:100%;accent-color:var(--accent);height:28px}
 .sub-block{border:1px solid var(--line2);background:var(--card2);border-radius:14px;padding:4px 14px 14px;margin-top:14px}
 .sub-block h3{font-size:13px;font-weight:900;margin:12px 0 2px;letter-spacing:.03em}
 .mk-actions{display:grid;grid-template-columns:1fr;gap:8px;margin-top:16px}
+.ring-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media(max-width:520px){.ring-thumbs{grid-template-columns:repeat(3,1fr)}}
+.ring-thumb{border:2px solid var(--line);border-radius:14px;padding:6px;background:var(--card2);text-align:center}
+.ring-thumb .thumb-apply{display:block;width:100%;border:none;background:none;padding:0;cursor:pointer;color:inherit;font:inherit}
+.ring-thumb img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:9px;display:block;background:#fff}
+.ring-thumb .thumb-name{font-size:11px;font-weight:700;display:block;margin-top:5px;line-height:1.3;word-break:break-all}
+.ring-acts{display:flex;gap:4px;margin-top:6px}
+.ring-acts button{flex:1;border:1px solid var(--line);background:var(--card);color:var(--ink2);border-radius:8px;font-size:11px;font-weight:700;padding:6px 2px;cursor:pointer;min-height:32px}
+.ring-acts button:active{transform:scale(.97)}
+.my-rings-msg{font-size:12px;line-height:1.7;margin:8px 0 0;text-align:left;color:var(--ink2)}
+.my-rings-msg.error{color:#C0392B;font-weight:700}
 </style>
 </head>
 <body>
@@ -199,6 +210,30 @@ input[type=range]{width:100%;accent-color:var(--accent);height:28px}
             </div>
             <input class="file-visible" type="file" id="frameInput" accept="image/*" aria-label="リング画像ファイルを選ぶ">
             <button class="btn" id="sampleFrameBtn" type="button" style="width:100%;justify-content:center;margin-top:10px">送ってくれたサンプル画像で試す</button>
+            <div class="field">
+              <label>定番リング <output>クリックで読み込み</output></label>
+              <div class="ring-thumbs" id="stockRings">
+                <div class="ring-thumb">
+                  <button type="button" class="thumb-apply" data-src="rings/nov17-birthday.jpg" data-name="Nov.17 バースデー" aria-label="定番リング「Nov.17 バースデー」を読み込む">
+                    <img src="rings/nov17-birthday.jpg" alt="Nov.17 バースデー">
+                    <span class="thumb-name">Nov.17 バースデー</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="sub-block" id="myRingsBlock">
+              <h3>マイリング（このブラウザに保存）</h3>
+              <p class="note" style="text-align:left">お気に入りのリング画像を登録しておくと、次に来たときもそのまま使えます。保存はこのブラウザの中だけ（最大20件）で、外部に送信されることはありません。</p>
+              <div class="ring-thumbs" id="myRingsList" style="margin-top:10px"></div>
+              <p class="note" id="myRingsStatus" style="text-align:left">まだ登録がありません。下の方法で追加できます。</p>
+              <div class="drop" id="myRingDrop" role="button" tabindex="0" aria-label="リング画像をドロップして登録" style="margin-top:10px">
+                <strong>リング画像をドロップして登録</strong>
+                <span>またはクリックしてファイルを選ぶ</span>
+              </div>
+              <input class="file-visible" type="file" id="myRingInput" accept="image/*" aria-label="登録するリング画像ファイルを選ぶ">
+              <button class="btn" id="myRingSaveCurrentBtn" type="button" style="width:100%;justify-content:center;margin-top:10px">今使っているリング画像を登録する</button>
+              <p class="my-rings-msg" id="myRingsMsg" role="alert"></p>
+            </div>
             <p class="note" id="frameStatus" style="text-align:left">まだリング画像が入っていません。画像を入れると、真ん中の穴に自分のアイコンがはまります。</p>
             <div class="field">
               <label>フレームの合わせ方</label>
@@ -1051,6 +1086,201 @@ input[type=range]{width:100%;accent-color:var(--accent);height:28px}
     img.onerror=function(){ toast('反映に失敗しました。もう一度お試しください'); };
     img.src=mkCanvas.toDataURL('image/png');
   });
+
+  // --- stock rings (built-in images, loaded from relative paths on the same origin) ---
+  function loadFrameFromUrl(src, name){
+    var img=new Image();
+    img.onload=function(){ state.frameImg=img; state.frameName=name; setMode('frame'); processFrame(); draw(); toast('「'+name+'」をリングにしました'); };
+    img.onerror=function(){ toast('リング画像を読み込めませんでした'); };
+    img.src=src;
+  }
+  document.querySelectorAll('#stockRings .thumb-apply').forEach(function(b){
+    b.addEventListener('click',function(){ loadFrameFromUrl(b.getAttribute('data-src'), b.getAttribute('data-name')); });
+  });
+
+  // --- my rings (registered ring images, persisted in IndexedDB) ---
+  var MY_RING_LIMIT=20;
+  var myRingsMsgEl=document.getElementById('myRingsMsg');
+  var myRingsStatusEl=document.getElementById('myRingsStatus');
+  var myRingsListEl=document.getElementById('myRingsList');
+  var myRingThumbUrls=[];
+  function myRingsMsg(text, isError){
+    if(!myRingsMsgEl) return;
+    myRingsMsgEl.textContent=text||'';
+    myRingsMsgEl.classList.toggle('error', !!isError);
+  }
+  function myDbOpen(){
+    return new Promise(function(resolve, reject){
+      if(!('indexedDB' in window)){ reject(new Error('indexedDB unsupported')); return; }
+      var req=indexedDB.open('icon-ring-tool', 1);
+      req.onupgradeneeded=function(){
+        var db=req.result;
+        if(!db.objectStoreNames.contains('myRings')) db.createObjectStore('myRings', {keyPath:'id', autoIncrement:true});
+      };
+      req.onsuccess=function(){ resolve(req.result); };
+      req.onerror=function(){ reject(req.error||new Error('IndexedDB open failed')); };
+    });
+  }
+  function myDbAll(){
+    return myDbOpen().then(function(db){
+      return new Promise(function(resolve, reject){
+        var out=[];
+        var tx=db.transaction('myRings','readonly');
+        var cur=tx.objectStore('myRings').openCursor();
+        cur.onsuccess=function(){
+          var c=cur.result;
+          if(c){ out.push(c.value); c.continue(); } else { db.close(); resolve(out); }
+        };
+        cur.onerror=function(){ db.close(); reject(cur.error||new Error('read failed')); };
+      });
+    });
+  }
+  function myDbAdd(record){
+    return myDbOpen().then(function(db){
+      return new Promise(function(resolve, reject){
+        var tx=db.transaction('myRings','readwrite');
+        tx.objectStore('myRings').add(record);
+        tx.oncomplete=function(){ db.close(); resolve(); };
+        tx.onerror=function(){ var e=tx.error; db.close(); reject(e||new Error('save failed')); };
+        tx.onabort=function(){ var e=tx.error; db.close(); reject(e||new Error('save aborted')); };
+      });
+    });
+  }
+  function myDbPut(record){
+    return myDbOpen().then(function(db){
+      return new Promise(function(resolve, reject){
+        var tx=db.transaction('myRings','readwrite');
+        tx.objectStore('myRings').put(record);
+        tx.oncomplete=function(){ db.close(); resolve(); };
+        tx.onerror=function(){ var e=tx.error; db.close(); reject(e||new Error('update failed')); };
+        tx.onabort=function(){ var e=tx.error; db.close(); reject(e||new Error('update aborted')); };
+      });
+    });
+  }
+  function myDbDelete(id){
+    return myDbOpen().then(function(db){
+      return new Promise(function(resolve, reject){
+        var tx=db.transaction('myRings','readwrite');
+        tx.objectStore('myRings').delete(id);
+        tx.oncomplete=function(){ db.close(); resolve(); };
+        tx.onerror=function(){ var e=tx.error; db.close(); reject(e||new Error('delete failed')); };
+        tx.onabort=function(){ var e=tx.error; db.close(); reject(e||new Error('delete aborted')); };
+      });
+    });
+  }
+  function isQuotaError(e){
+    return !!e && (e.name==='QuotaExceededError' || e.code===22 || e.name==='NS_ERROR_DOM_QUOTA_REACHED');
+  }
+  function applyMyRing(rec){
+    var url=URL.createObjectURL(rec.blob);
+    var img=new Image();
+    img.onload=function(){
+      state.frameImg=img; state.frameName=rec.name; setMode('frame'); processFrame(); draw();
+      toast('「'+rec.name+'」をリングにしました');
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+    };
+    img.onerror=function(){ URL.revokeObjectURL(url); toast('リング画像を読み込めませんでした'); };
+    img.src=url;
+  }
+  function renderMyRings(){
+    if(!myRingsListEl) return;
+    myRingThumbUrls.forEach(function(u){ URL.revokeObjectURL(u); });
+    myRingThumbUrls=[];
+    myRingsListEl.innerHTML='';
+    myDbAll().then(function(list){
+      list.sort(function(a,b){ return (a.createdAt||0)-(b.createdAt||0); });
+      if(myRingsStatusEl){
+        myRingsStatusEl.textContent = list.length
+          ? '登録済み '+list.length+' 件（上限 '+MY_RING_LIMIT+' 件）。サムネイルを押すとリングに使えます。'
+          : 'まだ登録がありません。下の方法で追加できます。';
+      }
+      list.forEach(function(rec){
+        var item=document.createElement('div'); item.className='ring-thumb';
+        var applyBtn=document.createElement('button'); applyBtn.type='button'; applyBtn.className='thumb-apply';
+        applyBtn.setAttribute('aria-label','リング「'+rec.name+'」を使う');
+        var thumb=document.createElement('img'); thumb.alt=rec.name;
+        var url=URL.createObjectURL(rec.blob); myRingThumbUrls.push(url); thumb.src=url;
+        var nm=document.createElement('span'); nm.className='thumb-name'; nm.textContent=rec.name;
+        applyBtn.appendChild(thumb); applyBtn.appendChild(nm);
+        applyBtn.addEventListener('click',function(){ applyMyRing(rec); });
+        var acts=document.createElement('div'); acts.className='ring-acts';
+        var renBtn=document.createElement('button'); renBtn.type='button'; renBtn.textContent='名前変更';
+        renBtn.addEventListener('click',function(){
+          var next=window.prompt('リングの名前を変更', rec.name);
+          if(next===null) return;
+          next=next.trim();
+          if(!next){ myRingsMsg('名前が空のため、変更しませんでした。', true); return; }
+          rec.name=next;
+          myDbPut(rec).then(function(){ renderMyRings(); myRingsMsg('名前を「'+next+'」に変更しました。'); })
+            .catch(function(){ myRingsMsg('名前の変更を保存できませんでした。', true); });
+        });
+        var delBtn=document.createElement('button'); delBtn.type='button'; delBtn.textContent='削除';
+        delBtn.addEventListener('click',function(){
+          if(!window.confirm('リング「'+rec.name+'」を削除しますか？')) return;
+          myDbDelete(rec.id).then(function(){ renderMyRings(); myRingsMsg('「'+rec.name+'」を削除しました。'); toast('マイリングから削除しました'); })
+            .catch(function(){ myRingsMsg('削除できませんでした。もう一度お試しください。', true); });
+        });
+        acts.appendChild(renBtn); acts.appendChild(delBtn);
+        item.appendChild(applyBtn); item.appendChild(acts);
+        myRingsListEl.appendChild(item);
+      });
+    }).catch(function(){
+      if(myRingsStatusEl) myRingsStatusEl.textContent='マイリングの読み込みに失敗しました。';
+      myRingsMsg('このブラウザではマイリング保存が使えないか、読み込みに失敗しました（プライベートモード等では保存できない場合があります）。', true);
+    });
+  }
+  function registerMyRingBlob(blob, name){
+    if(!blob){ myRingsMsg('登録できる画像がありませんでした。', true); return; }
+    myDbAll().then(function(list){
+      if(list.length>=MY_RING_LIMIT){
+        myRingsMsg('マイリングは上限の '+MY_RING_LIMIT+' 件に達しています。不要なリングを削除してから登録してください（自動では削除しません）。', true);
+        toast('マイリングの上限（'+MY_RING_LIMIT+'件）に達しています');
+        return;
+      }
+      myDbAdd({name:name, blob:blob, createdAt:Date.now()}).then(function(){
+        renderMyRings();
+        myRingsMsg('「'+name+'」をマイリングに登録しました。');
+        toast('マイリングに登録しました');
+      }).catch(function(e){
+        if(isQuotaError(e)) myRingsMsg('ブラウザの保存容量がいっぱいで登録できませんでした。不要なリングを削除するか、容量を空けてください。', true);
+        else myRingsMsg('登録に失敗しました。もう一度お試しください。', true);
+      });
+    }).catch(function(){
+      myRingsMsg('このブラウザではマイリング保存が使えません。', true);
+    });
+  }
+  function registerMyRingFile(file){
+    if(!file || !file.type || file.type.indexOf('image/')!==0){ myRingsMsg('画像ファイルを選んでください。', true); return; }
+    var name=(file.name||'リング').replace(/\.[^.]+$/,'')||'リング';
+    registerMyRingBlob(file, name);
+  }
+  var mrd=document.getElementById('myRingDrop'), mri=document.getElementById('myRingInput');
+  if(mrd && mri){
+    mrd.addEventListener('click',function(){ mri.click(); });
+    mrd.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); mri.click(); }});
+    mri.addEventListener('change',function(){ if(mri.files[0]) registerMyRingFile(mri.files[0]); mri.value=''; });
+    ['dragenter','dragover'].forEach(function(ev){ mrd.addEventListener(ev,function(e){ e.preventDefault(); mrd.classList.add('drag'); }); });
+    ['dragleave','drop'].forEach(function(ev){ mrd.addEventListener(ev,function(e){ e.preventDefault(); mrd.classList.remove('drag'); }); });
+    mrd.addEventListener('drop',function(e){ var f=e.dataTransfer.files && e.dataTransfer.files[0]; if(f) registerMyRingFile(f); });
+  }
+  var saveCurrentBtn=document.getElementById('myRingSaveCurrentBtn');
+  if(saveCurrentBtn){
+    saveCurrentBtn.addEventListener('click',function(){
+      if(!state.frameImg){ myRingsMsg('先にリング画像を読み込んでから登録してください。', true); toast('リング画像が読み込まれていません'); return; }
+      var iw=state.frameImg.naturalWidth||state.frameImg.width, ih=state.frameImg.naturalHeight||state.frameImg.height;
+      var cap=1600, k=Math.min(1, cap/Math.max(iw,ih));
+      var c=document.createElement('canvas');
+      c.width=Math.max(2,Math.round(iw*k)); c.height=Math.max(2,Math.round(ih*k));
+      c.getContext('2d').drawImage(state.frameImg,0,0,c.width,c.height);
+      var name=(state.frameName||'リング').replace(/\.[^.]+$/,'')||'リング';
+      if(c.toBlob){
+        c.toBlob(function(blob){ registerMyRingBlob(blob, name); },'image/png');
+      } else {
+        myRingsMsg('このブラウザでは「今使っているリング画像」の登録に対応していません。ファイルから登録してください。', true);
+      }
+    });
+  }
+  renderMyRings();
 
   // initial image = G sample so page never looks empty
   (function init(){ var sc=makeSample('g'); var img=new Image(); img.onload=function(){ state.img=img; draw(); }; img.src=sc.toDataURL('image/png'); syncColorLabels(); setMode('frame'); mkStatus(); drawMaker(); })();
