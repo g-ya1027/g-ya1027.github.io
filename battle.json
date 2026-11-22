@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T09:51:43.436Z",
+  "updatedAt": "2026-11-22T09:56:43.453Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -195,11 +195,11 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 9,
+        "heartsLeft": 8,
         "spoonsLeft": 0,
-        "commentsLeft": 12,
+        "commentsLeft": 9,
         "visitsLeft": 4,
-        "stayLeftSec": 1516
+        "stayLeftSec": 1178
       },
       "img": null,
       "pair": {
@@ -285,17 +285,17 @@
       "signals": {
         "heartsLeft": 9,
         "spoonsLeft": 0,
-        "commentsLeft": 14,
+        "commentsLeft": 8,
         "visitsLeft": 4,
-        "stayLeftSec": 1741
+        "stayLeftSec": 1403
       },
-      "img": null,
+      "img": "chars/gYutFvLTSj7NCj0XQuXOzQ-b.png",
       "pair": {
         "a": "chars/gYutFvLTSj7NCj0XQuXOzQ-a.png",
         "b": "chars/gYutFvLTSj7NCj0XQuXOzQ-b.png",
         "kind": "gender"
       },
-      "chosen": null,
+      "chosen": "b",
       "lastAction": null
     },
     {
@@ -464,11 +464,11 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 8,
+        "heartsLeft": 7,
         "spoonsLeft": 0,
-        "commentsLeft": 8,
+        "commentsLeft": 6,
         "visitsLeft": 5,
-        "stayLeftSec": 926
+        "stayLeftSec": 588
       },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-a.png",
       "pair": {
