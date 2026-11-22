@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- spoon-battle-settings v3 -->
+<!-- spoon-battle-settings v4 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -65,12 +65,8 @@
 
   <div class="panel"><h2>🔊 ページ側の音</h2>
     <div class="note">ファイルは GitHub Pages 上の相対パス（例: battle-sounds/bgm-title.mp3）。空欄＝無音。音量は 0〜1。</div>
+    <div class="note">レベルアップ・進化・GK開始・ランクインの音もここで設定します（game74 で bot 側から移行）。これらの音はバトルページを開いている人の端末で鳴り、配信には乗りません。以前 bot 側に設定していた音は、ページ側が未設定のスロットへ自動で引き継がれます。</div>
     <div id="pageSlots"></div>
-  </div>
-
-  <div class="panel"><h2>🖥 bot側の音（配信に乗る音）</h2>
-    <div class="note">ファイルは iMac に登録済みの音源名。空欄＝無音。音量は 0〜1。</div>
-    <div id="botSlots"></div>
   </div>
 
   <button class="btn" id="saveBtn" type="button">保存する</button>
@@ -97,8 +93,7 @@
 (function () {
   var DB_URL = "https://podcastse-default-rtdb.firebaseio.com";
   var ROOM_ID = "78f48ea742f74d19a3";
-  var PAGE_SLOTS = ["bgm.title","bgm.battle","bgm.pvp","se.encounter","se.uiTap","se.uiDecide","se.uiCancel","se.moveSelect","se.attackNormal","se.attackAttr","se.charge","se.hit","se.hitBig","se.turnStart","se.win","se.lose","se.draw","se.levelUp","se.heal","se.alloc","se.evolution","se.ranking"];
-  var BOT_SLOTS = ["se.levelUp","se.evolution","se.gkStart","se.rankIn"];
+  var PAGE_SLOTS = ["bgm.title","bgm.battle","bgm.pvp","se.encounter","se.uiTap","se.uiDecide","se.uiCancel","se.moveSelect","se.attackNormal","se.attackAttr","se.charge","se.hit","se.hitBig","se.turnStart","se.win","se.lose","se.draw","se.levelUp","se.heal","se.alloc","se.evolution","se.ranking","se.gkStart","se.rankIn"];
   var LABELS = {
     'bgm.title': 'BGM：名鑑・自分のキャラ・ロビー', 'bgm.battle': 'BGM：対戦画面', 'bgm.pvp': 'BGM：PvP対戦画面',
     'se.encounter': 'エンカウント演出', 'se.uiTap': 'タップ音', 'se.uiDecide': '決定音', 'se.uiCancel': 'キャンセル音',
@@ -126,7 +121,6 @@
     el(containerId).innerHTML = html;
   }
   slotRows('pageSlots', PAGE_SLOTS, 'p');
-  slotRows('botSlots', BOT_SLOTS, 'b');
 
   function fillForm() {
     if (!state) return;
@@ -150,11 +144,6 @@
       el('pF_' + id).value = s.file || '';
       el('pV_' + id).value = typeof s.volume === 'number' ? s.volume : 0.8;
     });
-    BOT_SLOTS.forEach(function (id) {
-      var s = (sounds.bot || {})[id] || {};
-      el('bF_' + id).value = s.file || '';
-      el('bV_' + id).value = typeof s.volume === 'number' ? s.volume : 0.8;
-    });
     if (state.updatedAt) el('stateInfo').textContent = '現在の設定の更新時刻: ' + new Date(state.updatedAt).toLocaleString('ja-JP');
   }
   function collectSlots(slots, prefix) {
@@ -176,7 +165,7 @@
       timing: { forfeitSec: parseInt(el('tForfeit').value, 10), matchSec: parseInt(el('tMatch').value, 10), turnSec: parseInt(el('tTurn').value, 10) },
       illustWeeklyCap: parseInt(el('capAll').value, 10),
       illustWeeklyCapPerUser: parseInt(el('capUser').value, 10),
-      sounds: { page: collectSlots(PAGE_SLOTS, 'p'), bot: collectSlots(BOT_SLOTS, 'b') }
+      sounds: { page: collectSlots(PAGE_SLOTS, 'p'), bot: [] }
     };
   }
   function setFormEnabled(on) {
