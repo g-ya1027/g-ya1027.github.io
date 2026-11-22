@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-21T19:38:30.425Z",
+  "updatedAt": "2026-11-22T09:38:22.295Z",
   "metric": "exp",
   "entries": [
     {
@@ -46,6 +46,19 @@
       "rank": 4,
       "nickname": "瑠璃𓈒𓂂𖧷",
       "radioName": "深夜の影総長",
+      "level": 1,
+      "attr": null,
+      "titleId": "top10",
+      "titleText": "FMスプニ レギュラーDJ",
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 0
+    },
+    {
+      "rank": 5,
+      "nickname": "kinou",
+      "radioName": "永遠の貴公子の星",
       "level": 1,
       "attr": null,
       "titleId": "top10",
