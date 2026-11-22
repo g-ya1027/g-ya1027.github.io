@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T09:38:22.295Z",
+  "updatedAt": "2026-11-22T09:47:08.147Z",
   "metric": "exp",
   "entries": [
     {
       "rank": 1,
-      "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
-      "radioName": "夢追う番人卿",
+      "nickname": "kinou",
+      "radioName": "永遠の貴公子の星",
       "level": 1,
       "attr": null,
       "titleId": "champion",
@@ -14,12 +14,12 @@
       "frame": "gold",
       "crown": true,
       "pvpWin": 0,
-      "exp": 0
+      "exp": 1
     },
     {
       "rank": 2,
-      "nickname": "しょこ",
-      "radioName": "黄昏の番人総長",
+      "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
+      "radioName": "夢追う番人卿",
       "level": 1,
       "attr": null,
       "titleId": "medalist",
@@ -31,8 +31,8 @@
     },
     {
       "rank": 3,
-      "nickname": "しゅーくりーむ  ",
-      "radioName": "深夜の貴公子名人",
+      "nickname": "しょこ",
+      "radioName": "黄昏の番人総長",
       "level": 1,
       "attr": null,
       "titleId": "medalist",
@@ -44,8 +44,8 @@
     },
     {
       "rank": 4,
-      "nickname": "瑠璃𓈒𓂂𖧷",
-      "radioName": "深夜の影総長",
+      "nickname": "しゅーくりーむ  ",
+      "radioName": "深夜の貴公子名人",
       "level": 1,
       "attr": null,
       "titleId": "top10",
@@ -57,8 +57,8 @@
     },
     {
       "rank": 5,
-      "nickname": "kinou",
-      "radioName": "永遠の貴公子の星",
+      "nickname": "瑠璃𓈒𓂂𖧷",
+      "radioName": "深夜の影総長",
       "level": 1,
       "attr": null,
       "titleId": "top10",
