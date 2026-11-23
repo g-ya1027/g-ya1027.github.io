@@ -5,9 +5,12 @@
   "endCount": 3,
   "winnersCount": 0,
   "drawn": [
-    4
+    4,
+    34,
+    47,
+    44
   ],
-  "drawnCount": 1,
+  "drawnCount": 4,
   "players": [
     {
       "nickname": "甘瞳ももか",
@@ -50,7 +53,7 @@
       ],
       "reach": false,
       "bingo": false,
-      "markedCount": 1
+      "markedCount": 4
     },
     {
       "nickname": "kinou",
@@ -93,7 +96,7 @@
       ],
       "reach": false,
       "bingo": false,
-      "markedCount": 2
+      "markedCount": 4
     },
     {
       "nickname": "しゅーくりーむ  ",
@@ -136,7 +139,7 @@
       ],
       "reach": false,
       "bingo": false,
-      "markedCount": 1
+      "markedCount": 4
     },
     {
       "nickname": "月野詩織.",
@@ -179,7 +182,7 @@
       ],
       "reach": false,
       "bingo": false,
-      "markedCount": 2
+      "markedCount": 4
     },
     {
       "nickname": "𝓨̆̈𝓾𝓲  ",
@@ -222,8 +225,8 @@
       ],
       "reach": false,
       "bingo": false,
-      "markedCount": 1
+      "markedCount": 3
     }
   ],
-  "updatedAt": "2026-11-23T08:50:10.423Z"
+  "updatedAt": "2026-11-23T08:50:32.111Z"
 }
