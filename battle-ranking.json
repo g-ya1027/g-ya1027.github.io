@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T07:28:25.349Z",
+  "updatedAt": "2026-11-23T07:38:26.640Z",
   "metric": "exp",
   "entries": [
     {
@@ -14,20 +14,20 @@
       "frame": "gold",
       "crown": true,
       "pvpWin": 0,
-      "exp": 10
+      "exp": 12
     },
     {
       "rank": 2,
       "nickname": "甘瞳ももか",
       "radioName": "黄金の流れ星卿",
-      "level": 1,
+      "level": 2,
       "attr": null,
       "titleId": "medalist",
       "titleText": "レゾナンス・メダリスト",
       "frame": "silver",
       "crown": false,
       "pvpWin": 0,
-      "exp": 9
+      "exp": 10
     },
     {
       "rank": 3,
@@ -44,8 +44,8 @@
     },
     {
       "rank": 4,
-      "nickname": "しゅーくりーむ  ",
-      "radioName": "深夜の貴公子名人",
+      "nickname": "月野詩織.",
+      "radioName": "深夜の流れ星番長",
       "level": 1,
       "attr": null,
       "titleId": "top10",
@@ -53,12 +53,12 @@
       "frame": null,
       "crown": false,
       "pvpWin": 0,
-      "exp": 4
+      "exp": 6
     },
     {
       "rank": 5,
-      "nickname": "月野詩織.",
-      "radioName": "深夜の流れ星番長",
+      "nickname": "しゅーくりーむ  ",
+      "radioName": "深夜の貴公子名人",
       "level": 1,
       "attr": null,
       "titleId": "top10",
