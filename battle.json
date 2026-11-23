@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T10:27:50.890Z",
+  "updatedAt": "2026-11-23T10:29:30.945Z",
   "live": false,
   "gkEnabled": true,
   "gkTiers": [
@@ -1343,6 +1343,106 @@
       },
       "chosen": null,
       "lastAction": null
+    },
+    {
+      "tokenHash": "cc55d1cb49464a991b7914a0e2ce4181fba9cd21c4a4560b3713deda94dc6f99",
+      "nickname": "スーザン",
+      "radioName": "伝説の貴公子将軍",
+      "status": "awaiting",
+      "attr": null,
+      "attrInitial": null,
+      "level": 1,
+      "rank": {
+        "name": "見習いDJ",
+        "nextName": "レギュラーDJ",
+        "progress": 0
+      },
+      "exp": 0,
+      "expNext": 10,
+      "params": {
+        "atk": 10,
+        "def": 5,
+        "attrValue": 10
+      },
+      "hp": {
+        "stored": 100,
+        "updatedAt": "2026-11-23T10:29:28.438Z"
+      },
+      "bp": 0,
+      "unspentAlloc": 0,
+      "record": {
+        "npcWin": 0,
+        "npcLose": 0,
+        "pvpWin": 0,
+        "pvpLose": 0,
+        "gkWin": 0,
+        "gkLose": 0,
+        "draw": 0
+      },
+      "honors": {
+        "rank": 14,
+        "titleId": null,
+        "titleText": null,
+        "frame": null,
+        "crown": false
+      },
+      "evolutionStage": 0,
+      "evolution": {
+        "stage": 0,
+        "nextKind": "evo1",
+        "eligible": false,
+        "queued": false,
+        "winsKind": "total",
+        "levelNow": 1,
+        "levelNeed": 50,
+        "winsNow": 0,
+        "winsNeed": 50
+      },
+      "illust": {
+        "evo1": null,
+        "evo2": null,
+        "gold": null,
+        "win": null,
+        "lose": null
+      },
+      "illustRequests": [],
+      "illustWeekDone": 0,
+      "skill": {
+        "learned": false,
+        "name": null,
+        "desc": null,
+        "price": 30
+      },
+      "gkLeft": {
+        "day": 1,
+        "week": 3
+      },
+      "training": {
+        "usedToday": 0,
+        "results": []
+      },
+      "signals": {
+        "heartsLeft": 9,
+        "spoonsLeft": 0,
+        "commentsLeft": 18,
+        "visitsLeft": 5,
+        "stayLeftSec": 483
+      },
+      "signalsTotal": {
+        "hearts": 1,
+        "spoons": 0,
+        "comments": 2,
+        "visits": 0,
+        "stayMin": 51
+      },
+      "img": null,
+      "pair": {
+        "a": "chars/Qt5QGDvrU-Mzl46fWMM0Sg-a.png",
+        "b": "chars/Qt5QGDvrU-Mzl46fWMM0Sg-b.png",
+        "kind": "gender"
+      },
+      "chosen": null,
+      "lastAction": null
     }
   ],
   "ranking": [
@@ -1506,6 +1606,19 @@
       "rank": 13,
       "nickname": "𖥨⋆͛いなもっち",
       "radioName": "暁の流れ星隊長",
+      "level": 1,
+      "attr": null,
+      "titleId": null,
+      "titleText": null,
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 0
+    },
+    {
+      "rank": 14,
+      "nickname": "スーザン",
+      "radioName": "伝説の貴公子将軍",
       "level": 1,
       "attr": null,
       "titleId": null,
