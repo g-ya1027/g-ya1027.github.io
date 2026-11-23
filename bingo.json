@@ -3,7 +3,7 @@
   "phase": "drawing",
   "mode": "manual",
   "endCount": 3,
-  "winnersCount": 0,
+  "winnersCount": 2,
   "drawn": [
     4,
     34,
@@ -21,9 +21,14 @@
     26,
     25,
     5,
-    15
+    15,
+    11,
+    27,
+    19,
+    28,
+    20
   ],
-  "drawnCount": 17,
+  "drawnCount": 22,
   "players": [
     {
       "nickname": "甘瞳ももか",
@@ -66,7 +71,7 @@
       ],
       "reach": true,
       "bingo": false,
-      "markedCount": 10
+      "markedCount": 11
     },
     {
       "nickname": "kinou",
@@ -109,7 +114,7 @@
       ],
       "reach": true,
       "bingo": false,
-      "markedCount": 11
+      "markedCount": 13
     },
     {
       "nickname": "しゅーくりーむ  ",
@@ -151,8 +156,8 @@
         ]
       ],
       "reach": true,
-      "bingo": false,
-      "markedCount": 11
+      "bingo": true,
+      "markedCount": 14
     },
     {
       "nickname": "月野詩織.",
@@ -194,8 +199,8 @@
         ]
       ],
       "reach": true,
-      "bingo": false,
-      "markedCount": 11
+      "bingo": true,
+      "markedCount": 13
     },
     {
       "nickname": "𝓨̆̈𝓾𝓲  ",
@@ -236,10 +241,10 @@
           41
         ]
       ],
-      "reach": false,
+      "reach": true,
       "bingo": false,
-      "markedCount": 8
+      "markedCount": 10
     }
   ],
-  "updatedAt": "2026-11-23T08:52:20.613Z"
+  "updatedAt": "2026-11-23T08:52:40.689Z"
 }
