@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T09:25:19.711Z",
+  "updatedAt": "2026-11-23T10:27:46.755Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
@@ -60,9 +60,9 @@
         "b": "chars/Lnrdo_b3TeGyRY8fNTyEhA-b.png",
         "kind": "gender"
       },
-      "chosen": "a",
-      "reroll": "pending",
-      "rerollNextAt": null,
+      "chosen": null,
+      "reroll": "cooldown",
+      "rerollNextAt": "2026-11-30T07:42:54.546Z",
       "battle": {
         "level": 1,
         "rankName": "見習いDJ",
