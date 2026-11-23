@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T08:33:59.726Z",
+  "updatedAt": "2026-11-23T08:35:01.828Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -216,14 +216,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 15,
         "visitsLeft": 2,
-        "stayLeftSec": 1166
+        "stayLeftSec": 866
       },
       "signalsTotal": {
         "hearts": 9,
         "spoons": 0,
         "comments": 45,
         "visits": 9,
-        "stayMin": 160
+        "stayMin": 165
       },
       "img": "chars/Lnrdo_b3TeGyRY8fNTyEhA-a.png",
       "pair": {
@@ -521,14 +521,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 17,
         "visitsLeft": 3,
-        "stayLeftSec": 381
+        "stayLeftSec": 81
       },
       "signalsTotal": {
         "hearts": 14,
         "spoons": 4,
         "comments": 63,
         "visits": 5,
-        "stayMin": 173
+        "stayMin": 178
       },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-a.png",
       "pair": {
@@ -619,16 +619,16 @@
       "signals": {
         "heartsLeft": 2,
         "spoonsLeft": 0,
-        "commentsLeft": 10,
+        "commentsLeft": 9,
         "visitsLeft": 3,
-        "stayLeftSec": 1369
+        "stayLeftSec": 1069
       },
       "signalsTotal": {
         "hearts": 8,
         "spoons": 0,
-        "comments": 10,
+        "comments": 11,
         "visits": 6,
-        "stayMin": 97
+        "stayMin": 102
       },
       "img": "chars/hUooGCp0KaQn-5EswSh-3A-a.png",
       "pair": {
@@ -821,14 +821,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 10,
         "visitsLeft": 3,
-        "stayLeftSec": 1638
+        "stayLeftSec": 1338
       },
       "signalsTotal": {
         "hearts": 5,
         "spoons": 0,
         "comments": 10,
         "visits": 5,
-        "stayMin": 92
+        "stayMin": 97
       },
       "img": null,
       "pair": {
@@ -946,14 +946,14 @@
       "status": "awaiting",
       "attr": null,
       "attrInitial": null,
-      "level": 1,
+      "level": 2,
       "rank": {
         "name": "見習いDJ",
         "nextName": "レギュラーDJ",
-        "progress": 0
+        "progress": 0.1111111111111111
       },
-      "exp": 8,
-      "expNext": 10,
+      "exp": 10,
+      "expNext": 30,
       "params": {
         "atk": 10,
         "def": 5,
@@ -964,7 +964,7 @@
         "updatedAt": "2026-11-23T08:14:23.439Z"
       },
       "bp": 0,
-      "unspentAlloc": 0,
+      "unspentAlloc": 1,
       "record": {
         "npcWin": 0,
         "npcLose": 0,
@@ -988,7 +988,7 @@
         "eligible": false,
         "queued": false,
         "winsKind": "total",
-        "levelNow": 1,
+        "levelNow": 2,
         "levelNeed": 50,
         "winsNow": 0,
         "winsNeed": 50
@@ -1019,16 +1019,16 @@
       "signals": {
         "heartsLeft": 6,
         "spoonsLeft": 0,
-        "commentsLeft": 0,
+        "commentsLeft": 20,
         "visitsLeft": 4,
-        "stayLeftSec": 293
+        "stayLeftSec": 1793
       },
       "signalsTotal": {
         "hearts": 34,
         "spoons": 0,
         "comments": 60,
         "visits": 4,
-        "stayMin": 115
+        "stayMin": 120
       },
       "img": null,
       "pair": {
@@ -1226,14 +1226,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 9,
         "visitsLeft": 4,
-        "stayLeftSec": 660
+        "stayLeftSec": 360
       },
       "signalsTotal": {
         "hearts": 55,
         "spoons": 0,
         "comments": 111,
         "visits": 4,
-        "stayMin": 139
+        "stayMin": 144
       },
       "img": "chars/sBVUqfp0A17e3SwGNApjWQ-b.png",
       "pair": {
@@ -1326,14 +1326,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 11,
         "visitsLeft": 5,
-        "stayLeftSec": 1283
+        "stayLeftSec": 983
       },
       "signalsTotal": {
         "hearts": 1,
         "spoons": 0,
         "comments": 9,
         "visits": 3,
-        "stayMin": 38
+        "stayMin": 43
       },
       "img": null,
       "pair": {
@@ -1376,14 +1376,14 @@
       "rank": 3,
       "nickname": "月野詩織.",
       "radioName": "深夜の流れ星番長",
-      "level": 1,
+      "level": 2,
       "attr": null,
       "titleId": "medalist",
       "titleText": "レゾナンス・メダリスト",
       "frame": "bronze",
       "crown": false,
       "pvpWin": 0,
-      "exp": 8
+      "exp": 10
     },
     {
       "rank": 4,
