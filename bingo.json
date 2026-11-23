@@ -1,11 +1,13 @@
 {
   "active": true,
-  "phase": "entry",
+  "phase": "drawing",
   "mode": "manual",
   "endCount": 3,
   "winnersCount": 0,
-  "drawn": [],
-  "drawnCount": 0,
+  "drawn": [
+    4
+  ],
+  "drawnCount": 1,
   "players": [
     {
       "nickname": "甘瞳ももか",
@@ -91,7 +93,7 @@
       ],
       "reach": false,
       "bingo": false,
-      "markedCount": 1
+      "markedCount": 2
     },
     {
       "nickname": "しゅーくりーむ  ",
@@ -177,7 +179,7 @@
       ],
       "reach": false,
       "bingo": false,
-      "markedCount": 1
+      "markedCount": 2
     },
     {
       "nickname": "𝓨̆̈𝓾𝓲  ",
@@ -223,5 +225,5 @@
       "markedCount": 1
     }
   ],
-  "updatedAt": "2026-11-23T08:47:43.900Z"
+  "updatedAt": "2026-11-23T08:50:10.423Z"
 }
