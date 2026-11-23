@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T07:58:04.616Z",
+  "updatedAt": "2026-11-23T08:01:12.802Z",
   "metric": "exp",
   "entries": [
     {
@@ -150,6 +150,19 @@
       "rank": 12,
       "nickname": "𖥨⋆͛いなもっち",
       "radioName": "暁の流れ星隊長",
+      "level": 1,
+      "attr": null,
+      "titleId": null,
+      "titleText": null,
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 0
+    },
+    {
+      "rank": 13,
+      "nickname": "ザッキー【メルヘン調査員】",
+      "radioName": "黄昏の魔法使い卿",
       "level": 1,
       "attr": null,
       "titleId": null,
