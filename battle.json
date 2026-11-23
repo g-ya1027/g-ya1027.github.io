@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T07:57:02.662Z",
+  "updatedAt": "2026-11-23T07:58:04.614Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -214,16 +214,16 @@
       "signals": {
         "heartsLeft": 3,
         "spoonsLeft": 0,
-        "commentsLeft": 4,
+        "commentsLeft": 3,
         "visitsLeft": 2,
-        "stayLeftSec": 1593
+        "stayLeftSec": 1293
       },
       "signalsTotal": {
         "hearts": 7,
         "spoons": 0,
-        "comments": 36,
+        "comments": 37,
         "visits": 9,
-        "stayMin": 123
+        "stayMin": 128
       },
       "img": "chars/Lnrdo_b3TeGyRY8fNTyEhA-a.png",
       "pair": {
@@ -521,14 +521,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 20,
         "visitsLeft": 3,
-        "stayLeftSec": 808
+        "stayLeftSec": 508
       },
       "signalsTotal": {
         "hearts": 13,
         "spoons": 4,
         "comments": 60,
         "visits": 5,
-        "stayMin": 136
+        "stayMin": 141
       },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-a.png",
       "pair": {
@@ -1019,16 +1019,16 @@
       "signals": {
         "heartsLeft": 10,
         "spoonsLeft": 0,
-        "commentsLeft": 11,
+        "commentsLeft": 10,
         "visitsLeft": 4,
-        "stayLeftSec": 720
+        "stayLeftSec": 420
       },
       "signalsTotal": {
         "hearts": 30,
         "spoons": 0,
-        "comments": 49,
+        "comments": 50,
         "visits": 4,
-        "stayMin": 78
+        "stayMin": 83
       },
       "img": null,
       "pair": {
@@ -1152,7 +1152,7 @@
         "nextName": "レギュラーDJ",
         "progress": 0.1111111111111111
       },
-      "exp": 11,
+      "exp": 12,
       "expNext": 30,
       "params": {
         "atk": 10,
@@ -1221,14 +1221,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 15,
         "visitsLeft": 4,
-        "stayLeftSec": 1087
+        "stayLeftSec": 787
       },
       "signalsTotal": {
         "hearts": 51,
         "spoons": 0,
         "comments": 85,
         "visits": 4,
-        "stayMin": 101
+        "stayMin": 106
       },
       "img": "chars/sBVUqfp0A17e3SwGNApjWQ-b.png",
       "pair": {
@@ -1265,7 +1265,7 @@
       "frame": "silver",
       "crown": false,
       "pvpWin": 0,
-      "exp": 11
+      "exp": 12
     },
     {
       "rank": 3,
