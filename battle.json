@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T15:00:16.137Z",
-  "live": false,
+  "updatedAt": "2026-11-23T03:04:32.780Z",
+  "live": true,
   "gkEnabled": true,
   "gkTiers": [
     {
@@ -51,7 +51,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T10:42:05.193Z"
+        "updatedAt": "2026-11-23T03:04:30.273Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -156,7 +156,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T10:42:05.193Z"
+        "updatedAt": "2026-11-23T03:04:30.273Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -256,7 +256,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T10:42:05.193Z"
+        "updatedAt": "2026-11-23T03:04:30.273Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -356,7 +356,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T10:42:05.193Z"
+        "updatedAt": "2026-11-23T03:04:30.273Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -456,7 +456,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T10:42:05.193Z"
+        "updatedAt": "2026-11-23T03:04:30.273Z"
       },
       "bp": 0,
       "unspentAlloc": 1,
@@ -561,7 +561,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T10:42:05.193Z"
+        "updatedAt": "2026-11-23T03:04:30.273Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -661,7 +661,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T10:42:05.193Z"
+        "updatedAt": "2026-11-23T03:04:30.273Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -761,7 +761,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-22T10:42:05.193Z"
+        "updatedAt": "2026-11-23T03:04:30.273Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
