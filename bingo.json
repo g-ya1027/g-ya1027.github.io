@@ -1,11 +1,11 @@
 {
-  "active": true,
-  "phase": "entry",
+  "active": false,
+  "phase": "finished",
   "mode": "manual",
   "endCount": 3,
   "winnersCount": 0,
   "drawn": [],
   "drawnCount": 0,
   "players": [],
-  "updatedAt": "2026-11-23T09:25:43.904Z"
+  "updatedAt": "2026-11-23T09:26:12.078Z"
 }
