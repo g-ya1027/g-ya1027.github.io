@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T05:49:45.842Z",
+  "updatedAt": "2026-11-23T05:50:47.810Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -215,15 +215,15 @@
         "heartsLeft": 7,
         "spoonsLeft": 0,
         "commentsLeft": 20,
-        "visitsLeft": 4,
-        "stayLeftSec": 324
+        "visitsLeft": 3,
+        "stayLeftSec": 298
       },
       "signalsTotal": {
         "hearts": 3,
         "spoons": 0,
         "comments": 20,
-        "visits": 7,
-        "stayMin": 84
+        "visits": 8,
+        "stayMin": 85
       },
       "img": null,
       "pair": {
@@ -415,15 +415,15 @@
         "heartsLeft": 9,
         "spoonsLeft": 0,
         "commentsLeft": 19,
-        "visitsLeft": 5,
-        "stayLeftSec": 1800
+        "visitsLeft": 4,
+        "stayLeftSec": 1534
       },
       "signalsTotal": {
         "hearts": 1,
         "spoons": 0,
         "comments": 1,
-        "visits": 3,
-        "stayMin": 0
+        "visits": 4,
+        "stayMin": 4
       },
       "img": null,
       "pair": {
@@ -520,15 +520,15 @@
         "heartsLeft": 10,
         "spoonsLeft": 0,
         "commentsLeft": 10,
-        "visitsLeft": 5,
-        "stayLeftSec": 1534
+        "visitsLeft": 4,
+        "stayLeftSec": 1437
       },
       "signalsTotal": {
         "hearts": 10,
         "spoons": 4,
         "comments": 50,
-        "visits": 3,
-        "stayMin": 94
+        "visits": 4,
+        "stayMin": 96
       },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-b.png",
       "pair": {
@@ -619,16 +619,16 @@
       "signals": {
         "heartsLeft": 4,
         "spoonsLeft": 0,
-        "commentsLeft": 16,
-        "visitsLeft": 5,
-        "stayLeftSec": 847
+        "commentsLeft": 15,
+        "visitsLeft": 4,
+        "stayLeftSec": 815
       },
       "signalsTotal": {
         "hearts": 6,
         "spoons": 0,
-        "comments": 4,
-        "visits": 4,
-        "stayMin": 75
+        "comments": 5,
+        "visits": 5,
+        "stayMin": 76
       },
       "img": "chars/hUooGCp0KaQn-5EswSh-3A-a.png",
       "pair": {
