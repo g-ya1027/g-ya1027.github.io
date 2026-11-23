@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-22T11:28:27.302Z",
+  "updatedAt": "2026-11-23T05:50:16.044Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
@@ -112,6 +112,16 @@
       },
       "chosen": null,
       "reroll": "ok",
+      "rerollNextAt": null
+    },
+    {
+      "token": "024d4a2debbab7be",
+      "nickname": "𖥨⋆͛いなもっち",
+      "radioName": "暁の流れ星隊長",
+      "status": "pending",
+      "pair": null,
+      "chosen": null,
+      "reroll": "notready",
       "rerollNextAt": null
     }
   ]
