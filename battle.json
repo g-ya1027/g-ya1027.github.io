@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T08:23:35.324Z",
+  "updatedAt": "2026-11-23T08:24:37.208Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -216,14 +216,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 15,
         "visitsLeft": 2,
-        "stayLeftSec": 1768
+        "stayLeftSec": 1466
       },
       "signalsTotal": {
         "hearts": 9,
         "spoons": 0,
         "comments": 45,
         "visits": 9,
-        "stayMin": 150
+        "stayMin": 155
       },
       "img": "chars/Lnrdo_b3TeGyRY8fNTyEhA-a.png",
       "pair": {
@@ -521,14 +521,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 20,
         "visitsLeft": 3,
-        "stayLeftSec": 983
+        "stayLeftSec": 681
       },
       "signalsTotal": {
         "hearts": 14,
         "spoons": 4,
         "comments": 60,
         "visits": 5,
-        "stayMin": 163
+        "stayMin": 168
       },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-a.png",
       "pair": {
@@ -552,7 +552,7 @@
         "nextName": "レギュラーDJ",
         "progress": 0
       },
-      "exp": 2,
+      "exp": 3,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -620,15 +620,15 @@
         "heartsLeft": 3,
         "spoonsLeft": 0,
         "commentsLeft": 12,
-        "visitsLeft": 4,
-        "stayLeftSec": 89
+        "visitsLeft": 3,
+        "stayLeftSec": 1669
       },
       "signalsTotal": {
         "hearts": 7,
         "spoons": 0,
         "comments": 8,
-        "visits": 5,
-        "stayMin": 88
+        "visits": 6,
+        "stayMin": 92
       },
       "img": "chars/hUooGCp0KaQn-5EswSh-3A-a.png",
       "pair": {
@@ -821,14 +821,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 12,
         "visitsLeft": 3,
-        "stayLeftSec": 440
+        "stayLeftSec": 138
       },
       "signalsTotal": {
         "hearts": 4,
         "spoons": 0,
         "comments": 8,
         "visits": 5,
-        "stayMin": 82
+        "stayMin": 87
       },
       "img": null,
       "pair": {
@@ -875,7 +875,7 @@
         "draw": 0
       },
       "honors": {
-        "rank": 12,
+        "rank": 13,
         "titleId": null,
         "titleText": null,
         "frame": null,
@@ -1021,14 +1021,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 1,
         "visitsLeft": 4,
-        "stayLeftSec": 895
+        "stayLeftSec": 593
       },
       "signalsTotal": {
         "hearts": 33,
         "spoons": 0,
         "comments": 59,
         "visits": 4,
-        "stayMin": 105
+        "stayMin": 110
       },
       "img": null,
       "pair": {
@@ -1219,16 +1219,16 @@
       "signals": {
         "heartsLeft": 6,
         "spoonsLeft": 0,
-        "commentsLeft": 2,
+        "commentsLeft": 1,
         "visitsLeft": 4,
-        "stayLeftSec": 1262
+        "stayLeftSec": 960
       },
       "signalsTotal": {
         "hearts": 54,
         "spoons": 0,
-        "comments": 98,
+        "comments": 99,
         "visits": 4,
-        "stayMin": 128
+        "stayMin": 134
       },
       "img": "chars/sBVUqfp0A17e3SwGNApjWQ-b.png",
       "pair": {
@@ -1252,7 +1252,7 @@
         "nextName": "レギュラーDJ",
         "progress": 0
       },
-      "exp": 0,
+      "exp": 1,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -1275,7 +1275,7 @@
         "draw": 0
       },
       "honors": {
-        "rank": 13,
+        "rank": 12,
         "titleId": null,
         "titleText": null,
         "frame": null,
@@ -1321,14 +1321,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 11,
         "visitsLeft": 5,
-        "stayLeftSec": 85
+        "stayLeftSec": 1583
       },
       "signalsTotal": {
         "hearts": 1,
         "spoons": 0,
         "comments": 9,
         "visits": 3,
-        "stayMin": 28
+        "stayMin": 33
       },
       "img": null,
       "pair": {
@@ -1443,7 +1443,7 @@
       "frame": null,
       "crown": false,
       "pvpWin": 0,
-      "exp": 2
+      "exp": 3
     },
     {
       "rank": 9,
@@ -1486,8 +1486,8 @@
     },
     {
       "rank": 12,
-      "nickname": "𖥨⋆͛いなもっち",
-      "radioName": "暁の流れ星隊長",
+      "nickname": "ザッキー【メルヘン調査員】",
+      "radioName": "黄昏の魔法使い卿",
       "level": 1,
       "attr": null,
       "titleId": null,
@@ -1495,12 +1495,12 @@
       "frame": null,
       "crown": false,
       "pvpWin": 0,
-      "exp": 0
+      "exp": 1
     },
     {
       "rank": 13,
-      "nickname": "ザッキー【メルヘン調査員】",
-      "radioName": "黄昏の魔法使い卿",
+      "nickname": "𖥨⋆͛いなもっち",
+      "radioName": "暁の流れ星隊長",
       "level": 1,
       "attr": null,
       "titleId": null,
