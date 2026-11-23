@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T05:50:54.865Z",
+  "updatedAt": "2026-11-23T06:45:06.317Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
@@ -118,40 +118,56 @@
       "token": "024d4a2debbab7be",
       "nickname": "𖥨⋆͛いなもっち",
       "radioName": "暁の流れ星隊長",
-      "status": "pending",
-      "pair": null,
+      "status": "ready",
+      "pair": {
+        "a": "chars/QrjXmtbTVwvUbMAKAr2xdw-a.png",
+        "b": "chars/QrjXmtbTVwvUbMAKAr2xdw-b.png",
+        "kind": "gender"
+      },
       "chosen": null,
-      "reroll": "notready",
+      "reroll": "ok",
       "rerollNextAt": null
     },
     {
       "token": "cf225da5b96f2571",
       "nickname": "月野詩織.",
       "radioName": "深夜の流れ星番長",
-      "status": "pending",
-      "pair": null,
+      "status": "ready",
+      "pair": {
+        "a": "chars/w-jkudJNHTFTeD7fa6XrNQ-a.png",
+        "b": "chars/w-jkudJNHTFTeD7fa6XrNQ-b.png",
+        "kind": "gender"
+      },
       "chosen": null,
-      "reroll": "notready",
+      "reroll": "ok",
       "rerollNextAt": null
     },
     {
       "token": "f1295416008796dc",
       "nickname": "涼さん-1.0",
       "radioName": "伝説の猫又先生",
-      "status": "pending",
-      "pair": null,
+      "status": "ready",
+      "pair": {
+        "a": "chars/rEY_VVy_wXj3JOtoUnbQXw-a.png",
+        "b": "chars/rEY_VVy_wXj3JOtoUnbQXw-b.png",
+        "kind": "gender"
+      },
       "chosen": null,
-      "reroll": "notready",
+      "reroll": "ok",
       "rerollNextAt": null
     },
     {
       "token": "48b8d51ae8375236",
       "nickname": "甘瞳ももか",
       "radioName": "黄金の流れ星卿",
-      "status": "pending",
-      "pair": null,
+      "status": "ready",
+      "pair": {
+        "a": "chars/sBVUqfp0A17e3SwGNApjWQ-a.png",
+        "b": "chars/sBVUqfp0A17e3SwGNApjWQ-b.png",
+        "kind": "gender"
+      },
       "chosen": null,
-      "reroll": "notready",
+      "reroll": "ok",
       "rerollNextAt": null
     }
   ]
