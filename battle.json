@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T07:36:21.441Z",
+  "updatedAt": "2026-11-23T07:37:24.003Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -519,14 +519,14 @@
       "signals": {
         "heartsLeft": 7,
         "spoonsLeft": 0,
-        "commentsLeft": 1,
+        "commentsLeft": 0,
         "visitsLeft": 3,
         "stayLeftSec": 189
       },
       "signalsTotal": {
         "hearts": 13,
         "spoons": 4,
-        "comments": 59,
+        "comments": 60,
         "visits": 5,
         "stayMin": 116
       },
@@ -1019,14 +1019,14 @@
       "signals": {
         "heartsLeft": 2,
         "spoonsLeft": 0,
-        "commentsLeft": 1,
+        "commentsLeft": 0,
         "visitsLeft": 4,
         "stayLeftSec": 101
       },
       "signalsTotal": {
         "hearts": 28,
         "spoons": 0,
-        "comments": 39,
+        "comments": 40,
         "visits": 4,
         "stayMin": 58
       },
@@ -1217,26 +1217,26 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 1,
+        "heartsLeft": 0,
         "spoonsLeft": 0,
         "commentsLeft": 6,
         "visitsLeft": 5,
         "stayLeftSec": 335
       },
       "signalsTotal": {
-        "hearts": 49,
+        "hearts": 50,
         "spoons": 0,
         "comments": 74,
         "visits": 3,
         "stayMin": 84
       },
-      "img": null,
+      "img": "chars/sBVUqfp0A17e3SwGNApjWQ-b.png",
       "pair": {
         "a": "chars/sBVUqfp0A17e3SwGNApjWQ-a.png",
         "b": "chars/sBVUqfp0A17e3SwGNApjWQ-b.png",
         "kind": "gender"
       },
-      "chosen": null,
+      "chosen": "b",
       "lastAction": null
     }
   ],
