@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T10:27:46.755Z",
+  "updatedAt": "2026-11-23T10:29:26.974Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
@@ -318,10 +318,14 @@
       "token": "4c8edec8f6732c71",
       "nickname": "スーザン",
       "radioName": "伝説の貴公子将軍",
-      "status": "pending",
-      "pair": null,
+      "status": "ready",
+      "pair": {
+        "a": "chars/Qt5QGDvrU-Mzl46fWMM0Sg-a.png",
+        "b": "chars/Qt5QGDvrU-Mzl46fWMM0Sg-b.png",
+        "kind": "gender"
+      },
       "chosen": null,
-      "reroll": "notready",
+      "reroll": "ok",
       "rerollNextAt": null,
       "battle": null
     }
