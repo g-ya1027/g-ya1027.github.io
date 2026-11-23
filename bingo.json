@@ -9,9 +9,11 @@
     34,
     47,
     44,
-    12
+    12,
+    46,
+    10
   ],
-  "drawnCount": 5,
+  "drawnCount": 7,
   "players": [
     {
       "nickname": "甘瞳ももか",
@@ -54,7 +56,7 @@
       ],
       "reach": false,
       "bingo": false,
-      "markedCount": 4
+      "markedCount": 5
     },
     {
       "nickname": "kinou",
@@ -97,7 +99,7 @@
       ],
       "reach": false,
       "bingo": false,
-      "markedCount": 5
+      "markedCount": 7
     },
     {
       "nickname": "しゅーくりーむ  ",
@@ -138,9 +140,9 @@
           45
         ]
       ],
-      "reach": false,
+      "reach": true,
       "bingo": false,
-      "markedCount": 5
+      "markedCount": 6
     },
     {
       "nickname": "月野詩織.",
@@ -183,7 +185,7 @@
       ],
       "reach": false,
       "bingo": false,
-      "markedCount": 4
+      "markedCount": 6
     },
     {
       "nickname": "𝓨̆̈𝓾𝓲  ",
@@ -226,8 +228,8 @@
       ],
       "reach": false,
       "bingo": false,
-      "markedCount": 4
+      "markedCount": 6
     }
   ],
-  "updatedAt": "2026-11-23T08:50:35.545Z"
+  "updatedAt": "2026-11-23T08:50:44.406Z"
 }
