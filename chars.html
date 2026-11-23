@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- spoon-radio-chars v5 -->
+<!-- spoon-radio-chars v6 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -43,6 +43,12 @@
   .grid .rname { font-size: 12px; }
   .pending { text-align: center; color: #bdb4e8; font-size: 14px; padding: 18px 0 8px; line-height: 1.7; }
   .note { color: #9d92d6; font-size: 12px; line-height: 1.8; margin-top: 16px; }
+  .cardModal { position: fixed; inset: 0; background: rgba(0,0,0,.93); z-index: 60; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 16px; }
+  .cardModal.open { display: flex; }
+  .cardModal canvas { max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.6); }
+  .cardModal .cmBtns { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; justify-content: center; }
+  .cardModal .cmSave { border: none; border-radius: 999px; padding: 11px 22px; font-size: 14.5px; font-weight: 900; color: #07332b; background: linear-gradient(90deg, #00d1b2, #00b39b); font-family: inherit; cursor: pointer; }
+  .cardModal .cmClose { border: 2px solid rgba(255,255,255,.6); background: transparent; color: #fff; border-radius: 999px; padding: 9px 22px; font-size: 14px; font-weight: 700; font-family: inherit; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -61,6 +67,13 @@
   <img id="lbImg" src="" alt="">
   <div class="lbMsg">画像を長押しして「写真に保存」（または「画像を保存」）してね。<br>終わったら「閉じる」を押してね。</div>
   <button type="button" class="lbClose" id="lbClose">閉じる</button>
+</div>
+<div class="cardModal" id="cardModal">
+  <canvas id="cardCanvas" width="640" height="400"></canvas>
+  <div class="cmBtns">
+    <button type="button" class="cmSave" id="cardSaveBtn">⬇ PNGで保存</button>
+    <button type="button" class="cmClose" id="cardCloseBtn">閉じる</button>
+  </div>
 </div>
 <script>
   var DB_URL = 'https://podcastse-default-rtdb.firebaseio.com';
@@ -174,6 +187,94 @@
       showBigImage(url);
     });
   }
+  // ===== G-42: 推しキャラ・プロフィールカード（canvas 描画→PNG保存。ブラウザ内処理のみ） =====
+  var cardPerson = null;
+  function cardLines(p) {
+    var lines = [];
+    var b = p.battle || null;
+    if (b) {
+      lines.push('Lv.' + b.level + '　' + (b.rankName || ''));
+      if (b.rank) lines.push('ランキング ' + b.rank + '位');
+      lines.push('戦績 ' + b.wins + '勝 ' + b.losses + '敗' + (b.draws ? ' ' + b.draws + '分' : ''));
+      if (b.attr) lines.push('属性：' + b.attr);
+      if (b.stage) lines.push('進化 第' + b.stage + '段階');
+    }
+    return lines;
+  }
+  function drawCardBase(ctx, W, H) {
+    var g = ctx.createLinearGradient(0, 0, W, H);
+    g.addColorStop(0, '#2b1e60'); g.addColorStop(1, '#120b36');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = '#d9a441'; ctx.lineWidth = 6; ctx.strokeRect(8, 8, W - 16, H - 16);
+    ctx.fillStyle = '#ffd34d'; ctx.font = '900 15px sans-serif'; ctx.textAlign = 'left';
+    ctx.fillText('🗿 SPOON PROFILE CARD', 28, 40);
+  }
+  function drawCardTexts(ctx, p, withImg) {
+    var x = withImg ? 268 : 36;
+    ctx.textAlign = 'left';
+    ctx.fillStyle = '#ffd34d'; ctx.font = '900 30px sans-serif';
+    ctx.fillText('『' + (p.radioName || '') + '』', x, 108);
+    ctx.fillStyle = '#ffffff'; ctx.font = '700 20px sans-serif';
+    ctx.fillText(p.nickname || '', x, 142);
+    ctx.font = '700 19px sans-serif'; ctx.fillStyle = '#e8e2ff';
+    // バトル台帳が無い人（battle: null）は実績欄そのものを出さない
+    var lines = p.battle ? cardLines(p) : [];
+    lines.forEach(function (ln, i) { ctx.fillText(ln, x, 190 + i * 34); });
+    ctx.fillStyle = '#9d92d6'; ctx.font = '13px sans-serif';
+    ctx.fillText('⚔️バトルゲーム・ラジオネーム名鑑', x, 368);
+  }
+  function openProfileCard(p) {
+    if (!p || !p.pair || !p.chosen) return;
+    cardPerson = p;
+    var modal = document.getElementById('cardModal');
+    var cv = document.getElementById('cardCanvas');
+    if (!modal || !cv || !cv.getContext) return;
+    var ctx = cv.getContext('2d');
+    if (!ctx) return;
+    var W = cv.width, H = cv.height;
+    drawCardBase(ctx, W, H);
+    drawCardTexts(ctx, p, true);
+    ctx.fillStyle = '#171038'; ctx.fillRect(28, 58, 216, 288);
+    var img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = function () {
+      try {
+        var s = Math.min(img.width, img.height);
+        ctx.drawImage(img, (img.width - s) / 2, (img.height - s) / 2, s, s, 28, 58, 216, 288);
+      } catch (e) {}
+      ctx.strokeStyle = '#d9a441'; ctx.lineWidth = 3; ctx.strokeRect(28, 58, 216, 288);
+    };
+    img.onerror = function () {
+      ctx.fillStyle = '#bdb4e8'; ctx.font = '700 16px sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText('イラスト読込中…', 136, 210); ctx.textAlign = 'left';
+    };
+    img.src = p.pair[p.chosen];
+    modal.className = 'cardModal open';
+  }
+  function closeProfileCard() {
+    var modal = document.getElementById('cardModal');
+    if (modal) modal.className = 'cardModal';
+  }
+  function saveProfileCard() {
+    var cv = document.getElementById('cardCanvas');
+    if (!cv) return;
+    var name = 'profile-card-' + ((cardPerson && cardPerson.radioName) || 'char') + '.png';
+    function dl(url) {
+      var a = document.createElement('a');
+      a.href = url; a.download = name;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    }
+    if (cv.toBlob) {
+      cv.toBlob(function (blob) {
+        if (!blob) { try { dl(cv.toDataURL('image/png')); } catch (e) {} return; }
+        var u = URL.createObjectURL(blob);
+        dl(u);
+        setTimeout(function () { URL.revokeObjectURL(u); }, 4000);
+      }, 'image/png');
+    } else {
+      try { dl(cv.toDataURL('image/png')); } catch (e) {}
+    }
+  }
   function dateStr(iso) {
     if (!iso) return '';
     var d = new Date(iso);
@@ -195,13 +296,23 @@
     var html = '<div class="grid">';
     ready.forEach(function (p) {
       var img = p.chosen === 'b' ? p.pair.b : p.pair.a;
-      html += '<div class="card" data-token="' + esc(p.token) + '"><img class="char" src="' + esc(img) + '" alt=""><div class="pname">' + esc(p.nickname) + '</div><div class="rname">『' + esc(p.radioName) + '』</div></div>';
+      html += '<div class="card" data-token="' + esc(p.token) + '"><img class="char" src="' + esc(img) + '" alt=""><div class="pname">' + esc(p.nickname) + '</div><div class="rname">『' + esc(p.radioName) + '』</div>';
+      if (p.chosen) html += '<button type="button" class="sub2" data-card="' + esc(p.token) + '">🪪 カード</button>';
+      html += '</div>';
     });
     html += '</div>';
     mainEl.innerHTML = html;
     var cards = mainEl.querySelectorAll('[data-token]');
     for (var i = 0; i < cards.length; i++) {
       cards[i].addEventListener('click', function () { location.search = '?t=' + encodeURIComponent(this.getAttribute('data-token')); });
+    }
+    var cardBtns = mainEl.querySelectorAll('[data-card]');
+    for (var j = 0; j < cardBtns.length; j++) {
+      cardBtns[j].addEventListener('click', function (ev) {
+        ev.stopPropagation();
+        var t = this.getAttribute('data-card');
+        for (var k = 0; k < people.length; k++) if (people[k].token === t) openProfileCard(people[k]);
+      });
     }
   }
   function renderMe() {
@@ -220,6 +331,7 @@
       var cur = p.pair[p.chosen];
       var other = p.chosen === 'a' ? 'b' : 'a';
       html += '<img class="char" src="' + esc(cur) + '" alt="" style="margin-top:10px">';
+      html += '<button type="button" class="act" id="cardBtn" style="margin-top:10px">🪪 プロフィールカード</button>';
       html += '<button type="button" class="dl" id="dlBtn">⬇ このイラストをダウンロード</button>';
       html += '<button type="button" class="sub2" data-choose="' + other + '">もう片方（' + capOf(p, other) + '）に変える</button>';
       html += '<div class="lbl">🎲 再抽選（描き直し）</div>';
@@ -240,6 +352,10 @@
     var dlBtn = document.getElementById('dlBtn');
     if (dlBtn) {
       dlBtn.addEventListener('click', function () { downloadIllust(cur); });
+    }
+    var cardBtn = document.getElementById('cardBtn');
+    if (cardBtn) {
+      cardBtn.addEventListener('click', function () { openProfileCard(p); });
     }
     var chooseBtns = mainEl.querySelectorAll('[data-choose]');
     for (var i = 0; i < chooseBtns.length; i++) {
@@ -289,6 +405,12 @@
       subEl.textContent = '読み込めませんでした。少し待ってから開き直してね。';
     });
   }
+  var cardSaveBtn = document.getElementById('cardSaveBtn');
+  if (cardSaveBtn) cardSaveBtn.addEventListener('click', saveProfileCard);
+  var cardCloseBtn = document.getElementById('cardCloseBtn');
+  if (cardCloseBtn) cardCloseBtn.addEventListener('click', closeProfileCard);
+  var cardModalEl = document.getElementById('cardModal');
+  if (cardModalEl) cardModalEl.addEventListener('click', function (ev) { if (ev.target === cardModalEl) closeProfileCard(); });
   var lbCloseBtn = document.getElementById('lbClose');
   if (lbCloseBtn) lbCloseBtn.addEventListener('click', closeBigImage);
   var lbEl = document.getElementById('lightbox');
