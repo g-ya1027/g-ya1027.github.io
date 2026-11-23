@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T08:31:55.214Z",
+  "updatedAt": "2026-11-23T08:32:57.503Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -519,14 +519,14 @@
       "signals": {
         "heartsLeft": 6,
         "spoonsLeft": 0,
-        "commentsLeft": 18,
+        "commentsLeft": 17,
         "visitsLeft": 3,
         "stayLeftSec": 381
       },
       "signalsTotal": {
         "hearts": 14,
         "spoons": 4,
-        "comments": 62,
+        "comments": 63,
         "visits": 5,
         "stayMin": 173
       },
@@ -617,14 +617,14 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 3,
+        "heartsLeft": 2,
         "spoonsLeft": 0,
         "commentsLeft": 10,
         "visitsLeft": 3,
         "stayLeftSec": 1369
       },
       "signalsTotal": {
-        "hearts": 7,
+        "hearts": 8,
         "spoons": 0,
         "comments": 10,
         "visits": 6,
@@ -819,14 +819,14 @@
       "signals": {
         "heartsLeft": 5,
         "spoonsLeft": 0,
-        "commentsLeft": 12,
+        "commentsLeft": 11,
         "visitsLeft": 3,
         "stayLeftSec": 1638
       },
       "signalsTotal": {
         "hearts": 5,
         "spoons": 0,
-        "comments": 8,
+        "comments": 9,
         "visits": 5,
         "stayMin": 92
       },
@@ -1017,14 +1017,14 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 7,
+        "heartsLeft": 6,
         "spoonsLeft": 0,
         "commentsLeft": 0,
         "visitsLeft": 4,
         "stayLeftSec": 293
       },
       "signalsTotal": {
-        "hearts": 33,
+        "hearts": 34,
         "spoons": 0,
         "comments": 60,
         "visits": 4,
@@ -1224,14 +1224,14 @@
       "signals": {
         "heartsLeft": 5,
         "spoonsLeft": 0,
-        "commentsLeft": 13,
+        "commentsLeft": 11,
         "visitsLeft": 4,
         "stayLeftSec": 660
       },
       "signalsTotal": {
         "hearts": 55,
         "spoons": 0,
-        "comments": 107,
+        "comments": 109,
         "visits": 4,
         "stayMin": 139
       },
