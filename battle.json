@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T08:56:45.369Z",
+  "updatedAt": "2026-11-23T10:27:50.890Z",
   "live": false,
   "gkEnabled": true,
   "gkTiers": [
@@ -225,13 +225,13 @@
         "visits": 10,
         "stayMin": 187
       },
-      "img": "chars/Lnrdo_b3TeGyRY8fNTyEhA-a.png",
+      "img": null,
       "pair": {
         "a": "chars/Lnrdo_b3TeGyRY8fNTyEhA-a.png",
         "b": "chars/Lnrdo_b3TeGyRY8fNTyEhA-b.png",
         "kind": "gender"
       },
-      "chosen": "a",
+      "chosen": null,
       "lastAction": null
     },
     {
