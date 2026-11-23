@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T06:00:43.956Z",
+  "updatedAt": "2026-11-23T06:45:08.901Z",
   "metric": "exp",
   "entries": [
     {
@@ -106,6 +106,58 @@
       "crown": false,
       "pvpWin": 0,
       "exp": 1
+    },
+    {
+      "rank": 9,
+      "nickname": "𖥨⋆͛いなもっち",
+      "radioName": "暁の流れ星隊長",
+      "level": 1,
+      "attr": null,
+      "titleId": "top10",
+      "titleText": "FMスプニ レギュラーDJ",
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 0
+    },
+    {
+      "rank": 10,
+      "nickname": "月野詩織.",
+      "radioName": "深夜の流れ星番長",
+      "level": 1,
+      "attr": null,
+      "titleId": "top10",
+      "titleText": "FMスプニ レギュラーDJ",
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 0
+    },
+    {
+      "rank": 11,
+      "nickname": "涼さん-1.0",
+      "radioName": "伝説の猫又先生",
+      "level": 1,
+      "attr": null,
+      "titleId": null,
+      "titleText": null,
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 0
+    },
+    {
+      "rank": 12,
+      "nickname": "甘瞳ももか",
+      "radioName": "黄金の流れ星卿",
+      "level": 1,
+      "attr": null,
+      "titleId": null,
+      "titleText": null,
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 0
     }
   ]
 }
