@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T08:35:01.828Z",
+  "updatedAt": "2026-11-23T08:36:05.843Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -1224,14 +1224,14 @@
       "signals": {
         "heartsLeft": 5,
         "spoonsLeft": 0,
-        "commentsLeft": 9,
+        "commentsLeft": 6,
         "visitsLeft": 4,
         "stayLeftSec": 360
       },
       "signalsTotal": {
         "hearts": 55,
         "spoons": 0,
-        "comments": 111,
+        "comments": 114,
         "visits": 4,
         "stayMin": 144
       },
