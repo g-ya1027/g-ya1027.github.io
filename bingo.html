@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- spoon-bingo-page v3 -->
+<!-- spoon-bingo-page v4 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -56,7 +56,10 @@
   <div id="main"></div>
   <div class="foot">このページは自動で更新されます（5秒ごと）</div>
 </div>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 <script>
+  var DB_URL = "https://podcastse-default-rtdb.firebaseio.com";
   var drawnSet = {};
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   var state = null;
@@ -103,20 +106,42 @@
       return '<div class="' + cls + '"><div class="phead"><span class="nm">' + esc(p.nickname) + '</span>' + badge + '</div>' + cardTable(p) + '</div>';
     }).join('') + '</div>';
   }
+  var fbLive = false;
+  function markFetched() {
+    document.getElementById('fetchedAt').textContent = '最終確認 ' + new Date().toLocaleTimeString('ja-JP');
+  }
   function load(manual) {
     var btn = document.getElementById('reloadBtn');
+    if (fbLive) { render(); markFetched(); return; }
     if (manual && btn) { btn.disabled = true; btn.textContent = '更新中…'; }
     fetch('bingo.json?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (j) {
+      if (fbLive) return;
       state = j;
       render();
-      document.getElementById('fetchedAt').textContent = '最終確認 ' + new Date().toLocaleTimeString('ja-JP');
+      markFetched();
     }).catch(function () {
       document.getElementById('statusBox').textContent = '読み込めませんでした（まだ大会が始まっていないかもしれません）';
     }).then(function () {
       if (btn) { btn.disabled = false; btn.textContent = '🔄 更新する'; }
     });
   }
+  function startFirebase() {
+    if (!DB_URL) return;
+    try {
+      if (!window.firebase || !window.firebase.database) return;
+      if (!window.firebase.apps || !window.firebase.apps.length) window.firebase.initializeApp({ databaseURL: DB_URL });
+      window.firebase.database().ref('bingo/state').on('value', function (snap) {
+        var v = snap.val();
+        if (!v) return;
+        fbLive = true;
+        state = v;
+        render();
+        markFetched();
+      }, function () {});
+    } catch (e) {}
+  }
   document.getElementById('reloadBtn').onclick = function () { load(true); };
+  startFirebase();
   load();
   setInterval(function () { load(false); }, 5000);
 </script>
