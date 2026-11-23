@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T06:01:46.975Z",
-  "live": true,
+  "updatedAt": "2026-11-23T06:02:49.268Z",
+  "live": false,
   "gkEnabled": true,
   "gkTiers": [
     {
@@ -212,18 +212,18 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 6,
+        "heartsLeft": 5,
         "spoonsLeft": 0,
         "commentsLeft": 14,
         "visitsLeft": 3,
-        "stayLeftSec": 1498
+        "stayLeftSec": 1372
       },
       "signalsTotal": {
-        "hearts": 4,
+        "hearts": 5,
         "spoons": 0,
         "comments": 26,
         "visits": 8,
-        "stayMin": 95
+        "stayMin": 97
       },
       "img": null,
       "pair": {
@@ -416,14 +416,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 19,
         "visitsLeft": 4,
-        "stayLeftSec": 934
+        "stayLeftSec": 807
       },
       "signalsTotal": {
         "hearts": 22,
         "spoons": 0,
         "comments": 1,
         "visits": 4,
-        "stayMin": 14
+        "stayMin": 16
       },
       "img": null,
       "pair": {
@@ -521,14 +521,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 10,
         "visitsLeft": 4,
-        "stayLeftSec": 837
+        "stayLeftSec": 710
       },
       "signalsTotal": {
         "hearts": 11,
         "spoons": 4,
         "comments": 50,
         "visits": 4,
-        "stayMin": 106
+        "stayMin": 108
       },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-b.png",
       "pair": {
@@ -621,14 +621,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 12,
         "visitsLeft": 4,
-        "stayLeftSec": 215
+        "stayLeftSec": 89
       },
       "signalsTotal": {
         "hearts": 7,
         "spoons": 0,
         "comments": 8,
         "visits": 5,
-        "stayMin": 86
+        "stayMin": 88
       },
       "img": "chars/hUooGCp0KaQn-5EswSh-3A-a.png",
       "pair": {
@@ -821,14 +821,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 15,
         "visitsLeft": 4,
-        "stayLeftSec": 941
+        "stayLeftSec": 814
       },
       "signalsTotal": {
         "hearts": 3,
         "spoons": 0,
         "comments": 5,
         "visits": 4,
-        "stayMin": 74
+        "stayMin": 76
       },
       "img": null,
       "pair": {
