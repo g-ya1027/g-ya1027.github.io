@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T08:00:23.865Z",
+  "updatedAt": "2026-11-23T08:04:02.235Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
@@ -302,6 +302,26 @@
       },
       "chosen": null,
       "reroll": "ok",
+      "rerollNextAt": null,
+      "battle": {
+        "level": 1,
+        "rankName": "見習いDJ",
+        "rank": 13,
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "attr": null,
+        "stage": 0
+      }
+    },
+    {
+      "token": "4c8edec8f6732c71",
+      "nickname": "スーザン",
+      "radioName": "伝説の貴公子将軍",
+      "status": "pending",
+      "pair": null,
+      "chosen": null,
+      "reroll": "notready",
       "rerollNextAt": null,
       "battle": null
     }
