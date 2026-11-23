@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T06:02:49.268Z",
+  "updatedAt": "2026-11-23T06:45:08.891Z",
   "live": false,
   "gkEnabled": true,
   "gkTiers": [
@@ -838,6 +838,406 @@
       },
       "chosen": null,
       "lastAction": null
+    },
+    {
+      "tokenHash": "71f45c52207d1eb2cc2f1a41df4f5198decac84822548e7263ed80b7695e4e0b",
+      "nickname": "𖥨⋆͛いなもっち",
+      "radioName": "暁の流れ星隊長",
+      "status": "awaiting",
+      "attr": null,
+      "attrInitial": null,
+      "level": 1,
+      "rank": {
+        "name": "見習いDJ",
+        "nextName": "レギュラーDJ",
+        "progress": 0
+      },
+      "exp": 0,
+      "expNext": 10,
+      "params": {
+        "atk": 10,
+        "def": 5,
+        "attrValue": 10
+      },
+      "hp": {
+        "stored": 100,
+        "updatedAt": "2026-11-23T06:45:06.383Z"
+      },
+      "bp": 0,
+      "unspentAlloc": 0,
+      "record": {
+        "npcWin": 0,
+        "npcLose": 0,
+        "pvpWin": 0,
+        "pvpLose": 0,
+        "gkWin": 0,
+        "gkLose": 0,
+        "draw": 0
+      },
+      "honors": {
+        "rank": 9,
+        "titleId": "top10",
+        "titleText": "FMスプニ レギュラーDJ",
+        "frame": null,
+        "crown": false
+      },
+      "evolutionStage": 0,
+      "evolution": {
+        "stage": 0,
+        "nextKind": "evo1",
+        "eligible": false,
+        "queued": false,
+        "winsKind": "total",
+        "levelNow": 1,
+        "levelNeed": 50,
+        "winsNow": 0,
+        "winsNeed": 50
+      },
+      "illust": {
+        "evo1": null,
+        "evo2": null,
+        "gold": null,
+        "win": null,
+        "lose": null
+      },
+      "illustRequests": [],
+      "illustWeekDone": 0,
+      "skill": {
+        "learned": false,
+        "name": null,
+        "desc": null,
+        "price": 30
+      },
+      "gkLeft": {
+        "day": 1,
+        "week": 3
+      },
+      "training": {
+        "usedToday": 0,
+        "results": []
+      },
+      "signals": {
+        "heartsLeft": 8,
+        "spoonsLeft": 0,
+        "commentsLeft": 17,
+        "visitsLeft": 5,
+        "stayLeftSec": 1055
+      },
+      "signalsTotal": {
+        "hearts": 2,
+        "spoons": 0,
+        "comments": 3,
+        "visits": 0,
+        "stayMin": 12
+      },
+      "img": null,
+      "pair": {
+        "a": "chars/QrjXmtbTVwvUbMAKAr2xdw-a.png",
+        "b": "chars/QrjXmtbTVwvUbMAKAr2xdw-b.png",
+        "kind": "gender"
+      },
+      "chosen": null,
+      "lastAction": null
+    },
+    {
+      "tokenHash": "bc9e7aaf107c2c5770341038209493bde75fe2247311c95aa7ca6ffdd637693e",
+      "nickname": "月野詩織.",
+      "radioName": "深夜の流れ星番長",
+      "status": "awaiting",
+      "attr": null,
+      "attrInitial": null,
+      "level": 1,
+      "rank": {
+        "name": "見習いDJ",
+        "nextName": "レギュラーDJ",
+        "progress": 0
+      },
+      "exp": 0,
+      "expNext": 10,
+      "params": {
+        "atk": 10,
+        "def": 5,
+        "attrValue": 10
+      },
+      "hp": {
+        "stored": 100,
+        "updatedAt": "2026-11-23T06:45:06.386Z"
+      },
+      "bp": 0,
+      "unspentAlloc": 0,
+      "record": {
+        "npcWin": 0,
+        "npcLose": 0,
+        "pvpWin": 0,
+        "pvpLose": 0,
+        "gkWin": 0,
+        "gkLose": 0,
+        "draw": 0
+      },
+      "honors": {
+        "rank": 10,
+        "titleId": "top10",
+        "titleText": "FMスプニ レギュラーDJ",
+        "frame": null,
+        "crown": false
+      },
+      "evolutionStage": 0,
+      "evolution": {
+        "stage": 0,
+        "nextKind": "evo1",
+        "eligible": false,
+        "queued": false,
+        "winsKind": "total",
+        "levelNow": 1,
+        "levelNeed": 50,
+        "winsNow": 0,
+        "winsNeed": 50
+      },
+      "illust": {
+        "evo1": null,
+        "evo2": null,
+        "gold": null,
+        "win": null,
+        "lose": null
+      },
+      "illustRequests": [],
+      "illustWeekDone": 0,
+      "skill": {
+        "learned": false,
+        "name": null,
+        "desc": null,
+        "price": 30
+      },
+      "gkLeft": {
+        "day": 1,
+        "week": 3
+      },
+      "training": {
+        "usedToday": 0,
+        "results": []
+      },
+      "signals": {
+        "heartsLeft": 4,
+        "spoonsLeft": 0,
+        "commentsLeft": 4,
+        "visitsLeft": 5,
+        "stayLeftSec": 841
+      },
+      "signalsTotal": {
+        "hearts": 26,
+        "spoons": 0,
+        "comments": 36,
+        "visits": 0,
+        "stayMin": 45
+      },
+      "img": null,
+      "pair": {
+        "a": "chars/w-jkudJNHTFTeD7fa6XrNQ-a.png",
+        "b": "chars/w-jkudJNHTFTeD7fa6XrNQ-b.png",
+        "kind": "gender"
+      },
+      "chosen": null,
+      "lastAction": null
+    },
+    {
+      "tokenHash": "74fadd7e02ac057fa2841dccdf3a2cd0b55155e1b4a74c2e5e085509343de48e",
+      "nickname": "涼さん-1.0",
+      "radioName": "伝説の猫又先生",
+      "status": "awaiting",
+      "attr": null,
+      "attrInitial": null,
+      "level": 1,
+      "rank": {
+        "name": "見習いDJ",
+        "nextName": "レギュラーDJ",
+        "progress": 0
+      },
+      "exp": 0,
+      "expNext": 10,
+      "params": {
+        "atk": 10,
+        "def": 5,
+        "attrValue": 10
+      },
+      "hp": {
+        "stored": 100,
+        "updatedAt": "2026-11-23T06:45:06.387Z"
+      },
+      "bp": 0,
+      "unspentAlloc": 0,
+      "record": {
+        "npcWin": 0,
+        "npcLose": 0,
+        "pvpWin": 0,
+        "pvpLose": 0,
+        "gkWin": 0,
+        "gkLose": 0,
+        "draw": 0
+      },
+      "honors": {
+        "rank": 11,
+        "titleId": null,
+        "titleText": null,
+        "frame": null,
+        "crown": false
+      },
+      "evolutionStage": 0,
+      "evolution": {
+        "stage": 0,
+        "nextKind": "evo1",
+        "eligible": false,
+        "queued": false,
+        "winsKind": "total",
+        "levelNow": 1,
+        "levelNeed": 50,
+        "winsNow": 0,
+        "winsNeed": 50
+      },
+      "illust": {
+        "evo1": null,
+        "evo2": null,
+        "gold": null,
+        "win": null,
+        "lose": null
+      },
+      "illustRequests": [],
+      "illustWeekDone": 0,
+      "skill": {
+        "learned": false,
+        "name": null,
+        "desc": null,
+        "price": 30
+      },
+      "gkLeft": {
+        "day": 1,
+        "week": 3
+      },
+      "training": {
+        "usedToday": 0,
+        "results": []
+      },
+      "signals": {
+        "heartsLeft": 7,
+        "spoonsLeft": 0,
+        "commentsLeft": 11,
+        "visitsLeft": 5,
+        "stayLeftSec": 1142
+      },
+      "signalsTotal": {
+        "hearts": 3,
+        "spoons": 0,
+        "comments": 9,
+        "visits": 0,
+        "stayMin": 100
+      },
+      "img": null,
+      "pair": {
+        "a": "chars/rEY_VVy_wXj3JOtoUnbQXw-a.png",
+        "b": "chars/rEY_VVy_wXj3JOtoUnbQXw-b.png",
+        "kind": "gender"
+      },
+      "chosen": null,
+      "lastAction": null
+    },
+    {
+      "tokenHash": "153631356cb923b523650bce681752dbaaabacec11d4c730fef56b42402da967",
+      "nickname": "甘瞳ももか",
+      "radioName": "黄金の流れ星卿",
+      "status": "awaiting",
+      "attr": null,
+      "attrInitial": null,
+      "level": 1,
+      "rank": {
+        "name": "見習いDJ",
+        "nextName": "レギュラーDJ",
+        "progress": 0
+      },
+      "exp": 0,
+      "expNext": 10,
+      "params": {
+        "atk": 10,
+        "def": 5,
+        "attrValue": 10
+      },
+      "hp": {
+        "stored": 100,
+        "updatedAt": "2026-11-23T06:45:06.387Z"
+      },
+      "bp": 0,
+      "unspentAlloc": 0,
+      "record": {
+        "npcWin": 0,
+        "npcLose": 0,
+        "pvpWin": 0,
+        "pvpLose": 0,
+        "gkWin": 0,
+        "gkLose": 0,
+        "draw": 0
+      },
+      "honors": {
+        "rank": 12,
+        "titleId": null,
+        "titleText": null,
+        "frame": null,
+        "crown": false
+      },
+      "evolutionStage": 0,
+      "evolution": {
+        "stage": 0,
+        "nextKind": "evo1",
+        "eligible": false,
+        "queued": false,
+        "winsKind": "total",
+        "levelNow": 1,
+        "levelNeed": 50,
+        "winsNow": 0,
+        "winsNeed": 50
+      },
+      "illust": {
+        "evo1": null,
+        "evo2": null,
+        "gold": null,
+        "win": null,
+        "lose": null
+      },
+      "illustRequests": [],
+      "illustWeekDone": 0,
+      "skill": {
+        "learned": false,
+        "name": null,
+        "desc": null,
+        "price": 30
+      },
+      "gkLeft": {
+        "day": 1,
+        "week": 3
+      },
+      "training": {
+        "usedToday": 0,
+        "results": []
+      },
+      "signals": {
+        "heartsLeft": 1,
+        "spoonsLeft": 0,
+        "commentsLeft": 9,
+        "visitsLeft": 5,
+        "stayLeftSec": 335
+      },
+      "signalsTotal": {
+        "hearts": 49,
+        "spoons": 0,
+        "comments": 71,
+        "visits": 0,
+        "stayMin": 84
+      },
+      "img": null,
+      "pair": {
+        "a": "chars/sBVUqfp0A17e3SwGNApjWQ-a.png",
+        "b": "chars/sBVUqfp0A17e3SwGNApjWQ-b.png",
+        "kind": "gender"
+      },
+      "chosen": null,
+      "lastAction": null
     }
   ],
   "ranking": [
@@ -944,6 +1344,58 @@
       "crown": false,
       "pvpWin": 0,
       "exp": 1
+    },
+    {
+      "rank": 9,
+      "nickname": "𖥨⋆͛いなもっち",
+      "radioName": "暁の流れ星隊長",
+      "level": 1,
+      "attr": null,
+      "titleId": "top10",
+      "titleText": "FMスプニ レギュラーDJ",
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 0
+    },
+    {
+      "rank": 10,
+      "nickname": "月野詩織.",
+      "radioName": "深夜の流れ星番長",
+      "level": 1,
+      "attr": null,
+      "titleId": "top10",
+      "titleText": "FMスプニ レギュラーDJ",
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 0
+    },
+    {
+      "rank": 11,
+      "nickname": "涼さん-1.0",
+      "radioName": "伝説の猫又先生",
+      "level": 1,
+      "attr": null,
+      "titleId": null,
+      "titleText": null,
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 0
+    },
+    {
+      "rank": 12,
+      "nickname": "甘瞳ももか",
+      "radioName": "黄金の流れ星卿",
+      "level": 1,
+      "attr": null,
+      "titleId": null,
+      "titleText": null,
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 0
     }
   ]
 }
