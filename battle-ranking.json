@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T08:24:37.212Z",
+  "updatedAt": "2026-11-23T08:29:49.811Z",
   "metric": "exp",
   "entries": [
     {
       "rank": 1,
-      "nickname": "kinou",
-      "radioName": "永遠の貴公子の星",
+      "nickname": "甘瞳ももか",
+      "radioName": "黄金の流れ星卿",
       "level": 2,
       "attr": null,
       "titleId": "champion",
@@ -14,12 +14,12 @@
       "frame": "gold",
       "crown": true,
       "pvpWin": 0,
-      "exp": 13
+      "exp": 14
     },
     {
       "rank": 2,
-      "nickname": "甘瞳ももか",
-      "radioName": "黄金の流れ星卿",
+      "nickname": "kinou",
+      "radioName": "永遠の貴公子の星",
       "level": 2,
       "attr": null,
       "titleId": "medalist",
@@ -118,7 +118,7 @@
       "frame": null,
       "crown": false,
       "pvpWin": 0,
-      "exp": 2
+      "exp": 3
     },
     {
       "rank": 10,
