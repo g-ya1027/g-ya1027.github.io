@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T08:00:10.352Z",
+  "updatedAt": "2026-11-23T08:01:12.798Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -214,14 +214,14 @@
       "signals": {
         "heartsLeft": 3,
         "spoonsLeft": 0,
-        "commentsLeft": 1,
+        "commentsLeft": 0,
         "visitsLeft": 2,
         "stayLeftSec": 1293
       },
       "signalsTotal": {
         "hearts": 7,
         "spoons": 0,
-        "comments": 39,
+        "comments": 40,
         "visits": 9,
         "stayMin": 128
       },
@@ -1238,6 +1238,106 @@
       },
       "chosen": "b",
       "lastAction": null
+    },
+    {
+      "tokenHash": "ea82025f91ced4fd6fa0958aa98bbc0b7afd5be32810a928fd86a5e233a8ec69",
+      "nickname": "ザッキー【メルヘン調査員】",
+      "radioName": "黄昏の魔法使い卿",
+      "status": "awaiting",
+      "attr": null,
+      "attrInitial": null,
+      "level": 1,
+      "rank": {
+        "name": "見習いDJ",
+        "nextName": "レギュラーDJ",
+        "progress": 0
+      },
+      "exp": 0,
+      "expNext": 10,
+      "params": {
+        "atk": 10,
+        "def": 5,
+        "attrValue": 10
+      },
+      "hp": {
+        "stored": 100,
+        "updatedAt": "2026-11-23T08:00:25.253Z"
+      },
+      "bp": 0,
+      "unspentAlloc": 0,
+      "record": {
+        "npcWin": 0,
+        "npcLose": 0,
+        "pvpWin": 0,
+        "pvpLose": 0,
+        "gkWin": 0,
+        "gkLose": 0,
+        "draw": 0
+      },
+      "honors": {
+        "rank": 13,
+        "titleId": null,
+        "titleText": null,
+        "frame": null,
+        "crown": false
+      },
+      "evolutionStage": 0,
+      "evolution": {
+        "stage": 0,
+        "nextKind": "evo1",
+        "eligible": false,
+        "queued": false,
+        "winsKind": "total",
+        "levelNow": 1,
+        "levelNeed": 50,
+        "winsNow": 0,
+        "winsNeed": 50
+      },
+      "illust": {
+        "evo1": null,
+        "evo2": null,
+        "gold": null,
+        "win": null,
+        "lose": null
+      },
+      "illustRequests": [],
+      "illustWeekDone": 0,
+      "skill": {
+        "learned": false,
+        "name": null,
+        "desc": null,
+        "price": 30
+      },
+      "gkLeft": {
+        "day": 1,
+        "week": 3
+      },
+      "training": {
+        "usedToday": 0,
+        "results": []
+      },
+      "signals": {
+        "heartsLeft": 9,
+        "spoonsLeft": 0,
+        "commentsLeft": 17,
+        "visitsLeft": 5,
+        "stayLeftSec": 1406
+      },
+      "signalsTotal": {
+        "hearts": 1,
+        "spoons": 0,
+        "comments": 3,
+        "visits": 0,
+        "stayMin": 6
+      },
+      "img": null,
+      "pair": {
+        "a": "chars/5U9IaHtAhJ9puN3_KTHP8w-a.png",
+        "b": "chars/5U9IaHtAhJ9puN3_KTHP8w-b.png",
+        "kind": "gender"
+      },
+      "chosen": null,
+      "lastAction": null
     }
   ],
   "ranking": [
@@ -1388,6 +1488,19 @@
       "rank": 12,
       "nickname": "𖥨⋆͛いなもっち",
       "radioName": "暁の流れ星隊長",
+      "level": 1,
+      "attr": null,
+      "titleId": null,
+      "titleText": null,
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 0
+    },
+    {
+      "rank": 13,
+      "nickname": "ザッキー【メルヘン調査員】",
+      "radioName": "黄昏の魔法使い卿",
       "level": 1,
       "attr": null,
       "titleId": null,
