@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T08:02:15.833Z",
+  "updatedAt": "2026-11-23T08:03:18.035Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -147,7 +147,7 @@
         "nextName": "レギュラーDJ",
         "progress": 0
       },
-      "exp": 5,
+      "exp": 6,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -214,16 +214,16 @@
       "signals": {
         "heartsLeft": 3,
         "spoonsLeft": 0,
-        "commentsLeft": 0,
+        "commentsLeft": 19,
         "visitsLeft": 2,
-        "stayLeftSec": 1293
+        "stayLeftSec": 993
       },
       "signalsTotal": {
         "hearts": 7,
         "spoons": 0,
-        "comments": 40,
+        "comments": 41,
         "visits": 9,
-        "stayMin": 128
+        "stayMin": 133
       },
       "img": "chars/Lnrdo_b3TeGyRY8fNTyEhA-a.png",
       "pair": {
@@ -521,14 +521,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 20,
         "visitsLeft": 3,
-        "stayLeftSec": 508
+        "stayLeftSec": 208
       },
       "signalsTotal": {
         "hearts": 13,
         "spoons": 4,
         "comments": 60,
         "visits": 5,
-        "stayMin": 141
+        "stayMin": 146
       },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-a.png",
       "pair": {
@@ -1019,16 +1019,16 @@
       "signals": {
         "heartsLeft": 9,
         "spoonsLeft": 0,
-        "commentsLeft": 9,
+        "commentsLeft": 7,
         "visitsLeft": 4,
-        "stayLeftSec": 420
+        "stayLeftSec": 120
       },
       "signalsTotal": {
         "hearts": 31,
         "spoons": 0,
-        "comments": 51,
+        "comments": 53,
         "visits": 4,
-        "stayMin": 83
+        "stayMin": 88
       },
       "img": null,
       "pair": {
@@ -1219,16 +1219,16 @@
       "signals": {
         "heartsLeft": 8,
         "spoonsLeft": 0,
-        "commentsLeft": 15,
+        "commentsLeft": 13,
         "visitsLeft": 4,
-        "stayLeftSec": 787
+        "stayLeftSec": 487
       },
       "signalsTotal": {
         "hearts": 52,
         "spoons": 0,
-        "comments": 85,
+        "comments": 87,
         "visits": 4,
-        "stayMin": 106
+        "stayMin": 111
       },
       "img": "chars/sBVUqfp0A17e3SwGNApjWQ-b.png",
       "pair": {
@@ -1319,16 +1319,16 @@
       "signals": {
         "heartsLeft": 9,
         "spoonsLeft": 0,
-        "commentsLeft": 16,
+        "commentsLeft": 14,
         "visitsLeft": 5,
-        "stayLeftSec": 1406
+        "stayLeftSec": 1110
       },
       "signalsTotal": {
         "hearts": 1,
         "spoons": 0,
-        "comments": 4,
-        "visits": 0,
-        "stayMin": 6
+        "comments": 6,
+        "visits": 3,
+        "stayMin": 11
       },
       "img": null,
       "pair": {
@@ -1404,7 +1404,7 @@
       "frame": null,
       "crown": false,
       "pvpWin": 0,
-      "exp": 5
+      "exp": 6
     },
     {
       "rank": 6,
