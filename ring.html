@@ -917,6 +917,26 @@ details[open ]>.fold-summary::after{content:'－'}
   // 画像の保存：スマホでは a[download] が効かず「保存しました」と出ても実際は保存されないため、
   // 共有シート（Web Share API）→ 通常ダウンロード → 長押し保存の案内、の順に段階式で処理する。
   function isTouchLike(){ return ('ontouchstart' in window) || /iPhone|iPad|iPod|Android/.test(navigator.userAgent||''); }
+  // game98: 端末・OSの自動判別（名鑑ページと共通仕様）。kind: 'pc' | 'ios' | 'android' | 'other-mobile'。
+  // iPadOS は UA が Macintosh に偽装されるため maxTouchPoints で拾う。アプリ内ブラウザは inApp で併せて返す。
+  function saveEnv98(){
+    var ua=String(navigator.userAgent||'');
+    var plat=String(navigator.platform||'');
+    var touch=0; try{ touch=Number(navigator.maxTouchPoints||0); }catch(e){}
+    var inApp=/FBAN|FB_IAB|FBAV|Line\/|Instagram|MicroMessenger|; wv\)/i.test(ua);
+    if(/iPhone|iPad|iPod/i.test(ua)) return {kind:'ios', inApp:inApp};
+    if(touch>1 && (/Macintosh/i.test(ua) || plat==='MacIntel')) return {kind:'ios', inApp:inApp};
+    if(/Android/i.test(ua)) return {kind:'android', inApp:inApp};
+    if(/Mobile|webOS|BlackBerry|IEMobile|Opera Mini|Opera Mobi/i.test(ua)) return {kind:'other-mobile', inApp:inApp};
+    return {kind:'pc', inApp:inApp};
+  }
+  // プレビュー画像の保存案内（環境別。PC に長押し文、iPhone に右クリック文は出さない）
+  function savePreviewMsg98(kind){
+    if(kind==='pc') return '画像を右クリックして「名前を付けて画像を保存」してね';
+    if(kind==='ios') return '画像を長押しして「写真に追加」（または「画像を保存」）してね';
+    if(kind==='android') return '画像を長押しして「画像をダウンロード」してね';
+    return '画像を長押しして「写真に保存」してね';
+  }
   function showSavePreview(url){
     var old=document.getElementById('savePreviewOverlay'); if(old) old.remove();
     var ov=document.createElement('div'); ov.id='savePreviewOverlay';
@@ -925,7 +945,7 @@ details[open ]>.fold-summary::after{content:'－'}
     img.style.cssText='max-width:92vw;max-height:70vh;border-radius:12px;background:#fff;';
     var msg=document.createElement('div');
     msg.style.cssText='color:#fff;font-size:15px;line-height:1.7;text-align:center;';
-    msg.textContent='画像を長押しして「写真に保存」してね';
+    msg.textContent=savePreviewMsg98(saveEnv98().kind);
     var btn=document.createElement('button'); btn.type='button'; btn.textContent='閉じる';
     btn.style.cssText='padding:10px 28px;border-radius:999px;border:none;font-size:15px;font-weight:700;background:#fff;color:#333;';
     btn.addEventListener('click',function(){ ov.remove(); });
@@ -937,8 +957,12 @@ details[open ]>.fold-summary::after{content:'－'}
     var a=document.createElement('a'); a.href=url; a.download=filename;
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(function(){ URL.revokeObjectURL(url); },4000);
-    if(isTouchLike()){ showSavePreview(url); toast('保存できないときは、表示された画像を長押しして保存してね'); }
-    else toast(doneMsg);
+    // game98: 保存後の案内を環境で出し分ける。PC=ダウンロード＋右クリックの予備案内、
+    // Android=直接ダウンロードが安定するので完了案内のみ、iOS等=プレビューで長押し保存の受け皿を用意。
+    var env=saveEnv98();
+    if(env.kind==='pc'){ toast(doneMsg+'。見つからない場合は、画像を右クリック→「名前を付けて画像を保存」でも保存できます'); }
+    else if(env.kind==='android' && !env.inApp){ toast('ダウンロードしました。通知やダウンロードフォルダを確認してね'); }
+    else { showSavePreview(url); toast('保存できないときは、表示された画像を長押しして保存してね'); }
   }
   function saveBlobImage(blob, filename, doneMsg){
     var file=null;
