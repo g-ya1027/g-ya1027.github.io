@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T08:48:07.750Z",
+  "updatedAt": "2026-11-23T08:49:27.753Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -147,7 +147,7 @@
         "nextName": "レギュラーDJ",
         "progress": 0
       },
-      "exp": 7,
+      "exp": 8,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -170,7 +170,7 @@
         "draw": 0
       },
       "honors": {
-        "rank": 5,
+        "rank": 4,
         "titleId": "top10",
         "titleText": "FMスプニ レギュラーDJ",
         "frame": null,
@@ -216,14 +216,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 13,
         "visitsLeft": 1,
-        "stayLeftSec": 266
+        "stayLeftSec": 1766
       },
       "signalsTotal": {
         "hearts": 9,
         "spoons": 0,
         "comments": 47,
         "visits": 10,
-        "stayMin": 175
+        "stayMin": 180
       },
       "img": "chars/Lnrdo_b3TeGyRY8fNTyEhA-a.png",
       "pair": {
@@ -270,7 +270,7 @@
         "draw": 0
       },
       "honors": {
-        "rank": 4,
+        "rank": 5,
         "titleId": "top10",
         "titleText": "FMスプニ レギュラーDJ",
         "frame": null,
@@ -521,14 +521,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 17,
         "visitsLeft": 3,
-        "stayLeftSec": 1281
+        "stayLeftSec": 981
       },
       "signalsTotal": {
         "hearts": 15,
         "spoons": 4,
         "comments": 63,
         "visits": 5,
-        "stayMin": 188
+        "stayMin": 193
       },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-a.png",
       "pair": {
@@ -621,14 +621,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 4,
         "visitsLeft": 3,
-        "stayLeftSec": 469
+        "stayLeftSec": 169
       },
       "signalsTotal": {
         "hearts": 9,
         "spoons": 0,
         "comments": 16,
         "visits": 6,
-        "stayMin": 112
+        "stayMin": 117
       },
       "img": "chars/hUooGCp0KaQn-5EswSh-3A-a.png",
       "pair": {
@@ -821,14 +821,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 10,
         "visitsLeft": 3,
-        "stayLeftSec": 738
+        "stayLeftSec": 438
       },
       "signalsTotal": {
         "hearts": 6,
         "spoons": 0,
         "comments": 10,
         "visits": 5,
-        "stayMin": 107
+        "stayMin": 112
       },
       "img": null,
       "pair": {
@@ -1021,14 +1021,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 20,
         "visitsLeft": 4,
-        "stayLeftSec": 1193
+        "stayLeftSec": 893
       },
       "signalsTotal": {
         "hearts": 35,
         "spoons": 0,
         "comments": 60,
         "visits": 4,
-        "stayMin": 130
+        "stayMin": 135
       },
       "img": null,
       "pair": {
@@ -1152,7 +1152,7 @@
         "nextName": "レギュラーDJ",
         "progress": 0.1111111111111111
       },
-      "exp": 14,
+      "exp": 15,
       "expNext": 30,
       "params": {
         "atk": 10,
@@ -1224,16 +1224,16 @@
       "signals": {
         "heartsLeft": 4,
         "spoonsLeft": 0,
-        "commentsLeft": 0,
+        "commentsLeft": 20,
         "visitsLeft": 4,
-        "stayLeftSec": 1560
+        "stayLeftSec": 1260
       },
       "signalsTotal": {
         "hearts": 56,
         "spoons": 0,
         "comments": 120,
         "visits": 4,
-        "stayMin": 154
+        "stayMin": 159
       },
       "img": "chars/sBVUqfp0A17e3SwGNApjWQ-b.png",
       "pair": {
@@ -1326,14 +1326,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 10,
         "visitsLeft": 4,
-        "stayLeftSec": 383
+        "stayLeftSec": 83
       },
       "signalsTotal": {
         "hearts": 1,
         "spoons": 0,
         "comments": 10,
         "visits": 4,
-        "stayMin": 53
+        "stayMin": 58
       },
       "img": null,
       "pair": {
@@ -1357,7 +1357,7 @@
       "frame": "gold",
       "crown": true,
       "pvpWin": 0,
-      "exp": 14
+      "exp": 15
     },
     {
       "rank": 2,
@@ -1387,8 +1387,8 @@
     },
     {
       "rank": 4,
-      "nickname": "しょこ",
-      "radioName": "黄昏の番人総長",
+      "nickname": "しゅーくりーむ  ",
+      "radioName": "深夜の貴公子名人",
       "level": 1,
       "attr": null,
       "titleId": "top10",
@@ -1396,12 +1396,12 @@
       "frame": null,
       "crown": false,
       "pvpWin": 0,
-      "exp": 7
+      "exp": 8
     },
     {
       "rank": 5,
-      "nickname": "しゅーくりーむ  ",
-      "radioName": "深夜の貴公子名人",
+      "nickname": "しょこ",
+      "radioName": "黄昏の番人総長",
       "level": 1,
       "attr": null,
       "titleId": "top10",
