@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T07:21:30.173Z",
+  "updatedAt": "2026-11-23T07:25:19.188Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -51,7 +51,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T07:21:27.856Z"
+        "updatedAt": "2026-11-23T07:22:36.954Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -156,7 +156,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T07:21:27.856Z"
+        "updatedAt": "2026-11-23T07:22:36.954Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -256,7 +256,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T07:21:27.856Z"
+        "updatedAt": "2026-11-23T07:22:36.954Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -356,7 +356,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T07:21:27.856Z"
+        "updatedAt": "2026-11-23T07:22:36.954Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -456,7 +456,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T07:21:27.856Z"
+        "updatedAt": "2026-11-23T07:22:36.954Z"
       },
       "bp": 0,
       "unspentAlloc": 1,
@@ -517,16 +517,16 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 9,
+        "heartsLeft": 8,
         "spoonsLeft": 0,
-        "commentsLeft": 10,
+        "commentsLeft": 9,
         "visitsLeft": 4,
         "stayLeftSec": 710
       },
       "signalsTotal": {
-        "hearts": 11,
+        "hearts": 12,
         "spoons": 4,
-        "comments": 50,
+        "comments": 51,
         "visits": 4,
         "stayMin": 108
       },
@@ -561,7 +561,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T07:21:27.856Z"
+        "updatedAt": "2026-11-23T07:22:36.954Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -661,7 +661,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T07:21:27.856Z"
+        "updatedAt": "2026-11-23T07:22:36.954Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -761,7 +761,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T07:21:27.856Z"
+        "updatedAt": "2026-11-23T07:22:36.954Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -861,7 +861,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T07:21:27.856Z"
+        "updatedAt": "2026-11-23T07:22:36.954Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -961,7 +961,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T07:21:27.856Z"
+        "updatedAt": "2026-11-23T07:22:36.954Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -1061,7 +1061,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T07:21:27.856Z"
+        "updatedAt": "2026-11-23T07:22:36.954Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -1161,7 +1161,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T07:21:27.856Z"
+        "updatedAt": "2026-11-23T07:22:36.954Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
