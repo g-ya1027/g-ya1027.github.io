@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T07:29:28.567Z",
+  "updatedAt": "2026-11-23T07:30:30.862Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -214,24 +214,24 @@
       "signals": {
         "heartsLeft": 4,
         "spoonsLeft": 0,
-        "commentsLeft": 11,
+        "commentsLeft": 9,
         "visitsLeft": 2,
         "stayLeftSec": 1274
       },
       "signalsTotal": {
         "hearts": 6,
         "spoons": 0,
-        "comments": 29,
+        "comments": 31,
         "visits": 9,
         "stayMin": 98
       },
-      "img": null,
+      "img": "chars/Lnrdo_b3TeGyRY8fNTyEhA-a.png",
       "pair": {
         "a": "chars/Lnrdo_b3TeGyRY8fNTyEhA-a.png",
         "b": "chars/Lnrdo_b3TeGyRY8fNTyEhA-b.png",
         "kind": "gender"
       },
-      "chosen": null,
+      "chosen": "a",
       "lastAction": null
     },
     {
@@ -519,14 +519,14 @@
       "signals": {
         "heartsLeft": 8,
         "spoonsLeft": 0,
-        "commentsLeft": 5,
+        "commentsLeft": 3,
         "visitsLeft": 3,
         "stayLeftSec": 489
       },
       "signalsTotal": {
         "hearts": 12,
         "spoons": 4,
-        "comments": 55,
+        "comments": 57,
         "visits": 5,
         "stayMin": 111
       },
