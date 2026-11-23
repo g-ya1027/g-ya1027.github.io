@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T08:03:18.038Z",
+  "updatedAt": "2026-11-23T08:07:28.088Z",
   "metric": "exp",
   "entries": [
     {
@@ -14,7 +14,7 @@
       "frame": "gold",
       "crown": true,
       "pvpWin": 0,
-      "exp": 12
+      "exp": 13
     },
     {
       "rank": 2,
@@ -31,8 +31,8 @@
     },
     {
       "rank": 3,
-      "nickname": "しょこ",
-      "radioName": "黄昏の番人総長",
+      "nickname": "月野詩織.",
+      "radioName": "深夜の流れ星番長",
       "level": 1,
       "attr": null,
       "titleId": "medalist",
@@ -40,12 +40,12 @@
       "frame": "bronze",
       "crown": false,
       "pvpWin": 0,
-      "exp": 7
+      "exp": 8
     },
     {
       "rank": 4,
-      "nickname": "月野詩織.",
-      "radioName": "深夜の流れ星番長",
+      "nickname": "しょこ",
+      "radioName": "黄昏の番人総長",
       "level": 1,
       "attr": null,
       "titleId": "top10",
