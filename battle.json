@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T08:12:00.527Z",
+  "updatedAt": "2026-11-23T08:13:02.370Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -216,14 +216,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 16,
         "visitsLeft": 2,
-        "stayLeftSec": 693
+        "stayLeftSec": 393
       },
       "signalsTotal": {
         "hearts": 8,
         "spoons": 0,
         "comments": 44,
         "visits": 9,
-        "stayMin": 138
+        "stayMin": 143
       },
       "img": "chars/Lnrdo_b3TeGyRY8fNTyEhA-a.png",
       "pair": {
@@ -521,14 +521,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 20,
         "visitsLeft": 3,
-        "stayLeftSec": 1708
+        "stayLeftSec": 1408
       },
       "signalsTotal": {
         "hearts": 13,
         "spoons": 4,
         "comments": 60,
         "visits": 5,
-        "stayMin": 151
+        "stayMin": 156
       },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-a.png",
       "pair": {
@@ -1021,14 +1021,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 4,
         "visitsLeft": 4,
-        "stayLeftSec": 1620
+        "stayLeftSec": 1320
       },
       "signalsTotal": {
         "hearts": 32,
         "spoons": 0,
         "comments": 56,
         "visits": 4,
-        "stayMin": 93
+        "stayMin": 98
       },
       "img": null,
       "pair": {
@@ -1152,7 +1152,7 @@
         "nextName": "レギュラーDJ",
         "progress": 0.1111111111111111
       },
-      "exp": 12,
+      "exp": 13,
       "expNext": 30,
       "params": {
         "atk": 10,
@@ -1219,16 +1219,16 @@
       "signals": {
         "heartsLeft": 7,
         "spoonsLeft": 0,
-        "commentsLeft": 10,
+        "commentsLeft": 9,
         "visitsLeft": 4,
-        "stayLeftSec": 187
+        "stayLeftSec": 1687
       },
       "signalsTotal": {
         "hearts": 53,
         "spoons": 0,
-        "comments": 90,
+        "comments": 91,
         "visits": 4,
-        "stayMin": 116
+        "stayMin": 121
       },
       "img": "chars/sBVUqfp0A17e3SwGNApjWQ-b.png",
       "pair": {
@@ -1321,14 +1321,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 11,
         "visitsLeft": 5,
-        "stayLeftSec": 810
+        "stayLeftSec": 510
       },
       "signalsTotal": {
         "hearts": 1,
         "spoons": 0,
         "comments": 9,
         "visits": 3,
-        "stayMin": 16
+        "stayMin": 21
       },
       "img": null,
       "pair": {
@@ -1365,7 +1365,7 @@
       "frame": "silver",
       "crown": false,
       "pvpWin": 0,
-      "exp": 12
+      "exp": 13
     },
     {
       "rank": 3,
