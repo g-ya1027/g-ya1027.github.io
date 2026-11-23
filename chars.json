@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T07:42:54.546Z",
+  "updatedAt": "2026-11-23T07:47:21.945Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
@@ -14,7 +14,17 @@
       },
       "chosen": null,
       "reroll": "ok",
-      "rerollNextAt": null
+      "rerollNextAt": null,
+      "battle": {
+        "level": 1,
+        "rankName": "見習いDJ",
+        "rank": 11,
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "attr": null,
+        "stage": 0
+      }
     },
     {
       "token": "266dc71e8ae0ca46",
@@ -28,7 +38,17 @@
       },
       "chosen": null,
       "reroll": "ok",
-      "rerollNextAt": null
+      "rerollNextAt": null,
+      "battle": {
+        "level": 1,
+        "rankName": "見習いDJ",
+        "rank": 10,
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "attr": null,
+        "stage": 0
+      }
     },
     {
       "token": "25d95e678229d98b",
@@ -42,7 +62,17 @@
       },
       "chosen": "a",
       "reroll": "pending",
-      "rerollNextAt": null
+      "rerollNextAt": null,
+      "battle": {
+        "level": 1,
+        "rankName": "見習いDJ",
+        "rank": 5,
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "attr": null,
+        "stage": 0
+      }
     },
     {
       "token": "9c9a8171a3df9a8a",
@@ -56,7 +86,17 @@
       },
       "chosen": "b",
       "reroll": "cooldown",
-      "rerollNextAt": "2026-11-29T10:07:50.405Z"
+      "rerollNextAt": "2026-11-29T10:07:50.405Z",
+      "battle": {
+        "level": 1,
+        "rankName": "見習いDJ",
+        "rank": 3,
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "attr": null,
+        "stage": 0
+      }
     },
     {
       "token": "346ff9043e49151e",
@@ -70,7 +110,17 @@
       },
       "chosen": "a",
       "reroll": "ok",
-      "rerollNextAt": null
+      "rerollNextAt": null,
+      "battle": {
+        "level": 2,
+        "rankName": "見習いDJ",
+        "rank": 1,
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "attr": null,
+        "stage": 0
+      }
     },
     {
       "token": "d64b2d75ebd6e20f",
@@ -84,7 +134,17 @@
       },
       "chosen": "a",
       "reroll": "ok",
-      "rerollNextAt": null
+      "rerollNextAt": null,
+      "battle": {
+        "level": 1,
+        "rankName": "見習いDJ",
+        "rank": 8,
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "attr": null,
+        "stage": 0
+      }
     },
     {
       "token": "457cd0f8037d36ee",
@@ -98,7 +158,17 @@
       },
       "chosen": "a",
       "reroll": "ok",
-      "rerollNextAt": null
+      "rerollNextAt": null,
+      "battle": {
+        "level": 1,
+        "rankName": "見習いDJ",
+        "rank": 6,
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "attr": null,
+        "stage": 0
+      }
     },
     {
       "token": "9b076a7fc2c9dfbc",
@@ -112,7 +182,17 @@
       },
       "chosen": null,
       "reroll": "ok",
-      "rerollNextAt": null
+      "rerollNextAt": null,
+      "battle": {
+        "level": 1,
+        "rankName": "見習いDJ",
+        "rank": 9,
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "attr": null,
+        "stage": 0
+      }
     },
     {
       "token": "024d4a2debbab7be",
@@ -126,7 +206,17 @@
       },
       "chosen": null,
       "reroll": "ok",
-      "rerollNextAt": null
+      "rerollNextAt": null,
+      "battle": {
+        "level": 1,
+        "rankName": "見習いDJ",
+        "rank": 12,
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "attr": null,
+        "stage": 0
+      }
     },
     {
       "token": "cf225da5b96f2571",
@@ -140,7 +230,17 @@
       },
       "chosen": null,
       "reroll": "ok",
-      "rerollNextAt": null
+      "rerollNextAt": null,
+      "battle": {
+        "level": 1,
+        "rankName": "見習いDJ",
+        "rank": 4,
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "attr": null,
+        "stage": 0
+      }
     },
     {
       "token": "f1295416008796dc",
@@ -154,7 +254,17 @@
       },
       "chosen": null,
       "reroll": "ok",
-      "rerollNextAt": null
+      "rerollNextAt": null,
+      "battle": {
+        "level": 1,
+        "rankName": "見習いDJ",
+        "rank": 7,
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "attr": null,
+        "stage": 0
+      }
     },
     {
       "token": "48b8d51ae8375236",
@@ -168,7 +278,17 @@
       },
       "chosen": "b",
       "reroll": "ok",
-      "rerollNextAt": null
+      "rerollNextAt": null,
+      "battle": {
+        "level": 2,
+        "rankName": "見習いDJ",
+        "rank": 2,
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "attr": null,
+        "stage": 0
+      }
     }
   ]
 }
