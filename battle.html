@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- spoon-battle-page v24 -->
+<!-- spoon-battle-page v25 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -204,6 +204,12 @@
   @keyframes encInL87 { from { transform: translate(-170%, -50%); opacity: 0; } 55% { opacity: 1; } to { transform: translate(0, -50%); opacity: 1; } }
   @keyframes encInR87 { from { transform: translate(170%, -50%); opacity: 0; } 55% { opacity: 1; } to { transform: translate(0, -50%); opacity: 1; } }
   @keyframes encVsIn87 { from { transform: translate(-50%, -50%) scale(.3); opacity: 0; } to { transform: translate(-50%, -50%) scale(1); opacity: 1; } }
+  /* ---- game93: お試しプレイのMOB選択グリッド ---- */
+  .trialGrid93 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 12px; }
+  .trialCard93 { display: block; width: 100%; padding: 10px 8px 12px; border-radius: 14px; border: 2px solid #3d4276; background: linear-gradient(180deg, rgba(31,36,86,.94), rgba(15,18,52,.96)); color: #eef2ff; cursor: pointer; text-align: center; font-family: inherit; box-sizing: border-box; }
+  .trialCard93 img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 10px; display: block; }
+  .trialName93 { display: block; margin-top: 8px; font-size: 14px; font-weight: 900; line-height: 1.35; }
+  .trialAttr93 { display: block; margin-top: 3px; font-size: 12px; font-weight: 700; color: #b9c2ff; white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -221,6 +227,7 @@
   <div class="titleNav">
     <button type="button" class="titleNavBtn" id="titleRosterBtn">📖 名鑑</button>
     <button type="button" class="titleNavBtn" id="titleRankingBtn">🏆 ランキング</button>
+    <button type="button" class="titleNavBtn" id="titleTrialBtn">🎮 お試しプレイ</button>
   </div>
   <div class="note" style="margin-top:12px;">音が出るページです（音量・ミュートは入った先のバーでも調整できます）</div>
   <div class="fmDial"><div class="dialFace"><div class="dialArc"></div><div class="dialNeedle"></div></div><div class="dialTicks">76 ・ 80 ・ 84 ・ 88 ・ 90.1 ・ 92 ・ 96</div><div class="dialLabel">FM 90.1 MHz ・ CHANNEL SELECT</div></div>
@@ -254,6 +261,7 @@
   <div id="viewQueue" class="hidden"></div>
   <div id="viewBattle" class="hidden"></div>
   <div id="viewTraining" class="hidden"></div>
+  <div id="viewTrial" class="hidden"></div>
   <div class="foot" id="footNote">読み込み中…</div>
 </div>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
@@ -270,6 +278,10 @@
   var TEST_HASH = '__dj_test__';
   var TEST_FIXTURE = {"tokenHash":"__dj_test__","nickname":"テストDJ","radioName":"深夜のテスト放送","status":"active","attr":"雷","attrInitial":"雷","level":24,"rank":{"name":"レギュラーDJ","nextName":"人気DJ","progress":0.9333333333333333},"exp":1080,"expNext":1100,"params":{"atk":28,"def":22,"attrValue":36},"hp":{"stored":100,"updatedAt":null},"bp":45,"unspentAlloc":3,"record":{"npcWin":5,"npcLose":2,"pvpWin":1,"pvpLose":1,"gkWin":0,"gkLose":0,"draw":1},"honors":{"rank":null,"titleId":null,"titleText":null,"frame":null,"crown":false},"evolutionStage":0,"evolution":{"stage":0,"nextKind":"evo1","winsKind":"total","levelNow":24,"levelNeed":50,"winsNow":6,"winsNeed":50,"eligible":false,"queued":false},"illust":{"evo1":null,"evo2":null,"gold":null,"win":null,"lose":null},"illustRequests":[],"illustWeekDone":0,"skill":{"learned":false,"name":"感電","desc":"通常攻撃にも相性補正の半分が乗る（有利 ×1.15／不利 ×0.85）","price":30},"gkLeft":{"day":1,"week":3},"training":null,"signals":{"heartsLeft":3,"spoonsLeft":0,"commentsLeft":7,"visitsLeft":2,"stayLeftSec":900},"signalsTotal":{"hearts":1248,"spoons":312,"comments":586,"visits":104,"stayMin":27},"img":"npc/npc-m1.webp","pair":{"a":"npc/npc-m1.webp","b":"npc/npc-f1.webp"},"chosen":"a","lastAction":null};
   // __TEST81_END__
+  // __TRIAL93_BEGIN__ お試しプレイ（game93）: ?trial=1 のときだけ有効。DJ用テストプレイとは
+  // 独立の入口で、?test=1 と同時指定された場合は test を優先し、お試しは無効化する
+  var TRIAL_MODE = !TEST_MODE && params.get('trial') === '1';
+  // __TRIAL93_END__
   var myHash = null;
   var data = null;
   var view = 'roster';
@@ -321,7 +333,7 @@
   // __WIN_EXP81_END__
   // __NPC82_BEGIN__ NPCモブ絵（game82）: サーバ側 battle-pages.js の NPC_MOBS / NPC_GK_BOSSES と同じ表。
   // あくまで表示専用で、対戦シミュレーション・再演検証には影響しない。選んだ相手は対戦中ずっと固定する
-  var NPC_MOBS = [{"id":"m1","name":"新人DJタケル","img":"npc/npc-m1.webp"},{"id":"m2","name":"サラリーマンDJケンジ","img":"npc/npc-m2.webp"},{"id":"m3","name":"覆面DJミスター・ミッドナイト","img":"npc/npc-m3.webp"},{"id":"m4","name":"ベテラン源さん","img":"npc/npc-m4.webp"},{"id":"f1","name":"女子大生DJミク","img":"npc/npc-f1.webp"},{"id":"f2","name":"OLのアヤ","img":"npc/npc-f2.webp"},{"id":"f3","name":"ゴスロリのユラ","img":"npc/npc-f3.webp"},{"id":"f4","name":"癒し系のハナ","img":"npc/npc-f4.webp"}];
+  var NPC_MOBS = [{"id":"m1","name":"新人DJタケル","img":"npc/npc-m1.webp","attr":"火"},{"id":"m2","name":"サラリーマンDJケンジ","img":"npc/npc-m2.webp","attr":"水"},{"id":"m3","name":"覆面DJミスター・ミッドナイト","img":"npc/npc-m3.webp","attr":"闇"},{"id":"m4","name":"ベテラン源さん","img":"npc/npc-m4.webp","attr":"土"},{"id":"f1","name":"女子大生DJミク","img":"npc/npc-f1.webp","attr":"雷"},{"id":"f2","name":"OLのアヤ","img":"npc/npc-f2.webp","attr":"風"},{"id":"f3","name":"ゴスロリのユラ","img":"npc/npc-f3.webp","attr":"氷"},{"id":"f4","name":"癒し系のハナ","img":"npc/npc-f4.webp","attr":"光"}];
   var NPC_GK_BOSSES = {"10":{"name":"Dr.レゾナンス","img":"npc/npc-gk1.webp"},"15":{"name":"クイーン・ノクターン","img":"npc/npc-gk2.webp"},"20":{"name":"マスター・ウェーブ","img":"npc/npc-gk3.webp"}};
   function pickMob82() { return NPC_MOBS[Math.floor(Math.random() * NPC_MOBS.length)]; }
   function gkBoss82(tier) { return NPC_GK_BOSSES[String(tier)] || null; }
@@ -1018,8 +1030,9 @@
     el('viewQueue').className = view === 'queue' ? '' : 'hidden';
     el('viewBattle').className = view === 'battle' ? '' : 'hidden';
     el('viewTraining').className = view === 'training' ? '' : 'hidden';
+    el('viewTrial').className = view === 'trial' ? '' : 'hidden';
     renderTitleSlot();
-    renderRoster(); renderMine(); renderRanking(); renderLobby(); renderGk(); renderQueue(); renderTraining();
+    renderRoster(); renderMine(); renderRanking(); renderLobby(); renderGk(); renderQueue(); renderTraining(); renderTrial93();
     if (data && data.updatedAt) el('footNote').textContent = '最終更新: ' + new Date(data.updatedAt).toLocaleString('ja-JP') + (data.live ? '' : '（bot停止中は情報が止まっています）');
   }
   function loadData(cb) {
@@ -1110,6 +1123,8 @@
     unlockAudio();
     playSlot('se.uiDecide');
     el('startOverlay').className = 'hidden';
+    // game93: ?trial=1 のときは「タップしてはじめる」でそのままお試しプレイへ進む
+    if (TRIAL_MODE) { showTrialSelect93(); return; }
     if (token || TEST_MODE) switchView('mine');
   });
   // タイトル画面の導線（game82）: 名鑑・ランキングボタンとミュート切替（既存の音コントロールと連動）
@@ -1124,6 +1139,13 @@
     playSlot('se.uiTap');
     el('startOverlay').className = 'hidden';
     switchView('ranking');
+  });
+  // お試しプレイ（game93）: トークンの有無にかかわらず誰でも入れる（記録なしの模擬戦）
+  el('titleTrialBtn').addEventListener('click', function () {
+    unlockAudio();
+    playSlot('se.uiDecide');
+    el('startOverlay').className = 'hidden';
+    showTrialSelect93();
   });
   el('titleMuteBtn').addEventListener('click', function () {
     unlockAudio();
@@ -1165,6 +1187,9 @@
     myHash = TEST_HASH;
     var testBadge81 = el('testBadge');
     if (testBadge81) testBadge81.className = 'testBadge';
+    // game93: テストプレイではお試しボタンを出さない（入口を混ぜない）
+    var trialBtn93 = el('titleTrialBtn');
+    if (trialBtn93) trialBtn93.style.display = 'none';
     renderAll();
   }
   // ===== 対戦（S5 ロビー／S6 エンカウント／S7 対戦／S8 結果） =====
@@ -2038,6 +2063,93 @@
     }
     return '<div class="panel logPanel"><div class="ptitle">バトルログ</div>' + lines + '</div>';
   }
+  // __TRIAL93_IMPL_BEGIN__ お試しプレイ（game93）: リスナー向け先行披露用。
+  // DJ用テストプレイ（?test=1）とは独立。トークンが無くてもタイトル画面のボタン／?trial=1 から入れる。
+  // 自分のキャラの代わりに MOBキャラ8体から1体を選んで、訓練と同じページ内シミュレーションで模擬戦する。
+  // bot へは一切送らない（train.trial で訓練ログ提出も止める）。GK は提供せず、相手プールは
+  // NPC_MOBS から自分を除いた残りだけなので、隠しキャラ・GK大御所は構造的に出現しない。
+  var TRIAL_LEVEL93 = 10;
+  var trialMob93 = null;
+  // 自分の能力値: sim が NPC 相手に使う標準ビルドと同式（基礎 atk10/def5/attrValue10 に
+  // レベル−1 を均等配分、端数は攻撃→防御→属性値）。Lv10 → atk13/def8/attrValue13。
+  // 相手も npcLevel = TRIAL_LEVEL93 で同式のビルドになるため互角に戦える
+  function trialBuild93(level) {
+    var total = level - 1;
+    var share = Math.floor(total / 3);
+    var rest = total - share * 3;
+    var add = { atk: share, def: share, attrValue: share };
+    if (rest > 0) { add.atk += 1; rest -= 1; }
+    if (rest > 0) { add.def += 1; rest -= 1; }
+    if (rest > 0) { add.attrValue += 1; rest -= 1; }
+    return { atk: 10 + add.atk, def: 5 + add.def, attrValue: 10 + add.attrValue };
+  }
+  // 相手は選んだキャラ以外の MOB からランダム（隠しキャラ・GK大御所はプールに存在しない）
+  function trialFoeMob93(self) {
+    var pool = NPC_MOBS.filter(function (m) { return m.id !== self.id; });
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+  function showTrialSelect93() { switchView('trial'); }
+  function backToTitle93() {
+    train = null;
+    if (battleBgm) { battleBgm.pause(); battleBgm = null; }
+    battleBgmSlot = null;
+    stopResultBgm90();
+    startTitleBgm();
+    switchView('roster');
+    el('startOverlay').className = '';
+  }
+  function renderTrial93() {
+    if (view !== 'trial') return;
+    var box = el('viewTrial');
+    if (!box) return;
+    var html = '<div class="panel"><div class="ptitle">🎮 お試しプレイ</div>'
+      + '<div class="note">自分のキャラの代わりに、MOBキャラを1体選んで模擬戦ができます（記録は残りません）。本番では、配信に遊びに来るとラジオネームと自分のキャラがもらえるよ。</div>'
+      + '<div class="trialGrid93">';
+    for (var i = 0; i < NPC_MOBS.length; i++) {
+      var m = NPC_MOBS[i];
+      html += '<button type="button" class="trialCard93" data-trialmob="' + esc(m.id) + '">'
+        + '<img src="' + esc(m.img) + '" alt="">'
+        + '<span class="trialName93">' + esc(m.name) + '</span>'
+        + '<span class="trialAttr93">' + attrIcon82(m.attr) + ' ' + esc(m.attr) + '属性・Lv' + TRIAL_LEVEL93 + '</span>'
+        + '</button>';
+    }
+    html += '</div>'
+      + '<div style="margin-top:12px;"><button class="btn small" id="trialBackTitleBtn" type="button">タイトルへもどる</button></div></div>';
+    box.innerHTML = html;
+    var cards = box.querySelectorAll('[data-trialmob]');
+    for (var j = 0; j < cards.length; j++) cards[j].addEventListener('click', function () {
+      var id = this.getAttribute('data-trialmob');
+      var mob = null;
+      for (var k = 0; k < NPC_MOBS.length; k++) if (NPC_MOBS[k].id === id) mob = NPC_MOBS[k];
+      if (mob) { playSlot('se.uiDecide'); startTrialBattle93(mob); }
+    });
+    var back93 = el('trialBackTitleBtn');
+    if (back93) back93.addEventListener('click', function () { playSlot('se.uiCancel'); backToTitle93(); });
+  }
+  function startTrialBattle93(mob) {
+    if (!mob || !simulateTrainingBattle) return;
+    trialMob93 = mob;
+    var foeMob = trialFoeMob93(mob);
+    var build = trialBuild93(TRIAL_LEVEL93);
+    var seed = (Date.now() % 2147483647) ^ Math.floor(Math.random() * 2147483647);
+    var snapshot = { nickname: mob.name, attr: mob.attr, level: TRIAL_LEVEL93, atk: build.atk, def: build.def, attrValue: build.attrValue, skill: null };
+    train = {
+      seed: seed, snapshot: snapshot, choices: [], state: null, submitted: false, resultPlayed: false, day: jstDayKey55(),
+      trial: true, npcLevel: TRIAL_LEVEL93,
+      // 相手の属性だけを選んだMOBの割り当てに固定する（強さは sim の標準ビルドのまま。
+      // 隠しキャラ用の底上げ指定は渡さない）
+      npcBoost: { attr: foeMob.attr },
+      foeFace: { name: foeMob.name, img: foeMob.img },
+      myFace: { name: mob.name, img: mob.img },
+    };
+    train.state = simulateTrainingBattle({ seed: seed, snapshot: snapshot, choices: [], npcLevel: train.npcLevel, npcBoost: train.npcBoost });
+    if (!train.state || train.state.error) { train = null; alert('お試し対戦を開始できませんでした。'); return; }
+    initTrainAnim86();
+    playBattleBgm('bgm.battle');
+    switchView('training');
+    showEncounter87({ name: mob.name, img: mob.img }, train.foeFace);
+  }
+  // __TRIAL93_IMPL_END__
   // ===== 訓練モード（game55・§4.4）: 配信外でも遊べる NPC 戦 =====
   // 対戦の進行は bot と同じ再演シミュレータ（シード＋選択列で完全再現できる）でこのページ内だけで完結させる。
   // 実キャラの HP は使わず、満タンのコピーで戦う。終了後は再演ログを battleOps へ預け、
@@ -2233,7 +2345,7 @@
   }
   function submitTrainingLog() {
     if (!train || train.submitted || !train.state || !train.state.finished) return;
-    if (train.test) { train.submitted = true; return; } // game81: テスト対戦のログは提出しない
+    if (train.test || train.trial) { train.submitted = true; return; } // game81: テスト対戦のログは提出しない。game93: お試しプレイも同様に提出しない
     train.submitted = true;
     var st = train.state;
     var log = {
@@ -2259,7 +2371,8 @@
     // game86: 逐次再生中はコマンドを止め、結果表示を保留する。再描画で止まった再生は遅延キックで再開する
     var animating86 = !!(train.animBusy || (train.animQ && train.animQ.length));
     if (!train.animBusy && train.animQ && train.animQ.length) setTimeout(function () { kickTrainAnim86(); }, 0);
-    var headLabel = train.test
+    var headLabel = train.trial ? '🎮 お試しプレイ中（記録されません）'
+      : train.test
       ? (train.hidden ? '🌙 隠しキャラ戦（GKテスト・記録なし）' : train.gk ? '👑 GKテスト中（記録なし）' : train.pvp ? '🤝 PvPテスト中（記録なし）' : '🧪 テスト対戦中（記録なし）')
       : '🏃 訓練中（体力は減りません）';
     // game82: 相手の顔と名前（train.foeFace）。訓練・テストとも表示専用で、sim の結果には影響しない
@@ -2272,7 +2385,7 @@
     var head = '<div class="panel">' + battleTop82(headLabel, turnRing82(st.turnNo, 'ターン', st.turnNo / 20))
       + sideCard82({ img: tFace82 ? tFace82.img : null, name: tFace82 ? tFace82.name : foe.nickname, attr: foe.attr, level: foe.level, hp: tDisp86 ? tDisp86[1] : foe.hp, hpMax: foe.hpStart || 100, isFoe: true, charging: foe.charging, skill: null })
       + vsZone82(tDmg82, (tDisp86 ? tDisp86[0] : me.hp) * 100 / (me.hpStart || 100), (tDisp86 ? tDisp86[1] : foe.hp) * 100 / (foe.hpStart || 100))
-      + sideCard82({ img: tMeP82 ? mainImg(tMeP82) : null, name: me.nickname, attr: me.attr, level: me.level, hp: tDisp86 ? tDisp86[0] : me.hp, hpMax: me.hpStart || 100, isFoe: false, chargeBuff: me.chargeBuff, skill: me.skill });
+      + sideCard82({ img: train.myFace ? train.myFace.img : (tMeP82 ? mainImg(tMeP82) : null), name: me.nickname, attr: me.attr, level: me.level, hp: tDisp86 ? tDisp86[0] : me.hp, hpMax: me.hpStart || 100, isFoe: false, chargeBuff: me.chargeBuff, skill: me.skill });
     if (st.finished && animating86) {
       // game86: 最後の攻撃モーションが終わるまで結果（勝敗BGM・結果画面）は出さない
       box.innerHTML = head + '<div class="note" style="margin-top:12px;">対戦が終わりました…</div></div>' + trainHistHtml();
@@ -2287,6 +2400,19 @@
         else playResultBgm90('lose');
       }
       var title = st.winner === null ? '引き分け' : (st.winner === 0 ? '🎉 勝ち！' : '負け…');
+      // game93: お試しプレイの結果画面（記録なしの案内＋お試し専用ボタン）
+      if (train.trial) {
+        box.innerHTML = head + '<div class="ptitle" style="margin-top:12px;">' + title + '</div>'
+          + '<div class="note">🎮 お試しプレイの結果です。本番では自分のキャラで戦えます。配信に遊びに来ると、ラジオネームと自分のキャラがもらえるよ。</div>'
+          + '<div style="margin-top:10px;">'
+          + '<button class="btn" id="trialAgainBtn" type="button">もう一度お試しする</button> '
+          + '<button class="btn small" id="trialReselectBtn" type="button">キャラを選び直す</button> '
+          + '<button class="btn small" id="trialTitleBtn" type="button">タイトルへもどる</button></div></div>' + trainHistHtml();
+        el('trialAgainBtn').addEventListener('click', function () { if (trialMob93) startTrialBattle93(trialMob93); });
+        el('trialReselectBtn').addEventListener('click', function () { train = null; showTrialSelect93(); });
+        el('trialTitleBtn').addEventListener('click', function () { backToTitle93(); });
+        return;
+      }
       var left = trainingLeft();
       // テスト対戦のリザルト注記（game81）: 勝利EXPは本番の計算式（winExpFor／GK固定表）で
       // 参考表示するだけで、精算はしない
@@ -2330,19 +2456,22 @@
     var cd = me.attrCooldown || 0;
     var controls = '<div class="ptitle" style="margin-top:12px;">あなたの手番</div>'
       + cmdCards82('train', { cd: cd, dis: animating86, chargeSel: !!me.chargeBuff })
-      + '<div class="note">' + (train.test ? 'テスト対戦はいつでもやめられます。' : '訓練はいつでもやめられます（途中でやめた対戦は記録されません）。') + '</div>'
-      + '<div style="margin-top:8px;"><button class="btn small" id="trainQuitBtn" type="button">訓練をやめる</button></div>';
+      + '<div class="note">' + (train.trial ? 'お試しプレイはいつでもやめられます（記録は残りません）。' : train.test ? 'テスト対戦はいつでもやめられます。' : '訓練はいつでもやめられます（途中でやめた対戦は記録されません）。') + '</div>'
+      + '<div style="margin-top:8px;"><button class="btn small" id="trainQuitBtn" type="button">' + (train.trial ? 'お試しをやめる' : '訓練をやめる') + '</button></div>';
     box.innerHTML = head + controls + '</div>' + trainHistHtml();
     var btns = box.querySelectorAll('[data-tmove]');
     for (var i = 0; i < btns.length; i++) {
       btns[i].addEventListener('click', function () { trainChoose(this.getAttribute('data-tmove')); });
     }
     el('trainQuitBtn').addEventListener('click', function () {
+      var wasTrial93 = !!(train && train.trial);
       train = null;
       if (battleBgm) { battleBgm.pause(); battleBgm = null; }
       battleBgmSlot = null;
       // game85: 途中でやめてロビーへ戻るときもタイトルBGMを再開する
       startTitleBgm();
+      // game93: お試しプレイの途中終了はロビーではなくキャラ選択へ戻る
+      if (wasTrial93) { showTrialSelect93(); return; }
       switchView('lobby');
     });
   }
