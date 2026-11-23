@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T07:42:45.358Z",
+  "updatedAt": "2026-11-23T07:44:42.997Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -27,7 +27,7 @@
   },
   "illustWeeklyCap": 5,
   "illustWeeklyCapPerUser": 1,
-  "illustWeekDoneAll": 0,
+  "illustWeekDoneAll": 1,
   "people": [
     {
       "tokenHash": "a4a3d479ae7142a3a2bc8f18389ec12e05bcb0235a5a9ec37f4306c5e352352c",
@@ -491,17 +491,17 @@
       "illust": {
         "evo1": null,
         "evo2": null,
-        "gold": null,
+        "gold": "chars/-WeTXIQQZKnw7bOqcJfAhg-gold.png",
         "win": null,
         "lose": null
       },
       "illustRequests": [
         {
           "kind": "gold",
-          "status": "queued"
+          "status": "done"
         }
       ],
-      "illustWeekDone": 0,
+      "illustWeekDone": 1,
       "skill": {
         "learned": false,
         "name": null,
