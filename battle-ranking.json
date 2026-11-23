@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T06:45:08.901Z",
+  "updatedAt": "2026-11-23T07:28:25.349Z",
   "metric": "exp",
   "entries": [
     {
@@ -18,8 +18,8 @@
     },
     {
       "rank": 2,
-      "nickname": "しょこ",
-      "radioName": "黄昏の番人総長",
+      "nickname": "甘瞳ももか",
+      "radioName": "黄金の流れ星卿",
       "level": 1,
       "attr": null,
       "titleId": "medalist",
@@ -27,12 +27,12 @@
       "frame": "silver",
       "crown": false,
       "pvpWin": 0,
-      "exp": 7
+      "exp": 9
     },
     {
       "rank": 3,
-      "nickname": "しゅーくりーむ  ",
-      "radioName": "深夜の貴公子名人",
+      "nickname": "しょこ",
+      "radioName": "黄昏の番人総長",
       "level": 1,
       "attr": null,
       "titleId": "medalist",
@@ -40,10 +40,36 @@
       "frame": "bronze",
       "crown": false,
       "pvpWin": 0,
-      "exp": 4
+      "exp": 7
     },
     {
       "rank": 4,
+      "nickname": "しゅーくりーむ  ",
+      "radioName": "深夜の貴公子名人",
+      "level": 1,
+      "attr": null,
+      "titleId": "top10",
+      "titleText": "FMスプニ レギュラーDJ",
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 4
+    },
+    {
+      "rank": 5,
+      "nickname": "月野詩織.",
+      "radioName": "深夜の流れ星番長",
+      "level": 1,
+      "attr": null,
+      "titleId": "top10",
+      "titleText": "FMスプニ レギュラーDJ",
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 4
+    },
+    {
+      "rank": 6,
       "nickname": "⚔️👑うみいろくん👑⚔️",
       "radioName": "彗星の狼将軍",
       "level": 1,
@@ -56,7 +82,20 @@
       "exp": 3
     },
     {
-      "rank": 5,
+      "rank": 7,
+      "nickname": "涼さん-1.0",
+      "radioName": "伝説の猫又先生",
+      "level": 1,
+      "attr": null,
+      "titleId": "top10",
+      "titleText": "FMスプニ レギュラーDJ",
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 3
+    },
+    {
+      "rank": 8,
       "nickname": "ぁゎゎ",
       "radioName": "疾風の船長将軍",
       "level": 1,
@@ -69,7 +108,7 @@
       "exp": 2
     },
     {
-      "rank": 6,
+      "rank": 9,
       "nickname": "月野 弥太郎⑅︎◡̈︎*𓈒𓂂𖧷 ",
       "radioName": "黄昏の流れ星の星",
       "level": 1,
@@ -82,7 +121,7 @@
       "exp": 2
     },
     {
-      "rank": 7,
+      "rank": 10,
       "nickname": "瑠璃𓈒𓂂𖧷",
       "radioName": "深夜の影総長",
       "level": 1,
@@ -95,48 +134,9 @@
       "exp": 2
     },
     {
-      "rank": 8,
+      "rank": 11,
       "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
       "radioName": "夢追う番人卿",
-      "level": 1,
-      "attr": null,
-      "titleId": "top10",
-      "titleText": "FMスプニ レギュラーDJ",
-      "frame": null,
-      "crown": false,
-      "pvpWin": 0,
-      "exp": 1
-    },
-    {
-      "rank": 9,
-      "nickname": "𖥨⋆͛いなもっち",
-      "radioName": "暁の流れ星隊長",
-      "level": 1,
-      "attr": null,
-      "titleId": "top10",
-      "titleText": "FMスプニ レギュラーDJ",
-      "frame": null,
-      "crown": false,
-      "pvpWin": 0,
-      "exp": 0
-    },
-    {
-      "rank": 10,
-      "nickname": "月野詩織.",
-      "radioName": "深夜の流れ星番長",
-      "level": 1,
-      "attr": null,
-      "titleId": "top10",
-      "titleText": "FMスプニ レギュラーDJ",
-      "frame": null,
-      "crown": false,
-      "pvpWin": 0,
-      "exp": 0
-    },
-    {
-      "rank": 11,
-      "nickname": "涼さん-1.0",
-      "radioName": "伝説の猫又先生",
       "level": 1,
       "attr": null,
       "titleId": null,
@@ -144,12 +144,12 @@
       "frame": null,
       "crown": false,
       "pvpWin": 0,
-      "exp": 0
+      "exp": 1
     },
     {
       "rank": 12,
-      "nickname": "甘瞳ももか",
-      "radioName": "黄金の流れ星卿",
+      "nickname": "𖥨⋆͛いなもっち",
+      "radioName": "暁の流れ星隊長",
       "level": 1,
       "attr": null,
       "titleId": null,
