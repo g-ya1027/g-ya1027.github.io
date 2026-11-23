@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T07:57:22.256Z",
+  "updatedAt": "2026-11-23T08:00:23.865Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
@@ -294,10 +294,14 @@
       "token": "9a701646b723dc2f",
       "nickname": "ザッキー【メルヘン調査員】",
       "radioName": "黄昏の魔法使い卿",
-      "status": "pending",
-      "pair": null,
+      "status": "ready",
+      "pair": {
+        "a": "chars/5U9IaHtAhJ9puN3_KTHP8w-a.png",
+        "b": "chars/5U9IaHtAhJ9puN3_KTHP8w-b.png",
+        "kind": "gender"
+      },
       "chosen": null,
-      "reroll": "notready",
+      "reroll": "ok",
       "rerollNextAt": null,
       "battle": null
     }
