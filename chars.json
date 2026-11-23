@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T05:50:45.563Z",
+  "updatedAt": "2026-11-23T05:50:54.865Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
@@ -138,6 +138,16 @@
       "token": "f1295416008796dc",
       "nickname": "涼さん-1.0",
       "radioName": "伝説の猫又先生",
+      "status": "pending",
+      "pair": null,
+      "chosen": null,
+      "reroll": "notready",
+      "rerollNextAt": null
+    },
+    {
+      "token": "48b8d51ae8375236",
+      "nickname": "甘瞳ももか",
+      "radioName": "黄金の流れ星卿",
       "status": "pending",
       "pair": null,
       "chosen": null,
