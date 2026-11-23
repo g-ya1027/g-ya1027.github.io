@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- spoon-battle-page v25 -->
+<!-- spoon-battle-page v26 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -29,6 +29,8 @@
   .tabs { display: flex; gap: 8px; margin: 0 0 14px; }
   .tab { flex: 1 1 0; min-width: 0; padding: 10px 2px; text-align: center; font-size: 14px; font-weight: 800; white-space: nowrap; border-radius: 12px; border: 2px solid #3d4276; background: rgba(20,24,64,.8); color: #b9c2ff; cursor: pointer; }
   .tab.sel { border-color: #00d1b2; color: #eafffa; background: rgba(0,80,66,.55); }
+  .lobbyTrialBtn94 { display: block; width: 100%; box-sizing: border-box; padding: 13px 10px 11px; margin: 0 0 14px; font-family: inherit; font-size: 18px; font-weight: 900; white-space: nowrap; text-align: center; border-radius: 14px; border: 2px solid #7fe3ff; background: linear-gradient(180deg, rgba(24,78,120,.92), rgba(12,42,84,.94)); color: #eaf7ff; cursor: pointer; box-shadow: 0 6px 16px rgba(0,0,0,.4); }
+  .lobbyTrialSub94 { display: block; margin-top: 3px; font-size: 12px; font-weight: 700; white-space: normal; line-height: 1.5; color: #b9e6ff; }
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .card { background: linear-gradient(180deg, rgba(31,36,86,.94), rgba(15,18,52,.96)); border: 2px solid #3d4276; border-radius: 16px; padding: 12px; box-shadow: 0 8px 18px rgba(0,0,0,.45); cursor: pointer; }
   .card.mine { border-color: #00d1b2; }
@@ -253,6 +255,7 @@
     <div class="tab hidden" id="tabMine">⚔️ 自キャラ</div>
     <div class="tab" id="tabRanking">🏆 ランク</div>
   </div>
+  <button type="button" class="lobbyTrialBtn94" id="lobbyTrialBtn94">🎮 お試しプレイ<span class="lobbyTrialSub94">キャラ登録なしで、MOBキャラで模擬戦できます（記録は残りません）</span></button>
   <div id="viewRoster"></div>
   <div id="viewMine" class="hidden"></div>
   <div id="viewRanking" class="hidden"></div>
@@ -1031,6 +1034,9 @@
     el('viewBattle').className = view === 'battle' ? '' : 'hidden';
     el('viewTraining').className = view === 'training' ? '' : 'hidden';
     el('viewTrial').className = view === 'trial' ? '' : 'hidden';
+    // game94: ロビー上段のお試しボタンは、対戦・訓練・お試しの各ビューでは隠す（それ以外では常時表示）
+    var ltBtn94 = el('lobbyTrialBtn94');
+    if (ltBtn94) ltBtn94.style.display = (view === 'battle' || view === 'training' || view === 'trial') ? 'none' : '';
     renderTitleSlot();
     renderRoster(); renderMine(); renderRanking(); renderLobby(); renderGk(); renderQueue(); renderTraining(); renderTrial93();
     if (data && data.updatedAt) el('footNote').textContent = '最終更新: ' + new Date(data.updatedAt).toLocaleString('ja-JP') + (data.live ? '' : '（bot停止中は情報が止まっています）');
@@ -1145,6 +1151,13 @@
     unlockAudio();
     playSlot('se.uiDecide');
     el('startOverlay').className = 'hidden';
+    showTrialSelect93();
+  });
+  // お試しプレイ（game94）: ロビー上段の常設ボタン。タイトル画面を経由せずロビーに着いた人にも
+  // 入口が見えるよう、通常モードでもテストモードでも常に同じ trial フロー（MOB選択）へ入る
+  el('lobbyTrialBtn94').addEventListener('click', function () {
+    unlockAudio();
+    playSlot('se.uiDecide');
     showTrialSelect93();
   });
   el('titleMuteBtn').addEventListener('click', function () {
