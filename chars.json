@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T08:04:02.235Z",
+  "updatedAt": "2026-11-23T08:14:23.470Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
@@ -90,7 +90,7 @@
       "battle": {
         "level": 1,
         "rankName": "見習いDJ",
-        "rank": 3,
+        "rank": 4,
         "wins": 0,
         "losses": 0,
         "draws": 0,
@@ -234,7 +234,7 @@
       "battle": {
         "level": 1,
         "rankName": "見習いDJ",
-        "rank": 4,
+        "rank": 3,
         "wins": 0,
         "losses": 0,
         "draws": 0,
