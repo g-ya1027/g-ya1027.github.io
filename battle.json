@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T07:27:23.505Z",
+  "updatedAt": "2026-11-23T07:28:25.346Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -65,9 +65,9 @@
         "draw": 0
       },
       "honors": {
-        "rank": 8,
-        "titleId": "top10",
-        "titleText": "FMスプニ レギュラーDJ",
+        "rank": 11,
+        "titleId": null,
+        "titleText": null,
         "frame": null,
         "crown": false
       },
@@ -170,10 +170,10 @@
         "draw": 0
       },
       "honors": {
-        "rank": 3,
-        "titleId": "medalist",
-        "titleText": "レゾナンス・メダリスト",
-        "frame": "bronze",
+        "rank": 4,
+        "titleId": "top10",
+        "titleText": "FMスプニ レギュラーDJ",
+        "frame": null,
         "crown": false
       },
       "evolutionStage": 0,
@@ -214,16 +214,16 @@
       "signals": {
         "heartsLeft": 4,
         "spoonsLeft": 0,
-        "commentsLeft": 12,
-        "visitsLeft": 3,
-        "stayLeftSec": 1372
+        "commentsLeft": 11,
+        "visitsLeft": 2,
+        "stayLeftSec": 1274
       },
       "signalsTotal": {
         "hearts": 6,
         "spoons": 0,
-        "comments": 28,
-        "visits": 8,
-        "stayMin": 97
+        "comments": 29,
+        "visits": 9,
+        "stayMin": 98
       },
       "img": null,
       "pair": {
@@ -270,10 +270,10 @@
         "draw": 0
       },
       "honors": {
-        "rank": 2,
+        "rank": 3,
         "titleId": "medalist",
         "titleText": "レゾナンス・メダリスト",
-        "frame": "silver",
+        "frame": "bronze",
         "crown": false
       },
       "evolutionStage": 0,
@@ -370,7 +370,7 @@
         "draw": 0
       },
       "honors": {
-        "rank": 7,
+        "rank": 10,
         "titleId": "top10",
         "titleText": "FMスプニ レギュラーDJ",
         "frame": null,
@@ -519,16 +519,16 @@
       "signals": {
         "heartsLeft": 8,
         "spoonsLeft": 0,
-        "commentsLeft": 8,
-        "visitsLeft": 4,
-        "stayLeftSec": 710
+        "commentsLeft": 6,
+        "visitsLeft": 3,
+        "stayLeftSec": 489
       },
       "signalsTotal": {
         "hearts": 12,
         "spoons": 4,
-        "comments": 52,
-        "visits": 4,
-        "stayMin": 108
+        "comments": 54,
+        "visits": 5,
+        "stayMin": 111
       },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-a.png",
       "pair": {
@@ -575,7 +575,7 @@
         "draw": 0
       },
       "honors": {
-        "rank": 5,
+        "rank": 8,
         "titleId": "top10",
         "titleText": "FMスプニ レギュラーDJ",
         "frame": null,
@@ -675,7 +675,7 @@
         "draw": 0
       },
       "honors": {
-        "rank": 4,
+        "rank": 6,
         "titleId": "top10",
         "titleText": "FMスプニ レギュラーDJ",
         "frame": null,
@@ -775,7 +775,7 @@
         "draw": 0
       },
       "honors": {
-        "rank": 6,
+        "rank": 9,
         "titleId": "top10",
         "titleText": "FMスプニ レギュラーDJ",
         "frame": null,
@@ -875,9 +875,9 @@
         "draw": 0
       },
       "honors": {
-        "rank": 9,
-        "titleId": "top10",
-        "titleText": "FMスプニ レギュラーDJ",
+        "rank": 12,
+        "titleId": null,
+        "titleText": null,
         "frame": null,
         "crown": false
       },
@@ -927,7 +927,7 @@
         "hearts": 2,
         "spoons": 0,
         "comments": 3,
-        "visits": 0,
+        "visits": 4,
         "stayMin": 12
       },
       "img": null,
@@ -952,7 +952,7 @@
         "nextName": "レギュラーDJ",
         "progress": 0
       },
-      "exp": 0,
+      "exp": 4,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -975,7 +975,7 @@
         "draw": 0
       },
       "honors": {
-        "rank": 10,
+        "rank": 5,
         "titleId": "top10",
         "titleText": "FMスプニ レギュラーDJ",
         "frame": null,
@@ -1020,15 +1020,15 @@
         "heartsLeft": 3,
         "spoonsLeft": 0,
         "commentsLeft": 3,
-        "visitsLeft": 5,
-        "stayLeftSec": 841
+        "visitsLeft": 4,
+        "stayLeftSec": 401
       },
       "signalsTotal": {
         "hearts": 27,
         "spoons": 0,
         "comments": 37,
-        "visits": 0,
-        "stayMin": 45
+        "visits": 4,
+        "stayMin": 53
       },
       "img": null,
       "pair": {
@@ -1052,7 +1052,7 @@
         "nextName": "レギュラーDJ",
         "progress": 0
       },
-      "exp": 0,
+      "exp": 3,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -1075,9 +1075,9 @@
         "draw": 0
       },
       "honors": {
-        "rank": 11,
-        "titleId": null,
-        "titleText": null,
+        "rank": 7,
+        "titleId": "top10",
+        "titleText": "FMスプニ レギュラーDJ",
         "frame": null,
         "crown": false
       },
@@ -1127,7 +1127,7 @@
         "hearts": 3,
         "spoons": 0,
         "comments": 9,
-        "visits": 0,
+        "visits": 3,
         "stayMin": 100
       },
       "img": null,
@@ -1152,7 +1152,7 @@
         "nextName": "レギュラーDJ",
         "progress": 0
       },
-      "exp": 0,
+      "exp": 9,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -1175,10 +1175,10 @@
         "draw": 0
       },
       "honors": {
-        "rank": 12,
-        "titleId": null,
-        "titleText": null,
-        "frame": null,
+        "rank": 2,
+        "titleId": "medalist",
+        "titleText": "レゾナンス・メダリスト",
+        "frame": "silver",
         "crown": false
       },
       "evolutionStage": 0,
@@ -1227,7 +1227,7 @@
         "hearts": 49,
         "spoons": 0,
         "comments": 71,
-        "visits": 0,
+        "visits": 3,
         "stayMin": 84
       },
       "img": null,
@@ -1256,8 +1256,8 @@
     },
     {
       "rank": 2,
-      "nickname": "しょこ",
-      "radioName": "黄昏の番人総長",
+      "nickname": "甘瞳ももか",
+      "radioName": "黄金の流れ星卿",
       "level": 1,
       "attr": null,
       "titleId": "medalist",
@@ -1265,12 +1265,12 @@
       "frame": "silver",
       "crown": false,
       "pvpWin": 0,
-      "exp": 7
+      "exp": 9
     },
     {
       "rank": 3,
-      "nickname": "しゅーくりーむ  ",
-      "radioName": "深夜の貴公子名人",
+      "nickname": "しょこ",
+      "radioName": "黄昏の番人総長",
       "level": 1,
       "attr": null,
       "titleId": "medalist",
@@ -1278,10 +1278,36 @@
       "frame": "bronze",
       "crown": false,
       "pvpWin": 0,
-      "exp": 4
+      "exp": 7
     },
     {
       "rank": 4,
+      "nickname": "しゅーくりーむ  ",
+      "radioName": "深夜の貴公子名人",
+      "level": 1,
+      "attr": null,
+      "titleId": "top10",
+      "titleText": "FMスプニ レギュラーDJ",
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 4
+    },
+    {
+      "rank": 5,
+      "nickname": "月野詩織.",
+      "radioName": "深夜の流れ星番長",
+      "level": 1,
+      "attr": null,
+      "titleId": "top10",
+      "titleText": "FMスプニ レギュラーDJ",
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 4
+    },
+    {
+      "rank": 6,
       "nickname": "⚔️👑うみいろくん👑⚔️",
       "radioName": "彗星の狼将軍",
       "level": 1,
@@ -1294,7 +1320,20 @@
       "exp": 3
     },
     {
-      "rank": 5,
+      "rank": 7,
+      "nickname": "涼さん-1.0",
+      "radioName": "伝説の猫又先生",
+      "level": 1,
+      "attr": null,
+      "titleId": "top10",
+      "titleText": "FMスプニ レギュラーDJ",
+      "frame": null,
+      "crown": false,
+      "pvpWin": 0,
+      "exp": 3
+    },
+    {
+      "rank": 8,
       "nickname": "ぁゎゎ",
       "radioName": "疾風の船長将軍",
       "level": 1,
@@ -1307,7 +1346,7 @@
       "exp": 2
     },
     {
-      "rank": 6,
+      "rank": 9,
       "nickname": "月野 弥太郎⑅︎◡̈︎*𓈒𓂂𖧷 ",
       "radioName": "黄昏の流れ星の星",
       "level": 1,
@@ -1320,7 +1359,7 @@
       "exp": 2
     },
     {
-      "rank": 7,
+      "rank": 10,
       "nickname": "瑠璃𓈒𓂂𖧷",
       "radioName": "深夜の影総長",
       "level": 1,
@@ -1333,48 +1372,9 @@
       "exp": 2
     },
     {
-      "rank": 8,
+      "rank": 11,
       "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
       "radioName": "夢追う番人卿",
-      "level": 1,
-      "attr": null,
-      "titleId": "top10",
-      "titleText": "FMスプニ レギュラーDJ",
-      "frame": null,
-      "crown": false,
-      "pvpWin": 0,
-      "exp": 1
-    },
-    {
-      "rank": 9,
-      "nickname": "𖥨⋆͛いなもっち",
-      "radioName": "暁の流れ星隊長",
-      "level": 1,
-      "attr": null,
-      "titleId": "top10",
-      "titleText": "FMスプニ レギュラーDJ",
-      "frame": null,
-      "crown": false,
-      "pvpWin": 0,
-      "exp": 0
-    },
-    {
-      "rank": 10,
-      "nickname": "月野詩織.",
-      "radioName": "深夜の流れ星番長",
-      "level": 1,
-      "attr": null,
-      "titleId": "top10",
-      "titleText": "FMスプニ レギュラーDJ",
-      "frame": null,
-      "crown": false,
-      "pvpWin": 0,
-      "exp": 0
-    },
-    {
-      "rank": 11,
-      "nickname": "涼さん-1.0",
-      "radioName": "伝説の猫又先生",
       "level": 1,
       "attr": null,
       "titleId": null,
@@ -1382,12 +1382,12 @@
       "frame": null,
       "crown": false,
       "pvpWin": 0,
-      "exp": 0
+      "exp": 1
     },
     {
       "rank": 12,
-      "nickname": "甘瞳ももか",
-      "radioName": "黄金の流れ星卿",
+      "nickname": "𖥨⋆͛いなもっち",
+      "radioName": "暁の流れ星隊長",
       "level": 1,
       "attr": null,
       "titleId": null,
