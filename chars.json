@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T08:14:23.470Z",
+  "updatedAt": "2026-11-23T09:25:19.711Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
@@ -18,7 +18,7 @@
       "battle": {
         "level": 1,
         "rankName": "見習いDJ",
-        "rank": 11,
+        "rank": 12,
         "wins": 0,
         "losses": 0,
         "draws": 0,
@@ -66,7 +66,7 @@
       "battle": {
         "level": 1,
         "rankName": "見習いDJ",
-        "rank": 5,
+        "rank": 4,
         "wins": 0,
         "losses": 0,
         "draws": 0,
@@ -90,7 +90,7 @@
       "battle": {
         "level": 1,
         "rankName": "見習いDJ",
-        "rank": 4,
+        "rank": 5,
         "wins": 0,
         "losses": 0,
         "draws": 0,
@@ -114,7 +114,7 @@
       "battle": {
         "level": 2,
         "rankName": "見習いDJ",
-        "rank": 1,
+        "rank": 2,
         "wins": 0,
         "losses": 0,
         "draws": 0,
@@ -138,7 +138,7 @@
       "battle": {
         "level": 1,
         "rankName": "見習いDJ",
-        "rank": 8,
+        "rank": 6,
         "wins": 0,
         "losses": 0,
         "draws": 0,
@@ -162,7 +162,7 @@
       "battle": {
         "level": 1,
         "rankName": "見習いDJ",
-        "rank": 6,
+        "rank": 7,
         "wins": 0,
         "losses": 0,
         "draws": 0,
@@ -210,7 +210,7 @@
       "battle": {
         "level": 1,
         "rankName": "見習いDJ",
-        "rank": 12,
+        "rank": 13,
         "wins": 0,
         "losses": 0,
         "draws": 0,
@@ -232,7 +232,7 @@
       "reroll": "ok",
       "rerollNextAt": null,
       "battle": {
-        "level": 1,
+        "level": 2,
         "rankName": "見習いDJ",
         "rank": 3,
         "wins": 0,
@@ -258,7 +258,7 @@
       "battle": {
         "level": 1,
         "rankName": "見習いDJ",
-        "rank": 7,
+        "rank": 8,
         "wins": 0,
         "losses": 0,
         "draws": 0,
@@ -282,7 +282,7 @@
       "battle": {
         "level": 2,
         "rankName": "見習いDJ",
-        "rank": 2,
+        "rank": 1,
         "wins": 0,
         "losses": 0,
         "draws": 0,
@@ -306,7 +306,7 @@
       "battle": {
         "level": 1,
         "rankName": "見習いDJ",
-        "rank": 13,
+        "rank": 11,
         "wins": 0,
         "losses": 0,
         "draws": 0,
