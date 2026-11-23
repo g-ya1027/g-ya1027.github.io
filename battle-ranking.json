@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T05:55:56.869Z",
+  "updatedAt": "2026-11-23T06:00:43.956Z",
   "metric": "exp",
   "entries": [
     {
@@ -27,7 +27,7 @@
       "frame": "silver",
       "crown": false,
       "pvpWin": 0,
-      "exp": 6
+      "exp": 7
     },
     {
       "rank": 3,
