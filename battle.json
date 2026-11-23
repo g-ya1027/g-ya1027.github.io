@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T08:43:21.808Z",
+  "updatedAt": "2026-11-23T08:44:23.615Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -214,14 +214,14 @@
       "signals": {
         "heartsLeft": 1,
         "spoonsLeft": 0,
-        "commentsLeft": 15,
+        "commentsLeft": 14,
         "visitsLeft": 2,
         "stayLeftSec": 566
       },
       "signalsTotal": {
         "hearts": 9,
         "spoons": 0,
-        "comments": 45,
+        "comments": 46,
         "visits": 9,
         "stayMin": 170
       },
@@ -617,14 +617,14 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 2,
+        "heartsLeft": 1,
         "spoonsLeft": 0,
         "commentsLeft": 4,
         "visitsLeft": 3,
         "stayLeftSec": 769
       },
       "signalsTotal": {
-        "hearts": 8,
+        "hearts": 9,
         "spoons": 0,
         "comments": 16,
         "visits": 6,
