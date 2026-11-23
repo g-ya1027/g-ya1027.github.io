@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- spoon-radio-chars v6 -->
+<!-- spoon-radio-chars v7 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -49,6 +49,7 @@
   .cardModal .cmBtns { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; justify-content: center; }
   .cardModal .cmSave { border: none; border-radius: 999px; padding: 11px 22px; font-size: 14.5px; font-weight: 900; color: #07332b; background: linear-gradient(90deg, #00d1b2, #00b39b); font-family: inherit; cursor: pointer; }
   .cardModal .cmClose { border: 2px solid rgba(255,255,255,.6); background: transparent; color: #fff; border-radius: 999px; padding: 9px 22px; font-size: 14px; font-weight: 700; font-family: inherit; cursor: pointer; }
+  .cardModal .cmNote { color: #cfc6ff; font-size: 12.5px; margin-top: 10px; text-align: center; min-height: 16px; line-height: 1.6; max-width: 92vw; }
 </style>
 </head>
 <body>
@@ -65,7 +66,7 @@
 </div>
 <div class="lightbox" id="lightbox">
   <img id="lbImg" src="" alt="">
-  <div class="lbMsg">画像を長押しして「写真に保存」（または「画像を保存」）してね。<br>終わったら「閉じる」を押してね。</div>
+  <div class="lbMsg" id="lbMsg">画像を長押しして「写真に保存」（または「画像を保存」）してね。<br>終わったら「閉じる」を押してね。</div>
   <button type="button" class="lbClose" id="lbClose">閉じる</button>
 </div>
 <div class="cardModal" id="cardModal">
@@ -74,6 +75,7 @@
     <button type="button" class="cmSave" id="cardSaveBtn">⬇ PNGで保存</button>
     <button type="button" class="cmClose" id="cardCloseBtn">閉じる</button>
   </div>
+  <div class="cmNote" id="cardNote"></div>
 </div>
 <script>
   var DB_URL = 'https://podcastse-default-rtdb.firebaseio.com';
@@ -143,6 +145,8 @@
     var lb = document.getElementById('lightbox');
     var img = document.getElementById('lbImg');
     if (!lb || !img) return;
+    var msg = document.getElementById('lbMsg');
+    if (msg) msg.innerHTML = bigImageHint98(saveEnvKind98());
     img.src = url;
     lb.className = 'lightbox open';
   }
@@ -150,10 +154,89 @@
     var lb = document.getElementById('lightbox');
     if (lb) lb.className = 'lightbox';
   }
-  // イラスト保存（スマホ対応の段階式）:
-  // 1) fetch で Blob 化し、Web Share API（ファイル共有）が使えれば共有シートを開く（iPhone は「画像を保存」で写真に入る）
-  // 2) 使えなければ Blob の objectURL + a[download] で保存を試みる（Android Chrome・デスクトップ向け）
-  // 3) それも失敗したら、その場で大きく表示して長押し保存を案内する
+  // ===== game98: 端末・OSの自動判別と、保存方法・案内文の出し分け =====
+  // kind: 'pc' | 'ios' | 'android' | 'other-mobile'。アプリ内ブラウザ（Spoon内・LINE等）は inApp で併せて返す。
+  // iPadOS は UA が Macintosh に偽装されるため、maxTouchPoints で拾う。
+  function detectSaveEnv98() {
+    var ua = String((navigator && navigator.userAgent) || '');
+    var plat = String((navigator && navigator.platform) || '');
+    var touch = 0;
+    try { touch = Number(navigator.maxTouchPoints || 0); } catch (e) {}
+    var inApp = /FBAN|FB_IAB|FBAV|Line\/|Instagram|MicroMessenger|; wv\)/i.test(ua);
+    if (/iPhone|iPad|iPod/i.test(ua)) return { kind: 'ios', inApp: inApp };
+    if (touch > 1 && (/Macintosh/i.test(ua) || plat === 'MacIntel')) return { kind: 'ios', inApp: inApp };
+    if (/Android/i.test(ua)) return { kind: 'android', inApp: inApp };
+    if (/Mobile|webOS|BlackBerry|IEMobile|Opera Mini|Opera Mobi/i.test(ua)) return { kind: 'other-mobile', inApp: inApp };
+    return { kind: 'pc', inApp: inApp };
+  }
+  function saveEnvKind98() { return detectSaveEnv98().kind; }
+  // 大きく表示した画像の保存案内（環境別。PC に長押し文、iPhone に右クリック文は出さない）
+  function bigImageHint98(kind) {
+    if (kind === 'pc') return '画像を右クリックして「名前を付けて画像を保存」してね。<br>終わったら「閉じる」を押してね。';
+    if (kind === 'ios') return '画像を長押しして「写真に追加」（または「画像を保存」）してね。<br>終わったら「閉じる」を押してね。';
+    if (kind === 'android') return '画像を長押しして「画像をダウンロード」（または「画像を保存」）してね。<br>終わったら「閉じる」を押してね。';
+    return '画像を長押しして「画像を保存」してね。<br>終わったら「閉じる」を押してね。';
+  }
+  // スマート保存（game98）: Blob を環境に合った方法で保存する共通ヘルパー。
+  // 優先順位: PC／Android は Blob + a[download] の直接ダウンロード（Android は安定動作が前提）。
+  // iOS／その他モバイル／アプリ内ブラウザは Web Share API の共有シートを優先する。
+  // どれも駄目なら大きく表示して、環境に合った手動保存の案内を出す。
+  // opts: { note(text), bigUrl } — bigUrl は拡大表示フォールバック用（無ければ objectURL を作る）。
+  function smartSaveBlob98(blob, name, opts) {
+    opts = opts || {};
+    var note = opts.note || function () {};
+    var env = detectSaveEnv98();
+    var kind = env.kind;
+    var file = null;
+    try { file = new File([blob], name, { type: blob.type || 'image/png' }); } catch (e) {}
+    var canShareFile = !!(file && navigator.share && navigator.canShare && navigator.canShare({ files: [file] }));
+    function big() {
+      var u = opts.bigUrl || null;
+      if (!u) { try { u = URL.createObjectURL(blob); } catch (e) {} }
+      if (u) showBigImage(u);
+    }
+    function failToBig() {
+      note(kind === 'pc'
+        ? '自動で保存できなかったので、画像を大きく表示します。右クリックで保存してね。'
+        : '自動で保存できなかったので、画像を大きく表示します。長押しして保存してね。');
+      big();
+    }
+    function direct() {
+      var objUrl = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = objUrl;
+      a.download = name;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(objUrl); }, 4000);
+      if (kind === 'pc') note('保存しました。見つからない場合は、画像を右クリック→「名前を付けて画像を保存」でも保存できます。');
+      else if (kind === 'android') note('ダウンロードしました。通知やダウンロードフォルダを確認してね。');
+      else note('ダウンロードを始めました。');
+    }
+    function shareIt() {
+      navigator.share({ files: [file] }).then(function () {
+        note(kind === 'ios'
+          ? '共有シートを開きました。「写真に追加」（または「画像を保存」）を選ぶと写真に入ります。'
+          : '共有シートを開きました。「画像を保存」を選んでね。');
+      }).catch(function (err) {
+        if (err && err.name === 'AbortError') { note(''); return; }
+        try { direct(); return; } catch (e) {}
+        failToBig();
+      });
+    }
+    if (kind === 'pc' || kind === 'android') {
+      try { direct(); return; } catch (e) {}
+      if (canShareFile) { shareIt(); return; }
+      failToBig();
+      return;
+    }
+    if (canShareFile) { shareIt(); return; }
+    try { direct(); return; } catch (e) {}
+    failToBig();
+  }
+  // イラスト保存（game71 の段階式を game98 のスマート保存に統一）:
+  // fetch で Blob 化して smartSaveBlob98 に渡す。取得自体が失敗したら大きく表示して環境別の案内を出す。
   function downloadIllust(url) {
     var msgEl = document.getElementById('opMsg');
     function note(t) { if (msgEl) msgEl.textContent = t; }
@@ -162,28 +245,11 @@
       if (!r.ok) throw new Error('fetch failed');
       return r.blob();
     }).then(function (blob) {
-      var file = null;
-      try { file = new File([blob], saveNameOf(url), { type: blob.type || 'image/png' }); } catch (e) {}
-      if (file && navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-        return navigator.share({ files: [file] }).then(function () {
-          note('共有シートを開きました。「画像を保存」を選ぶと写真に入ります。');
-        }).catch(function (err) {
-          if (err && err.name === 'AbortError') { note(''); return; }
-          throw err;
-        });
-      }
-      var objUrl = URL.createObjectURL(blob);
-      var a = document.createElement('a');
-      a.href = objUrl;
-      a.download = saveNameOf(url);
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      setTimeout(function () { URL.revokeObjectURL(objUrl); }, 4000);
-      note('ダウンロードを始めました。保存できていないときは、画像を長押しして「写真に保存」してね。');
-      showBigImage(url);
+      smartSaveBlob98(blob, saveNameOf(url), { note: note, bigUrl: url });
     }).catch(function () {
-      note('自動で保存できなかったので、画像を大きく表示します。長押しして「写真に保存」してね。');
+      note(saveEnvKind98() === 'pc'
+        ? '自動で保存できなかったので、画像を大きく表示します。右クリックで保存してね。'
+        : '自動で保存できなかったので、画像を大きく表示します。長押しして保存してね。');
       showBigImage(url);
     });
   }
@@ -249,6 +315,26 @@
       ctx.fillText('イラスト読込中…', 136, 210); ctx.textAlign = 'left';
     };
     img.src = p.pair[p.chosen];
+    // game98: 保存ボタンの形を環境で出し分ける。Android は直接ダウンロード専用の「DL」ボタン
+    // （短ラベル規則。意味は title と下の補足文で補う）。モバイル系は共有シート前提の文面にする。
+    var env98 = detectSaveEnv98();
+    var saveBtn98 = document.getElementById('cardSaveBtn');
+    var note98 = document.getElementById('cardNote');
+    if (note98) note98.textContent = '';
+    if (saveBtn98) {
+      if (env98.kind === 'android') {
+        saveBtn98.textContent = '⬇ DL';
+        saveBtn98.title = 'プロフィールカードをPNGでダウンロード';
+        if (note98) note98.textContent = 'DL＝このカードをPNG画像でダウンロードします';
+      } else if (env98.kind === 'ios' || env98.kind === 'other-mobile' || env98.inApp) {
+        saveBtn98.textContent = '⬇ 保存';
+        saveBtn98.title = '共有シートから保存します';
+        if (note98) note98.textContent = '共有シートが開きます。「写真に追加／画像を保存」を選んでね';
+      } else {
+        saveBtn98.textContent = '⬇ PNGで保存';
+        saveBtn98.title = 'プロフィールカードをPNGで保存';
+      }
+    }
     modal.className = 'cardModal open';
   }
   function closeProfileCard() {
@@ -259,20 +345,28 @@
     var cv = document.getElementById('cardCanvas');
     if (!cv) return;
     var name = 'profile-card-' + ((cardPerson && cardPerson.radioName) || 'char') + '.png';
-    function dl(url) {
-      var a = document.createElement('a');
-      a.href = url; a.download = name;
-      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    var noteEl = document.getElementById('cardNote');
+    function note(t) { if (noteEl) noteEl.textContent = t; }
+    // game98: 保存はスマート保存に統一（Android の DL ボタンはここで直接ダウンロードになる）
+    function fromDataUrl() {
+      try {
+        var url = cv.toDataURL('image/png');
+        fetch(url).then(function (r) { return r.blob(); }).then(function (blob) {
+          smartSaveBlob98(blob, name, { note: note });
+        }).catch(function () {
+          var a = document.createElement('a');
+          a.href = url; a.download = name;
+          document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        });
+      } catch (e) {}
     }
     if (cv.toBlob) {
       cv.toBlob(function (blob) {
-        if (!blob) { try { dl(cv.toDataURL('image/png')); } catch (e) {} return; }
-        var u = URL.createObjectURL(blob);
-        dl(u);
-        setTimeout(function () { URL.revokeObjectURL(u); }, 4000);
+        if (!blob) { fromDataUrl(); return; }
+        smartSaveBlob98(blob, name, { note: note });
       }, 'image/png');
     } else {
-      try { dl(cv.toDataURL('image/png')); } catch (e) {}
+      fromDataUrl();
     }
   }
   function dateStr(iso) {
