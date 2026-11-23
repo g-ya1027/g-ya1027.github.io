@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T08:06:26.142Z",
+  "updatedAt": "2026-11-23T08:07:28.084Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -216,14 +216,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 16,
         "visitsLeft": 2,
-        "stayLeftSec": 993
+        "stayLeftSec": 693
       },
       "signalsTotal": {
         "hearts": 8,
         "spoons": 0,
         "comments": 44,
         "visits": 9,
-        "stayMin": 133
+        "stayMin": 138
       },
       "img": "chars/Lnrdo_b3TeGyRY8fNTyEhA-a.png",
       "pair": {
@@ -270,10 +270,10 @@
         "draw": 0
       },
       "honors": {
-        "rank": 3,
-        "titleId": "medalist",
-        "titleText": "レゾナンス・メダリスト",
-        "frame": "bronze",
+        "rank": 4,
+        "titleId": "top10",
+        "titleText": "FMスプニ レギュラーDJ",
+        "frame": null,
         "crown": false
       },
       "evolutionStage": 0,
@@ -447,7 +447,7 @@
         "nextName": "レギュラーDJ",
         "progress": 0.1111111111111111
       },
-      "exp": 12,
+      "exp": 13,
       "expNext": 30,
       "params": {
         "atk": 10,
@@ -521,14 +521,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 20,
         "visitsLeft": 3,
-        "stayLeftSec": 208
+        "stayLeftSec": 1708
       },
       "signalsTotal": {
         "hearts": 13,
         "spoons": 4,
         "comments": 60,
         "visits": 5,
-        "stayMin": 146
+        "stayMin": 151
       },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-a.png",
       "pair": {
@@ -952,7 +952,7 @@
         "nextName": "レギュラーDJ",
         "progress": 0
       },
-      "exp": 7,
+      "exp": 8,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -975,10 +975,10 @@
         "draw": 0
       },
       "honors": {
-        "rank": 4,
-        "titleId": "top10",
-        "titleText": "FMスプニ レギュラーDJ",
-        "frame": null,
+        "rank": 3,
+        "titleId": "medalist",
+        "titleText": "レゾナンス・メダリスト",
+        "frame": "bronze",
         "crown": false
       },
       "evolutionStage": 0,
@@ -1021,14 +1021,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 5,
         "visitsLeft": 4,
-        "stayLeftSec": 120
+        "stayLeftSec": 1620
       },
       "signalsTotal": {
         "hearts": 31,
         "spoons": 0,
         "comments": 55,
         "visits": 4,
-        "stayMin": 88
+        "stayMin": 93
       },
       "img": null,
       "pair": {
@@ -1219,16 +1219,16 @@
       "signals": {
         "heartsLeft": 8,
         "spoonsLeft": 0,
-        "commentsLeft": 11,
+        "commentsLeft": 10,
         "visitsLeft": 4,
-        "stayLeftSec": 487
+        "stayLeftSec": 187
       },
       "signalsTotal": {
         "hearts": 52,
         "spoons": 0,
-        "comments": 89,
+        "comments": 90,
         "visits": 4,
-        "stayMin": 111
+        "stayMin": 116
       },
       "img": "chars/sBVUqfp0A17e3SwGNApjWQ-b.png",
       "pair": {
@@ -1321,14 +1321,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 11,
         "visitsLeft": 5,
-        "stayLeftSec": 1110
+        "stayLeftSec": 810
       },
       "signalsTotal": {
         "hearts": 1,
         "spoons": 0,
         "comments": 9,
         "visits": 3,
-        "stayMin": 11
+        "stayMin": 16
       },
       "img": null,
       "pair": {
@@ -1352,7 +1352,7 @@
       "frame": "gold",
       "crown": true,
       "pvpWin": 0,
-      "exp": 12
+      "exp": 13
     },
     {
       "rank": 2,
@@ -1369,8 +1369,8 @@
     },
     {
       "rank": 3,
-      "nickname": "しょこ",
-      "radioName": "黄昏の番人総長",
+      "nickname": "月野詩織.",
+      "radioName": "深夜の流れ星番長",
       "level": 1,
       "attr": null,
       "titleId": "medalist",
@@ -1378,12 +1378,12 @@
       "frame": "bronze",
       "crown": false,
       "pvpWin": 0,
-      "exp": 7
+      "exp": 8
     },
     {
       "rank": 4,
-      "nickname": "月野詩織.",
-      "radioName": "深夜の流れ星番長",
+      "nickname": "しょこ",
+      "radioName": "黄昏の番人総長",
       "level": 1,
       "attr": null,
       "titleId": "top10",
