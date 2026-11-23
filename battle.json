@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T07:41:43.124Z",
+  "updatedAt": "2026-11-23T07:42:45.358Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -216,14 +216,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 7,
         "visitsLeft": 2,
-        "stayLeftSec": 674
+        "stayLeftSec": 374
       },
       "signalsTotal": {
         "hearts": 6,
         "spoons": 0,
         "comments": 33,
         "visits": 9,
-        "stayMin": 108
+        "stayMin": 113
       },
       "img": "chars/Lnrdo_b3TeGyRY8fNTyEhA-a.png",
       "pair": {
@@ -521,14 +521,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 20,
         "visitsLeft": 3,
-        "stayLeftSec": 1689
+        "stayLeftSec": 1389
       },
       "signalsTotal": {
         "hearts": 13,
         "spoons": 4,
         "comments": 60,
         "visits": 5,
-        "stayMin": 121
+        "stayMin": 126
       },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-a.png",
       "pair": {
@@ -1021,14 +1021,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 18,
         "visitsLeft": 4,
-        "stayLeftSec": 1601
+        "stayLeftSec": 1301
       },
       "signalsTotal": {
         "hearts": 29,
         "spoons": 0,
         "comments": 42,
         "visits": 4,
-        "stayMin": 63
+        "stayMin": 68
       },
       "img": null,
       "pair": {
@@ -1152,7 +1152,7 @@
         "nextName": "レギュラーDJ",
         "progress": 0.1111111111111111
       },
-      "exp": 10,
+      "exp": 11,
       "expNext": 30,
       "params": {
         "atk": 10,
@@ -1221,14 +1221,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 2,
         "visitsLeft": 4,
-        "stayLeftSec": 169
+        "stayLeftSec": 1669
       },
       "signalsTotal": {
         "hearts": 50,
         "spoons": 0,
         "comments": 78,
         "visits": 4,
-        "stayMin": 87
+        "stayMin": 92
       },
       "img": "chars/sBVUqfp0A17e3SwGNApjWQ-b.png",
       "pair": {
@@ -1265,7 +1265,7 @@
       "frame": "silver",
       "crown": false,
       "pvpWin": 0,
-      "exp": 10
+      "exp": 11
     },
     {
       "rank": 3,
