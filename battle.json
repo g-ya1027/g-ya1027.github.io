@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T07:37:24.003Z",
+  "updatedAt": "2026-11-23T07:38:26.636Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -170,7 +170,7 @@
         "draw": 0
       },
       "honors": {
-        "rank": 4,
+        "rank": 5,
         "titleId": "top10",
         "titleText": "FMスプニ レギュラーDJ",
         "frame": null,
@@ -216,14 +216,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 8,
         "visitsLeft": 2,
-        "stayLeftSec": 974
+        "stayLeftSec": 674
       },
       "signalsTotal": {
         "hearts": 6,
         "spoons": 0,
         "comments": 32,
         "visits": 9,
-        "stayMin": 103
+        "stayMin": 108
       },
       "img": "chars/Lnrdo_b3TeGyRY8fNTyEhA-a.png",
       "pair": {
@@ -447,7 +447,7 @@
         "nextName": "レギュラーDJ",
         "progress": 0.1111111111111111
       },
-      "exp": 10,
+      "exp": 12,
       "expNext": 30,
       "params": {
         "atk": 10,
@@ -519,16 +519,16 @@
       "signals": {
         "heartsLeft": 7,
         "spoonsLeft": 0,
-        "commentsLeft": 0,
+        "commentsLeft": 20,
         "visitsLeft": 3,
-        "stayLeftSec": 189
+        "stayLeftSec": 1689
       },
       "signalsTotal": {
         "hearts": 13,
         "spoons": 4,
         "comments": 60,
         "visits": 5,
-        "stayMin": 116
+        "stayMin": 121
       },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-a.png",
       "pair": {
@@ -952,7 +952,7 @@
         "nextName": "レギュラーDJ",
         "progress": 0
       },
-      "exp": 4,
+      "exp": 6,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -975,7 +975,7 @@
         "draw": 0
       },
       "honors": {
-        "rank": 5,
+        "rank": 4,
         "titleId": "top10",
         "titleText": "FMスプニ レギュラーDJ",
         "frame": null,
@@ -1019,16 +1019,16 @@
       "signals": {
         "heartsLeft": 2,
         "spoonsLeft": 0,
-        "commentsLeft": 0,
+        "commentsLeft": 20,
         "visitsLeft": 4,
-        "stayLeftSec": 101
+        "stayLeftSec": 1601
       },
       "signalsTotal": {
         "hearts": 28,
         "spoons": 0,
         "comments": 40,
         "visits": 4,
-        "stayMin": 58
+        "stayMin": 63
       },
       "img": null,
       "pair": {
@@ -1146,14 +1146,14 @@
       "status": "awaiting",
       "attr": null,
       "attrInitial": null,
-      "level": 1,
+      "level": 2,
       "rank": {
         "name": "見習いDJ",
         "nextName": "レギュラーDJ",
-        "progress": 0
+        "progress": 0.1111111111111111
       },
-      "exp": 9,
-      "expNext": 10,
+      "exp": 10,
+      "expNext": 30,
       "params": {
         "atk": 10,
         "def": 5,
@@ -1164,7 +1164,7 @@
         "updatedAt": "2026-11-23T07:22:36.954Z"
       },
       "bp": 0,
-      "unspentAlloc": 0,
+      "unspentAlloc": 1,
       "record": {
         "npcWin": 0,
         "npcLose": 0,
@@ -1188,7 +1188,7 @@
         "eligible": false,
         "queued": false,
         "winsKind": "total",
-        "levelNow": 1,
+        "levelNow": 2,
         "levelNeed": 50,
         "winsNow": 0,
         "winsNeed": 50
@@ -1217,18 +1217,18 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 0,
+        "heartsLeft": 10,
         "spoonsLeft": 0,
         "commentsLeft": 6,
-        "visitsLeft": 5,
-        "stayLeftSec": 335
+        "visitsLeft": 4,
+        "stayLeftSec": 169
       },
       "signalsTotal": {
         "hearts": 50,
         "spoons": 0,
         "comments": 74,
-        "visits": 3,
-        "stayMin": 84
+        "visits": 4,
+        "stayMin": 87
       },
       "img": "chars/sBVUqfp0A17e3SwGNApjWQ-b.png",
       "pair": {
@@ -1252,20 +1252,20 @@
       "frame": "gold",
       "crown": true,
       "pvpWin": 0,
-      "exp": 10
+      "exp": 12
     },
     {
       "rank": 2,
       "nickname": "甘瞳ももか",
       "radioName": "黄金の流れ星卿",
-      "level": 1,
+      "level": 2,
       "attr": null,
       "titleId": "medalist",
       "titleText": "レゾナンス・メダリスト",
       "frame": "silver",
       "crown": false,
       "pvpWin": 0,
-      "exp": 9
+      "exp": 10
     },
     {
       "rank": 3,
@@ -1282,8 +1282,8 @@
     },
     {
       "rank": 4,
-      "nickname": "しゅーくりーむ  ",
-      "radioName": "深夜の貴公子名人",
+      "nickname": "月野詩織.",
+      "radioName": "深夜の流れ星番長",
       "level": 1,
       "attr": null,
       "titleId": "top10",
@@ -1291,12 +1291,12 @@
       "frame": null,
       "crown": false,
       "pvpWin": 0,
-      "exp": 4
+      "exp": 6
     },
     {
       "rank": 5,
-      "nickname": "月野詩織.",
-      "radioName": "深夜の流れ星番長",
+      "nickname": "しゅーくりーむ  ",
+      "radioName": "深夜の貴公子名人",
       "level": 1,
       "attr": null,
       "titleId": "top10",
