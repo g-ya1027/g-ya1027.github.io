@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T08:14:06.195Z",
+  "updatedAt": "2026-11-23T08:14:25.463Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -51,7 +51,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T07:47:20.509Z"
+        "updatedAt": "2026-11-23T08:14:23.439Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -156,7 +156,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T07:47:20.509Z"
+        "updatedAt": "2026-11-23T08:14:23.439Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -256,7 +256,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T07:47:20.509Z"
+        "updatedAt": "2026-11-23T08:14:23.439Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -356,7 +356,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T07:47:20.509Z"
+        "updatedAt": "2026-11-23T08:14:23.439Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -456,7 +456,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T07:47:20.509Z"
+        "updatedAt": "2026-11-23T08:14:23.439Z"
       },
       "bp": 0,
       "unspentAlloc": 1,
@@ -561,7 +561,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T07:47:20.509Z"
+        "updatedAt": "2026-11-23T08:14:23.439Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -661,7 +661,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T07:47:20.509Z"
+        "updatedAt": "2026-11-23T08:14:23.439Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -761,7 +761,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T07:47:20.509Z"
+        "updatedAt": "2026-11-23T08:14:23.439Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -817,14 +817,14 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 7,
+        "heartsLeft": 6,
         "spoonsLeft": 0,
         "commentsLeft": 12,
         "visitsLeft": 4,
         "stayLeftSec": 814
       },
       "signalsTotal": {
-        "hearts": 3,
+        "hearts": 4,
         "spoons": 0,
         "comments": 8,
         "visits": 4,
@@ -861,7 +861,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T07:47:20.509Z"
+        "updatedAt": "2026-11-23T08:14:23.439Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -961,7 +961,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T07:47:20.509Z"
+        "updatedAt": "2026-11-23T08:14:23.439Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -1061,7 +1061,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T07:47:20.509Z"
+        "updatedAt": "2026-11-23T08:14:23.439Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -1161,7 +1161,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T07:47:20.509Z"
+        "updatedAt": "2026-11-23T08:14:23.439Z"
       },
       "bp": 0,
       "unspentAlloc": 1,
@@ -1261,7 +1261,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-23T08:00:25.253Z"
+        "updatedAt": "2026-11-23T08:14:23.439Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
