@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T07:29:59.961Z",
+  "updatedAt": "2026-11-23T07:36:28.136Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
@@ -166,7 +166,7 @@
         "b": "chars/sBVUqfp0A17e3SwGNApjWQ-b.png",
         "kind": "gender"
       },
-      "chosen": null,
+      "chosen": "b",
       "reroll": "ok",
       "rerollNextAt": null
     }
