@@ -11,9 +11,10 @@
     44,
     12,
     46,
-    10
+    10,
+    48
   ],
-  "drawnCount": 7,
+  "drawnCount": 8,
   "players": [
     {
       "nickname": "甘瞳ももか",
@@ -56,7 +57,7 @@
       ],
       "reach": false,
       "bingo": false,
-      "markedCount": 5
+      "markedCount": 6
     },
     {
       "nickname": "kinou",
@@ -231,5 +232,5 @@
       "markedCount": 6
     }
   ],
-  "updatedAt": "2026-11-23T08:50:44.406Z"
+  "updatedAt": "2026-11-23T08:51:34.202Z"
 }
