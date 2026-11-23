@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T08:54:40.117Z",
+  "updatedAt": "2026-11-23T08:55:43.601Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -214,14 +214,14 @@
       "signals": {
         "heartsLeft": 0,
         "spoonsLeft": 0,
-        "commentsLeft": 11,
+        "commentsLeft": 10,
         "visitsLeft": 1,
         "stayLeftSec": 1466
       },
       "signalsTotal": {
         "hearts": 10,
         "spoons": 0,
-        "comments": 49,
+        "comments": 50,
         "visits": 10,
         "stayMin": 185
       },
@@ -519,14 +519,14 @@
       "signals": {
         "heartsLeft": 4,
         "spoonsLeft": 0,
-        "commentsLeft": 15,
+        "commentsLeft": 14,
         "visitsLeft": 3,
         "stayLeftSec": 681
       },
       "signalsTotal": {
         "hearts": 16,
         "spoons": 4,
-        "comments": 65,
+        "comments": 66,
         "visits": 5,
         "stayMin": 198
       },
@@ -1019,14 +1019,14 @@
       "signals": {
         "heartsLeft": 4,
         "spoonsLeft": 0,
-        "commentsLeft": 17,
+        "commentsLeft": 15,
         "visitsLeft": 4,
         "stayLeftSec": 593
       },
       "signalsTotal": {
         "hearts": 36,
         "spoons": 0,
-        "comments": 63,
+        "comments": 65,
         "visits": 4,
         "stayMin": 140
       },
@@ -1224,14 +1224,14 @@
       "signals": {
         "heartsLeft": 3,
         "spoonsLeft": 0,
-        "commentsLeft": 13,
+        "commentsLeft": 10,
         "visitsLeft": 4,
         "stayLeftSec": 960
       },
       "signalsTotal": {
         "hearts": 57,
         "spoons": 0,
-        "comments": 127,
+        "comments": 130,
         "visits": 4,
         "stayMin": 164
       },
@@ -1324,14 +1324,14 @@
       "signals": {
         "heartsLeft": 9,
         "spoonsLeft": 0,
-        "commentsLeft": 10,
+        "commentsLeft": 9,
         "visitsLeft": 4,
         "stayLeftSec": 1583
       },
       "signalsTotal": {
         "hearts": 1,
         "spoons": 0,
-        "comments": 10,
+        "comments": 11,
         "visits": 4,
         "stayMin": 63
       },
