@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T10:29:26.974Z",
+  "updatedAt": "2026-11-23T10:58:57.865Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
@@ -327,7 +327,16 @@
       "chosen": null,
       "reroll": "ok",
       "rerollNextAt": null,
-      "battle": null
+      "battle": {
+        "level": 1,
+        "rankName": "見習いDJ",
+        "rank": 14,
+        "wins": 0,
+        "losses": 0,
+        "draws": 0,
+        "attr": null,
+        "stage": 0
+      }
     }
   ]
 }
