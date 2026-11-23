@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T08:29:49.811Z",
+  "updatedAt": "2026-11-23T08:35:01.832Z",
   "metric": "exp",
   "entries": [
     {
@@ -33,14 +33,14 @@
       "rank": 3,
       "nickname": "月野詩織.",
       "radioName": "深夜の流れ星番長",
-      "level": 1,
+      "level": 2,
       "attr": null,
       "titleId": "medalist",
       "titleText": "レゾナンス・メダリスト",
       "frame": "bronze",
       "crown": false,
       "pvpWin": 0,
-      "exp": 8
+      "exp": 10
     },
     {
       "rank": 4,
