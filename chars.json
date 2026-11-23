@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T05:50:32.773Z",
+  "updatedAt": "2026-11-23T05:50:45.563Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
@@ -128,6 +128,16 @@
       "token": "cf225da5b96f2571",
       "nickname": "月野詩織.",
       "radioName": "深夜の流れ星番長",
+      "status": "pending",
+      "pair": null,
+      "chosen": null,
+      "reroll": "notready",
+      "rerollNextAt": null
+    },
+    {
+      "token": "f1295416008796dc",
+      "nickname": "涼さん-1.0",
+      "radioName": "伝説の猫又先生",
       "status": "pending",
       "pair": null,
       "chosen": null,
