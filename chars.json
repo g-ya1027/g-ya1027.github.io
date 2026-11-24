@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-23T10:58:57.865Z",
+  "updatedAt": "2026-11-24T10:14:54.031Z",
   "people": [
     {
       "token": "5ba6ffcd77bfe2f6",
@@ -24,6 +24,13 @@
         "draws": 0,
         "attr": null,
         "stage": 0
+      },
+      "history": {
+        "firstSeen": "2026-11-01T09:23:14.826Z",
+        "lastSeen": "2026-11-22T10:07:24.038Z",
+        "totalVisits": 8,
+        "days": [],
+        "since": null
       }
     },
     {
@@ -48,6 +55,13 @@
         "draws": 0,
         "attr": null,
         "stage": 0
+      },
+      "history": {
+        "firstSeen": "2026-11-14T13:13:21.313Z",
+        "lastSeen": "2026-11-23T05:46:08.499Z",
+        "totalVisits": 4,
+        "days": [],
+        "since": null
       }
     },
     {
@@ -72,6 +86,13 @@
         "draws": 0,
         "attr": null,
         "stage": 0
+      },
+      "history": {
+        "firstSeen": "2026-11-02T13:43:56.515Z",
+        "lastSeen": "2026-11-23T08:44:07.689Z",
+        "totalVisits": 10,
+        "days": [],
+        "since": null
       }
     },
     {
@@ -96,6 +117,13 @@
         "draws": 0,
         "attr": null,
         "stage": 0
+      },
+      "history": {
+        "firstSeen": "2026-11-08T11:52:58.449Z",
+        "lastSeen": "2026-11-22T09:46:04.308Z",
+        "totalVisits": 4,
+        "days": [],
+        "since": null
       }
     },
     {
@@ -120,6 +148,13 @@
         "draws": 0,
         "attr": null,
         "stage": 0
+      },
+      "history": {
+        "firstSeen": "2026-11-14T12:52:51.943Z",
+        "lastSeen": "2026-11-23T07:23:55.896Z",
+        "totalVisits": 5,
+        "days": [],
+        "since": null
       }
     },
     {
@@ -144,6 +179,13 @@
         "draws": 0,
         "attr": null,
         "stage": 0
+      },
+      "history": {
+        "firstSeen": "2026-11-01T09:25:26.628Z",
+        "lastSeen": "2026-11-23T08:20:45.421Z",
+        "totalVisits": 6,
+        "days": [],
+        "since": null
       }
     },
     {
@@ -168,6 +210,13 @@
         "draws": 0,
         "attr": null,
         "stage": 0
+      },
+      "history": {
+        "firstSeen": "2026-11-08T11:49:13.665Z",
+        "lastSeen": "2026-11-22T09:58:46.692Z",
+        "totalVisits": 3,
+        "days": [],
+        "since": null
       }
     },
     {
@@ -192,6 +241,13 @@
         "draws": 0,
         "attr": null,
         "stage": 0
+      },
+      "history": {
+        "firstSeen": "2026-11-01T09:52:10.732Z",
+        "lastSeen": "2026-11-23T08:13:09.476Z",
+        "totalVisits": 5,
+        "days": [],
+        "since": null
       }
     },
     {
@@ -216,6 +272,13 @@
         "draws": 0,
         "attr": null,
         "stage": 0
+      },
+      "history": {
+        "firstSeen": "2026-11-01T09:30:58.060Z",
+        "lastSeen": "2026-11-23T05:50:16.037Z",
+        "totalVisits": 4,
+        "days": [],
+        "since": null
       }
     },
     {
@@ -240,6 +303,13 @@
         "draws": 0,
         "attr": null,
         "stage": 0
+      },
+      "history": {
+        "firstSeen": "2026-11-15T04:19:32.782Z",
+        "lastSeen": "2026-11-23T07:20:16.821Z",
+        "totalVisits": 4,
+        "days": [],
+        "since": null
       }
     },
     {
@@ -264,6 +334,13 @@
         "draws": 0,
         "attr": null,
         "stage": 0
+      },
+      "history": {
+        "firstSeen": "2026-11-01T09:22:08.414Z",
+        "lastSeen": "2026-11-23T05:50:45.562Z",
+        "totalVisits": 3,
+        "days": [],
+        "since": null
       }
     },
     {
@@ -288,6 +365,13 @@
         "draws": 0,
         "attr": null,
         "stage": 0
+      },
+      "history": {
+        "firstSeen": "2026-11-14T12:51:09.022Z",
+        "lastSeen": "2026-11-23T07:39:20.237Z",
+        "totalVisits": 4,
+        "days": [],
+        "since": null
       }
     },
     {
@@ -312,6 +396,13 @@
         "draws": 0,
         "attr": null,
         "stage": 0
+      },
+      "history": {
+        "firstSeen": "2026-11-15T03:40:49.180Z",
+        "lastSeen": "2026-11-23T08:41:37.347Z",
+        "totalVisits": 4,
+        "days": [],
+        "since": null
       }
     },
     {
@@ -336,6 +427,13 @@
         "draws": 0,
         "attr": null,
         "stage": 0
+      },
+      "history": {
+        "firstSeen": "2026-11-14T13:21:33.361Z",
+        "lastSeen": "2026-11-23T08:04:02.232Z",
+        "totalVisits": 3,
+        "days": [],
+        "since": null
       }
     }
   ]
