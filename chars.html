@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- spoon-radio-chars v7 -->
+<!-- spoon-radio-chars v8 -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -437,6 +437,18 @@
         html += '<textarea id="wish" maxlength="300" placeholder="希望があれば書いてね（例：もっとクールに／猫耳をつけて）"></textarea>';
         html += '<button type="button" class="act" id="rerollBtn" style="margin-top:8px">再抽選を申請する</button>';
         html += '<div class="msg">申請すると1週間は再抽選できません。</div>';
+      }
+    }
+    if (p.history) {
+      var hist = p.history;
+      html += '<div class="lbl">📅 参加履歴</div>';
+      html += '<div class="msg">初めて来た日: ' + (hist.firstSeen ? dateStr(hist.firstSeen) : '―') + '<br>最後に来た日: ' + (hist.lastSeen ? dateStr(hist.lastSeen) : '―') + '<br>通算の参加回数: ' + (hist.totalVisits || 0) + '回</div>';
+      if (hist.days && hist.days.length) {
+        var recent = hist.days.slice(-30);
+        html += '<div class="msg">日別の参加（直近' + recent.length + '日分）<br>' + recent.map(function (d) { return esc(d.date) + '（' + d.count + '回）'; }).join('<br>') + '</div>';
+      }
+      if (hist.since) {
+        html += '<div class="msg">※ 日別の参加履歴は ' + esc(hist.since) + ' から記録しています。それより前の分は日別には残っていません。</div>';
       }
     }
     html += '<div class="msg" id="opMsg"></div></div>';
