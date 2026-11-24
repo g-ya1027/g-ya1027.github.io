@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-24T13:45:15.207Z",
+  "updatedAt": "2026-11-24T13:50:28.205Z",
   "metric": "exp",
   "entries": [
     {
       "rank": 1,
-      "nickname": "甘瞳ももか",
-      "radioName": "黄金の流れ星卿",
+      "nickname": "kinou",
+      "radioName": "永遠の貴公子の星",
       "level": 2,
       "attr": null,
       "titleId": "champion",
@@ -14,12 +14,12 @@
       "frame": "gold",
       "crown": true,
       "pvpWin": 0,
-      "exp": 15
+      "exp": 16
     },
     {
       "rank": 2,
-      "nickname": "kinou",
-      "radioName": "永遠の貴公子の星",
+      "nickname": "甘瞳ももか",
+      "radioName": "黄金の流れ星卿",
       "level": 2,
       "attr": null,
       "titleId": "medalist",
@@ -27,12 +27,12 @@
       "frame": "silver",
       "crown": false,
       "pvpWin": 0,
-      "exp": 14
+      "exp": 15
     },
     {
       "rank": 3,
-      "nickname": "月野詩織.",
-      "radioName": "深夜の流れ星番長",
+      "nickname": "しゅーくりーむ  ",
+      "radioName": "深夜の貴公子名人",
       "level": 2,
       "attr": null,
       "titleId": "medalist",
@@ -40,12 +40,12 @@
       "frame": "bronze",
       "crown": false,
       "pvpWin": 0,
-      "exp": 10
+      "exp": 11
     },
     {
       "rank": 4,
-      "nickname": "しゅーくりーむ  ",
-      "radioName": "深夜の貴公子名人",
+      "nickname": "月野詩織.",
+      "radioName": "深夜の流れ星番長",
       "level": 2,
       "attr": null,
       "titleId": "top10",
@@ -122,8 +122,8 @@
     },
     {
       "rank": 10,
-      "nickname": "瑠璃𓈒𓂂𖧷",
-      "radioName": "深夜の影総長",
+      "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
+      "radioName": "夢追う番人卿",
       "level": 1,
       "attr": null,
       "titleId": "top10",
@@ -131,12 +131,12 @@
       "frame": null,
       "crown": false,
       "pvpWin": 0,
-      "exp": 2
+      "exp": 3
     },
     {
       "rank": 11,
-      "nickname": "ザッキー【メルヘン調査員】",
-      "radioName": "黄昏の魔法使い卿",
+      "nickname": "瑠璃𓈒𓂂𖧷",
+      "radioName": "深夜の影総長",
       "level": 1,
       "attr": null,
       "titleId": null,
@@ -148,8 +148,8 @@
     },
     {
       "rank": 12,
-      "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
-      "radioName": "夢追う番人卿",
+      "nickname": "ザッキー【メルヘン調査員】",
+      "radioName": "黄昏の魔法使い卿",
       "level": 1,
       "attr": null,
       "titleId": null,
@@ -157,7 +157,7 @@
       "frame": null,
       "crown": false,
       "pvpWin": 0,
-      "exp": 1
+      "exp": 2
     },
     {
       "rank": 13,
