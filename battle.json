@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-24T14:07:33.701Z",
+  "updatedAt": "2026-11-24T14:08:36.090Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -114,16 +114,16 @@
       "signals": {
         "heartsLeft": 4,
         "spoonsLeft": 0,
-        "commentsLeft": 15,
+        "commentsLeft": 13,
         "visitsLeft": 2,
-        "stayLeftSec": 807
+        "stayLeftSec": 507
       },
       "signalsTotal": {
         "hearts": 6,
         "spoons": 0,
-        "comments": 25,
+        "comments": 27,
         "visits": 10,
-        "stayMin": 76
+        "stayMin": 81
       },
       "img": null,
       "pair": {
@@ -147,7 +147,7 @@
         "nextName": "レギュラーDJ",
         "progress": 0.1111111111111111
       },
-      "exp": 11,
+      "exp": 12,
       "expNext": 30,
       "params": {
         "atk": 10,
@@ -214,14 +214,14 @@
       "signals": {
         "heartsLeft": 7,
         "spoonsLeft": 0,
-        "commentsLeft": 0,
+        "commentsLeft": 18,
         "visitsLeft": 5,
         "stayLeftSec": 1020
       },
       "signalsTotal": {
         "hearts": 13,
         "spoons": 0,
-        "comments": 80,
+        "comments": 82,
         "visits": 11,
         "stayMin": 204
       },
@@ -519,14 +519,14 @@
       "signals": {
         "heartsLeft": 10,
         "spoonsLeft": 0,
-        "commentsLeft": 13,
+        "commentsLeft": 10,
         "visitsLeft": 2,
         "stayLeftSec": 1310
       },
       "signalsTotal": {
         "hearts": 20,
         "spoons": 5,
-        "comments": 87,
+        "comments": 90,
         "visits": 6,
         "stayMin": 218
       },
@@ -1483,7 +1483,7 @@
       "frame": "bronze",
       "crown": false,
       "pvpWin": 0,
-      "exp": 11
+      "exp": 12
     },
     {
       "rank": 4,
