@@ -14,6 +14,7 @@
   #playBtn { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,.45); border: 0; border-radius: 12px; color: #fff; font-size: 20px; font-weight: 700; cursor: pointer; }
   #clock { font-size: 34px; font-weight: 700; font-variant-numeric: tabular-nums; background: #000; border: 2px solid #3a3f46; border-radius: 12px; text-align: center; padding: 6px 2px; margin-top: 10px; }
   .note { color: #9aa3ad; font-size: 12px; text-align: center; margin-top: 5px; }
+  .steps { background: #1d2026; border: 1px solid #3a3f46; border-radius: 10px; padding: 8px 10px; font-size: 12.5px; line-height: 1.7; color: #c9d1d9; margin-bottom: 10px; }
   .row { display: flex; gap: 8px; margin: 12px 0; }
   input { flex: 2; min-width: 0; font-size: 17px; padding: 11px; border-radius: 10px; border: 1px solid #3a3f46; background: #1d2026; color: #fff; text-transform: uppercase; letter-spacing: 2px; }
   button.act { flex: 1; white-space: nowrap; font-size: 15px; font-weight: 600; padding: 11px 6px; border: 0; border-radius: 10px; background: #2f6fed; color: #fff; cursor: pointer; }
@@ -26,10 +27,17 @@
 <body>
 <h1>📺 動画おためし視聴（実験）</h1>
 
+<div class="steps">①コードを入れて接続 → ②映像が出たら「浮かせる」をタップ → ③Spoon アプリに戻ると、映像が浮いたままコメントできます。<br>iPhoneは全画面にしてから PiP アイコンをタップしてください。</div>
+
 <div class="stage">
   <video id="video" autoplay playsinline></video>
   <button id="playBtn">▶ 再生する</button>
 </div>
+
+<div class="row">
+  <button class="act" id="btnPip">⛶ 浮かせる（PiP）</button>
+</div>
+<div id="pipNote" class="note" style="display:none"></div>
 
 <div id="clock">--:--:--.---</div>
 <div class="note">この時計はスマホの時刻。映像の中の時計との差が「映像の遅れ」です。</div>
@@ -122,6 +130,39 @@
   $('btnWatch').addEventListener('click', function () { watch($('codeInput').value); });
   $('btnRetry').addEventListener('click', function () { watch($('codeInput').value); });
   $('playBtn').addEventListener('click', function () { video.play(); $('playBtn').style.display = 'none'; });
+
+  // ---- picture-in-picture ----
+  var pipBtn = $('btnPip');
+  var pipNote = $('pipNote');
+  function pipMsg(msg) { pipNote.textContent = msg; pipNote.style.display = msg ? 'block' : 'none'; }
+  var pipOk = (typeof video.requestPictureInPicture === 'function') ||
+    (typeof video.webkitSetPresentationMode === 'function') ||
+    (typeof video.webkitEnterFullscreen === 'function');
+  if (!pipOk) pipBtn.style.display = 'none';
+  pipBtn.addEventListener('click', function () {
+    pipMsg('');
+    if (document.pictureInPictureElement) { try { document.exitPictureInPicture(); } catch (e) {} return; }
+    if (typeof video.requestPictureInPicture === 'function') {
+      try {
+        var pr = video.requestPictureInPicture();
+        if (pr && pr.catch) pr.catch(function () { pipMsg('浮かせませんでした。映像が再生中か確認してください。'); });
+      } catch (e) { pipMsg('このブラウザでは浮かせません'); }
+      return;
+    }
+    if (typeof video.webkitSupportsPresentationMode === 'function' &&
+        video.webkitSupportsPresentationMode('picture-in-picture') &&
+        typeof video.webkitSetPresentationMode === 'function') {
+      try { video.webkitSetPresentationMode('picture-in-picture'); return; } catch (e) {}
+    }
+    if (typeof video.webkitEnterFullscreen === 'function') {
+      try {
+        video.webkitEnterFullscreen();
+        pipMsg('全画面にしました。再生画面の PiP アイコンを押すか、ホームに戻ると小さく浮きます。');
+        return;
+      } catch (e) {}
+    }
+    pipMsg('このブラウザでは浮かせません');
+  });
 
   var params = new URLSearchParams(location.search);
   var c = params.get('c');
