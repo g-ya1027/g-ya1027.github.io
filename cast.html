@@ -223,6 +223,22 @@
   $('btn916').addEventListener('click', function () { setSelAspect(9 / 16); });
   $('btn11').addEventListener('click', function () { setSelAspect(1); });
 
+  // ---- share code -> bot (game109) ----
+  // 部屋の合言葉を Firebase RTDB の shareCode へ知らせて、bot の管理画面「📺 画面共有」に
+  // 自動で入るようにします。書き込みに失敗しても送信ページの動作は一切妨げません。
+  var SHARE_DB_URL = 'https://podcastse-default-rtdb.firebaseio.com';
+  function publishShareCode(value) {
+    try {
+      fetch(SHARE_DB_URL + '/shareCode.json', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: value || '', updatedAt: Date.now() }),
+        keepalive: true
+      }).catch(function () {});
+    } catch (e) {}
+  }
+  window.addEventListener('pagehide', function () { publishShareCode(''); });
+
   // ---- room code / peer ----
   function newCode() {
     var s = '';
@@ -242,9 +258,13 @@
   renderRoom();
 
   function ensurePeer() {
-    if (peer) return;
+    if (peer) {
+      // 停止→再開などで peer が生きている場合は、開通済みの合言葉を改めて知らせる
+      if (peer.open) publishShareCode(code);
+      return;
+    }
     peer = new Peer(PREFIX + code);
-    peer.on('open', function () { log('受付を開始しました（合言葉: ' + code + '）', 'ok'); });
+    peer.on('open', function () { log('受付を開始しました（合言葉: ' + code + '）', 'ok'); publishShareCode(code); });
     peer.on('connection', function (conn) {
       conn.on('open', function () {
         viewers[conn.peer] = true;
@@ -295,6 +315,7 @@
     drawing = false;
     $('btnStop').disabled = true;
     renderSel();
+    publishShareCode('');
     log('停止しました。');
   }
 
@@ -318,6 +339,7 @@
   $('btnNewCode').addEventListener('click', function () {
     stopAll();
     if (peer) { try { peer.destroy(); } catch (e) {} peer = null; }
+    publishShareCode('');
     viewers = {};
     code = newCode();
     renderRoom();
