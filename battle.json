@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-24T13:56:47.535Z",
+  "updatedAt": "2026-11-24T13:57:49.832Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -51,7 +51,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-24T13:39:29.291Z"
+        "updatedAt": "2026-11-24T13:57:34.633Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -114,16 +114,16 @@
       "signals": {
         "heartsLeft": 5,
         "spoonsLeft": 0,
-        "commentsLeft": 16,
+        "commentsLeft": 15,
         "visitsLeft": 3,
-        "stayLeftSec": 1270
+        "stayLeftSec": 1090
       },
       "signalsTotal": {
         "hearts": 5,
         "spoons": 0,
-        "comments": 24,
+        "comments": 25,
         "visits": 9,
-        "stayMin": 68
+        "stayMin": 71
       },
       "img": null,
       "pair": {
@@ -156,7 +156,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-24T13:39:29.291Z"
+        "updatedAt": "2026-11-24T13:57:34.633Z"
       },
       "bp": 0,
       "unspentAlloc": 1,
@@ -216,14 +216,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 10,
         "visitsLeft": 5,
-        "stayLeftSec": 1200
+        "stayLeftSec": 1020
       },
       "signalsTotal": {
         "hearts": 12,
         "spoons": 0,
         "comments": 70,
         "visits": 11,
-        "stayMin": 201
+        "stayMin": 204
       },
       "img": "chars/Lnrdo_b3TeGyRY8fNTyEhA-a.png",
       "pair": {
@@ -256,7 +256,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-24T13:39:29.291Z"
+        "updatedAt": "2026-11-24T13:57:34.633Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -356,7 +356,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-24T13:39:29.291Z"
+        "updatedAt": "2026-11-24T13:57:34.633Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -447,7 +447,7 @@
         "nextName": "レギュラーDJ",
         "progress": 0.1111111111111111
       },
-      "exp": 16,
+      "exp": 17,
       "expNext": 30,
       "params": {
         "atk": 10,
@@ -456,7 +456,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-24T13:39:29.291Z"
+        "updatedAt": "2026-11-24T13:57:34.633Z"
       },
       "bp": 0,
       "unspentAlloc": 1,
@@ -519,16 +519,16 @@
       "signals": {
         "heartsLeft": 1,
         "spoonsLeft": 0,
-        "commentsLeft": 1,
+        "commentsLeft": 19,
         "visitsLeft": 2,
-        "stayLeftSec": 1490
+        "stayLeftSec": 1310
       },
       "signalsTotal": {
         "hearts": 19,
         "spoons": 5,
-        "comments": 79,
+        "comments": 81,
         "visits": 6,
-        "stayMin": 215
+        "stayMin": 218
       },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-a.png",
       "pair": {
@@ -561,7 +561,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-24T13:39:29.291Z"
+        "updatedAt": "2026-11-24T13:57:34.633Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -661,7 +661,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-24T13:39:29.291Z"
+        "updatedAt": "2026-11-24T13:57:34.633Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -761,7 +761,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-24T13:39:29.291Z"
+        "updatedAt": "2026-11-24T13:57:34.633Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -861,7 +861,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-24T13:39:29.291Z"
+        "updatedAt": "2026-11-24T13:57:34.633Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -961,7 +961,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-24T13:39:29.291Z"
+        "updatedAt": "2026-11-24T13:57:34.633Z"
       },
       "bp": 0,
       "unspentAlloc": 1,
@@ -1061,7 +1061,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-24T13:39:29.291Z"
+        "updatedAt": "2026-11-24T13:57:34.633Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -1161,7 +1161,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-24T13:39:29.291Z"
+        "updatedAt": "2026-11-24T13:57:34.633Z"
       },
       "bp": 0,
       "unspentAlloc": 1,
@@ -1266,7 +1266,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-24T13:39:29.291Z"
+        "updatedAt": "2026-11-24T13:57:34.633Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -1366,7 +1366,7 @@
       },
       "hp": {
         "stored": 100,
-        "updatedAt": "2026-11-24T13:39:29.291Z"
+        "updatedAt": "2026-11-24T13:57:34.633Z"
       },
       "bp": 0,
       "unspentAlloc": 0,
@@ -1457,7 +1457,7 @@
       "frame": "gold",
       "crown": true,
       "pvpWin": 0,
-      "exp": 16
+      "exp": 17
     },
     {
       "rank": 2,
