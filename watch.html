@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>動画おためし視聴（実験）</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 14px; font-family: -apple-system, "Hiragino Sans", sans-serif; background: #14161a; color: #f2f3f5; }
+  h1 { font-size: 17px; margin: 0 0 10px; }
+  .stage { position: relative; }
+  video { width: 100%; background: #000; border-radius: 12px; display: block; }
+  #playBtn { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,.45); border: 0; border-radius: 12px; color: #fff; font-size: 20px; font-weight: 700; cursor: pointer; }
+  #clock { font-size: 34px; font-weight: 700; font-variant-numeric: tabular-nums; background: #000; border: 2px solid #3a3f46; border-radius: 12px; text-align: center; padding: 6px 2px; margin-top: 10px; }
+  .note { color: #9aa3ad; font-size: 12px; text-align: center; margin-top: 5px; }
+  .row { display: flex; gap: 8px; margin: 12px 0; }
+  input { flex: 2; min-width: 0; font-size: 17px; padding: 11px; border-radius: 10px; border: 1px solid #3a3f46; background: #1d2026; color: #fff; text-transform: uppercase; letter-spacing: 2px; }
+  button.act { flex: 1; white-space: nowrap; font-size: 15px; font-weight: 600; padding: 11px 6px; border: 0; border-radius: 10px; background: #2f6fed; color: #fff; cursor: pointer; }
+  button.ghost { background: #3a3f46; }
+  #status { font-size: 14px; line-height: 1.7; }
+  #stats { font-size: 13px; color: #9fd0ff; line-height: 1.7; }
+  .ok { color: #7ee2a0; } .ng { color: #ff9c9c; }
+</style>
+</head>
+<body>
+<h1>📺 動画おためし視聴（実験）</h1>
+
+<div class="stage">
+  <video id="video" autoplay playsinline></video>
+  <button id="playBtn">▶ 再生する</button>
+</div>
+
+<div id="clock">--:--:--.---</div>
+<div class="note">この時計はスマホの時刻。映像の中の時計との差が「映像の遅れ」です。</div>
+
+<div class="row">
+  <input id="codeInput" placeholder="合言葉" maxlength="6" autocomplete="off">
+  <button class="act" id="btnWatch">見る</button>
+  <button class="act ghost" id="btnRetry">再接続</button>
+</div>
+
+<div id="status">合言葉を入れて「見る」を押してください。</div>
+<div id="stats"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/peerjs@1/dist/peerjs.min.js"></script>
+<script>
+(function () {
+  'use strict';
+  var PREFIX = 'lila-vcast-';
+  var $ = function (id) { return document.getElementById(id); };
+  var video = $('video');
+  var statusEl = $('status');
+  var statsEl = $('stats');
+  function setStatus(msg, cls) { statusEl.innerHTML = ''; var d = document.createElement('div'); if (cls) d.className = cls; d.textContent = msg; statusEl.appendChild(d); }
+
+  // ---- local clock ----
+  var clockEl = $('clock');
+  function tick() {
+    var d = new Date();
+    function p(n, l) { var s = String(n); while (s.length < (l || 2)) s = '0' + s; return s; }
+    clockEl.textContent = p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds()) + '.' + p(d.getMilliseconds(), 3);
+  }
+  setInterval(tick, 31); tick();
+
+  var peer = null;
+  var mediaConn = null;
+  var statsTimer = null;
+
+  function startStats() {
+    if (statsTimer) clearInterval(statsTimer);
+    statsTimer = setInterval(function () {
+      if (!mediaConn || !mediaConn.peerConnection) return;
+      mediaConn.peerConnection.getStats(null).then(function (stats) {
+        var jbDelay = null, jbCount = 0, rtt = null;
+        stats.forEach(function (r) {
+          if (r.type === 'inbound-rtp' && r.kind === 'video') {
+            if (typeof r.jitterBufferDelay === 'number' && r.jitterBufferEmittedCount) { jbDelay = r.jitterBufferDelay; jbCount = r.jitterBufferEmittedCount; }
+          }
+          if (r.type === 'candidate-pair' && r.state === 'succeeded' && typeof r.currentRoundTripTime === 'number') rtt = r.currentRoundTripTime;
+        });
+        var parts = [];
+        if (jbDelay !== null && jbCount > 0) parts.push('再生側の保持時間: 約' + (jbDelay / jbCount).toFixed(2) + '秒');
+        if (rtt !== null) parts.push('ネットワーク往復: 約' + Math.round(rtt * 1000) + 'ms');
+        statsEl.textContent = parts.join(' ／ ');
+      }).catch(function () {});
+    }, 2000);
+  }
+
+  function watch(code) {
+    code = (code || '').trim().toUpperCase();
+    if (code.length !== 6) { setStatus('合言葉は6文字です。送信ページに表示されているものを入れてください。', 'ng'); return; }
+    if (peer) { try { peer.destroy(); } catch (e) {} peer = null; }
+    if (statsTimer) { clearInterval(statsTimer); statsTimer = null; }
+    statsEl.textContent = '';
+    setStatus('接続しています…');
+    peer = new Peer();
+    peer.on('open', function () {
+      var conn = peer.connect(PREFIX + code, { reliable: true });
+      conn.on('open', function () { setStatus('送信側につながりました。映像の到着を待っています…'); });
+      conn.on('error', function () { setStatus('送信側へつなげませんでした。合言葉と、送信ページが開いているかを確認してください。', 'ng'); });
+    });
+    peer.on('call', function (call) {
+      mediaConn = call;
+      call.answer();
+      call.on('stream', function (remoteStream) {
+        video.srcObject = remoteStream;
+        setStatus('映像が届きました。', 'ok');
+        startStats();
+        var p = video.play();
+        if (p && p.catch) p.catch(function () { $('playBtn').style.display = 'flex'; });
+      });
+      call.on('close', function () { setStatus('映像が止まりました。送信側で停止したか、接続が切れました。再接続を試してください。', 'ng'); });
+      call.on('error', function () { setStatus('映像の受け取りで問題が起きました。', 'ng'); });
+    });
+    peer.on('error', function (err) {
+      if (err.type === 'peer-unavailable') setStatus('送信側が見つかりません。合言葉が合っているか、送信ページで開始しているか確認してください。', 'ng');
+      else setStatus('接続で問題が起きました: ' + err.type, 'ng');
+    });
+  }
+
+  $('btnWatch').addEventListener('click', function () { watch($('codeInput').value); });
+  $('btnRetry').addEventListener('click', function () { watch($('codeInput').value); });
+  $('playBtn').addEventListener('click', function () { video.play(); $('playBtn').style.display = 'none'; });
+
+  var params = new URLSearchParams(location.search);
+  var c = params.get('c');
+  if (c) { $('codeInput').value = c.toUpperCase(); watch(c); }
+})();
+</script>
+</body>
+</html>

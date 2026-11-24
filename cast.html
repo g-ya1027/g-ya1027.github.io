@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>動画おためし送信（実験）</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 16px; font-family: -apple-system, "Hiragino Sans", sans-serif; background: #14161a; color: #f2f3f5; }
+  h1 { font-size: 18px; margin: 0 0 4px; }
+  .sub { color: #9aa3ad; font-size: 13px; margin-bottom: 14px; }
+  #clock { font-size: 56px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: 1px; background: #000; border: 2px solid #3a3f46; border-radius: 12px; text-align: center; padding: 10px 4px; }
+  .clock-note { text-align: center; color: #9aa3ad; font-size: 12px; margin: 6px 0 16px; }
+  video { width: 100%; max-height: 40vh; background: #000; border-radius: 12px; }
+  .row { display: flex; gap: 8px; flex-wrap: nowrap; margin: 14px 0; }
+  button { flex: 1; white-space: nowrap; font-size: 15px; font-weight: 600; padding: 12px 6px; border: 0; border-radius: 10px; background: #2f6fed; color: #fff; cursor: pointer; }
+  button.sub2 { background: #3a3f46; }
+  button:disabled { opacity: .45; cursor: default; }
+  .card { background: #1d2026; border: 1px solid #2c3038; border-radius: 12px; padding: 12px; margin: 12px 0; }
+  .code { font-size: 30px; font-weight: 700; letter-spacing: 4px; text-align: center; }
+  .url { font-size: 12px; word-break: break-all; color: #9fd0ff; text-align: center; margin-top: 6px; }
+  #qr { display: block; margin: 10px auto 2px; width: 180px; height: 180px; background: #fff; border-radius: 8px; }
+  #log { font-size: 12px; color: #c8cdd4; white-space: pre-wrap; line-height: 1.7; }
+  .ok { color: #7ee2a0; } .ng { color: #ff9c9c; }
+</style>
+</head>
+<body>
+<h1>🎥 動画おためし送信（実験）</h1>
+<div class="sub">iMac側のページ。画面かカメラを取り込んで、スマホへ送ります。音声はSpoon側に任せる前提で、映像だけ送ります。</div>
+
+<div id="clock">--:--:--.---</div>
+<div class="clock-note">遅れ測定用の時計。まず「このウィンドウ」を取り込むと、スマホ側で遅れが測れます。</div>
+
+<video id="preview" autoplay muted playsinline></video>
+
+<div class="row">
+  <button id="btnScreen">画面を開始</button>
+  <button id="btnCam" class="sub2">カメラ</button>
+  <button id="btnStop" class="sub2" disabled>停止</button>
+</div>
+
+<div class="card">
+  <div style="text-align:center;font-size:13px;color:#9aa3ad;">スマホで開く視聴ページ（合言葉）</div>
+  <div class="code" id="roomCode">------</div>
+  <img id="qr" alt="視聴ページのQRコード">
+  <div class="url" id="watchUrl"></div>
+  <div class="row" style="margin-bottom:0;">
+    <button id="btnCopy" class="sub2">URLをコピー</button>
+    <button id="btnNewCode" class="sub2">合言葉を作り直す</button>
+  </div>
+</div>
+
+<div class="card">
+  <div style="font-size:13px;color:#9aa3ad;margin-bottom:4px;">状態</div>
+  <div id="log">準備中…</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/peerjs@1/dist/peerjs.min.js"></script>
+<script>
+(function () {
+  'use strict';
+  var PREFIX = 'lila-vcast-';
+  var ALPHABET = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+  var $ = function (id) { return document.getElementById(id); };
+  var logEl = $('log');
+  function log(msg, cls) {
+    var line = document.createElement('div');
+    if (cls) line.className = cls;
+    line.textContent = msg;
+    logEl.appendChild(line);
+  }
+  function setLog(msg, cls) { logEl.innerHTML = ''; log(msg, cls); }
+
+  // ---- clock (latency check) ----
+  var clockEl = $('clock');
+  function tick() {
+    var d = new Date();
+    function p(n, l) { var s = String(n); while (s.length < (l || 2)) s = '0' + s; return s; }
+    clockEl.textContent = p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds()) + '.' + p(d.getMilliseconds(), 3);
+  }
+  setInterval(tick, 31); tick();
+
+  // ---- room code ----
+  function newCode() {
+    var s = '';
+    for (var i = 0; i < 6; i++) s += ALPHABET[Math.floor(Math.random() * ALPHABET.length)];
+    return s;
+  }
+  var code = newCode();
+  var peer = null;
+  var stream = null;
+  var viewers = {}; // viewerPeerId -> true
+
+  function watchUrl() {
+    return 'https://g-ya1027.github.io/watch.html?c=' + code;
+  }
+  function renderRoom() {
+    $('roomCode').textContent = code;
+    $('watchUrl').textContent = watchUrl();
+    $('qr').src = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=' + encodeURIComponent(watchUrl());
+  }
+  renderRoom();
+
+  function ensurePeer() {
+    if (peer) return;
+    peer = new Peer(PREFIX + code);
+    peer.on('open', function (id) { log('受付を開始しました（合言葉: ' + code + '）', 'ok'); });
+    peer.on('connection', function (conn) {
+      conn.on('open', function () {
+        viewers[conn.peer] = true;
+        log('スマホが接続しました。映像を送ります。');
+        sendTo(conn.peer);
+      });
+      conn.on('close', function () { delete viewers[conn.peer]; });
+    });
+    peer.on('error', function (err) {
+      log('接続で問題が起きました: ' + err.type, 'ng');
+      if (err.type === 'unavailable-id') log('合言葉が重なったようです。「合言葉を作り直す」を押してください。', 'ng');
+    });
+    peer.on('disconnected', function () { try { peer.reconnect(); } catch (e) {} });
+  }
+
+  function sendTo(viewerId) {
+    if (!stream || !peer) return;
+    try { peer.call(viewerId, stream); } catch (e) { log('送信に失敗しました: ' + e.message, 'ng'); }
+  }
+  function sendToAll() { for (var id in viewers) sendTo(id); }
+
+  function startStream(newStream, label) {
+    if (stream) stream.getTracks().forEach(function (t) { t.stop(); });
+    stream = newStream;
+    $('preview').srcObject = stream;
+    $('btnStop').disabled = false;
+    ensurePeer();
+    setLog(label + 'を取り込みました。スマホの接続を待っています。', 'ok');
+    sendToAll();
+    stream.getVideoTracks().forEach(function (t) {
+      t.addEventListener('ended', function () { stopAll(); });
+    });
+  }
+
+  function stopAll() {
+    if (stream) { stream.getTracks().forEach(function (t) { t.stop(); }); stream = null; }
+    $('preview').srcObject = null;
+    $('btnStop').disabled = true;
+    log('停止しました。');
+  }
+
+  $('btnScreen').addEventListener('click', function () {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
+      setLog('このブラウザでは画面取り込みが使えません。Chromeで開いてください。', 'ng'); return;
+    }
+    navigator.mediaDevices.getDisplayMedia({ video: { frameRate: 30 }, audio: false })
+      .then(function (s) { startStream(s, '画面'); })
+      .catch(function (e) { setLog('画面の取り込みがキャンセルされたか、許可されませんでした。', 'ng'); });
+  });
+  $('btnCam').addEventListener('click', function () {
+    navigator.mediaDevices.getUserMedia({ video: { width: 1280, height: 720 }, audio: false })
+      .then(function (s) { startStream(s, 'カメラ'); })
+      .catch(function (e) { setLog('カメラが使えませんでした（許可が必要です）。', 'ng'); });
+  });
+  $('btnStop').addEventListener('click', stopAll);
+  $('btnCopy').addEventListener('click', function () {
+    if (navigator.clipboard) navigator.clipboard.writeText(watchUrl()).then(function () { log('URLをコピーしました。'); });
+  });
+  $('btnNewCode').addEventListener('click', function () {
+    stopAll();
+    if (peer) { try { peer.destroy(); } catch (e) {} peer = null; }
+    viewers = {};
+    code = newCode();
+    renderRoom();
+    setLog('合言葉を作り直しました。画面かカメラを開始してください。');
+  });
+
+  setLog('「画面を開始」か「カメラ」を押してください。先に時計のウィンドウを取り込むと遅れが測れます。');
+})();
+</script>
+</body>
+</html>
