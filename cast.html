@@ -12,11 +12,18 @@
   .sub { color: #9aa3ad; font-size: 13px; margin-bottom: 14px; }
   #clock { font-size: 56px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: 1px; background: #000; border: 2px solid #3a3f46; border-radius: 12px; text-align: center; padding: 10px 4px; }
   .clock-note { text-align: center; color: #9aa3ad; font-size: 12px; margin: 6px 0 16px; }
-  video { width: 100%; max-height: 40vh; background: #000; border-radius: 12px; }
-  .row { display: flex; gap: 8px; flex-wrap: nowrap; margin: 14px 0; }
+  #stage { position: relative; width: 100%; background: #000; border-radius: 12px; overflow: hidden; touch-action: none; }
+  #srcVideo { width: 100%; height: 100%; display: block; }
+  #selRect { position: absolute; border: 2px solid #ffd94d; box-shadow: 0 0 0 9999px rgba(0,0,0,.45); display: none; cursor: move; }
+  #selHandle { position: absolute; right: -10px; bottom: -10px; width: 20px; height: 20px; background: #ffd94d; border-radius: 4px; cursor: nwse-resize; }
+  .row { display: flex; gap: 8px; flex-wrap: nowrap; margin: 12px 0; }
   button { flex: 1; white-space: nowrap; font-size: 15px; font-weight: 600; padding: 12px 6px; border: 0; border-radius: 10px; background: #2f6fed; color: #fff; cursor: pointer; }
   button.sub2 { background: #3a3f46; }
+  button.preset { background: #262b33; border: 1px solid #3a3f46; font-size: 14px; padding: 9px 4px; }
   button:disabled { opacity: .45; cursor: default; }
+  .hint { color: #9aa3ad; font-size: 12px; margin: 4px 0 0; }
+  .sendwrap { display: flex; gap: 12px; align-items: flex-start; margin-top: 12px; }
+  #sendPreview { width: 240px; max-width: 55%; background: #000; border: 1px solid #ffd94d; border-radius: 8px; }
   .card { background: #1d2026; border: 1px solid #2c3038; border-radius: 12px; padding: 12px; margin: 12px 0; }
   .code { font-size: 30px; font-weight: 700; letter-spacing: 4px; text-align: center; }
   .url { font-size: 12px; word-break: break-all; color: #9fd0ff; text-align: center; margin-top: 6px; }
@@ -32,12 +39,27 @@
 <div id="clock">--:--:--.---</div>
 <div class="clock-note">遅れ測定用の時計。まず「このウィンドウ」を取り込むと、スマホ側で遅れが測れます。</div>
 
-<video id="preview" autoplay muted playsinline></video>
+<div id="stage">
+  <video id="srcVideo" autoplay muted playsinline></video>
+  <div id="selRect"><div id="selHandle"></div></div>
+</div>
+<div class="row" style="margin-top:10px;">
+  <button class="preset" id="btnFull">全体</button>
+  <button class="preset" id="btn169">16:9</button>
+  <button class="preset" id="btn916">縦 9:16</button>
+  <button class="preset" id="btn11">1:1</button>
+</div>
+<p class="hint">範囲指定：プレビューの上でドラッグすると範囲を作れます。黄色い枠の中をドラッグで移動、右下の四角をドラッグで大きさ変更。送られるのは黄色い枠の中だけです。</p>
 
 <div class="row">
   <button id="btnScreen">画面を開始</button>
   <button id="btnCam" class="sub2">カメラ</button>
   <button id="btnStop" class="sub2" disabled>停止</button>
+</div>
+
+<div class="sendwrap">
+  <video id="sendPreview" autoplay muted playsinline></video>
+  <div class="hint" style="margin:0;">← 送信中の映像<br>（黄色い枠の中が、この形でスマホに届きます）</div>
 </div>
 
 <div class="card">
@@ -55,6 +77,8 @@
   <div style="font-size:13px;color:#9aa3ad;margin-bottom:4px;">状態</div>
   <div id="log">準備中…</div>
 </div>
+
+<canvas id="cropCanvas" width="640" height="360" style="display:none;"></canvas>
 
 <script src="https://cdn.jsdelivr.net/npm/peerjs@1/dist/peerjs.min.js"></script>
 <script>
@@ -81,7 +105,100 @@
   }
   setInterval(tick, 31); tick();
 
-  // ---- room code ----
+  // ---- region selection + crop ----
+  var srcVideo = $('srcVideo');
+  var stage = $('stage');
+  var selRectEl = $('selRect');
+  var canvas = $('cropCanvas');
+  var ctx = canvas.getContext('2d');
+  var sel = { x: 0, y: 0, w: 1, h: 1 }; // fractions of the source frame
+  var rawStream = null;
+  var outStream = null;
+  var drawing = false;
+
+  function renderSel() {
+    selRectEl.style.display = rawStream ? 'block' : 'none';
+    selRectEl.style.left = (sel.x * 100) + '%';
+    selRectEl.style.top = (sel.y * 100) + '%';
+    selRectEl.style.width = (sel.w * 100) + '%';
+    selRectEl.style.height = (sel.h * 100) + '%';
+  }
+  function applyCanvasSize() {
+    var vw = srcVideo.videoWidth, vh = srcVideo.videoHeight;
+    if (!vw || !vh) return;
+    var pw = Math.max(2, Math.round(sel.w * vw));
+    var ph = Math.max(2, Math.round(sel.h * vh));
+    var scale = Math.min(1, 1280 / Math.max(pw, ph));
+    canvas.width = Math.max(2, Math.round(pw * scale));
+    canvas.height = Math.max(2, Math.round(ph * scale));
+  }
+  function drawLoop() {
+    if (srcVideo.videoWidth && srcVideo.readyState >= 2) {
+      var vw = srcVideo.videoWidth, vh = srcVideo.videoHeight;
+      try {
+        ctx.drawImage(srcVideo, sel.x * vw, sel.y * vh, sel.w * vw, sel.h * vh, 0, 0, canvas.width, canvas.height);
+      } catch (e) {}
+    }
+    if (drawing) requestAnimationFrame(drawLoop);
+  }
+  function setSelFull() { sel = { x: 0, y: 0, w: 1, h: 1 }; renderSel(); applyCanvasSize(); }
+  function setSelAspect(ta) {
+    var vw = srcVideo.videoWidth, vh = srcVideo.videoHeight;
+    if (!vw || !vh) { log('まず画面かカメラを開始してください。', 'ng'); return; }
+    var va = vw / vh;
+    var w, h;
+    if (ta / va <= 1) { h = 1; w = ta / va; } else { w = 1; h = va / ta; }
+    sel = { x: (1 - w) / 2, y: (1 - h) / 2, w: w, h: h };
+    renderSel(); applyCanvasSize();
+  }
+
+  // pointer interaction on the stage
+  var drag = null;
+  function fracPos(ev) {
+    var r = stage.getBoundingClientRect();
+    return {
+      x: Math.min(1, Math.max(0, (ev.clientX - r.left) / r.width)),
+      y: Math.min(1, Math.max(0, (ev.clientY - r.top) / r.height))
+    };
+  }
+  stage.addEventListener('pointerdown', function (ev) {
+    if (!rawStream) return;
+    var pos = fracPos(ev);
+    if (ev.target === $('selHandle')) {
+      drag = { mode: 'resize' };
+    } else if (pos.x >= sel.x && pos.x <= sel.x + sel.w && pos.y >= sel.y && pos.y <= sel.y + sel.h) {
+      drag = { mode: 'move', dx: pos.x - sel.x, dy: pos.y - sel.y };
+    } else {
+      drag = { mode: 'draw', sx: pos.x, sy: pos.y };
+      sel = { x: pos.x, y: pos.y, w: 0.01, h: 0.01 };
+    }
+    stage.setPointerCapture(ev.pointerId);
+    ev.preventDefault();
+  });
+  stage.addEventListener('pointermove', function (ev) {
+    if (!drag) return;
+    var pos = fracPos(ev);
+    if (drag.mode === 'draw') {
+      sel.x = Math.min(drag.sx, pos.x); sel.y = Math.min(drag.sy, pos.y);
+      sel.w = Math.max(0.02, Math.abs(pos.x - drag.sx)); sel.h = Math.max(0.02, Math.abs(pos.y - drag.sy));
+    } else if (drag.mode === 'move') {
+      sel.x = Math.min(1 - sel.w, Math.max(0, pos.x - drag.dx));
+      sel.y = Math.min(1 - sel.h, Math.max(0, pos.y - drag.dy));
+    } else if (drag.mode === 'resize') {
+      sel.w = Math.min(1 - sel.x, Math.max(0.02, pos.x - sel.x));
+      sel.h = Math.min(1 - sel.y, Math.max(0.02, pos.y - sel.y));
+    }
+    renderSel();
+  });
+  stage.addEventListener('pointerup', function () { if (drag) { drag = null; applyCanvasSize(); } });
+  stage.addEventListener('pointercancel', function () { drag = null; });
+
+  $('btnFull').addEventListener('click', setSelFull);
+  $('btn169').addEventListener('click', function () { setSelAspect(16 / 9); });
+  $('btn916').addEventListener('click', function () { setSelAspect(9 / 16); });
+  $('btn11').addEventListener('click', function () { setSelAspect(1); });
+
+  // ---- room code / peer ----
   function newCode() {
     var s = '';
     for (var i = 0; i < 6; i++) s += ALPHABET[Math.floor(Math.random() * ALPHABET.length)];
@@ -89,12 +206,9 @@
   }
   var code = newCode();
   var peer = null;
-  var stream = null;
-  var viewers = {}; // viewerPeerId -> true
+  var viewers = {};
 
-  function watchUrl() {
-    return 'https://g-ya1027.github.io/watch.html?c=' + code;
-  }
+  function watchUrl() { return 'https://g-ya1027.github.io/watch.html?c=' + code; }
   function renderRoom() {
     $('roomCode').textContent = code;
     $('watchUrl').textContent = watchUrl();
@@ -105,7 +219,7 @@
   function ensurePeer() {
     if (peer) return;
     peer = new Peer(PREFIX + code);
-    peer.on('open', function (id) { log('受付を開始しました（合言葉: ' + code + '）', 'ok'); });
+    peer.on('open', function () { log('受付を開始しました（合言葉: ' + code + '）', 'ok'); });
     peer.on('connection', function (conn) {
       conn.on('open', function () {
         viewers[conn.peer] = true;
@@ -122,28 +236,40 @@
   }
 
   function sendTo(viewerId) {
-    if (!stream || !peer) return;
-    try { peer.call(viewerId, stream); } catch (e) { log('送信に失敗しました: ' + e.message, 'ng'); }
+    if (!outStream || !peer) return;
+    try { peer.call(viewerId, outStream); } catch (e) { log('送信に失敗しました: ' + e.message, 'ng'); }
   }
   function sendToAll() { for (var id in viewers) sendTo(id); }
 
   function startStream(newStream, label) {
-    if (stream) stream.getTracks().forEach(function (t) { t.stop(); });
-    stream = newStream;
-    $('preview').srcObject = stream;
+    if (rawStream) rawStream.getTracks().forEach(function (t) { t.stop(); });
+    rawStream = newStream;
+    srcVideo.srcObject = rawStream;
     $('btnStop').disabled = false;
-    ensurePeer();
-    setLog(label + 'を取り込みました。スマホの接続を待っています。', 'ok');
-    sendToAll();
-    stream.getVideoTracks().forEach(function (t) {
+    srcVideo.addEventListener('loadedmetadata', function onMeta() {
+      srcVideo.removeEventListener('loadedmetadata', onMeta);
+      stage.style.aspectRatio = srcVideo.videoWidth + ' / ' + srcVideo.videoHeight;
+      setSelFull();
+      if (!outStream) {
+        outStream = canvas.captureStream(30);
+        $('sendPreview').srcObject = outStream;
+      }
+      if (!drawing) { drawing = true; requestAnimationFrame(drawLoop); }
+      ensurePeer();
+      sendToAll();
+    });
+    setLog(label + 'を取り込みました。スマホの接続を待っています。黄色い枠で範囲を指定できます。', 'ok');
+    rawStream.getVideoTracks().forEach(function (t) {
       t.addEventListener('ended', function () { stopAll(); });
     });
   }
 
   function stopAll() {
-    if (stream) { stream.getTracks().forEach(function (t) { t.stop(); }); stream = null; }
-    $('preview').srcObject = null;
+    if (rawStream) { rawStream.getTracks().forEach(function (t) { t.stop(); }); rawStream = null; }
+    srcVideo.srcObject = null;
+    drawing = false;
     $('btnStop').disabled = true;
+    renderSel();
     log('停止しました。');
   }
 
@@ -153,12 +279,12 @@
     }
     navigator.mediaDevices.getDisplayMedia({ video: { frameRate: 30 }, audio: false })
       .then(function (s) { startStream(s, '画面'); })
-      .catch(function (e) { setLog('画面の取り込みがキャンセルされたか、許可されませんでした。', 'ng'); });
+      .catch(function () { setLog('画面の取り込みがキャンセルされたか、許可されませんでした。', 'ng'); });
   });
   $('btnCam').addEventListener('click', function () {
     navigator.mediaDevices.getUserMedia({ video: { width: 1280, height: 720 }, audio: false })
       .then(function (s) { startStream(s, 'カメラ'); })
-      .catch(function (e) { setLog('カメラが使えませんでした（許可が必要です）。', 'ng'); });
+      .catch(function () { setLog('カメラが使えませんでした（許可が必要です）。', 'ng'); });
   });
   $('btnStop').addEventListener('click', stopAll);
   $('btnCopy').addEventListener('click', function () {
