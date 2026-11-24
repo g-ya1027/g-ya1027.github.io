@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-24T13:40:33.067Z",
+  "updatedAt": "2026-11-24T13:41:35.316Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -212,26 +212,26 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 10,
+        "heartsLeft": 9,
         "spoonsLeft": 0,
-        "commentsLeft": 8,
+        "commentsLeft": 6,
         "visitsLeft": 1,
         "stayLeftSec": 1371
       },
       "signalsTotal": {
-        "hearts": 10,
+        "hearts": 11,
         "spoons": 0,
-        "comments": 52,
+        "comments": 54,
         "visits": 10,
         "stayMin": 187
       },
-      "img": null,
+      "img": "chars/Lnrdo_b3TeGyRY8fNTyEhA-a.png",
       "pair": {
         "a": "chars/Lnrdo_b3TeGyRY8fNTyEhA-a.png",
         "b": "chars/Lnrdo_b3TeGyRY8fNTyEhA-b.png",
         "kind": "gender"
       },
-      "chosen": null,
+      "chosen": "a",
       "lastAction": null
     },
     {
@@ -517,16 +517,16 @@
         "results": []
       },
       "signals": {
-        "heartsLeft": 3,
+        "heartsLeft": 2,
         "spoonsLeft": 0,
-        "commentsLeft": 11,
+        "commentsLeft": 10,
         "visitsLeft": 3,
         "stayLeftSec": 586
       },
       "signalsTotal": {
-        "hearts": 17,
+        "hearts": 18,
         "spoons": 4,
-        "comments": 69,
+        "comments": 70,
         "visits": 5,
         "stayMin": 200
       },
