@@ -13,9 +13,9 @@
   #clock { font-size: 56px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: 1px; background: #000; border: 2px solid #3a3f46; border-radius: 12px; text-align: center; padding: 10px 4px; }
   .clock-note { text-align: center; color: #9aa3ad; font-size: 12px; margin: 6px 0 16px; }
   #stage { position: relative; width: 100%; background: #000; border-radius: 12px; overflow: hidden; touch-action: none; }
-  #srcVideo { width: 100%; height: 100%; display: block; }
-  #selRect { position: absolute; border: 2px solid #ffd94d; box-shadow: 0 0 0 9999px rgba(0,0,0,.45); display: none; cursor: move; }
-  #selHandle { position: absolute; right: -10px; bottom: -10px; width: 20px; height: 20px; background: #ffd94d; border-radius: 4px; cursor: nwse-resize; }
+  #srcVideo { width: 100%; height: 100%; display: block; touch-action: none; }
+  #selRect { position: absolute; border: 2px solid #ffd94d; box-shadow: 0 0 0 9999px rgba(0,0,0,.45); display: none; cursor: move; touch-action: none; }
+  #selHandle { position: absolute; right: 4px; bottom: 4px; width: 26px; height: 26px; background: #ffd94d; border-radius: 4px; cursor: nwse-resize; touch-action: none; }
   .row { display: flex; gap: 8px; flex-wrap: nowrap; margin: 12px 0; }
   button { flex: 1; white-space: nowrap; font-size: 15px; font-weight: 600; padding: 12px 6px; border: 0; border-radius: 10px; background: #2f6fed; color: #fff; cursor: pointer; }
   button.sub2 { background: #3a3f46; }
@@ -49,7 +49,7 @@
   <button class="preset" id="btn916">縦 9:16</button>
   <button class="preset" id="btn11">1:1</button>
 </div>
-<p class="hint">範囲指定：プレビューの上でドラッグすると範囲を作れます。黄色い枠の中をドラッグで移動、右下の四角をドラッグで大きさ変更。送られるのは黄色い枠の中だけです。</p>
+<p class="hint">範囲指定：プレビューの上でドラッグすると範囲を作れます。全体のときは、そのままドラッグで新しい範囲を描けます。黄色い枠の中をドラッグで移動、右下の四角をドラッグで大きさ変更。送られるのは黄色い枠の中だけです。</p>
 
 <div class="row">
   <button id="btnScreen">画面を開始</button>
@@ -164,12 +164,28 @@
   stage.addEventListener('pointerdown', function (ev) {
     if (!rawStream) return;
     var pos = fracPos(ev);
+    var prev = { x: sel.x, y: sel.y, w: sel.w, h: sel.h };
+    var r = stage.getBoundingClientRect();
+    var edgeX = r.width > 0 ? 14 / r.width : 0;   // right-edge resize zone (~14px inside)
+    var edgeY = r.height > 0 ? 14 / r.height : 0; // bottom-edge resize zone (~14px inside)
+    var inside = pos.x >= sel.x && pos.x <= sel.x + sel.w && pos.y >= sel.y && pos.y <= sel.y + sel.h;
+    var isFull = sel.w >= 0.999 && sel.h >= 0.999;
     if (ev.target === $('selHandle')) {
-      drag = { mode: 'resize' };
-    } else if (pos.x >= sel.x && pos.x <= sel.x + sel.w && pos.y >= sel.y && pos.y <= sel.y + sel.h) {
-      drag = { mode: 'move', dx: pos.x - sel.x, dy: pos.y - sel.y };
+      drag = { mode: 'resize', prev: prev, edges: { right: true, bottom: true } };
+    } else if (isFull) {
+      // Full-frame selection: dragging anywhere (even inside) starts a new range.
+      drag = { mode: 'draw', sx: pos.x, sy: pos.y, prev: prev };
+      sel = { x: pos.x, y: pos.y, w: 0.01, h: 0.01 };
+    } else if (inside && (pos.x >= sel.x + sel.w - edgeX || pos.y >= sel.y + sel.h - edgeY)) {
+      // Edge resize: only the grabbed edge's axis follows the pointer.
+      drag = { mode: 'resize', prev: prev, edges: {
+        right: pos.x >= sel.x + sel.w - edgeX,
+        bottom: pos.y >= sel.y + sel.h - edgeY
+      } };
+    } else if (inside) {
+      drag = { mode: 'move', dx: pos.x - sel.x, dy: pos.y - sel.y, prev: prev };
     } else {
-      drag = { mode: 'draw', sx: pos.x, sy: pos.y };
+      drag = { mode: 'draw', sx: pos.x, sy: pos.y, prev: prev };
       sel = { x: pos.x, y: pos.y, w: 0.01, h: 0.01 };
     }
     stage.setPointerCapture(ev.pointerId);
@@ -185,12 +201,21 @@
       sel.x = Math.min(1 - sel.w, Math.max(0, pos.x - drag.dx));
       sel.y = Math.min(1 - sel.h, Math.max(0, pos.y - drag.dy));
     } else if (drag.mode === 'resize') {
-      sel.w = Math.min(1 - sel.x, Math.max(0.02, pos.x - sel.x));
-      sel.h = Math.min(1 - sel.y, Math.max(0.02, pos.y - sel.y));
+      if (!drag.edges || drag.edges.right) sel.w = Math.min(1 - sel.x, Math.max(0.02, pos.x - sel.x));
+      if (!drag.edges || drag.edges.bottom) sel.h = Math.min(1 - sel.y, Math.max(0.02, pos.y - sel.y));
     }
     renderSel();
   });
-  stage.addEventListener('pointerup', function () { if (drag) { drag = null; applyCanvasSize(); } });
+  stage.addEventListener('pointerup', function () {
+    if (!drag) return;
+    // Accidental click in draw mode (range stayed tiny): restore the previous selection.
+    if (drag.mode === 'draw' && sel.w < 0.03 && sel.h < 0.03) {
+      sel = { x: drag.prev.x, y: drag.prev.y, w: drag.prev.w, h: drag.prev.h };
+      renderSel();
+    }
+    drag = null;
+    applyCanvasSize();
+  });
   stage.addEventListener('pointercancel', function () { drag = null; });
 
   $('btnFull').addEventListener('click', setSelFull);
