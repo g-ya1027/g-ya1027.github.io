@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-24T13:49:26.156Z",
+  "updatedAt": "2026-11-24T13:50:28.201Z",
   "live": true,
   "gkEnabled": true,
   "gkTiers": [
@@ -42,7 +42,7 @@
         "nextName": "レギュラーDJ",
         "progress": 0
       },
-      "exp": 1,
+      "exp": 3,
       "expNext": 10,
       "params": {
         "atk": 10,
@@ -65,9 +65,9 @@
         "draw": 0
       },
       "honors": {
-        "rank": 12,
-        "titleId": null,
-        "titleText": null,
+        "rank": 10,
+        "titleId": "top10",
+        "titleText": "FMスプニ レギュラーDJ",
         "frame": null,
         "crown": false
       },
@@ -115,15 +115,15 @@
         "heartsLeft": 5,
         "spoonsLeft": 0,
         "commentsLeft": 18,
-        "visitsLeft": 4,
-        "stayLeftSec": 28
+        "visitsLeft": 3,
+        "stayLeftSec": 1570
       },
       "signalsTotal": {
         "hearts": 5,
         "spoons": 0,
         "comments": 22,
-        "visits": 8,
-        "stayMin": 59
+        "visits": 9,
+        "stayMin": 63
       },
       "img": null,
       "pair": {
@@ -147,7 +147,7 @@
         "nextName": "レギュラーDJ",
         "progress": 0.1111111111111111
       },
-      "exp": 10,
+      "exp": 11,
       "expNext": 30,
       "params": {
         "atk": 10,
@@ -170,10 +170,10 @@
         "draw": 0
       },
       "honors": {
-        "rank": 4,
-        "titleId": "top10",
-        "titleText": "FMスプニ レギュラーDJ",
-        "frame": null,
+        "rank": 3,
+        "titleId": "medalist",
+        "titleText": "レゾナンス・メダリスト",
+        "frame": "bronze",
         "crown": false
       },
       "evolutionStage": 0,
@@ -214,16 +214,16 @@
       "signals": {
         "heartsLeft": 9,
         "spoonsLeft": 0,
-        "commentsLeft": 0,
+        "commentsLeft": 18,
         "visitsLeft": 5,
-        "stayLeftSec": 1800
+        "stayLeftSec": 1500
       },
       "signalsTotal": {
         "hearts": 11,
         "spoons": 0,
-        "comments": 60,
+        "comments": 62,
         "visits": 11,
-        "stayMin": 191
+        "stayMin": 196
       },
       "img": "chars/Lnrdo_b3TeGyRY8fNTyEhA-a.png",
       "pair": {
@@ -370,9 +370,9 @@
         "draw": 0
       },
       "honors": {
-        "rank": 10,
-        "titleId": "top10",
-        "titleText": "FMスプニ レギュラーDJ",
+        "rank": 11,
+        "titleId": null,
+        "titleText": null,
         "frame": null,
         "crown": false
       },
@@ -447,7 +447,7 @@
         "nextName": "レギュラーDJ",
         "progress": 0.1111111111111111
       },
-      "exp": 14,
+      "exp": 16,
       "expNext": 30,
       "params": {
         "atk": 10,
@@ -470,11 +470,11 @@
         "draw": 0
       },
       "honors": {
-        "rank": 2,
-        "titleId": "medalist",
-        "titleText": "レゾナンス・メダリスト",
-        "frame": "silver",
-        "crown": false
+        "rank": 1,
+        "titleId": "champion",
+        "titleText": "キング・オブ・レゾナンス",
+        "frame": "gold",
+        "crown": true
       },
       "evolutionStage": 0,
       "evolution": {
@@ -521,14 +521,14 @@
         "spoonsLeft": 0,
         "commentsLeft": 4,
         "visitsLeft": 2,
-        "stayLeftSec": 290
+        "stayLeftSec": 1790
       },
       "signalsTotal": {
         "hearts": 18,
         "spoons": 5,
         "comments": 76,
         "visits": 6,
-        "stayMin": 205
+        "stayMin": 210
       },
       "img": "chars/-WeTXIQQZKnw7bOqcJfAhg-a.png",
       "pair": {
@@ -975,10 +975,10 @@
         "draw": 0
       },
       "honors": {
-        "rank": 3,
-        "titleId": "medalist",
-        "titleText": "レゾナンス・メダリスト",
-        "frame": "bronze",
+        "rank": 4,
+        "titleId": "top10",
+        "titleText": "FMスプニ レギュラーDJ",
+        "frame": null,
         "crown": false
       },
       "evolutionStage": 0,
@@ -1175,11 +1175,11 @@
         "draw": 0
       },
       "honors": {
-        "rank": 1,
-        "titleId": "champion",
-        "titleText": "キング・オブ・レゾナンス",
-        "frame": "gold",
-        "crown": true
+        "rank": 2,
+        "titleId": "medalist",
+        "titleText": "レゾナンス・メダリスト",
+        "frame": "silver",
+        "crown": false
       },
       "evolutionStage": 0,
       "evolution": {
@@ -1280,7 +1280,7 @@
         "draw": 0
       },
       "honors": {
-        "rank": 11,
+        "rank": 12,
         "titleId": null,
         "titleText": null,
         "frame": null,
@@ -1448,8 +1448,8 @@
   "ranking": [
     {
       "rank": 1,
-      "nickname": "甘瞳ももか",
-      "radioName": "黄金の流れ星卿",
+      "nickname": "kinou",
+      "radioName": "永遠の貴公子の星",
       "level": 2,
       "attr": null,
       "titleId": "champion",
@@ -1457,12 +1457,12 @@
       "frame": "gold",
       "crown": true,
       "pvpWin": 0,
-      "exp": 15
+      "exp": 16
     },
     {
       "rank": 2,
-      "nickname": "kinou",
-      "radioName": "永遠の貴公子の星",
+      "nickname": "甘瞳ももか",
+      "radioName": "黄金の流れ星卿",
       "level": 2,
       "attr": null,
       "titleId": "medalist",
@@ -1470,12 +1470,12 @@
       "frame": "silver",
       "crown": false,
       "pvpWin": 0,
-      "exp": 14
+      "exp": 15
     },
     {
       "rank": 3,
-      "nickname": "月野詩織.",
-      "radioName": "深夜の流れ星番長",
+      "nickname": "しゅーくりーむ  ",
+      "radioName": "深夜の貴公子名人",
       "level": 2,
       "attr": null,
       "titleId": "medalist",
@@ -1483,12 +1483,12 @@
       "frame": "bronze",
       "crown": false,
       "pvpWin": 0,
-      "exp": 10
+      "exp": 11
     },
     {
       "rank": 4,
-      "nickname": "しゅーくりーむ  ",
-      "radioName": "深夜の貴公子名人",
+      "nickname": "月野詩織.",
+      "radioName": "深夜の流れ星番長",
       "level": 2,
       "attr": null,
       "titleId": "top10",
@@ -1565,8 +1565,8 @@
     },
     {
       "rank": 10,
-      "nickname": "瑠璃𓈒𓂂𖧷",
-      "radioName": "深夜の影総長",
+      "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
+      "radioName": "夢追う番人卿",
       "level": 1,
       "attr": null,
       "titleId": "top10",
@@ -1574,12 +1574,12 @@
       "frame": null,
       "crown": false,
       "pvpWin": 0,
-      "exp": 2
+      "exp": 3
     },
     {
       "rank": 11,
-      "nickname": "ザッキー【メルヘン調査員】",
-      "radioName": "黄昏の魔法使い卿",
+      "nickname": "瑠璃𓈒𓂂𖧷",
+      "radioName": "深夜の影総長",
       "level": 1,
       "attr": null,
       "titleId": null,
@@ -1591,8 +1591,8 @@
     },
     {
       "rank": 12,
-      "nickname": "あかちゃん。𝒮⁶ 🌙🌞ꕥ",
-      "radioName": "夢追う番人卿",
+      "nickname": "ザッキー【メルヘン調査員】",
+      "radioName": "黄昏の魔法使い卿",
       "level": 1,
       "attr": null,
       "titleId": null,
@@ -1600,7 +1600,7 @@
       "frame": null,
       "crown": false,
       "pvpWin": 0,
-      "exp": 1
+      "exp": 2
     },
     {
       "rank": 13,
