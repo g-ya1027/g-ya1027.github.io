@@ -10,8 +10,6 @@
   body { margin: 0; padding: 16px; font-family: -apple-system, "Hiragino Sans", sans-serif; background: #14161a; color: #f2f3f5; }
   h1 { font-size: 18px; margin: 0 0 4px; }
   .sub { color: #9aa3ad; font-size: 13px; margin-bottom: 14px; }
-  #clock { font-size: 56px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: 1px; background: #000; border: 2px solid #3a3f46; border-radius: 12px; text-align: center; padding: 10px 4px; }
-  .clock-note { text-align: center; color: #9aa3ad; font-size: 12px; margin: 6px 0 16px; }
   #stage { position: relative; width: 100%; background: #000; border-radius: 12px; overflow: hidden; touch-action: none; }
   #srcVideo { width: 100%; height: 100%; display: block; touch-action: none; }
   #selRect { position: absolute; border: 2px solid #ffd94d; box-shadow: 0 0 0 9999px rgba(0,0,0,.45); display: none; cursor: move; touch-action: none; }
@@ -35,9 +33,6 @@
 <body>
 <h1>🎥 動画おためし送信（実験）</h1>
 <div class="sub">iMac側のページ。画面かカメラを取り込んで、スマホへ送ります。音声はSpoon側に任せる前提で、映像だけ送ります。</div>
-
-<div id="clock">--:--:--.---</div>
-<div class="clock-note">遅れ測定用の時計。まず「このウィンドウ」を取り込むと、スマホ側で遅れが測れます。</div>
 
 <div id="stage">
   <video id="srcVideo" autoplay muted playsinline></video>
@@ -95,15 +90,6 @@
     logEl.appendChild(line);
   }
   function setLog(msg, cls) { logEl.innerHTML = ''; log(msg, cls); }
-
-  // ---- clock (latency check) ----
-  var clockEl = $('clock');
-  function tick() {
-    var d = new Date();
-    function p(n, l) { var s = String(n); while (s.length < (l || 2)) s = '0' + s; return s; }
-    clockEl.textContent = p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds()) + '.' + p(d.getMilliseconds(), 3);
-  }
-  setInterval(tick, 31); tick();
 
   // ---- region selection + crop ----
   var srcVideo = $('srcVideo');
@@ -346,7 +332,7 @@
     setLog('合言葉を作り直しました。画面かカメラを開始してください。');
   });
 
-  setLog('「画面を開始」か「カメラ」を押してください。先に時計のウィンドウを取り込むと遅れが測れます。');
+  setLog('「画面を開始」か「カメラ」を押してください。');
 })();
 </script>
 </body>
