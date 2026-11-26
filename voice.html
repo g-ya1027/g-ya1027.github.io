@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- spoon-voice-letter v2 -->
-<!-- voice-letter-state: open -->
+<!-- voice-letter-state: closed -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -14,264 +14,20 @@
     min-height: 100vh; }
   .wrap { max-width: 560px; margin: 0 auto; padding: 14px 12px 30px; }
   h1 { text-align: center; font-size: 21px; margin: 4px 0 2px; letter-spacing: .04em; white-space: nowrap; }
-  .sub { text-align: center; font-size: 12.5px; color: #cfc6ff; margin: 0 0 12px; line-height: 1.6; }
-  .card { background: rgba(24,16,58,.72); border: 2px solid rgba(160,120,255,.45); border-radius: 14px; padding: 12px; margin-bottom: 12px; }
-  .lbl { display: block; font-size: 13px; color: #cfc6ff; margin-bottom: 6px; white-space: nowrap; }
-  #nameInput { width: 100%; border: 2px solid rgba(160,120,255,.55); border-radius: 10px; background: rgba(10,6,32,.8); color: #fff; font-size: 16px; padding: 10px; }
-  #recBtn { width: 100%; border: none; border-radius: 18px; padding: 18px 6px 14px; font-size: 20px; font-weight: 900; color: #fff; cursor: pointer; background: linear-gradient(180deg, #ff5da2, #d81b74); box-shadow: 0 6px 0 #8f0f4c, 0 10px 22px rgba(0,0,0,.5); touch-action: manipulation; user-select: none; -webkit-user-select: none; }
-  #recBtn:active { transform: translateY(4px); box-shadow: 0 2px 0 #8f0f4c; }
-  #recBtn.recording { background: linear-gradient(180deg, #ff9f43, #e06f00); box-shadow: 0 6px 0 #9a4d00, 0 10px 22px rgba(0,0,0,.5); }
-  #recBtn:disabled { filter: grayscale(.6); opacity: .6; box-shadow: none; }
-  #timer { text-align: center; font-size: 30px; font-weight: 800; letter-spacing: 2px; margin: 10px 0 2px; }
-  #recState { text-align: center; font-size: 12.5px; color: #bdb4e8; min-height: 18px; }
-  #transcriptBox { width: 100%; min-height: 64px; border: 2px dashed rgba(160,120,255,.5); border-radius: 10px; background: rgba(10,6,32,.55); color: #efeaff; font-size: 14px; line-height: 1.6; padding: 8px 10px; white-space: pre-wrap; word-break: break-word; }
-  .btnRow { display: flex; gap: 10px; margin-top: 10px; }
-  .subBtn { flex: 1; border: 2px solid rgba(160,120,255,.55); background: rgba(30,20,70,.8); color: #e8e2ff; border-radius: 12px; padding: 12px 4px; font-size: 15px; font-weight: 700; cursor: pointer; white-space: nowrap; }
-  .subBtn:disabled { opacity: .45; cursor: default; }
-  #sendBtn { flex: 1.4; border: none; background: linear-gradient(90deg, #e91e63, #7b2ff7); color: #fff; border-radius: 12px; padding: 12px 4px; font-size: 16px; font-weight: 900; cursor: pointer; white-space: nowrap; }
-  #sendBtn:disabled { opacity: .45; cursor: default; }
-  #previewAudio { width: 100%; margin-top: 10px; }
-  #status { text-align: center; font-size: 13px; color: #ffd9a8; margin-top: 12px; min-height: 20px; line-height: 1.6; }
+  .card { background: rgba(24,16,58,.72); border: 2px solid rgba(160,120,255,.45); border-radius: 14px; padding: 18px 14px; margin-bottom: 12px; text-align: center; }
+  .big { font-size: 19px; font-weight: 900; margin: 0 0 8px; white-space: nowrap; }
+  .txt { font-size: 13.5px; color: #cfc6ff; line-height: 1.8; margin: 0; }
   .foot { text-align: center; color: #9d92d6; font-size: 11.5px; margin-top: 10px; line-height: 1.7; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>🎙 ボイスおたより</h1>
-  <p class="sub">最長1分の声のおたよりを送れます。<br>DJが内容を確認してから配信で流します。</p>
   <div class="card">
-    <span class="lbl">あなたのお名前（配信で呼ばれる名前）</span>
-    <input type="text" id="nameInput" maxlength="30" placeholder="名前を入力してね">
+    <p class="big">⏸ 今は受付を止めています</p>
+    <p class="txt">ボイスおたよりは、配信中に DJ が受付を開始したときだけ送れます。<br>受付が始まったら、このページを開き直してね。</p>
   </div>
-  <div class="card">
-    <button type="button" id="recBtn">🎙 録音をはじめる</button>
-    <div id="timer">0:00</div>
-    <div id="recState">まだ録音していません</div>
-    <audio id="previewAudio" controls style="display:none"></audio>
-    <div class="btnRow">
-      <button type="button" class="subBtn" id="redoBtn" disabled>録り直し</button>
-      <button type="button" id="sendBtn" disabled>この声を送る</button>
-    </div>
-  </div>
-  <div class="card">
-    <span class="lbl">文字起こし（DJの確認用に、声と一緒に届きます）</span>
-    <div id="transcriptBox">（まだ何も録っていません）</div>
-  </div>
-  <div id="status"></div>
-  <div class="foot">送れるのは1分に1通までです。マイクの許可が必要です。<br>文字起こしは対応ブラウザ（Chrome等）だけで動きます。使えない場合は声だけが届きます。</div>
+  <div class="foot">最長1分の声のおたよりを送れるページです。受付中は録音してそのまま送れます。</div>
 </div>
-<script>
-  var DB_URL = 'https://podcastse-default-rtdb.firebaseio.com';
-  var ROOM_ID = '78f48ea742f74d19a3';
-  var MAX_SEC = 60;
-  var SEND_INTERVAL_MS = 60 * 1000;
-  var nameInput = document.getElementById('nameInput');
-  var recBtn = document.getElementById('recBtn');
-  var redoBtn = document.getElementById('redoBtn');
-  var sendBtn = document.getElementById('sendBtn');
-  var timerEl = document.getElementById('timer');
-  var recState = document.getElementById('recState');
-  var statusEl = document.getElementById('status');
-  var transcriptBox = document.getElementById('transcriptBox');
-  var previewAudio = document.getElementById('previewAudio');
-  try { nameInput.value = localStorage.getItem('vlName') || ''; } catch (e) {}
-  nameInput.addEventListener('change', function () {
-    try { localStorage.setItem('vlName', nameInput.value); } catch (e) {}
-  });
-  function deviceKey() {
-    try {
-      var k = localStorage.getItem('vlDeviceKey');
-      if (k) return k;
-      k = 'dev-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 12);
-      localStorage.setItem('vlDeviceKey', k);
-      return k;
-    } catch (e) {
-      return 'dev-nostorage-00000001';
-    }
-  }
-  var stream = null;
-  var recorder = null;
-  var chunks = [];
-  var recMime = '';
-  var recordedBlob = null;
-  var recStartedAt = 0;
-  var recDurationSec = 0;
-  var timerId = null;
-  var recog = null;
-  var recogText = '';
-  var recogInterim = '';
-  var recogSupported = false;
-  function fmt(sec) { return Math.floor(sec / 60) + ':' + ('0' + Math.floor(sec % 60)).slice(-2); }
-  function renderTranscript() {
-    var t = (recogText + recogInterim).trim();
-    transcriptBox.textContent = t || (recogSupported ? '（声が聞き取れませんでした）' : '（このブラウザでは文字起こしが使えません。声だけ届きます）');
-  }
-  function pickMime() {
-    var cands = ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4', 'audio/ogg;codecs=opus', 'audio/ogg'];
-    for (var i = 0; i < cands.length; i++) {
-      try { if (MediaRecorder.isTypeSupported(cands[i])) return cands[i]; } catch (e) {}
-    }
-    return '';
-  }
-  function startRecog() {
-    recogText = '';
-    recogInterim = '';
-    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    recogSupported = !!SR;
-    if (!SR) { renderTranscript(); return; }
-    try {
-      recog = new SR();
-      recog.lang = 'ja-JP';
-      recog.continuous = true;
-      recog.interimResults = true;
-      recog.onresult = function (ev) {
-        var inter = '';
-        for (var i = ev.resultIndex; i < ev.results.length; i++) {
-          if (ev.results[i].isFinal) recogText += ev.results[i][0].transcript;
-          else inter += ev.results[i][0].transcript;
-        }
-        recogInterim = inter;
-        renderTranscript();
-      };
-      recog.onend = function () {
-        if (recorder && recorder.state === 'recording') { try { recog.start(); } catch (e) {} }
-      };
-      recog.onerror = function () {};
-      recog.start();
-    } catch (e) {
-      recog = null;
-      renderTranscript();
-    }
-  }
-  function stopRecog() {
-    if (recog) { recog.onend = null; try { recog.stop(); } catch (e) {} recog = null; }
-    recogInterim = '';
-    renderTranscript();
-  }
-  function setRecordingUi(on) {
-    recBtn.textContent = on ? '⏹ 止める（録音中）' : '🎙 録音をはじめる';
-    recBtn.classList.toggle('recording', on);
-    redoBtn.disabled = on || !recordedBlob;
-    sendBtn.disabled = on || !recordedBlob;
-  }
-  function tickTimer() {
-    var sec = (Date.now() - recStartedAt) / 1000;
-    timerEl.textContent = fmt(Math.min(sec, MAX_SEC)) + ' / 1:00';
-    if (sec >= MAX_SEC) stopRecording();
-  }
-  function startRecording() {
-    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof MediaRecorder === 'undefined') {
-      statusEl.textContent = 'このブラウザでは録音が使えません（対応ブラウザで開いてください）';
-      return;
-    }
-    statusEl.textContent = '';
-    navigator.mediaDevices.getUserMedia({ audio: true }).then(function (s) {
-      stream = s;
-      chunks = [];
-      recMime = pickMime();
-      try {
-        recorder = recMime ? new MediaRecorder(stream, { mimeType: recMime, audioBitsPerSecond: 32000 }) : new MediaRecorder(stream, { audioBitsPerSecond: 32000 });
-      } catch (e) {
-        recorder = new MediaRecorder(stream);
-      }
-      recorder.ondataavailable = function (ev) { if (ev.data && ev.data.size) chunks.push(ev.data); };
-      recorder.onstop = function () {
-        if (timerId) { clearInterval(timerId); timerId = null; }
-        stopRecog();
-        if (stream) { stream.getTracks().forEach(function (t) { t.stop(); }); stream = null; }
-        recordedBlob = new Blob(chunks, { type: recMime || 'audio/webm' });
-        recDurationSec = Math.max(1, Math.round((Date.now() - recStartedAt) / 1000));
-        timerEl.textContent = fmt(recDurationSec) + ' / 1:00';
-        recState.textContent = '録音できました。聞き直してから送ってね';
-        previewAudio.src = URL.createObjectURL(recordedBlob);
-        previewAudio.style.display = 'block';
-        setRecordingUi(false);
-      };
-      recordedBlob = null;
-      previewAudio.style.display = 'none';
-      recStartedAt = Date.now();
-      recorder.start(250);
-      startRecog();
-      timerEl.textContent = '0:00 / 1:00';
-      recState.textContent = '録音中… もう一度押すと止まります（最長1分）';
-      setRecordingUi(true);
-      timerId = setInterval(tickTimer, 250);
-    }).catch(function () {
-      statusEl.textContent = 'マイクを使えませんでした（許可を確認してね）';
-    });
-  }
-  function stopRecording() {
-    if (recorder && recorder.state !== 'inactive') { try { recorder.stop(); } catch (e) {} }
-  }
-  recBtn.addEventListener('click', function () {
-    if (recorder && recorder.state === 'recording') stopRecording();
-    else startRecording();
-  });
-  redoBtn.addEventListener('click', function () {
-    recordedBlob = null;
-    previewAudio.style.display = 'none';
-    timerEl.textContent = '0:00';
-    recState.textContent = 'まだ録音していません';
-    transcriptBox.textContent = '（まだ何も録っていません）';
-    setRecordingUi(false);
-  });
-  function sendCooldownLeft() {
-    try {
-      var last = parseInt(localStorage.getItem('vlLastSentAt') || '0', 10);
-      return Math.max(0, SEND_INTERVAL_MS - (Date.now() - last));
-    } catch (e) { return 0; }
-  }
-  sendBtn.addEventListener('click', function () {
-    if (!recordedBlob) return;
-    var name = nameInput.value.trim();
-    if (!name) { statusEl.textContent = 'お名前を入力してね'; nameInput.focus(); return; }
-    var left = sendCooldownLeft();
-    if (left > 0) { statusEl.textContent = '送れるのは1分に1通までです（あと ' + Math.ceil(left / 1000) + ' 秒）'; return; }
-    if (!DB_URL || !ROOM_ID) { statusEl.textContent = '接続先が未設定です（DJ側の設定待ち）'; return; }
-    sendBtn.disabled = true;
-    statusEl.textContent = '送信中…';
-    var reader = new FileReader();
-    reader.onload = function () {
-      var dataUrl = String(reader.result || '');
-      var base64 = dataUrl.slice(dataUrl.indexOf(',') + 1);
-      var transcript = (recogText || '').trim();
-      var payload = {
-        id: 'vl' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10),
-        name: name,
-        deviceKey: deviceKey(),
-        transcript: transcript,
-        durationSec: recDurationSec,
-        mime: recMime || recordedBlob.type || 'audio/webm',
-        audio: base64,
-        t: Date.now()
-      };
-      fetch(DB_URL + '/rooms/' + encodeURIComponent(ROOM_ID) + '/voiceLetters.json', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      }).then(function (r) {
-        if (r.ok) {
-          try { localStorage.setItem('vlLastSentAt', String(Date.now())); } catch (e) {}
-          statusEl.textContent = '送れました♪ DJが確認してから配信で流れます';
-          recordedBlob = null;
-          previewAudio.style.display = 'none';
-          setRecordingUi(false);
-        } else {
-          statusEl.textContent = '送信できませんでした（時間をおいてもう一度）';
-          sendBtn.disabled = false;
-        }
-      }).catch(function () {
-        statusEl.textContent = '送信できませんでした（通信環境を確認してね）';
-        sendBtn.disabled = false;
-      });
-    };
-    reader.onerror = function () {
-      statusEl.textContent = '音声の読み込みに失敗しました（録り直してね）';
-      sendBtn.disabled = false;
-    };
-    reader.readAsDataURL(recordedBlob);
-  });
-  statusEl.textContent = DB_URL ? '' : '接続先が未設定です（DJ側の設定待ち）';
-</script>
 </body>
 </html>
