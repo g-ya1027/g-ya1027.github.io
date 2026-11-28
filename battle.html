@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- spoon-battle-page v26 -->
+<!-- spoon-battle-page v28 -->
+<!-- ultvideos:31c39a7f6458cd76|ultvoices:1b711c794e696001|trialroster:4f53cda18c2baa0c -->
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -206,12 +207,19 @@
   @keyframes encInL87 { from { transform: translate(-170%, -50%); opacity: 0; } 55% { opacity: 1; } to { transform: translate(0, -50%); opacity: 1; } }
   @keyframes encInR87 { from { transform: translate(170%, -50%); opacity: 0; } 55% { opacity: 1; } to { transform: translate(0, -50%); opacity: 1; } }
   @keyframes encVsIn87 { from { transform: translate(-50%, -50%) scale(.3); opacity: 0; } to { transform: translate(-50%, -50%) scale(1); opacity: 1; } }
+  /* ---- game126: 必殺技カットイン動画の全画面オーバーレイ ---- */
+  .ultOverlay126 { position: fixed; inset: 0; z-index: 200; background: #000; cursor: pointer; }
+  .ultOverlay126 video { width: 100%; height: 100%; object-fit: contain; display: block; }
   /* ---- game93: お試しプレイのMOB選択グリッド ---- */
   .trialGrid93 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 12px; }
   .trialCard93 { display: block; width: 100%; padding: 10px 8px 12px; border-radius: 14px; border: 2px solid #3d4276; background: linear-gradient(180deg, rgba(31,36,86,.94), rgba(15,18,52,.96)); color: #eef2ff; cursor: pointer; text-align: center; font-family: inherit; box-sizing: border-box; }
   .trialCard93 img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 10px; display: block; }
   .trialName93 { display: block; margin-top: 8px; font-size: 14px; font-weight: 900; line-height: 1.35; }
   .trialAttr93 { display: block; margin-top: 3px; font-size: 12px; font-weight: 700; color: #b9c2ff; white-space: nowrap; }
+  .trialCharBox127 { border: 2px solid #7fe3ff; border-radius: 14px; padding: 12px; margin-top: 12px; background: rgba(12,42,84,.55); text-align: left; }
+  .trialCharSel127 { width: 100%; box-sizing: border-box; margin-top: 8px; padding: 9px 8px; font-size: 14px; font-family: inherit; border-radius: 10px; border: 1px solid #3d4276; background: rgba(13,16,48,.85); color: #eef2ff; }
+  .trialForce127 { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 13px; font-weight: 700; color: #b9e6ff; cursor: pointer; }
+  .trialForce127 input { width: 18px; height: 18px; accent-color: #00d1b2; }
 </style>
 </head>
 <body>
@@ -273,6 +281,16 @@
 (function () {
   var DB_URL = "https://podcastse-default-rtdb.firebaseio.com";
   var ROOM_ID = "78f48ea742f74d19a3";
+  // game126: 必殺技カットイン動画（対応表は公開時に焼き込み。空／OFF なら発動しない）
+  var ULT_VIDEO_ENABLED = true;
+  var ULT_VIDEO_MAP = {"153631356cb923b523650bce681752dbaaabacec11d4c730fef56b42402da967":"sBVUqfp0A17e3SwGNApjWQ-ult.mp4","52803c87ccb66769346dba64b847e0915275b404cb4aed6b7617088be23a972d":"Lnrdo_b3TeGyRY8fNTyEhA-ult.mp4","d4d7a310bb1e5d42850173c3760252b4c3334d4ace11cf96aa644e981739bf27":"gYutFvLTSj7NCj0XQuXOzQ-ult.mp4","4852c0ca50451d63714045d8fafb76b112007ac98b45d745f262f7f52a530ade":"-WeTXIQQZKnw7bOqcJfAhg-ult.mp4","0e32e8bb1099246e61be72e701825de6ca64447a7f8e7f90c1db333c33ecaeaa":"hUooGCp0KaQn-5EswSh-3A-ult.mp4","6ae80de3678ecdf9df119837a74da9cc73c431d333e867c08d14f2c36f1a62bb":"q9SVhkXF0qTVgm_bgnkMNw-ult.mp4"};
+  var ULT_VIDEO_RATE = 0.33;
+  // game127: キャラ別ボイスSE（対応表は公開時に焼き込み。空／OFF なら鳴らさない）
+  var ULT_VOICE_ENABLED = true;
+  var ULT_VOICE_MAP = {};
+  var ULT_VOICE_VOLUME = 0.9;
+  // game127: お試しプレイで選べるリスナーキャラ（実データのスナップショット）
+  var TRIAL_ROSTER127 = [];
   var params = new URLSearchParams(location.search);
   var token = params.get('t') || '';
   // __TEST81_BEGIN__ テストプレイ（game81）: ?test=1 のときだけ有効。本番ゲートをすべて外し、
@@ -1694,7 +1712,132 @@
     };
     step();
   }
+  // ===== game126: 必殺技カットイン動画（パターン3・深夜放送局衣装） =====
+  // 自分のキャラが属性技を使ったとき、対応表（ULT_VIDEO_MAP）に自分の tokenHash が
+  // あれば確率 ULT_VIDEO_RATE で全画面オーバーレイ再生する。NPC 側では発動しない。
+  // 効果表示（攻撃モーション＋HP反映）は動画が閉じるまで待ち、終わってから従来の
+  // 再生フローへ進む。読み込みエラー・404 は無音で即スキップし、対戦は止めない。
+  var ULT_VIDEO_TIMEOUT_MS126 = 4500; // 詰まり防止のハードタイムアウト
+  var ultPreloaded126 = {};
+  // game127: 対応表引きを tokenHash 指定に一般化（お試しプレイの選択キャラでも使う）
+  function ultVideoFileForHash126(hash) {
+    if (!ULT_VIDEO_ENABLED) return null;
+    if (!hash) return null;
+    var f = ULT_VIDEO_MAP[hash];
+    return typeof f === 'string' && f ? f : null;
+  }
+  function ultVideoFileForMe126() {
+    var me = myEntry();
+    if (!me || !me.tokenHash) return null;
+    return ultVideoFileForHash126(me.tokenHash);
+  }
+  // 対戦開始時（両対戦者が確定した時点）の先読み。実体は置かず読み込みだけ進める
+  function preloadUltVideoForHash126(hash) {
+    var f = ultVideoFileForHash126(hash);
+    if (!f || ultPreloaded126[f]) return;
+    ultPreloaded126[f] = true;
+    try {
+      var v = document.createElement('video');
+      v.muted = true;
+      v.preload = 'auto';
+      v.src = f;
+    } catch (e) {}
+  }
+  function preloadUltVideo126() {
+    var me = myEntry();
+    if (me && me.tokenHash) preloadUltVideoForHash126(me.tokenHash);
+  }
+  // ===== game127: キャラ別ボイスSE（属性技カットインの音声） =====
+  // 割り当て済みのキャラが属性技を使ったら毎回鳴らす。動画カットインが当たった回は
+  // 動画の開始に合わせて鳴らし、動画が閉じたら止める。読み込み失敗は無音で素通り
+  var ultVoicePreloaded127 = {};
+  var ultVoiceAudio127 = null;
+  function ultVoiceFileForHash127(hash) {
+    if (!ULT_VOICE_ENABLED) return null;
+    if (!hash) return null;
+    var f = ULT_VOICE_MAP[hash];
+    return typeof f === 'string' && f ? f : null;
+  }
+  function preloadUltVoice127(file) {
+    if (!file || ultVoicePreloaded127[file]) return;
+    ultVoicePreloaded127[file] = true;
+    try {
+      var a = new Audio();
+      a.preload = 'auto';
+      a.src = file;
+    } catch (e) {}
+  }
+  function playUltVoice127(file) {
+    stopUltVoice127();
+    try {
+      var a = new Audio();
+      a.volume = ULT_VOICE_VOLUME;
+      a.preload = 'auto';
+      a.src = file;
+      ultVoiceAudio127 = a;
+      var p = a.play();
+      if (p && typeof p.catch === 'function') p.catch(function () {});
+      return a;
+    } catch (e) { return null; }
+  }
+  function stopUltVoice127() {
+    if (!ultVoiceAudio127) return;
+    try { ultVoiceAudio127.pause(); } catch (e) {}
+    ultVoiceAudio127 = null;
+  }
+  function playUltVideo126(file) {
+    return new Promise(function (resolve) {
+      var closed = false;
+      var overlay = document.createElement('div');
+      overlay.className = 'ultOverlay126';
+      var v = document.createElement('video');
+      v.muted = true;
+      v.autoplay = true;
+      v.playsInline = true;
+      v.setAttribute('playsinline', '');
+      v.preload = 'auto';
+      var close = function () {
+        if (closed) return;
+        closed = true;
+        clearTimeout(timer);
+        try { v.pause(); } catch (e) {}
+        if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+        resolve();
+      };
+      var timer = setTimeout(close, ULT_VIDEO_TIMEOUT_MS126);
+      overlay.addEventListener('click', close);
+      v.addEventListener('ended', close);
+      v.addEventListener('error', close);
+      document.body.appendChild(overlay);
+      overlay.appendChild(v);
+      v.src = file;
+      var p = null;
+      try { p = v.play(); } catch (e) {}
+      if (p && typeof p.catch === 'function') p.catch(function () { close(); });
+    });
+  }
   function playAnimEntry86(entry, done) {
+    var a = anim86;
+    if (!a || !mirror || !mirror.participants) { done(); return; }
+    var ms = mySideIndex();
+    // game126: 自分の属性技なら、効果表示の前にカットイン動画を挟むことがある
+    // game127: ボイスSEが割り当て済みなら毎回鳴らす（動画が当たった回は同期再生し、
+    // 動画が閉じたら止める。当たらなかった回は通常の技演出に合わせて音声だけ鳴らす）
+    if (entry.side === ms && entry.choice === 'attr') {
+      var me126 = myEntry();
+      var myHash126 = me126 ? me126.tokenHash : null;
+      var uf126 = ultVideoFileForHash126(myHash126);
+      var vf127 = ultVoiceFileForHash127(myHash126);
+      if (uf126 && Math.random() < ULT_VIDEO_RATE) {
+        if (vf127) playUltVoice127(vf127);
+        playUltVideo126(uf126).then(function () { stopUltVoice127(); playAnimEntryBody86(entry, done); });
+        return;
+      }
+      if (vf127) playUltVoice127(vf127);
+    }
+    playAnimEntryBody86(entry, done);
+  }
+  function playAnimEntryBody86(entry, done) {
     var a = anim86;
     if (!a || !mirror || !mirror.participants) { done(); return; }
     var ms = mySideIndex();
@@ -1771,6 +1914,25 @@
     step();
   }
   function playTrainAnimEntry86(myTrain, entry, done) {
+    // game127: お試しプレイでリスナーキャラを選んだ場合、そのキャラの属性技では
+    // 本番と同じく動画カットインとボイスSEを試せる。トグル「カットイン必ず出す」が
+    // ON の間は trial 内だけ抽選率 100%（通常対戦の ULT_VIDEO_RATE は不変）。
+    // ボイスSEは本番と同じく毎回鳴らし、動画が閉じたら止める
+    if (myTrain.trial && myTrain.char127 && entry.side === 0 && entry.choice === 'attr') {
+      var hash127 = myTrain.char127.tokenHash;
+      var uf127 = ultVideoFileForHash126(hash127);
+      var vf127 = ultVoiceFileForHash127(hash127);
+      var rate127 = myTrain.forceCutin127 === false ? ULT_VIDEO_RATE : 1;
+      if (uf127 && Math.random() < rate127) {
+        if (vf127) playUltVoice127(vf127);
+        playUltVideo126(uf127).then(function () { stopUltVoice127(); playTrainAnimEntryBody86(myTrain, entry, done); });
+        return;
+      }
+      if (vf127) playUltVoice127(vf127);
+    }
+    playTrainAnimEntryBody86(myTrain, entry, done);
+  }
+  function playTrainAnimEntryBody86(myTrain, entry, done) {
     var st = myTrain.state;
     var atk = st && st.participants ? st.participants[entry.side] : null;
     var isFoeAtk = entry.side === 1;
@@ -1829,6 +1991,11 @@
     // game86: 履歴の増分は即時SE＋即時HP反映ではなく、逐次再生キューへ回す（攻撃SEは再生側で鳴らす）
     if (!anim86 || anim86.battleId !== battleId) resetAnim86(battleId);
     if (m.participants && m.participants.length >= 2) {
+      // game126: 両対戦者が確定したので、自分の必殺技動画があれば先読みしておく
+      preloadUltVideo126();
+      // game127: 自分のボイスSEも先読みしておく
+      var me127 = myEntry();
+      if (me127 && me127.tokenHash) preloadUltVoice127(ultVoiceFileForHash127(me127.tokenHash));
       if (!anim86.dispHp) {
         // この対戦で最初のミラー: 既存履歴は再生せず、表示HPを実値へ同期する（再入場・再接続用）
         anim86.dispHp = [m.participants[0].hp, m.participants[1].hp];
@@ -2083,6 +2250,10 @@
   // NPC_MOBS から自分を除いた残りだけなので、隠しキャラ・GK大御所は構造的に出現しない。
   var TRIAL_LEVEL93 = 10;
   var trialMob93 = null;
+  // game127: お試しプレイで選んだリスナーキャラ（TRIAL_ROSTER127 の要素）と、
+  // 直近の選択状態（セレクトの選択と「カットイン必ず出す」トグル）を覚える
+  var trialChar127 = null;
+  var trialForceCutin127 = true;
   // 自分の能力値: sim が NPC 相手に使う標準ビルドと同式（基礎 atk10/def5/attrValue10 に
   // レベル−1 を均等配分、端数は攻撃→防御→属性値）。Lv10 → atk13/def8/attrValue13。
   // 相手も npcLevel = TRIAL_LEVEL93 で同式のビルドになるため互角に戦える
@@ -2116,8 +2287,24 @@
     var box = el('viewTrial');
     if (!box) return;
     var html = '<div class="panel"><div class="ptitle">🎮 お試しプレイ</div>'
-      + '<div class="note">自分のキャラの代わりに、MOBキャラを1体選んで模擬戦ができます（記録は残りません）。本番では、配信に遊びに来るとラジオネームと自分のキャラがもらえるよ。</div>'
-      + '<div class="trialGrid93">';
+      + '<div class="note">自分のキャラの代わりに、MOBキャラを1体選んで模擬戦ができます（記録は残りません）。本番では、配信に遊びに来るとラジオネームと自分のキャラがもらえるよ。</div>';
+    // game127: ?trial=1 のときは、属性が決まっているリスナーキャラを選んで試せる。
+    // 実パラメータで戦い、属性技は習得済みとして BP 消費なしで使える（記録は残らない）
+    if (TRIAL_MODE && TRIAL_ROSTER127.length) {
+      html += '<div class="trialCharBox127"><div class="ptitle" style="font-size:15px;">⚔️ リスナーキャラで試す</div>'
+        + '<div class="note">実際のキャラの強さで模擬戦できます。必殺技カットイン動画（🎬）やボイスSE（🔊）の「アタリ」確認用です。</div>'
+        + '<select class="trialCharSel127" id="trialCharSel127">';
+      for (var ci = 0; ci < TRIAL_ROSTER127.length; ci++) {
+        var rc127 = TRIAL_ROSTER127[ci];
+        var marks127 = (ULT_VIDEO_MAP[rc127.tokenHash] ? ' 🎬' : '') + (ULT_VOICE_MAP[rc127.tokenHash] ? ' 🔊' : '');
+        html += '<option value="' + esc(rc127.tokenHash) + '"' + (trialChar127 && trialChar127.tokenHash === rc127.tokenHash ? ' selected' : '') + '>'
+          + esc(rc127.nickname) + '（' + esc(rc127.attr) + '属性・Lv' + rc127.level + '）' + marks127 + '</option>';
+      }
+      html += '</select>'
+        + '<label class="trialForce127"><input type="checkbox" id="trialForceCutin127"' + (trialForceCutin127 ? ' checked' : '') + '> カットイン必ず出す</label>'
+        + '<div style="margin-top:10px;"><button class="btn" id="trialCharStartBtn127" type="button">このキャラでお試し</button></div></div>';
+    }
+    html += '<div class="trialGrid93">';
     for (var i = 0; i < NPC_MOBS.length; i++) {
       var m = NPC_MOBS[i];
       html += '<button type="button" class="trialCard93" data-trialmob="' + esc(m.id) + '">'
@@ -2138,9 +2325,21 @@
     });
     var back93 = el('trialBackTitleBtn');
     if (back93) back93.addEventListener('click', function () { playSlot('se.uiCancel'); backToTitle93(); });
+    // game127: リスナーキャラ選択の開始ボタン（?trial=1 のときだけ描画される）
+    var charStart127 = el('trialCharStartBtn127');
+    if (charStart127) charStart127.addEventListener('click', function () {
+      var sel127 = el('trialCharSel127');
+      var force127 = el('trialForceCutin127');
+      trialForceCutin127 = force127 ? force127.checked : true;
+      var hash = sel127 ? sel127.value : '';
+      var entry127 = null;
+      for (var k = 0; k < TRIAL_ROSTER127.length; k++) if (TRIAL_ROSTER127[k].tokenHash === hash) entry127 = TRIAL_ROSTER127[k];
+      if (entry127) { playSlot('se.uiDecide'); startTrialCharBattle127(entry127); }
+    });
   }
   function startTrialBattle93(mob) {
     if (!mob || !simulateTrainingBattle) return;
+    trialChar127 = null;
     trialMob93 = mob;
     var foeMob = trialFoeMob93(mob);
     var build = trialBuild93(TRIAL_LEVEL93);
@@ -2161,6 +2360,35 @@
     playBattleBgm('bgm.battle');
     switchView('training');
     showEncounter87({ name: mob.name, img: mob.img }, train.foeFace);
+  }
+  // game127: リスナーキャラを選んでのお試しプレイ。実パラメータ（レベル・攻撃・
+  // 防御・属性値）で戦い、属性技は習得済みとして扱う（sim の skill 名を渡すだけで、
+  // BP は消費しない）。相手は従来のお試しと同じ MOB プールからランダム。
+  // train.trial のため対戦ログは提出されず、実台帳・実データへは一切書き込まない
+  function startTrialCharBattle127(entry127) {
+    if (!entry127 || !simulateTrainingBattle) return;
+    trialChar127 = entry127;
+    trialMob93 = null;
+    var foeMob = NPC_MOBS[Math.floor(Math.random() * NPC_MOBS.length)];
+    var seed = (Date.now() % 2147483647) ^ Math.floor(Math.random() * 2147483647);
+    var snapshot = { nickname: entry127.nickname, attr: entry127.attr, level: entry127.level, atk: entry127.atk, def: entry127.def, attrValue: entry127.attrValue, skill: entry127.skillName || null };
+    train = {
+      seed: seed, snapshot: snapshot, choices: [], state: null, submitted: false, resultPlayed: false, day: jstDayKey55(),
+      trial: true, npcLevel: TRIAL_LEVEL93,
+      npcBoost: { attr: foeMob.attr },
+      foeFace: { name: foeMob.name, img: foeMob.img },
+      myFace: { name: entry127.nickname, img: entry127.img || null },
+      char127: entry127, forceCutin127: trialForceCutin127,
+    };
+    train.state = simulateTrainingBattle({ seed: seed, snapshot: snapshot, choices: [], npcLevel: train.npcLevel, npcBoost: train.npcBoost });
+    if (!train.state || train.state.error) { train = null; alert('お試し対戦を開始できませんでした。'); return; }
+    initTrainAnim86();
+    // 選んだキャラの動画・ボイスSEを先読みしておく（アタリ確認を滑らかにするため）
+    preloadUltVideoForHash126(entry127.tokenHash);
+    preloadUltVoice127(ultVoiceFileForHash127(entry127.tokenHash));
+    playBattleBgm('bgm.battle');
+    switchView('training');
+    showEncounter87({ name: entry127.nickname, img: entry127.img || null }, train.foeFace);
   }
   // __TRIAL93_IMPL_END__
   // ===== 訓練モード（game55・§4.4）: 配信外でも遊べる NPC 戦 =====
@@ -2421,7 +2649,7 @@
           + '<button class="btn" id="trialAgainBtn" type="button">もう一度お試しする</button> '
           + '<button class="btn small" id="trialReselectBtn" type="button">キャラを選び直す</button> '
           + '<button class="btn small" id="trialTitleBtn" type="button">タイトルへもどる</button></div></div>' + trainHistHtml();
-        el('trialAgainBtn').addEventListener('click', function () { if (trialMob93) startTrialBattle93(trialMob93); });
+        el('trialAgainBtn').addEventListener('click', function () { if (trialChar127) startTrialCharBattle127(trialChar127); else if (trialMob93) startTrialBattle93(trialMob93); });
         el('trialReselectBtn').addEventListener('click', function () { train = null; showTrialSelect93(); });
         el('trialTitleBtn').addEventListener('click', function () { backToTitle93(); });
         return;
