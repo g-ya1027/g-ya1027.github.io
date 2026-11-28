@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- spoon-battle-page v28 -->
+<!-- spoon-battle-page v29 -->
 <!-- ultvideos:31c39a7f6458cd76|ultvoices:1b711c794e696001|trialroster:4f53cda18c2baa0c -->
 <html lang="ja">
 <head>
@@ -2288,17 +2288,21 @@
     if (!box) return;
     var html = '<div class="panel"><div class="ptitle">🎮 お試しプレイ</div>'
       + '<div class="note">自分のキャラの代わりに、MOBキャラを1体選んで模擬戦ができます（記録は残りません）。本番では、配信に遊びに来るとラジオネームと自分のキャラがもらえるよ。</div>';
-    // game127: ?trial=1 のときは、属性が決まっているリスナーキャラを選んで試せる。
+    // game127: ?trial=1 のときは、リスナーキャラを選んで試せる。
     // 実パラメータで戦い、属性技は習得済みとして BP 消費なしで使える（記録は残らない）
+    // game129: 属性待ちのキャラは初期案の属性で試せる（選択肢に「属性待ち・初期案：X」と出す）
     if (TRIAL_MODE && TRIAL_ROSTER127.length) {
       html += '<div class="trialCharBox127"><div class="ptitle" style="font-size:15px;">⚔️ リスナーキャラで試す</div>'
-        + '<div class="note">実際のキャラの強さで模擬戦できます。必殺技カットイン動画（🎬）やボイスSE（🔊）の「アタリ」確認用です。</div>'
+        + '<div class="note">実際のキャラの強さで模擬戦できます。属性待ちの人は初期案の属性で試せます。必殺技カットイン動画（🎬）やボイスSE（🔊）の「アタリ」確認用です。</div>'
         + '<select class="trialCharSel127" id="trialCharSel127">';
       for (var ci = 0; ci < TRIAL_ROSTER127.length; ci++) {
         var rc127 = TRIAL_ROSTER127[ci];
         var marks127 = (ULT_VIDEO_MAP[rc127.tokenHash] ? ' 🎬' : '') + (ULT_VOICE_MAP[rc127.tokenHash] ? ' 🔊' : '');
+        var label127 = rc127.awaiting
+          ? esc(rc127.nickname) + '（属性待ち・初期案：' + esc(rc127.attr) + '・Lv' + rc127.level + '）'
+          : esc(rc127.nickname) + '（' + esc(rc127.attr) + '属性・Lv' + rc127.level + '）';
         html += '<option value="' + esc(rc127.tokenHash) + '"' + (trialChar127 && trialChar127.tokenHash === rc127.tokenHash ? ' selected' : '') + '>'
-          + esc(rc127.nickname) + '（' + esc(rc127.attr) + '属性・Lv' + rc127.level + '）' + marks127 + '</option>';
+          + label127 + marks127 + '</option>';
       }
       html += '</select>'
         + '<label class="trialForce127"><input type="checkbox" id="trialForceCutin127"' + (trialForceCutin127 ? ' checked' : '') + '> カットイン必ず出す</label>'
