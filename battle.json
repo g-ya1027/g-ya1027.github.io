@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-26T14:30:00.988Z",
+  "updatedAt": "2026-11-28T16:25:10.541Z",
   "live": false,
   "gkEnabled": true,
   "gkTiers": [
@@ -35,7 +35,7 @@
       "radioName": "夢追う番人卿",
       "status": "awaiting",
       "attr": null,
-      "attrInitial": null,
+      "attrInitial": "土",
       "level": 1,
       "rank": {
         "name": "見習いDJ",
@@ -140,7 +140,7 @@
       "radioName": "深夜の貴公子名人",
       "status": "awaiting",
       "attr": null,
-      "attrInitial": null,
+      "attrInitial": "氷",
       "level": 2,
       "rank": {
         "name": "見習いDJ",
@@ -240,7 +240,7 @@
       "radioName": "黄昏の番人総長",
       "status": "awaiting",
       "attr": null,
-      "attrInitial": null,
+      "attrInitial": "土",
       "level": 1,
       "rank": {
         "name": "見習いDJ",
@@ -340,7 +340,7 @@
       "radioName": "深夜の影総長",
       "status": "awaiting",
       "attr": null,
-      "attrInitial": null,
+      "attrInitial": "闇",
       "level": 1,
       "rank": {
         "name": "見習いDJ",
@@ -440,7 +440,7 @@
       "radioName": "永遠の貴公子の星",
       "status": "awaiting",
       "attr": null,
-      "attrInitial": null,
+      "attrInitial": "氷",
       "level": 2,
       "rank": {
         "name": "見習いDJ",
@@ -545,7 +545,7 @@
       "radioName": "疾風の船長将軍",
       "status": "awaiting",
       "attr": null,
-      "attrInitial": null,
+      "attrInitial": "水",
       "level": 1,
       "rank": {
         "name": "見習いDJ",
@@ -645,7 +645,7 @@
       "radioName": "彗星の狼将軍",
       "status": "awaiting",
       "attr": null,
-      "attrInitial": null,
+      "attrInitial": "風",
       "level": 1,
       "rank": {
         "name": "見習いDJ",
@@ -745,7 +745,7 @@
       "radioName": "黄昏の流れ星の星",
       "status": "awaiting",
       "attr": null,
-      "attrInitial": null,
+      "attrInitial": "光",
       "level": 1,
       "rank": {
         "name": "見習いDJ",
@@ -845,7 +845,7 @@
       "radioName": "暁の流れ星隊長",
       "status": "awaiting",
       "attr": null,
-      "attrInitial": null,
+      "attrInitial": "光",
       "level": 1,
       "rank": {
         "name": "見習いDJ",
@@ -945,7 +945,7 @@
       "radioName": "深夜の流れ星番長",
       "status": "awaiting",
       "attr": null,
-      "attrInitial": null,
+      "attrInitial": "光",
       "level": 2,
       "rank": {
         "name": "見習いDJ",
@@ -1045,7 +1045,7 @@
       "radioName": "伝説の猫又先生",
       "status": "awaiting",
       "attr": null,
-      "attrInitial": null,
+      "attrInitial": "火",
       "level": 1,
       "rank": {
         "name": "見習いDJ",
@@ -1145,7 +1145,7 @@
       "radioName": "黄金の流れ星卿",
       "status": "awaiting",
       "attr": null,
-      "attrInitial": null,
+      "attrInitial": "光",
       "level": 2,
       "rank": {
         "name": "見習いDJ",
@@ -1250,7 +1250,7 @@
       "radioName": "黄昏の魔法使い卿",
       "status": "awaiting",
       "attr": null,
-      "attrInitial": null,
+      "attrInitial": "火",
       "level": 1,
       "rank": {
         "name": "見習いDJ",
@@ -1350,7 +1350,7 @@
       "radioName": "伝説の貴公子将軍",
       "status": "awaiting",
       "attr": null,
-      "attrInitial": null,
+      "attrInitial": "氷",
       "level": 1,
       "rank": {
         "name": "見習いDJ",
